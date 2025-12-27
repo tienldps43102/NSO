@@ -21,9 +21,12 @@ import { useSearchParams } from "next/navigation";
 
 const loginSchema = z.object({
     email: z.email({ message: "Email không hợp lệ" }),
-    password: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, {
-        message: "Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ cái và số",
-    }),
+    password: z.string().regex(
+        /^(?=.*[A-Za-z])(?=.*\d).{6,}$/,
+        {
+            message: "Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ cái và số",
+        }
+    ),
     rememberMe: z.boolean().optional(),
 });
 
@@ -33,7 +36,6 @@ const Login = () => {
     const searchParams = useSearchParams()
     const callbackURL = searchParams.get("callbackURL") || "/"
     const [showPassword, setShowPassword] = useState(false);
-    const auth = authClient.useSession();
 
     const form = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
@@ -45,14 +47,23 @@ const Login = () => {
     });
 
     const handleSubmit = async (data: LoginFormData) => {
-        authClient.signIn.email({
+        const res = await authClient.signIn.email({
             email: data.email,
             password: data.password,
             rememberMe: data.rememberMe,
             callbackURL: callbackURL,
 
         })
-
+        if (res.error?.code === "INVALID_EMAIL_OR_PASSWORD") {
+            form.setError("email", {
+                type: "manual",
+                message: "Email hoặc mật khẩu không đúng",
+            });
+            form.setError("password", {
+                type: "manual",
+                message: "Email hoặc mật khẩu không đúng",
+            });
+        }
     };
 
     const handleGoogleLogin = () => {
@@ -198,6 +209,7 @@ const Login = () => {
                                 <Button
                                     type="submit"
                                     className="w-full h-12 rounded-xl text-base font-semibold"
+                                    disabled={form.formState.isSubmitting}
                                 >
                                     Đăng nhập
                                 </Button>
