@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/home/SiteHeader";
+import { SiteFooter } from "@/components/home/SiteFooter";
 const beVietnamPro = Be_Vietnam_Pro({
   weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
@@ -23,7 +25,14 @@ export default function RootLayout({
       <body
         className={`${beVietnamPro.variable}  antialiased`}
       >
-        {children}
+        <div className="min-h-screen bg-background">
+          <SiteHeader />
+          <main>
+            {children}
+          </main>
+          <SiteFooter />
+        </div>
+
       </body>
     </html>
   );
