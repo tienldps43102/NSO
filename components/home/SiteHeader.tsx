@@ -1,19 +1,33 @@
 "use client";
 import { useState } from "react";
-import { Search, Heart, ShoppingCart, Menu, X, Zap } from "lucide-react";
+import { Search, ShoppingCart, Menu, X, Zap, LogIn, User, Settings, LogOut, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { authClient, type AuthUser } from "@/lib/auth-client";
+
 
 interface SiteHeaderProps {
- 
+  user: AuthUser| null;
 }
 
-export function SiteHeader({  }: SiteHeaderProps) {
+export function SiteHeader({ user }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full glass">
@@ -45,14 +59,7 @@ export function SiteHeader({  }: SiteHeaderProps) {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2">
-            {/* Theme Toggle */}
-           
-
-            {/* Wishlist */}
-            <Button variant="ghost" size="icon" className="rounded-full h-10 w-10 glass hidden sm:flex" aria-label="Danh sách yêu thích">
-              <Heart className="h-5 w-5" />
-            </Button>
-
+          
             {/* Cart */}
             <Button variant="ghost" size="icon" className="relative rounded-full h-10 w-10 glass" aria-label="Giỏ hàng">
               <ShoppingCart className="h-5 w-5" />
@@ -61,11 +68,60 @@ export function SiteHeader({  }: SiteHeaderProps) {
               </Badge>
             </Button>
 
-            {/* Avatar */}
-            <Avatar className="h-10 w-10 border-2 border-primary/20 hidden sm:flex">
-              <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=nso" alt="User" />
-              <AvatarFallback className="bg-primary/10 text-primary font-medium">U</AvatarFallback>
-            </Avatar>
+            {/* User Avatar/Login Button */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="hidden sm:flex items-center gap-2 h-10 rounded-full px-3 glass hover:bg-accent/60">
+                    <Avatar className="h-8 w-8 border-2 border-primary/20">
+                      <AvatarImage src={user?.image || "/default-avatar.png"} alt={user?.name || "User Avatar"} />
+                      <AvatarFallback className="bg-primary/10 text-primary font-medium text-sm">
+                        {user?.name?.charAt(0).toUpperCase() || "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-sm font-medium max-w-[100px] truncate">{user?.name}</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 glass">
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">{user?.name}</p>
+                      <p className="text-xs leading-none text-muted-foreground">{user?.email}</p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Tài khoản</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Cài đặt</span>
+                  </DropdownMenuItem>
+                  {user?.role === "ADMIN" && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>
+                        <Shield className="mr-2 h-4 w-4" />
+                        <span>Trang quản trị</span>
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Đăng xuất</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild className="hidden sm:flex h-10 rounded-full px-6 font-semibold">
+                <a href="/login">
+                  <LogIn className="mr-2 h-4 w-4" />
+                  Đăng nhập
+                </a>
+              </Button>
+            )}
 
             {/* Mobile Menu Toggle */}
             <Button
@@ -104,7 +160,7 @@ export function SiteHeader({  }: SiteHeaderProps) {
         <div
           className={cn(
             "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
-            mobileMenuOpen ? "max-h-96 py-4" : "max-h-0"
+            mobileMenuOpen ? "max-h-[500px] py-4" : "max-h-0"
           )}
         >
           {/* Mobile Search */}
@@ -118,6 +174,53 @@ export function SiteHeader({  }: SiteHeaderProps) {
               />
             </div>
           </div>
+
+          {/* Mobile User Section */}
+          {user ? (
+            <div className="px-4 mb-4">
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-card/50 border border-border/40">
+                <Avatar className="h-10 w-10 border-2 border-primary/20">
+                  <AvatarImage src={user?.image || "/default-avatar.png"} alt={user?.name || "User Avatar"} />
+                  <AvatarFallback className="bg-primary/10 text-primary font-medium">
+                    {user?.name?.charAt(0).toUpperCase() || "U"}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">{user?.name}</p>
+                  <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                </div>
+              </div>
+              <div className="mt-3 space-y-1">
+                <a href="/account" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
+                  <User className="h-4 w-4" />
+                  Tài khoản
+                </a>
+                <a href="/settings" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
+                  <Settings className="h-4 w-4" />
+                  Cài đặt
+                </a>
+                {user?.role === "ADMIN" && (
+                  <a href="/admin" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
+                    <Shield className="h-4 w-4" />
+                    Trang quản trị
+                  </a>
+                )}
+                <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-xl transition-colors">
+                  <LogOut className="h-4 w-4" />
+                  Đăng xuất
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="px-4 mb-4">
+              <Button asChild className="w-full h-12 rounded-xl font-semibold">
+                <a href="/login">
+                  <LogIn className="mr-2 h-5 w-5" />
+                  Đăng nhập
+                </a>
+              </Button>
+            </div>
+          )}
 
           {/* Mobile Nav Links */}
           <nav className="flex flex-col gap-1 px-4">

@@ -4,3 +4,6 @@ import { auth } from "./auth";
 export const authClient =  createAuthClient({
     plugins: [inferAdditionalFields<typeof auth>()],
 })
+
+export type Session = typeof authClient.$Infer.Session
+export type AuthUser = Session["user"]
