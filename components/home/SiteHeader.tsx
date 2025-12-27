@@ -16,6 +16,7 @@ import {
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { authClient, type AuthUser } from "@/lib/auth-client";
+import Link from "next/link";
 
 
 interface SiteHeaderProps {
@@ -27,6 +28,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
 
   const handleLogout = async () => {
     await authClient.signOut();
+    window.location.href = "/";
   };
 
   return (
@@ -116,10 +118,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
               </DropdownMenu>
             ) : (
               <Button asChild className="hidden sm:flex h-10 rounded-full px-6 font-semibold">
-                <a href="/login">
+                <Link href="/login">
                   <LogIn className="mr-2 h-4 w-4" />
                   Đăng nhập
-                </a>
+                </Link>
               </Button>
             )}
 

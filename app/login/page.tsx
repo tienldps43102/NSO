@@ -16,6 +16,8 @@ import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { authClient } from "@/lib/auth-client";
+import { useSearchParams } from "next/navigation";
 
 const loginSchema = z.object({
     email: z.email({ message: "Email không hợp lệ" }),
@@ -28,7 +30,10 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
+    const searchParams = useSearchParams()
+    const callbackURL = searchParams.get("callbackURL") || "/"
     const [showPassword, setShowPassword] = useState(false);
+    const auth = authClient.useSession();
 
     const form = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
@@ -40,11 +45,21 @@ const Login = () => {
     });
 
     const handleSubmit = async (data: LoginFormData) => {
-        console.log("Form submitted:", data);
+        authClient.signIn.email({
+            email: data.email,
+            password: data.password,
+            rememberMe: data.rememberMe,
+            callbackURL: callbackURL,
+
+        })
+
     };
 
     const handleGoogleLogin = () => {
-        console.log("Google login clicked");
+        authClient.signIn.social({
+            callbackURL: callbackURL,
+            provider: "google",
+        });
     };
 
     return (
@@ -52,7 +67,7 @@ const Login = () => {
             {/* Right side - Login Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center ">
                 <div className="w-full max-w-md">
-                  
+
                     <div className="bg-card/70 backdrop-blur-xl border border-border/40 rounded-3xl p-8 shadow-glass">
                         <div className="text-center mb-8">
                             <h2 className="text-2xl font-bold text-foreground mb-2">Đăng nhập</h2>

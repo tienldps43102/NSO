@@ -5,7 +5,7 @@ import { PromoBanner } from "@/components/home/PromoBanner";
 import { HorizontalBookRow } from "@/components/home/HorizontalBookRow";
 import { RankedBestSellers } from "@/components/home/RankedBestSellers";
 
-const Index = () => {
+const  Index = () => {
   return (
    <>
         <Hero />
