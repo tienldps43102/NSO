@@ -52,7 +52,6 @@ const Login = () => {
             password: data.password,
             rememberMe: data.rememberMe,
             callbackURL: callbackURL,
-
         })
         if (res.error?.code === "INVALID_EMAIL_OR_PASSWORD") {
             form.setError("email", {
@@ -63,7 +62,9 @@ const Login = () => {
                 type: "manual",
                 message: "Email hoặc mật khẩu không đúng",
             });
+            return;
         }
+
     };
 
     const handleGoogleLogin = () => {

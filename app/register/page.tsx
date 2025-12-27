@@ -22,9 +22,12 @@ import { authClient } from "@/lib/auth-client";
 const registerSchema = z.object({
     name: z.string().min(2, { message: "Tên phải có ít nhất 2 ký tự" }),
     email: z.email({ message: "Email không hợp lệ" }),
-    password: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, {
-        message: "Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ cái và số",
-    }),
+     password: z.string().regex(
+        /^(?=.*[A-Za-z])(?=.*\d).{6,}$/,
+        {
+            message: "Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ cái và số",
+        }
+    ),
     confirmPassword: z.string(),
     agreeTerms: z.boolean().refine((val) => val === true, {
         message: "Bạn phải đồng ý với điều khoản dịch vụ",
@@ -52,12 +55,14 @@ const Register = () => {
     });
 
     const handleSubmit = async (data: RegisterFormData) => {
-        await authClient.signUp.email({
+       const res= await authClient.signUp.email({
             email: data.email,
             password: data.password,
             name: data.name,
             callbackURL: "/"
         })
+        console.log(res)
+        window.location.href = "/";
     };
 
     const handleGoogleRegister = () => {
@@ -76,9 +81,7 @@ const Register = () => {
                     <div className="bg-card/70 backdrop-blur-xl border border-border/40 rounded-3xl p-8 shadow-glass">
                         <div className="text-center mb-8">
                             <h2 className="text-2xl font-bold text-foreground mb-2">Tạo tài khoản</h2>
-                            <p className="text-muted-foreground">
-                                Bắt đầu hành trình khám phá truyện tranh
-                            </p>
+                            
                         </div>
 
                         {/* Google Register Button */}

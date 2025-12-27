@@ -6,6 +6,7 @@ import { HorizontalBookRow } from "@/components/home/HorizontalBookRow";
 import { RankedBestSellers } from "@/components/home/RankedBestSellers";
 
 const  Index = () => {
+
   return (
    <>
         <Hero />
