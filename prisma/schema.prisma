@@ -74,6 +74,7 @@ model Product {
   publisherId     String?   @map("publisher_id") @db.VarChar(36)
   publicationDate DateTime? @map("publication_date") @db.Date
   pageCount       Int?      @map("page_count")
+  displayPrice    Decimal   @map("display_price") @db.Decimal(12, 2)
   thumbnailUrl    String?   @map("thumbnail_url")
   isActive        Boolean   @default(true) @map("is_active")
   createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)

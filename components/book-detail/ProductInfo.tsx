@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Minus, Plus, ShoppingCart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,6 +24,7 @@ export function ProductInfo({
 }: ProductInfoProps) {
   const [selectedVariant, setSelectedVariant] = useState(bookDetail.variants[0]);
   const [quantity, setQuantity] = useState(1);
+  const isOneVariant = bookDetail.variants.length === 1;
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("vi-VN").format(price) + "đ";
@@ -47,7 +48,7 @@ export function ProductInfo({
           Tác giả:{" "}
           {
             bookDetail.authors.map((author) => (
-              <>
+              <React.Fragment key={author.id}>
                 <Link
                   key={author.id}
                   href={`/author/${author.id}`}
@@ -56,7 +57,7 @@ export function ProductInfo({
                   {author.name}
                 </Link>
                 <span>, </span>
-                </>
+                </React.Fragment>
             ))
           }
         </span>
@@ -77,6 +78,7 @@ export function ProductInfo({
       </div>
 
       {/* Variant Selector */}
+      {!isOneVariant && (
       <div className="space-y-3">
         <span className="text-sm font-medium text-foreground">Phiên bản:</span>
         <div className="flex flex-wrap gap-2 mt-2">
@@ -98,6 +100,7 @@ export function ProductInfo({
           ))}
         </div>
       </div>
+      )}
 
       {/* Purchase Actions */}
       <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -124,13 +127,13 @@ export function ProductInfo({
         </div>
 
         {/* Add to Cart */}
-        <Button variant="outline" className="flex-1 gap-2">
+        <Button variant="outline" className="flex-1 gap-2" size={'lg'}>
           <ShoppingCart className="w-4 h-4" />
           Thêm vào giỏ
         </Button>
 
         {/* Buy Now */}
-        <Button className="flex-1 gap-2">
+        <Button className="flex-1 gap-2" size={'lg'}>
           <Zap className="w-4 h-4" />
           Mua ngay
         </Button>
