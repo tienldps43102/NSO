@@ -69,9 +69,10 @@ model Series {
 model Product {
   id              String    @id @default(ulid()) @db.VarChar(36)
   title           String    @db.VarChar(300)
+  isbn10          String?   @unique @db.VarChar(20)
   slug            String    @unique @db.VarChar(320)
   description     String?
-  isbn13          String?   @unique @db.VarChar(13)
+  isbn13          String?   @unique @db.VarChar(20)
   publisherId     String?   @map("publisher_id") @db.VarChar(36)
   publicationDate DateTime? @map("publication_date") @db.Date
   pageCount       Int?      @map("page_count")
