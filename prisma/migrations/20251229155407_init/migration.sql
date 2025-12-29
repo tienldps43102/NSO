@@ -21,9 +21,18 @@ CREATE TABLE "categories" (
     "id" VARCHAR(36) NOT NULL,
     "parent_id" VARCHAR(36),
     "name" VARCHAR(200) NOT NULL,
-    "slug" VARCHAR(220) NOT NULL,
 
     CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "attributes" (
+    "id" VARCHAR(36) NOT NULL,
+    "product_id" VARCHAR(36) NOT NULL,
+    "name" VARCHAR(200) NOT NULL,
+    "value" VARCHAR(200) NOT NULL,
+
+    CONSTRAINT "attributes_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -39,9 +48,9 @@ CREATE TABLE "series" (
 CREATE TABLE "products" (
     "id" VARCHAR(36) NOT NULL,
     "title" VARCHAR(300) NOT NULL,
-    "slug" VARCHAR(320) NOT NULL,
+    "isbn10" VARCHAR(20),
     "description" TEXT,
-    "isbn13" VARCHAR(13),
+    "isbn13" VARCHAR(20),
     "publisher_id" VARCHAR(36),
     "publication_date" DATE,
     "page_count" INTEGER,
@@ -58,7 +67,8 @@ CREATE TABLE "products" (
 -- CreateTable
 CREATE TABLE "product_images" (
     "id" VARCHAR(36) NOT NULL,
-    "variant_id" VARCHAR(36) NOT NULL,
+    "product_id" VARCHAR(36) NOT NULL,
+    "variant_id" VARCHAR(36),
     "url" TEXT NOT NULL,
 
     CONSTRAINT "product_images_pkey" PRIMARY KEY ("id")
@@ -205,13 +215,10 @@ CREATE TABLE "_ProductAuthors" (
 CREATE UNIQUE INDEX "publishers_name_key" ON "publishers"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "categories_slug_key" ON "categories"("slug");
-
--- CreateIndex
 CREATE INDEX "idx_categories_parent_id" ON "categories"("parent_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
+CREATE UNIQUE INDEX "products_isbn10_key" ON "products"("isbn10");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "products_isbn13_key" ON "products"("isbn13");
@@ -277,6 +284,9 @@ CREATE INDEX "_ProductAuthors_B_index" ON "_ProductAuthors"("B");
 ALTER TABLE "categories" ADD CONSTRAINT "categories_parent_id_fkey" FOREIGN KEY ("parent_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "attributes" ADD CONSTRAINT "attributes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_publisher_id_fkey" FOREIGN KEY ("publisher_id") REFERENCES "publishers"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -286,7 +296,7 @@ ALTER TABLE "products" ADD CONSTRAINT "products_series_id_fkey" FOREIGN KEY ("se
 ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "product_images" ADD CONSTRAINT "product_images_variant_id_fkey" FOREIGN KEY ("variant_id") REFERENCES "product_variants"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "product_images" ADD CONSTRAINT "product_images_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "product_variants" ADD CONSTRAINT "product_variants_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE CASCADE ON UPDATE CASCADE;

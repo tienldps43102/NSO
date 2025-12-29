@@ -1,6 +1,7 @@
 import { load } from "cheerio";
 import PQueue from "p-queue";
 import { BriefBook } from "./crawl-list";
+import { DetailCrawlData } from "./type";
 
 const books: BriefBook[] = JSON.parse(
   await Bun.file("./data/brief-books.json").text()
@@ -26,14 +27,15 @@ async function getDetailHtml(fullUrl: string) {
   return res.text();
 }
 
-interface DetailBook extends BriefBook {
+export interface DetailBook extends BriefBook {
   images: string[];
   description: string;
   series?: string;
   attributes: Record<string, string>;
+  versions?: BriefBook[] | undefined;
 }
 
-type DetailPart = Pick<DetailBook, "images" | "description" | "series" | "attributes">;
+type DetailPart = Pick<DetailBook, "images" | "description" | "series" | "attributes" | "versions">;
 
 function parseDetail(html: string): DetailPart {
   const $ = load(html);
@@ -42,6 +44,10 @@ function parseDetail(html: string): DetailPart {
     ".grid__item.large--one-half.medium--one-whole.small--one-whole ul li";
   const DESC_SELECTOR = "#protab0";
   const SERIES_ATTR_NAME = "Bộ sách";
+  const VERSION_SELECTOR = "#variant-swatch-0";
+  const VERSION_TYPE_SELECTOR = ".header";
+  const REAL_TYPE = "Phiên bản";
+  const ALL_VERSION_SELECTOR = `.select-swap>div`;
 
   const images: string[] = [];
   $(THUMB_SELECTOR).each((_, el) => {
@@ -66,7 +72,43 @@ function parseDetail(html: string): DetailPart {
 
   const description = $(DESC_SELECTOR).html()?.trim() || "";
 
-  return { images, description, series, attributes };
+  const versionTypeText = $(VERSION_SELECTOR).find(VERSION_TYPE_SELECTOR).text().trim();
+  let versions: BriefBook[] | undefined;
+  if (versionTypeText === REAL_TYPE) {
+    versions = [];
+    $(ALL_VERSION_SELECTOR).each((_, el) => {
+      const versionName = $(el).attr("data-value")?.trim();
+      const versionImg = $(el).find("input").attr("data-img") || "";
+      if (versionName) {
+        versions!.push({
+          id: "", // unknown
+          title: `${versionName}`,
+          price: "",
+          coverUrl: toAbsUrl(versionImg),
+          detailUrl: "",
+
+        });
+      }
+    });
+  }
+  const match = html.match(/var meta = (\{[\s\S]*?\});/);
+  if (!match) {
+    throw new Error("Failed to find meta JSON in detail page");
+  }
+
+  const metaJson = match[1];
+  const meta = JSON.parse(metaJson) as DetailCrawlData
+  // tìm và bổ xung giá, id
+  const jsonVersions = meta.product.variants.forEach(variant => {
+    if (versions) {
+      const v = versions.find(v => v.title.includes(variant.variant_title));
+      if (v) {
+        v.id = variant.sku?.toString()|| "";
+        v.price = variant.price.toString();
+      }
+    }
+  });
+  return { images, description, series, attributes, versions };
 }
 
 async function crawlDetail(book: BriefBook): Promise<DetailBook> {

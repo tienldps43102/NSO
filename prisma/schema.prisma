@@ -35,7 +35,6 @@ model Category {
   id       String  @id @default(ulid()) @db.VarChar(36)
   parentId String? @map("parent_id") @db.VarChar(36)
   name     String  @db.VarChar(200)
-  slug     String  @unique @db.VarChar(220)
 
   parent   Category?  @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Restrict)
   children Category[] @relation("CategoryParent")
@@ -70,7 +69,6 @@ model Product {
   id              String    @id @default(ulid()) @db.VarChar(36)
   title           String    @db.VarChar(300)
   isbn10          String?   @unique @db.VarChar(20)
-  slug            String    @unique @db.VarChar(320)
   description     String?
   isbn13          String?   @unique @db.VarChar(20)
   publisherId     String?   @map("publisher_id") @db.VarChar(36)
@@ -89,18 +87,20 @@ model Product {
   category  Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   authors   Author[]         @relation("ProductAuthors")
   attributes Attribute[]
+  images    ProductImage[]
+  
 
   @@index([isActive], map: "idx_products_active")
   @@map("products")
 }
 
-model ProductVariantImage {
+model ProductImage {
   id        String @id @default(ulid()) @db.VarChar(36)
-  variantId String @map("variant_id") @db.VarChar(36)
+  productId String @map("product_id") @db.VarChar(36)
+  variantId String? @map("variant_id") @db.VarChar(36)
   url       String
-
-  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
-
+    
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   @@index([variantId], map: "idx_product_images_product")
   @@map("product_images")
 }
@@ -117,7 +117,6 @@ model ProductVariant {
   updatedAt     DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
 
   product   Product               @relation(fields: [productId], references: [id], onDelete: Cascade)
-  images    ProductVariantImage[]
   cartItems CartItem[]
 
   @@unique([productId, variantName])
