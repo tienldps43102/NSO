@@ -44,13 +44,24 @@ model Category {
   @@index([parentId], map: "idx_categories_parent_id")
   @@map("categories")
 }
+model Attribute {
+  id    String @id @default(ulid()) @db.VarChar(36)
+  productId String @map("product_id") @db.VarChar(36)
+  name  String @db.VarChar(200)
+  value String @db.VarChar(200)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  @@map("attributes")
+}
+
+
 
 model Series {
   id          String  @id @default(ulid()) @db.VarChar(36)
   name        String  @db.VarChar(200)
   description String?
 
-  products Product[]
+  products    Product[]
 
   @@map("series")
 }
@@ -73,9 +84,10 @@ model Product {
 
   publisher Publisher?       @relation(fields: [publisherId], references: [id], onDelete: SetNull)
   variants  ProductVariant[]
-  series    Series?          @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+  series    Series?        @relation(fields: [seriesId], references: [id], onDelete: SetNull)
   category  Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   authors   Author[]         @relation("ProductAuthors")
+  attributes Attribute[]
 
   @@index([isActive], map: "idx_products_active")
   @@map("products")
@@ -185,6 +197,7 @@ model OrderItem {
   @@index([variantId], map: "idx_order_items_variant")
   @@map("order_items")
 }
+
 
 // Auth models for Better Auth
 model User {
