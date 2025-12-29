@@ -1,16 +1,16 @@
+"use client";
 import { BookCard } from "@/components/home/BookCard";
 import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselPrevious,
-    CarouselNext,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
-import type { Book } from "@/lib/data";
 
 interface RelatedProductsProps {
   title: string;
-  products: Book[];
+  products: Outputs["bookRoutes"]["getLatestBooks"];
 }
 
 export function RelatedProducts({ title, products }: RelatedProductsProps) {

@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,10 +11,9 @@ interface ProductDetail {
 
 interface ProductDetailsProps {
   description: string;
-  details: ProductDetail[];
 }
 
-export function ProductDetails({ description, details }: ProductDetailsProps) {
+export function ProductDetails({ description }: ProductDetailsProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -29,7 +29,8 @@ export function ProductDetails({ description, details }: ProductDetailsProps) {
               !isExpanded && "max-h-32 overflow-hidden"
             )}
           >
-            <p className="whitespace-pre-line">{description}</p>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+
           </div>
           
           {/* Gradient overlay when collapsed */}

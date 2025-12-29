@@ -1,16 +1,15 @@
+"use client";
 import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { ImagePlus } from "lucide-react";
 
 interface ProductGalleryProps {
   images: string[];
   title: string;
-  discount?: number;
   className?: string;
 }
 
-export function ProductGallery({ images, title, discount, className }: ProductGalleryProps) {
+export function ProductGallery({ images, title, className }: ProductGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const displayImages = images.slice(0, 4);
@@ -26,12 +25,7 @@ export function ProductGallery({ images, title, discount, className }: ProductGa
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
-        {/* Discount Badge */}
-        {discount && (
-          <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1.5 text-sm font-bold rounded-full">
-            -{discount}%
-          </Badge>
-        )}
+    
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
