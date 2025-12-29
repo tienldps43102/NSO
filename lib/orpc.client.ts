@@ -1,10 +1,11 @@
 import type { RouterClient } from '@orpc/server'
 import { RPCLink } from '@orpc/client/fetch'
-import { createORPCClient } from '@orpc/client'
+import { createORPCClient, InferClientOutputs } from '@orpc/client'
 import { router } from './orpc.router'
 
 declare global {
   var $client: RouterClient<typeof router> | undefined
+  type Outputs=  InferClientOutputs<typeof client>
 }
 
 const link = new RPCLink({

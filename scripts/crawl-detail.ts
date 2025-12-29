@@ -99,7 +99,7 @@ function parseDetail(html: string): DetailPart {
   const metaJson = match[1];
   const meta = JSON.parse(metaJson) as DetailCrawlData
   // tìm và bổ xung giá, id
-  const jsonVersions = meta.product.variants.forEach(variant => {
+  meta.product.variants.forEach(variant => {
     if (versions) {
       const v = versions.find(v => v.title.includes(variant.variant_title));
       if (v) {
