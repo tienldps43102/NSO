@@ -1,19 +1,7 @@
 import { prisma } from "@/lib/db";
 import { orpcWithAuth } from "@/lib/orpc/base";
 import z from "zod";
-// model Address {
-//   id        String @id @default(ulid()) @db.VarChar(36)
-//   userId    String @map("user_id") @db.VarChar(36)
-//   fullName  String @map("full_name") @db.VarChar(200)
-//   phone     String @db.VarChar(20)
-//   detail    String @db.VarChar(500)
-//   province  String @db.VarChar(50)
-//   ward      String @db.VarChar(50)
 
-//   orders Order[]
-//   @@index([userId], map: "idx_addresses_user")
-//   @@map("addresses")
-// }
 
 
 const getMyAddress = orpcWithAuth

@@ -6,6 +6,8 @@ import { categoryRoutes } from '@/services/category';
 import { seriesRoutes } from '@/services/series';
 import { authorRoutes } from '@/services/author';
 import { publisherRoutes } from '@/services/publisher';
+import { userRoutes } from "@/services/user";
+import { cartRoutes } from "@/services/cart";
 
 
 export const securedProc = os
@@ -32,5 +34,7 @@ export const router = {
     categoryRoutes,
     seriesRoutes,
     authorRoutes,
-    publisherRoutes
+    publisherRoutes,
+    userRoutes,
+    cartRoutes,
 }
