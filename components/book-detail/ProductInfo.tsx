@@ -43,7 +43,7 @@ export function ProductInfo({
       </h1>
 
       {/* Metadata */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+      <div className="flex flex-col items-start gap-x-4 gap-y-2 text-sm text-muted-foreground">
         <span>
           Tác giả:{" "}
           {
@@ -57,20 +57,29 @@ export function ProductInfo({
                   {author.name}
                 </Link>
                 <span>, </span>
-                </React.Fragment>
+              </React.Fragment>
             ))
           }
         </span>
-
+        <span>
+          Nhà xuất bản:{" "}
+          <Link
+            key={bookDetail.publisher?.id}
+            href={`/publisher/${bookDetail.publisher?.id}`}
+            className="text-primary hover:underline font-medium"
+          >
+            {bookDetail.publisher?.name}
+          </Link>
+        </span>
       </div>
 
-     
+
 
       {/* Price Block */}
       <div className="bg-accent/50 rounded-xl p-4 space-y-2">
         <div className="flex items-baseline gap-3">
           <span className="text-3xl font-bold text-primary">
-            {formatPrice(Number(selectedVariant?.price||0)||0)}
+            {formatPrice(Number(selectedVariant?.price || 0) || 0)}
           </span>
 
         </div>
@@ -79,27 +88,27 @@ export function ProductInfo({
 
       {/* Variant Selector */}
       {!isOneVariant && (
-      <div className="space-y-3">
-        <span className="text-sm font-medium text-foreground">Phiên bản:</span>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {bookDetail.variants.map((variant) => (
-            <button
-              key={variant.id}
-              onClick={() => setSelectedVariant(variant)}
-              disabled={variant.stockQuantity === 0}
-              className={cn(
-                "px-4 py-2 rounded-lg border-2 text-sm font-medium transition-all",
-                selectedVariant.id === variant.id
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border hover:border-primary/50 text-foreground",
-                variant.stockQuantity === 0 && "opacity-50 cursor-not-allowed"
-              )}
-            >
-              {variant.variantName}
-            </button>
-          ))}
+        <div className="space-y-3">
+          <span className="text-sm font-medium text-foreground">Phiên bản:</span>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {bookDetail.variants.map((variant) => (
+              <button
+                key={variant.id}
+                onClick={() => setSelectedVariant(variant)}
+                disabled={variant.stockQuantity === 0}
+                className={cn(
+                  "px-4 py-2 rounded-lg border-2 text-sm font-medium transition-all",
+                  selectedVariant.id === variant.id
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border hover:border-primary/50 text-foreground",
+                  variant.stockQuantity === 0 && "opacity-50 cursor-not-allowed"
+                )}
+              >
+                {variant.variantName}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
       )}
 
       {/* Purchase Actions */}
@@ -152,7 +161,7 @@ export function ProductInfo({
                   )}
                 >
                   <td className="px-4 py-3 text-sm font-medium text-muted-foreground w-1/3">
-                    {detail.value}
+                    {detail.name}
                   </td>
                   <td className="px-4 py-3 text-sm text-foreground">
                     {detail.value}
