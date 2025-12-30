@@ -13,9 +13,13 @@ const sortInput = z
 const getLatestBooks = os
     .input(
         z.object({
-            limit: z.number().min(1).max(20).default(10),
+            limit: z.coerce.number().min(1).max(20).default(10),
         })
     )
+    .route({
+        method: "GET",
+        path: "/books/latest",
+    })
     .handler(async ({ input }) => {
         const books = await prisma.product.findMany({
             where: { isActive: true },
@@ -38,6 +42,10 @@ const getLatestBooks = os
  * - paging
  */
 const listBooks = os
+    .route({
+        method: "GET",
+        path: "/books",
+    })
     .input(
         paginationInput.extend({
             q: z.string().trim().min(1).optional(),
@@ -45,10 +53,10 @@ const listBooks = os
             publisherId: z.string().optional(),
             authorId: z.string().optional(),
             seriesId: z.string().optional(),
-            minPrice: z.number().nonnegative().optional(),
-            maxPrice: z.number().nonnegative().optional(),
+            minPrice: z.coerce.number().nonnegative().optional(),
+            maxPrice: z.coerce.number().nonnegative().optional(),
             sort: sortInput,
-            inStockOnly: z.boolean().default(false),
+            inStockOnly: z.coerce.boolean().default(false),
         })
     )
     .handler(async ({ input }) => {
@@ -130,6 +138,10 @@ const listBooks = os
  * 3) Product detail (your version, refined: active variants only)
  */
 const getBookById = os
+    .route({
+        method: "GET",
+        path: "/books/:id",
+    })
     .input(z.object({ id: z.string() }))
     .handler(async ({ input }) => {
         const book = await prisma.product.findFirst({
@@ -156,10 +168,14 @@ const getBookById = os
 * 5) Related books (same category, exclude itself)
 */
 const getRelatedBooks = os
+    .route({
+        method: "GET",
+        path: "/books/related",
+    })
     .input(
         z.object({
             bookId: z.string(),
-            limit: z.number().min(1).max(20).default(10),
+            limit: z.coerce.number().min(1).max(20).default(10),
         })
     )
     .handler(async ({ input }) => {
@@ -186,6 +202,10 @@ const getRelatedBooks = os
     })
 
 const getBookBySeriesId = os
+    .route({
+        method: "GET",
+        path: "/books/series/:seriesId",
+    })
     .input(z.object({ seriesId: z.string() }))
     .handler(async ({ input }) => {
         const books = await prisma.product.findMany({
@@ -198,6 +218,10 @@ const getBookBySeriesId = os
     })
 
 const getVariantById = os
+    .route({
+        method: "GET",
+        path: "/books/variants/:variantId",
+    })
     .input(z.object({ variantId: z.string() }))
     .handler(async ({ input }) => {
         const variant = await prisma.productVariant.findFirst({
