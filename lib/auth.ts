@@ -32,3 +32,28 @@ export const auth = betterAuth({
     
   },
 });
+
+async function initAdminUser() {
+  const adminUser = await prisma.user.findUnique({ where: { email: "admin@admin.com" } });
+  if (!adminUser) {
+    await auth.api.signUpEmail({
+      body:{
+        email: "admin@admin.com",
+        name : "Admin",
+        password: "Admin@123",
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    await prisma.user.update({
+      where: { email: "admin@admin.com" },
+      data: {
+        role: "ADMIN",
+      },
+    });
+  }
+ 
+}
+
+initAdminUser();
