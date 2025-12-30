@@ -27,8 +27,6 @@ const getLatestBooks = os
             take: input.limit,
             include: {
                 category: true,
-                publisher: true,
-                images: true, // storefront hay cần thumbnail
             },
         })
         return books
@@ -196,7 +194,7 @@ const getRelatedBooks = os
             },
             orderBy: { createdAt: "desc" },
             take: input.limit,
-            include: { category: true, publisher: true, images: true },
+            include: { category: true},
         })
         return items
     })
@@ -206,13 +204,18 @@ const getBookBySeriesId = os
         method: "GET",
         path: "/books/series/:seriesId",
     })
-    .input(z.object({ seriesId: z.string() }))
+    .input(z.object({ seriesId: z.string(), excludeBookId: z.string().optional(), limit: z.coerce.number().min(1).max(50).default(20) }))
     .handler(async ({ input }) => {
         const books = await prisma.product.findMany({
-            where: { seriesId: input.seriesId, isActive: true },
+            where: {
+                seriesId: input.seriesId, isActive: true
+                , ...(input.excludeBookId ? { id: { not: input.excludeBookId } } : {})
+            },
             include: {
                 category: true,
             },
+            take: input.limit,
+            orderBy: { createdAt: "desc" },
         })
         return books
     })
@@ -242,5 +245,5 @@ export const bookRoutes = os.router({
     getRelatedBooks,
     getBookBySeriesId,
     getVariantById,
-    
+
 })

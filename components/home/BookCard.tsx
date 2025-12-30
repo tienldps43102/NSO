@@ -3,6 +3,7 @@ import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Skeleton } from "../ui/skeleton";
 
 interface BookCardProps {
   book: Outputs["bookRoutes"]["getLatestBooks"][0];
@@ -31,8 +32,8 @@ export function BookCard({ book, className, style }: BookCardProps) {
           alt={book.title}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        
-      
+
+
 
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
@@ -49,7 +50,7 @@ export function BookCard({ book, className, style }: BookCardProps) {
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
             <span className="font-bold text-primary">{formatPrice(Number(book.displayPrice))}</span>
-          
+
           </div>
 
           <Button
@@ -65,3 +66,45 @@ export function BookCard({ book, className, style }: BookCardProps) {
     </Link>
   );
 }
+
+interface BookCardSkeletonProps {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export function BookCardSkeleton({ className, style }: BookCardSkeletonProps) {
+  return (
+    <div
+      className={cn(
+        "relative bg-card rounded-2xl overflow-hidden shadow-card",
+        className
+      )}
+      style={style}
+    >
+      {/* Cover Image */}
+      <div className="relative aspect-2/3 overflow-hidden bg-muted">
+        <Skeleton className="absolute inset-0 w-full h-full" />
+      </div>
+
+      {/* Content */}
+      <div className="p-4 space-y-2">
+        {/* Title (2 lines) */}
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-4/5" />
+
+        {/* Category */}
+        <Skeleton className="h-3 w-1/2 mb-3" />
+
+        {/* Price & Action */}
+        <div className="flex items-center justify-between mt-3">
+          {/* Price */}
+          <Skeleton className="h-5 w-20" />
+
+          {/* Cart Button */}
+          <Skeleton className="h-9 w-9 rounded-full" />
+        </div>
+      </div>
+    </div>
+  );
+}
+

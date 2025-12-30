@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Minus, Plus, ShoppingCart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,6 +24,7 @@ export function ProductInfo({
 }: ProductInfoProps) {
   const [selectedVariant, setSelectedVariant] = useState(bookDetail.variants[0]);
   const [quantity, setQuantity] = useState(1);
+  const isOneVariant = bookDetail.variants.length === 1;
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("vi-VN").format(price) + "đ";
@@ -42,12 +43,12 @@ export function ProductInfo({
       </h1>
 
       {/* Metadata */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+      <div className="flex flex-col items-start gap-x-4 gap-y-2 text-sm text-muted-foreground">
         <span>
           Tác giả:{" "}
           {
             bookDetail.authors.map((author) => (
-              <>
+              <React.Fragment key={author.id}>
                 <Link
                   key={author.id}
                   href={`/author/${author.id}`}
@@ -56,20 +57,29 @@ export function ProductInfo({
                   {author.name}
                 </Link>
                 <span>, </span>
-                </>
+              </React.Fragment>
             ))
           }
         </span>
-
+        <span>
+          Nhà xuất bản:{" "}
+          <Link
+            key={bookDetail.publisher?.id}
+            href={`/publisher/${bookDetail.publisher?.id}`}
+            className="text-primary hover:underline font-medium"
+          >
+            {bookDetail.publisher?.name}
+          </Link>
+        </span>
       </div>
 
-     
+
 
       {/* Price Block */}
       <div className="bg-accent/50 rounded-xl p-4 space-y-2">
         <div className="flex items-baseline gap-3">
           <span className="text-3xl font-bold text-primary">
-            {formatPrice(Number(selectedVariant?.price||0)||0)}
+            {formatPrice(Number(selectedVariant?.price || 0) || 0)}
           </span>
 
         </div>
@@ -77,27 +87,29 @@ export function ProductInfo({
       </div>
 
       {/* Variant Selector */}
-      <div className="space-y-3">
-        <span className="text-sm font-medium text-foreground">Phiên bản:</span>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {bookDetail.variants.map((variant) => (
-            <button
-              key={variant.id}
-              onClick={() => setSelectedVariant(variant)}
-              disabled={variant.stockQuantity === 0}
-              className={cn(
-                "px-4 py-2 rounded-lg border-2 text-sm font-medium transition-all",
-                selectedVariant.id === variant.id
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border hover:border-primary/50 text-foreground",
-                variant.stockQuantity === 0 && "opacity-50 cursor-not-allowed"
-              )}
-            >
-              {variant.variantName}
-            </button>
-          ))}
+      {!isOneVariant && (
+        <div className="space-y-3">
+          <span className="text-sm font-medium text-foreground">Phiên bản:</span>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {bookDetail.variants.map((variant) => (
+              <button
+                key={variant.id}
+                onClick={() => setSelectedVariant(variant)}
+                disabled={variant.stockQuantity === 0}
+                className={cn(
+                  "px-4 py-2 rounded-lg border-2 text-sm font-medium transition-all",
+                  selectedVariant.id === variant.id
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border hover:border-primary/50 text-foreground",
+                  variant.stockQuantity === 0 && "opacity-50 cursor-not-allowed"
+                )}
+              >
+                {variant.variantName}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Purchase Actions */}
       <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -124,13 +136,13 @@ export function ProductInfo({
         </div>
 
         {/* Add to Cart */}
-        <Button variant="outline" className="flex-1 gap-2">
+        <Button variant="outline" className="flex-1 gap-2" size={'lg'}>
           <ShoppingCart className="w-4 h-4" />
           Thêm vào giỏ
         </Button>
 
         {/* Buy Now */}
-        <Button className="flex-1 gap-2">
+        <Button className="flex-1 gap-2" size={'lg'}>
           <Zap className="w-4 h-4" />
           Mua ngay
         </Button>
@@ -149,7 +161,7 @@ export function ProductInfo({
                   )}
                 >
                   <td className="px-4 py-3 text-sm font-medium text-muted-foreground w-1/3">
-                    {detail.value}
+                    {detail.name}
                   </td>
                   <td className="px-4 py-3 text-sm text-foreground">
                     {detail.value}
