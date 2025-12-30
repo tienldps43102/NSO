@@ -1,4 +1,3 @@
-import * as z from 'zod';
 import { os, ORPCError } from "@orpc/server";
 import { Session } from './auth-client';
 import { auth } from './auth';
@@ -25,24 +24,6 @@ export const securedProc = os
 export const publicProc = os.handler(async () => {
     return { ok: true };
 });
-
-const PlanetSchema = z.object({
-    id: z.number().int().min(1),
-    name: z.string(),
-    description: z.string().optional(),
-})
-
-export const listPlanet = os
-    .input(
-        z.object({
-            limit: z.number().int().min(1).max(100).optional(),
-            cursor: z.number().int().min(0).default(0),
-        }),
-    )
-    .handler(async ({ input }) => {
-        // your list code here
-        return [{ id: 1, name: 'name' }]
-    })
 
 
 
