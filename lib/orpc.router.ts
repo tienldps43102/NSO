@@ -9,6 +9,7 @@ import { publisherRoutes } from '@/services/publisher';
 import { userRoutes } from "@/services/user";
 import { cartRoutes } from "@/services/cart";
 import { orderRoutes } from "@/services/order";
+import { bookAdminRoutes } from "@/services/book.admin";
 
 
 export const securedProc = os
@@ -39,4 +40,5 @@ export const router = {
     userRoutes,
     cartRoutes,
     orderRoutes,
+    bookAdminRoutes,
 }
