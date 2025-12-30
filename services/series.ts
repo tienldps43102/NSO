@@ -42,7 +42,20 @@ const getAllSeries = os
             currentPage: input.page,
         }
     })
+const getSeriesById = os
+    .route({
+        method: "GET",
+        path: "/series/:id",
+    })
+    .input(z.object({ id: z.string() }))
+    .handler(async ({ input }) => {
+        const series = await prisma.series.findFirst({
+            where: { id: input.id },
+        })
+        return series
+    })
 
 export  const seriesRoutes = {
     getAllSeries,
+    getSeriesById,
 }
