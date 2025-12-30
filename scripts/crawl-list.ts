@@ -21,11 +21,17 @@ export interface BriefBook {
   coverUrl: string;
   detailUrl?: string;
 }
-
+function toAbsUrl(u: string): string {
+  if (!u) return "";
+  if (u.startsWith("http")) return u;
+  if (u.startsWith("//")) return `https:${u}`;
+  if (u.startsWith("/")) return `https://nxbkimdong.com.vn${u}`;
+  return `https://nxbkimdong.com.vn/${u}`;
+}
 function parseList(html: string): BriefBook[] {
   const CARD_SELECTOR =
     '.grid__item.product--loop.product--grid-item.large--one-quarter.medium--one-third.small--one-half.pd-left0.search-item';
-  const IMAGE_SELECTOR = 'img';
+  const IMAGE_SELECTOR = '.product-img >a> img';
   const TITLE_SELECTOR = '.product-title';
   const DETAIL_URL_SELECTOR = '.product-title a';
   const PRICE_SELECTOR = '.current-price';
@@ -36,10 +42,10 @@ function parseList(html: string): BriefBook[] {
   const books: BriefBook[] = [];
 
   cards.each((_, el) => {
-    const coverUrl = $(el).find(IMAGE_SELECTOR).attr('data-src') || '';
+    const coverUrl = $(el).find(IMAGE_SELECTOR).attr('src') || '';
     const title = $(el).find(TITLE_SELECTOR).text().trim();
     const detailUrl = $(el).find(DETAIL_URL_SELECTOR).attr('href') || '';
-    const id = $(el).find(IMAGE_SELECTOR).attr('data-id') || '';
+    const id = $(el).find(IMAGE_SELECTOR).attr('id') || '';
     const price = $(el)
       .find(PRICE_SELECTOR)
       .text()
@@ -48,7 +54,7 @@ function parseList(html: string): BriefBook[] {
     const oldPriceRaw = $(el).find(OLD_PRICE_SELECTOR).text().trim();
     const oldPrice = oldPriceRaw ? oldPriceRaw.replace(/[,đ₫]/g, '') : undefined;
 
-    books.push({ id, title, price, oldPrice, coverUrl, detailUrl });
+    books.push({ id, title, price, oldPrice, coverUrl:toAbsUrl(coverUrl), detailUrl });
   });
 
   return books;

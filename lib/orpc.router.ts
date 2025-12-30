@@ -2,6 +2,11 @@ import * as z from 'zod';
 import { os, ORPCError } from "@orpc/server";
 import { Session } from './auth-client';
 import { auth } from './auth';
+import { bookRoutes } from '@/services/book';
+import { categoryRoutes } from '@/services/category';
+import { seriesRoutes } from '@/services/series';
+import { authorRoutes } from '@/services/author';
+import { publisherRoutes } from '@/services/publisher';
 
 
 export const securedProc = os
@@ -41,8 +46,9 @@ export const listPlanet = os
 
 
 export const router = {
-    planet: {
-        list: listPlanet,
-
-    }
+    bookRoutes,
+    categoryRoutes,
+    seriesRoutes,
+    authorRoutes,
+    publisherRoutes
 }

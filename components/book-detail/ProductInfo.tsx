@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { Minus, Plus, ShoppingCart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,30 +13,16 @@ interface Variant {
 }
 
 interface ProductInfoProps {
-  title: string;
-  author: string;
-  authorId: string;
-  productCode: string;
-  rating: number;
-  reviewCount: number;
-  variants: Variant[];
-  isNewRelease?: boolean;
-  inStock?: boolean;
+  bookDetail: Outputs["bookRoutes"]["getBookById"];
   className?: string;
-  details: any[];
 
 }
 
 export function ProductInfo({
-  title,
-  author,
-  authorId,
-  variants,
-  inStock = true,
+  bookDetail,
   className,
-  details,
 }: ProductInfoProps) {
-  const [selectedVariant, setSelectedVariant] = useState(variants[0]);
+  const [selectedVariant, setSelectedVariant] = useState(bookDetail.variants[0]);
   const [quantity, setQuantity] = useState(1);
 
   const formatPrice = (price: number) => {
@@ -48,81 +35,65 @@ export function ProductInfo({
   return (
     <div className={cn("flex flex-col gap-5", className)}>
       {/* Status Tags */}
-     
+
 
       <h1 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
-        {title}
+        {bookDetail.title}
       </h1>
 
       {/* Metadata */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
         <span>
           Tác giả:{" "}
-          <Link
-            href={`/author/${authorId}`}
-            className="text-primary hover:underline font-medium"
-          >
-            {author}
-          </Link>
+          {
+            bookDetail.authors.map((author) => (
+              <>
+                <Link
+                  key={author.id}
+                  href={`/author/${author.id}`}
+                  className="text-primary hover:underline font-medium"
+                >
+                  {author.name}
+                </Link>
+                <span>, </span>
+                </>
+            ))
+          }
         </span>
-        
+
       </div>
 
-      {/* Rating */}
-      {/* <div className="flex items-center gap-3">
-        <div className="flex items-center gap-1">
-          {[...Array(5)].map((_, i) => (
-            <Star
-              key={i}
-              className={cn(
-                "w-5 h-5",
-                i < Math.floor(rating)
-                  ? "fill-amber-400 text-amber-400"
-                  : i < rating
-                  ? "fill-amber-400/50 text-amber-400"
-                  : "fill-muted text-muted"
-              )}
-            />
-          ))}
-        </div>
-        <span className="font-semibold text-foreground">{rating.toFixed(1)}</span>
-        <a
-          href="#reviews"
-          className="text-sm text-primary hover:underline"
-        >
-          ({reviewCount} đánh giá)
-        </a>
-      </div> */}
+     
 
       {/* Price Block */}
       <div className="bg-accent/50 rounded-xl p-4 space-y-2">
         <div className="flex items-baseline gap-3">
           <span className="text-3xl font-bold text-primary">
-            {formatPrice(selectedVariant.price)}
+            {formatPrice(Number(selectedVariant?.price||0)||0)}
           </span>
-        
+
         </div>
-       
+
       </div>
 
       {/* Variant Selector */}
       <div className="space-y-3">
         <span className="text-sm font-medium text-foreground">Phiên bản:</span>
         <div className="flex flex-wrap gap-2 mt-2">
-          {variants.map((variant) => (
+          {bookDetail.variants.map((variant) => (
             <button
               key={variant.id}
               onClick={() => setSelectedVariant(variant)}
-              disabled={!variant.inStock}
+              disabled={variant.stockQuantity === 0}
               className={cn(
                 "px-4 py-2 rounded-lg border-2 text-sm font-medium transition-all",
                 selectedVariant.id === variant.id
                   ? "border-primary bg-primary/10 text-primary"
                   : "border-border hover:border-primary/50 text-foreground",
-                !variant.inStock && "opacity-50 cursor-not-allowed"
+                variant.stockQuantity === 0 && "opacity-50 cursor-not-allowed"
               )}
             >
-              {variant.name}
+              {variant.variantName}
             </button>
           ))}
         </div>
@@ -164,21 +135,21 @@ export function ProductInfo({
           Mua ngay
         </Button>
       </div>
-        <div className="space-y-4">
+      <div className="space-y-4">
         <h3 className="font-semibold text-foreground">Thông tin chi tiết</h3>
         <div className="border border-border rounded-xl overflow-hidden">
           <table className="w-full">
             <tbody>
-              {details.map((detail, index) => (
+              {bookDetail.attributes.map((detail, index) => (
                 <tr
-                  key={detail.label}
+                  key={detail.name}
                   className={cn(
                     "border-b border-border last:border-b-0",
                     index % 2 === 0 ? "bg-muted/30" : "bg-background"
                   )}
                 >
                   <td className="px-4 py-3 text-sm font-medium text-muted-foreground w-1/3">
-                    {detail.label}
+                    {detail.value}
                   </td>
                   <td className="px-4 py-3 text-sm text-foreground">
                     {detail.value}

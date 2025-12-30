@@ -1,12 +1,11 @@
 "use client";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import type { Book } from "@/lib/data";
+import Link from "next/link";
 
 interface BookCardProps {
-  book: Book;
+  book: Outputs["bookRoutes"]["getLatestBooks"][0];
   className?: string;
   style?: React.CSSProperties;
 }
@@ -17,7 +16,8 @@ export function BookCard({ book, className, style }: BookCardProps) {
   };
 
   return (
-    <article
+    <Link
+      href={`/products/${book.id}`}
       className={cn(
         "group relative bg-card rounded-2xl overflow-hidden shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1",
         className
@@ -27,24 +27,12 @@ export function BookCard({ book, className, style }: BookCardProps) {
       {/* Cover Image */}
       <div className="relative aspect-2/3 overflow-hidden bg-muted">
         <img
-          src={book.cover}
+          src={book.thumbnailUrl!}
           alt={book.title}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         
-        {/* Badge */}
-        {(book.badge || book.discount) && (
-          <Badge
-            className={cn(
-              "absolute top-3 left-3 px-2.5 py-1 text-xs font-semibold rounded-full z-10",
-              book.badge === "HOT" && "bg-primary text-primary-foreground",
-              book.badge === "MỚI" && "bg-emerald-500 text-white",
-              book.discount && "bg-primary text-primary-foreground"
-            )}
-          >
-            {book.discount ? `-${book.discount}%` : book.badge}
-          </Badge>
-        )}
+      
 
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
@@ -55,17 +43,13 @@ export function BookCard({ book, className, style }: BookCardProps) {
         <h3 className="font-semibold text-sm text-foreground line-clamp-2 mb-1 min-h-10 group-hover:text-primary transition-colors">
           {book.title}
         </h3>
-        <p className="text-xs text-muted-foreground mb-3">{book.author}</p>
+        <p className="text-xs text-muted-foreground mb-3">{book?.category?.name}</p>
 
         {/* Price & Action */}
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="font-bold text-primary">{formatPrice(book.price)}</span>
-            {book.originalPrice && (
-              <span className="text-xs text-muted-foreground line-through">
-                {formatPrice(book.originalPrice)}
-              </span>
-            )}
+            <span className="font-bold text-primary">{formatPrice(Number(book.displayPrice))}</span>
+          
           </div>
 
           <Button
@@ -78,6 +62,6 @@ export function BookCard({ book, className, style }: BookCardProps) {
           </Button>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

@@ -140,6 +140,7 @@ for await (const book of books) {
         thumbnailUrl: book.coverUrl,
         createdAt: new Date(),
         updatedAt: new Date(),
+        displayPrice: book.price || 0,
         series: seriesId ? { connect: { id: seriesId } } : undefined,
         authors: authorIds ? { connect: authorIds.map(id => ({ id })) } : undefined,
         publisher: { connect: { id: publisher.id } },
