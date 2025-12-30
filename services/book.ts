@@ -238,6 +238,8 @@ const getVariantById = os
     })
 
 
+    //cud book
+
 export const bookRoutes = os.router({
     getLatestBooks,
     getBookById,

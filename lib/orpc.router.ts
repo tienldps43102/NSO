@@ -9,6 +9,8 @@ import { publisherRoutes } from '@/services/publisher';
 import { userRoutes } from "@/services/user";
 import { cartRoutes } from "@/services/cart";
 import { orderRoutes } from "@/services/order";
+import { bookAdminRoutes } from "@/services/book.admin";
+import { orpc } from "./orpc/base";
 
 
 export const securedProc = os
@@ -31,12 +33,13 @@ export const publicProc = os.handler(async () => {
 
 
 export const router = {
-    bookRoutes,
-    categoryRoutes,
-    seriesRoutes,
-    authorRoutes,
-    publisherRoutes,
-    userRoutes,
-    cartRoutes,
-    orderRoutes,
+     bookRoutes :orpc.tag("book").router(bookRoutes),
+    categoryRoutes :orpc.tag("category").router(categoryRoutes),
+    seriesRoutes :orpc.tag("series").router(seriesRoutes),
+    authorRoutes :orpc.tag("author").router(authorRoutes),
+    publisherRoutes :orpc.tag("publisher").router(publisherRoutes),
+    userRoutes :orpc.tag("user").router(userRoutes),
+    cartRoutes :orpc.tag("cart").router(cartRoutes),
+    orderRoutes :orpc.tag("order").router(orderRoutes),
+    bookAdminRoutes :orpc.tag("bookAdmin").router(bookAdminRoutes),
 }

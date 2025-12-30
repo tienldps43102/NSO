@@ -55,7 +55,40 @@ const getSeriesById = os
         return series
     })
 
+const createSeries = os
+    .route({
+        method: "POST",
+        path: "/series",
+    })
+    .input(z.object({ name: z.string(), description: z.string().optional() }))
+    .handler(async ({ input }) => {
+        const series = await prisma.series.create({ data: input })
+        return series
+    });
+const updateSeries = os
+    .route({
+        method: "PUT",
+        path: "/series/:id",
+    })
+    .input(z.object({ id: z.string(), name: z.string().optional(), description: z.string().optional() }))
+    .handler(async ({ input }) => {
+        const series = await prisma.series.update({ where: { id: input.id }, data: input })
+        return series
+    });
+const deleteSeries = os
+    .route({
+        method: "DELETE",
+        path: "/series/:id",
+    })
+    .input(z.object({ id: z.string() }))
+    .handler(async ({ input }) => {
+        const series = await prisma.series.delete({ where: { id: input.id } })
+        return series
+    });
 export  const seriesRoutes = {
     getAllSeries,
     getSeriesById,
+    createSeries,
+    updateSeries,
+    deleteSeries,
 }

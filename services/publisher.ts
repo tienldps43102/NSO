@@ -42,7 +42,51 @@ const getAllPublishers = os
             currentPage: input.page,
         }
     })
-    
+const createPublisher = os
+    .route({
+        method: "POST",
+        path: "/publishers",
+    })
+    .input(z.object({ name: z.string(), description: z.string().optional() }))
+    .handler(async ({ input }) => {
+        const publisher = await prisma.publisher.create({ data: input })
+        return publisher
+    });
+const updatePublisher = os
+    .route({
+        method: "PUT",
+        path: "/publishers/:id",
+    })
+    .input(z.object({ id: z.string(), name: z.string().optional(), description: z.string().optional() }))
+    .handler(async ({ input }) => {
+        const publisher = await prisma.publisher.update({ where: { id: input.id }, data: input })
+        return publisher
+    });
+const deletePublisher = os
+    .route({
+        method: "DELETE",
+        path: "/publishers/:id",
+    })
+    .input(z.object({ id: z.string() }))
+    .handler(async ({ input }) => {
+        const publisher = await prisma.publisher.delete({ where: { id: input.id } })
+        return publisher
+    });
+
+const getPublisherById = os
+    .route({
+        method: "GET",
+        path: "/publishers/:id",
+    })
+    .input(z.object({ id: z.string() }))
+    .handler(async ({ input }) => {
+        const publisher = await prisma.publisher.findUnique({ where: { id: input.id } })
+        return publisher
+    });
 export  const publisherRoutes = {
     getAllPublishers,
+    getPublisherById,
+    createPublisher,
+    updatePublisher,
+    deletePublisher,
 }
