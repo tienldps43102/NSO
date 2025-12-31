@@ -6,6 +6,8 @@ import { SiteHeader } from "@/components/home/SiteHeader";
 import { SiteFooter } from "@/components/home/SiteFooter";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import QueryProvider from '@/lib/react-query';
+import { Toaster } from "@/components/ui/sonner"
 const beVietnamPro = Be_Vietnam_Pro({
   weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
@@ -31,14 +33,17 @@ export default async function RootLayout({
       <body
         className={`${beVietnamPro.variable}  antialiased`}
       >
+        <QueryProvider>
         <div className="min-h-screen bg-background">
           <SiteHeader user={session?.user || null} />
           <main>
             {children}
           </main>
+        <Toaster position='bottom-right' />
+
           <SiteFooter />
         </div>
-
+        </QueryProvider>
       </body>
     </html>
   );

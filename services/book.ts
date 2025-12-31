@@ -47,10 +47,10 @@ const listBooks = os
     .input(
         paginationInput.extend({
             q: z.string().trim().min(1).optional(),
-            categoryId: z.string().optional(),
-            publisherId: z.string().optional(),
-            authorId: z.string().optional(),
-            seriesId: z.string().optional(),
+            categoryIds: z.array(z.string()).optional(),
+            publisherIds: z.array(z.string()).optional(),
+            authorIds: z.array(z.string()).optional(),
+            seriesIds: z.array(z.string()).optional(),
             minPrice: z.coerce.number().nonnegative().optional(),
             maxPrice: z.coerce.number().nonnegative().optional(),
             sort: sortInput,
@@ -59,10 +59,8 @@ const listBooks = os
     )
     .handler(async ({ input }) => {
         const { skip, take } = computeSkipTake(input.page, input.limit)
-
+        console.log(input);
         // Sort by variant price: need orderBy via relation aggregate.
-        // Prisma supports orderBy on relations (min/max) for scalar fields in many cases.
-        // We'll use variants: { _min: { price: ... } } pattern where available.
         const orderBy =
             input.sort === "newest"
                 ? ({ createdAt: "desc" } as const)
@@ -71,16 +69,30 @@ const listBooks = os
                     : input.sort === "title_desc"
                         ? ({ title: "desc" } as const)
                         : input.sort === "price_asc"
-                            ? ({ variants: { _min: { price: "asc" } } } as const)
-                            : ({ variants: { _min: { price: "desc" } } } as const)
-
+                            ? ({ displayPrice: "asc" } as const)
+                            : ({ displayPrice: "desc" } as const)
+    
         const where = {
             isActive: true,
-            ...(input.categoryId ? { categoryId: input.categoryId } : {}),
-            ...(input.publisherId ? { publisherId: input.publisherId } : {}),
-            ...(input.seriesId ? { seriesId: input.seriesId } : {}),
-            ...(input.authorId
-                ? { authors: { some: { id: input.authorId } } }
+            // Chuyển sang dùng mảng với `in` operator
+            ...(input.categoryIds && input.categoryIds.length > 0
+                ? { categoryId: { in: input.categoryIds } }
+                : {}),
+            ...(input.publisherIds && input.publisherIds.length > 0
+                ? { publisherId: { in: input.publisherIds } }
+                : {}),
+            ...(input.seriesIds && input.seriesIds.length > 0
+                ? { seriesId: { in: input.seriesIds } }
+                : {}),
+            // Many-to-many relationship với authors
+            ...(input.authorIds && input.authorIds.length > 0
+                ? {
+                    authors: {
+                        some: {
+                            id: { in: input.authorIds }
+                        }
+                    }
+                }
                 : {}),
             ...(input.q
                 ? {
@@ -100,7 +112,7 @@ const listBooks = os
                 },
             },
         }
-
+    
         const [items, total] = await prisma.$transaction([
             prisma.product.findMany({
                 where,
@@ -120,7 +132,7 @@ const listBooks = os
             }),
             prisma.product.count({ where }),
         ])
-
+    
         return {
             items,
             pagination: {
@@ -131,7 +143,6 @@ const listBooks = os
             },
         }
     })
-
 /**
  * 3) Product detail (your version, refined: active variants only)
  */

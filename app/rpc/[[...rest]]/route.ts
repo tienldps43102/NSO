@@ -1,6 +1,7 @@
 import { RPCHandler } from '@orpc/server/fetch'
 import { onError } from '@orpc/server'
 import { router } from '@/lib/orpc.router'
+import { auth } from '@/lib/auth'
 
 const handler = new RPCHandler(router, {
   interceptors: [
@@ -11,9 +12,15 @@ const handler = new RPCHandler(router, {
 })
 
 async function handleRequest(request: Request) {
+  console.log("request", request);
+  const session = await auth.api.getSession({ headers: request.headers })
+  console.log("session", session);
   const { response } = await handler.handle(request, {
     prefix: '/rpc',
-    context: {}, // Provide initial context if needed
+    context: {
+        headers: request.headers,
+        session,
+    },
   })
 
   return response ?? new Response('Not found', { status: 404 })
