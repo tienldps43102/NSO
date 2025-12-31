@@ -14,6 +14,7 @@ interface CartProps {
 import { useLocalStorage } from 'usehooks-ts'
 import useCartSelection from "@/hooks/use-cart-selection";
 import { checkout } from "./actions";
+import { startTransition } from "react";
 export default function Cart({ cartItems: initialCartItems }: CartProps) {
     const { value: selectedItems, addItemToSelection, removeItemFromSelection, clearSelection, setSelection } = useCartSelection()
     const { data: cartItems } = useQuery($orpcQuery!.cartRoutes.getMyCartItems.queryOptions({
@@ -85,6 +86,19 @@ export default function Cart({ cartItems: initialCartItems }: CartProps) {
         const item = cartItems.find(item => item.variant.id === variantId)
         return item && item.quantity > 0
     })
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+    
+        // ✅ 1. Update localStorage trước
+        setSelection(validSelectedItems)
+    
+        // ✅ 2. Gọi server action
+        const formData = new FormData(e.currentTarget)
+    
+        startTransition(() => {
+          checkout(formData)
+        })
+      }
     return (
         <div>
             {cartItems.length === 0 ? (
@@ -236,7 +250,7 @@ export default function Cart({ cartItems: initialCartItems }: CartProps) {
                     </div>
 
                     {/* Order Summary */}
-                    <form className="lg:col-span-1" action={checkout}>
+                    <form className="lg:col-span-1" onSubmit={handleSubmit}>
                         <input type="hidden" name="selected_variant_ids" value={validSelectedItems.join(',')} />
                         <div className="bg-card/60 backdrop-blur-sm border border-border/40 rounded-xl p-5 lg:p-6 lg:sticky lg:top-24">
                             <h2 className="text-lg font-bold text-foreground mb-5">

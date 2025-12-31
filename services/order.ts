@@ -3,6 +3,7 @@ import { orpcWithAuth } from "@/lib/orpc/base";
 import z from "zod";
 import { computeSkipTake, paginationInput } from "./shared";
 import { createPayment } from "@/lib/payment";
+import { nowVN } from "@/lib/day";
 
 function generateOrderCode(createDate:Date): string {
     // DH-DDMMYYYY-XXXX(random 4 digits)
@@ -85,8 +86,8 @@ const createOrder = orpcWithAuth
                 paymentMethod: input.paymentMethod,
                 totalAmount,
                 status: "PENDING",
-                orderCode : generateOrderCode(new Date()),
-                createdAt: new Date(),
+                orderCode : generateOrderCode(nowVN().toDate()),
+                createdAt: nowVN().toDate(),
                 paymentStatus:  "PENDING",
                 subtotalAmount: totalAmount,
                 note: input.note,
@@ -127,7 +128,7 @@ const createOrder = orpcWithAuth
         if(input.paymentMethod !== "COD"){
             // Todo: Tích hợp với cổng thanh toán để tạo URL thanh toán
             const payURL = await createPayment({
-                id: newOrder.id,
+                id: newOrder.id + "#" + newOrder.orderCode,
                 amount: totalAmount,
                 orderInfo: `Đơn hàng ${newOrder.orderCode}`,
                 method: input.paymentMethod,

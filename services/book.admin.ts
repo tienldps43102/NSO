@@ -42,7 +42,7 @@ const createBook = orpcWithAuth.route({
             })),
         },
         isActive:false,
-        createdAt: new Date(),
+        createdAt: nowVN().toDate(),
     }})
     return book
 })
@@ -212,6 +212,7 @@ const deleteImage = orpcWithAuth.route({
     return book
 })
 import { randomUUID } from "crypto"
+import { nowVN } from "@/lib/day"
 const addVariant = orpcWithAuth.route({
     method: "POST",
     path: "/books/:id/variants",
@@ -228,7 +229,7 @@ const addVariant = orpcWithAuth.route({
         productId: input.id,
         isActive: true,
         stockQuantity: input.stockQuantity||0,
-        createdAt: new Date(),
+        createdAt: nowVN().toDate(),
     }})
     return book
 })
