@@ -6,6 +6,7 @@ import { router } from './orpc.router'
 declare global {
   var $client: RouterClient<typeof router> | undefined
   type Outputs=  InferClientOutputs<typeof client>
+  var $orpcQuery: ReturnType<typeof createTanstackQueryUtils<typeof client>> | undefined
 }
 
 const link = new RPCLink({
@@ -22,3 +23,8 @@ const link = new RPCLink({
  * Fallback to client-side client if server-side client is not available.
  */
 export const client: RouterClient<typeof router> = globalThis.$client ?? createORPCClient(link)
+
+
+import { createTanstackQueryUtils } from '@orpc/tanstack-query'
+export const orpcQuery = globalThis.$orpcQuery ?? createTanstackQueryUtils(client)
+globalThis.$orpcQuery = orpcQuery

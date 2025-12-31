@@ -20,16 +20,16 @@ import Link from "next/link";
 
 
 interface SiteHeaderProps {
-  user: AuthUser| null;
+  user: AuthUser | null;
 }
 
 export function SiteHeader({ user }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const handleLogout = async () => {
     await authClient.signOut();
     window.location.href = "/";
   };
+
 
   return (
     <header className="sticky top-0 z-50 w-full glass">
@@ -49,19 +49,21 @@ export function SiteHeader({ user }: SiteHeaderProps) {
 
           {/* Search - Desktop */}
           <div className="hidden md:flex flex-1 max-w-md mx-8">
-            <div className="relative w-full">
+            <form action="/search" className="relative w-full">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Tìm kiếm truyện yêu thích, tác giả..."
+                placeholder="Tìm kiếm sách ..."
+                enterKeyHint="search"
+                name="q"
                 className="w-full pl-10 pr-4 h-10 rounded-full bg-muted/50 border-border/50 focus:bg-card focus:border-primary/30"
               />
-            </div>
+            </form>
           </div>
 
           {/* Right Actions */}
           <div className="flex items-center gap-2">
-          
+
             {/* Cart */}
             <Button variant="ghost" size="icon" className="relative rounded-full h-10 w-10 glass" aria-label="Giỏ hàng">
               <ShoppingCart className="h-5 w-5" />
@@ -167,14 +169,15 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         >
           {/* Mobile Search */}
           <div className="px-4 mb-4">
-            <div className="relative w-full">
+            <form action="/search" className="relative w-full">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Tìm kiếm..."
+                name="q"
                 className="w-full pl-10 pr-4 h-10 rounded-full bg-muted/50"
               />
-            </div>
+            </form>
           </div>
 
           {/* Mobile User Section */}
