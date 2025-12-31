@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { orpcWithAuth } from "@/lib/orpc/base";
 import z from "zod";
 import { computeSkipTake, paginationInput } from "./shared";
+import { createPayment } from "@/lib/payment";
 
 function generateOrderCode(createDate:Date): string {
     // DH-DDMMYYYY-XXXX(random 4 digits)
@@ -125,7 +126,13 @@ const createOrder = orpcWithAuth
         // Xử lý thanh toán nếu paymentMethod là ONLINE
         if(input.paymentMethod !== "COD"){
             // Todo: Tích hợp với cổng thanh toán để tạo URL thanh toán
-            const payURL = `https://payment-gateway.com/pay?orderId=${newOrder.id}&amount=${totalAmount}`;
+            const payURL = await createPayment({
+                id: newOrder.id,
+                amount: totalAmount,
+                orderInfo: `Đơn hàng ${newOrder.orderCode}`,
+                method: input.paymentMethod,
+
+            })
             return { success: true, payURL };
         }
         return { success: true, payURL: null };
