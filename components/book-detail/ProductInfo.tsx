@@ -71,6 +71,20 @@ export function ProductInfo({
             {bookDetail.publisher?.name}
           </Link>
         </span>
+        {
+          bookDetail.series && (
+            <span>
+              Series:{" "}
+              <Link
+                key={bookDetail.series?.id}
+                href={`/series/${bookDetail.series?.id}`}
+                className="text-primary hover:underline font-medium"
+              >
+                {bookDetail.series?.name}
+              </Link>
+            </span>
+          )
+        }
       </div>
 
 

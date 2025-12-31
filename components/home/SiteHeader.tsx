@@ -17,7 +17,7 @@ import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { authClient, type AuthUser } from "@/lib/auth-client";
 import Link from "next/link";
-
+import Image from "next/image";
 
 interface SiteHeaderProps {
   user: AuthUser | null;
@@ -37,15 +37,13 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         {/* Main Header */}
         <div className="flex items-center justify-between h-16 px-4 lg:px-0">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground font-bold text-lg">
-              📚
-            </div>
+          <Link href="/" className="flex items-center gap-2">
+              <Image src="/logo.png" alt="Logo" width={40} height={40} />
             <div className="flex flex-col">
               <span className="font-bold text-lg text-primary leading-tight">NSO</span>
               <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">Nhà Sách Online</span>
             </div>
-          </div>
+          </Link>
 
           {/* Search - Desktop */}
           <div className="hidden md:flex flex-1 max-w-md mx-8">

@@ -45,13 +45,11 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
     { value: "title_asc", label: "Tên: A → Z", href: getSortLink("title_asc") },
     { value: "title_desc", label: "Tên: Z → A", href: getSortLink("title_desc") },
   ]
-  console.log("currentSort", sortItems);
   const currentSortDisplay = sortItems.find(item => item.value === currentSort)?.label
   return (
     <div className="container mx-auto px-4 py-6 lg:py-8">
       {/* Search Header */}
       <div className="mb-6">
-        <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">Tìm kiếm sách</h1>
 
         {/* Search Bar */}
         <div className="flex gap-3 flex-col sm:flex-row">
@@ -64,7 +62,6 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
               className="pl-12 h-12 rounded-full bg-card/70 backdrop-blur-md border-border/40"
               name="q"
             />
-
           </form>
 
           <Sheet>
