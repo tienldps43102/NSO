@@ -13,6 +13,7 @@ import { bookAdminRoutes } from "@/services/book.admin";
 import { orpc } from "./orpc/base";
 import { fileRoutes } from "@/services/file";
 import { authRoutes } from "@/services/auth";
+import { addressRoutes } from "@/services/address";
 
 
 export const securedProc = os
@@ -46,4 +47,5 @@ export const router = {
     bookAdminRoutes :orpc.tag("bookAdmin").router(bookAdminRoutes),
     fileRoutes :orpc.tag("file").router(fileRoutes),
     authRoutes :orpc.tag("auth").router(authRoutes),
+    addressRoutes :orpc.tag("address").router(addressRoutes),
 }

@@ -179,6 +179,33 @@ const updateCartItem = orpcWithAuth
     }
     );
 
+const getMyCartItemsByIds = orpcWithAuth
+    .route({
+        method: "GET",
+        path: "/cart/items/ids",
+    })
+    .input(z.object({
+        variantIds: z.array(z.string().min(1).max(36)),
+    }))
+    .handler(async ({ input, context }) => {
+        const userId = context.session.user.id;
+        const cartItems = await prisma.cartItem.findMany({
+            where: { userId, variantId: { in: input.variantIds } },
+            include: {
+                variant: {
+                    select: {
+                        id: true,
+                        product: { select: { thumbnailUrl: true, title: true } },
+                        variantName: true,
+                        price: true,
+                    },
+                },
+            },
+        });
+        return cartItems;
+    }
+    );
+
 export const cartRoutes = {
     addToCart,
     countMyCartItems,
@@ -186,4 +213,5 @@ export const cartRoutes = {
     clearMyCart,
     removeCartItem,
     updateCartItem,
+    getMyCartItemsByIds,
 };

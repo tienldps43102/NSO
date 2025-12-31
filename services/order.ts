@@ -20,7 +20,7 @@ const createOrder = orpcWithAuth
     })
     .input(z.object({
         addressId: z.string().min(1).max(36),
-        paymentMethod: z.enum(["COD", "ONLINE"]),
+        paymentMethod: z.enum(["COD", "VNPAY","MOMO"]),
         variantIds: z.array(z.string().min(1).max(36)).min(1),
         note: z.string().max(500).optional(),
     }))
