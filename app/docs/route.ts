@@ -15,7 +15,7 @@ const handler = new OpenAPIHandler(router, {
 
 const server = createServer(async (req, res) => {
   const result = await handler.handle(req, res, {
-    context: { headers: req.headers }
+    context: { headers: req.headers as any }
   })
 
   if (!result.matched) {
