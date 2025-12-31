@@ -1,12 +1,16 @@
-import { ShieldCheck } from "lucide-react";
+"use client"
+import { Loader2, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { formatPrice } from '@/lib/utils';
+import { useFormContext } from "react-hook-form";
+import { CheckoutFormSchema, checkoutFormSchema } from "./form";
 interface OrderInfoProps {
     selectedItems: Outputs['cartRoutes']['getMyCartItemsByIds']
 }
 
 export default function OrderInfo({ selectedItems }: OrderInfoProps) {
+    const form = useFormContext<CheckoutFormSchema>()
     const subtotal = selectedItems.reduce((acc, item) => acc + Number(item.variant.price) * item.quantity, 0);
     return (
         <div className="lg:col-span-1">
@@ -50,10 +54,7 @@ export default function OrderInfo({ selectedItems }: OrderInfoProps) {
                         <span className="text-muted-foreground">Tạm tính</span>
                         <span className="text-foreground">{formatPrice(subtotal)}</span>
                     </div>
-                    {/* <div className="flex justify-between">
-          <span className="text-muted-foreground">Phí vận chuyển</span>
-          <span className="text-foreground">{formatPrice(shippingFee)}</span>
-        </div> */}
+              
                 </div>
 
                 <Separator className="my-4" />
@@ -68,8 +69,8 @@ export default function OrderInfo({ selectedItems }: OrderInfoProps) {
                 </div>
 
                 {/* Place Order Button */}
-                <Button className="w-full h-12 text-base font-semibold">
-                    Đặt hàng
+                <Button className="w-full h-12 text-base font-semibold" type="submit" disabled={form.formState.isSubmitting}>
+                    {form.formState.isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Đặt hàng'}
                 </Button>
 
                 {/* Secure Payment Note */}

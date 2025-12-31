@@ -1,41 +1,19 @@
 "use client"
-import React from 'react'
-import { getSelectedItems } from './actions'
-import { useState, useEffect } from "react";
-import { ChevronRight, CreditCard, Truck, ShieldCheck, ArrowLeft } from "lucide-react";
-import { SiteHeader } from "@/components/home/SiteHeader";
-import { SiteFooter } from "@/components/home/SiteFooter";
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { CreditCard, Truck, ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Separator } from "@/components/ui/separator";
 import z from 'zod';
-import { Controller, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useFormContext } from 'react-hook-form';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useMutation } from '@tanstack/react-query';
-import { orpcQuery } from '@/lib/orpc.client';
-import { toast } from 'sonner';
-const checkoutFormSchema = z.object({
+export const checkoutFormSchema = z.object({
     fullName: z.string().min(1, {
         error: 'Họ và tên không được để trống',
     }),
     phone: z.string().min(1, {
         error: 'Số điện thoại không được để trống',
-    }),
-    email: z.email({
-        error: 'Email không hợp lệ',
     }),
     province: z.string().min(1, {
         error: 'Tỉnh/Thành phố không được để trống',
@@ -54,66 +32,16 @@ const checkoutFormSchema = z.object({
         error: 'Phương thức thanh toán không hợp lệ',
     }),
 })
+export type CheckoutFormSchema = z.infer<typeof checkoutFormSchema>
 interface CheckoutFormProps {
     selectedItems: Outputs['cartRoutes']['getMyCartItemsByIds']
 
 }
 export default function CheckoutForm({selectedItems}: CheckoutFormProps) {
-    const form = useForm<z.infer<typeof checkoutFormSchema>>({
-        resolver: zodResolver(checkoutFormSchema),
-        defaultValues: {
-            fullName: '',
-            phone: '',
-            email: '',
-            province: '',
-            ward: '',
-            address: '',
-            orderNote: '',
-            paymentMethod: 'COD',
-        },
-    })
-    const createAddressMutation = useMutation(orpcQuery!.addressRoutes.addAddress.mutationOptions({
-        
-    }))
-    const createOrderMutaion = useMutation(orpcQuery!.orderRoutes.createOrder.mutationOptions({
-        onSuccess: (data) => {
-            if(data.success) {
-                toast.success('Đặt hàng thành công')
-                if(data.payURL) {
-                    window.location.href = data.payURL
-                } 
-            } else {
-                toast.error('Đặt hàng thất bại',{
-                    description: data?.message,
-                })
-            }
-        },
-        onError: (error) => {
-            toast.error('Đặt hàng thất bại',{
-                description: error.message,
-            })
-        }
-    }))
-    const onSubmit = async (data: z.infer<typeof checkoutFormSchema>) => {
-        // create address first
-       const address = await createAddressMutation.mutateAsync({
-            detail: data.address,
-            fullName: data.fullName,
-            phone: data.phone,
-            province: data.province,
-            ward: data.ward,
-
-        })
-        const id = address.id
-        await createOrderMutaion.mutateAsync({
-            addressId: id,
-            paymentMethod: data.paymentMethod,
-            note: data.orderNote,
-            variantIds: selectedItems.map(item => item.variantId),
-        })
-    }
+    const form = useFormContext<CheckoutFormSchema>()
+  
     return (
-        <form onSubmit={form.handleSubmit(onSubmit)} className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-6">
             {/* Shipping Information */}
             <div className="bg-card border border-border rounded-xl p-6">
                 <div className="flex items-center gap-2 mb-6">
@@ -288,6 +216,6 @@ export default function CheckoutForm({selectedItems}: CheckoutFormProps) {
                 <ArrowLeft className="h-4 w-4" />
                 Quay lại giỏ hàng
             </Link>
-        </form>
+        </div>
     )
 }

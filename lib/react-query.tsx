@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { orpcQuery } from "./orpc.client";
+import React from "react";
 globalThis.$orpcQuery = orpcQuery
 
 const queryClient = new QueryClient();
