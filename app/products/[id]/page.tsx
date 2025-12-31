@@ -17,7 +17,6 @@ import { Suspense } from "react";
 import { toPlain } from "@/lib/toPlain";
 
 
-
 //  get id from params and fetch book detail data from api
 export default async function BookDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

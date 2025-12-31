@@ -84,37 +84,32 @@ const getMyCartItems = orpcWithAuth
 
         const cartItems = await prisma.cartItem.findMany({
             where: {
-                userId,
-                variant: {
-                    product: {
-                        isActive: true,
-                    },
-                    isActive: true,
-                },
+              userId,
+              variant: {
+                product: { isActive: true },
+                isActive: true,
+              },
             },
             include: {
-                variant: {
-                    include: {
-                        product: {
-                            select: {
-                                id: true,
-                                title: true,
-                                displayPrice: true,
-                                thumbnailUrl: true,
-                            },
-                        },
-                    },
+              variant: {
+                select: {
+                  id: true,
+                  price: true,
+                  variantName: true,
+                  stockQuantity: true,
+                  sku: true,
+                  product: {
                     select: {
-                        id: true,
-                        price: true,
-                        variantName: true,
-                        stockQuantity: true,
-                        sku: true,
+                      id: true,
+                      title: true,
+                      displayPrice: true,
+                      thumbnailUrl: true,
                     },
+                  },
                 },
+              },
             },
-        });
-
+          })
 
         return cartItems;
     });

@@ -27,4 +27,3 @@ export const client: RouterClient<typeof router> = globalThis.$client ?? createO
 
 import { createTanstackQueryUtils } from '@orpc/tanstack-query'
 export const orpcQuery = globalThis.$orpcQuery ?? createTanstackQueryUtils(client)
-globalThis.$orpcQuery = orpcQuery

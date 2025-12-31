@@ -1,6 +1,8 @@
 "use client"; // Mark this as a Client Component
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { orpcQuery } from "./orpc.client";
+globalThis.$orpcQuery = orpcQuery
 
 const queryClient = new QueryClient();
 

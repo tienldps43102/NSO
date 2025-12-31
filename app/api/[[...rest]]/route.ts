@@ -37,7 +37,6 @@ const handler = new OpenAPIHandler(router, {
 
 async function handleRequest(request: Request) {
   const session = await auth.api.getSession({ headers: request.headers })
-
   const { response } = await handler.handle(request, {
     prefix: "/api",
     context: {

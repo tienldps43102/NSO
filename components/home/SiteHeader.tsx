@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { authClient, type AuthUser } from "@/lib/auth-client";
 import Link from "next/link";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 
 interface SiteHeaderProps {
   user: AuthUser | null;
@@ -30,6 +31,9 @@ export function SiteHeader({ user }: SiteHeaderProps) {
     window.location.href = "/";
   };
 
+  const { data: count } = useQuery($orpcQuery!.cartRoutes.countMyCartItems.queryOptions({
+    select: (data) => data.itemCount ?? 0,
+  }))
 
   return (
     <header className="sticky top-0 z-50 w-full glass">
@@ -38,7 +42,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         <div className="flex items-center justify-between h-16 px-4 lg:px-0">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Logo" width={40} height={40} />
+            <Image src="/logo.png" alt="Logo" width={40} height={40} />
             <div className="flex flex-col">
               <span className="font-bold text-lg text-primary leading-tight">NSO</span>
               <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">Nhà Sách Online</span>
@@ -63,11 +67,13 @@ export function SiteHeader({ user }: SiteHeaderProps) {
           <div className="flex items-center gap-2">
 
             {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative rounded-full h-10 w-10 glass" aria-label="Giỏ hàng">
+            <Button asChild variant="ghost" size="icon" className="relative rounded-full h-10 w-10 glass" aria-label="Giỏ hàng">
+              <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground">
-                3
-              </Badge>
+                { count! > 0 && <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground">
+                  {count}
+                </Badge>}
+              </Link>
             </Button>
 
             {/* User Avatar/Login Button */}

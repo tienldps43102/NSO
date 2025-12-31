@@ -4,6 +4,7 @@ import { Minus, Plus, ShoppingCart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from 'next/link';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 interface Variant {
   id: string;
   name: string;
@@ -17,6 +18,7 @@ interface ProductInfoProps {
   className?: string;
 
 }
+import { toast } from "sonner"
 
 export function ProductInfo({
   bookDetail,
@@ -29,8 +31,28 @@ export function ProductInfo({
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("vi-VN").format(price) + "đ";
   };
+  const queryClient = useQueryClient();
+  const { mutate: addToCart } = useMutation($orpcQuery!.cartRoutes.addToCart.mutationOptions({
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: $orpcQuery!.cartRoutes.countMyCartItems.queryKey() });
+      if (data.success) {
+        toast.success("Thêm vào giỏ hàng thành công");
+      } else {
+        toast.error("Thêm vào giỏ hàng thất bại",{
+          description: data?.message,
+        });
+      }
+    },
+   
+  }));
 
-
+  const handleAddToCart = () => {
+    if (!selectedVariant?.id) return;
+    addToCart({
+      variantId: selectedVariant?.id,
+      quantity: quantity,
+    });
+  };
 
 
   return (
@@ -150,7 +172,7 @@ export function ProductInfo({
         </div>
 
         {/* Add to Cart */}
-        <Button variant="outline" className="flex-1 gap-2" size={'lg'}>
+        <Button variant="outline" className="flex-1 gap-2" size={'lg'} onClick={handleAddToCart}>
           <ShoppingCart className="w-4 h-4" />
           Thêm vào giỏ
         </Button>
