@@ -76,7 +76,7 @@ const createOrder = orpcWithAuth
         let totalAmount = 0;
         for(const variant of variants){
             const quantityInCart = variantQuantityMap.get(variant.id) || 0;
-            totalAmount += Number(variant.price.times(quantityInCart));
+            totalAmount += Number(BigInt(variant.price) * BigInt(quantityInCart));
         }
         // Tạo đơn hàng
         const newOrder = await prisma.order.create({
@@ -101,7 +101,7 @@ const createOrder = orpcWithAuth
                     orderId: newOrder.id,
                     variantId: variant.id,
                     quantity: quantityInCart,
-                    lineTotal: variant.price.times(quantityInCart),
+                    lineTotal: BigInt(variant.price) * BigInt(quantityInCart),
                     unitPrice: variant.price,
                 }
             });
