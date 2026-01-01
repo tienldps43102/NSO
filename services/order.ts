@@ -191,6 +191,17 @@ const getMyOrders = orpcWithAuth
         const userId = context.session.user.id;
         const orders = await prisma.order.findMany({
             where: { userId },
+            include: {
+                orderItems: {
+                    include: {
+                        variant: {
+                            include: {
+                                product: true,
+                            }
+                        }
+                    }
+                }
+            },
             orderBy: {
                 createdAt: "desc",
             },
