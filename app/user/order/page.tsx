@@ -14,24 +14,17 @@ import {
 import Link from "next/link";
 import { OrderCard } from "./component";
 import { OrderStatusType } from "@/lib/enum";
-
-
-
-
 type Order = Outputs["orderRoutes"]["getMyOrders"];
-
 const OrderHistory = async () => {
   const orders = await $client!.orderRoutes.getMyOrders({
     page: 1,
     limit: 20,
   })
+  console.log(orders)
   const filterOrders = (status: OrderStatusType | "all") => {
     if (status === "all") return orders;
     return orders.filter((order) => order.status === status);
   };
-
- 
-
   return (
   
 
@@ -63,25 +56,46 @@ const OrderHistory = async () => {
 
         {/* Orders Tabs */}
         <Tabs defaultValue="all" className="space-y-6">
-          <TabsList className="w-full justify-start overflow-x-auto flex-nowrap bg-muted/50 p-1">
-            <TabsTrigger value="all" className="min-w-max">
-              Tất cả ({orders.length})
-            </TabsTrigger>
-            <TabsTrigger value="processing" className="min-w-max">
-              Đang xử lý ({filterOrders("PROCESSING").length})
-            </TabsTrigger>
-            <TabsTrigger value="shipping" className="min-w-max">
-              Đang giao ({filterOrders("SHIPPING").length})
-            </TabsTrigger>
-            <TabsTrigger value="delivered" className="min-w-max">
-              Đã giao ({filterOrders("DELIVERED").length})
-            </TabsTrigger>
-            <TabsTrigger value="cancelled" className="min-w-max">
-              Đã hủy ({filterOrders("CANCELLED").length})
-            </TabsTrigger>
-          </TabsList>
+          <div className="relative overflow-hidden">
+            <TabsList className="w-full justify-start overflow-hidden overflow-x-auto flex-nowrap glass shadow-soft p-1.5 rounded-2xl border-0">
+              <TabsTrigger 
+                value="all" 
+                className="min-w-max rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-card transition-all px-6 py-2.5 font-medium"
+              >
+                Tất cả ({orders.length})
+              </TabsTrigger>
+              <TabsTrigger 
+                value="PENDING" 
+                className="min-w-max rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-card transition-all px-6 py-2.5 font-medium"
+              >
+                <Clock className="w-4 h-4 mr-2" />
+                Đang xử lý ({filterOrders("PENDING").length})
+              </TabsTrigger>
+              <TabsTrigger 
+                value="SHIPPING" 
+                className="min-w-max rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-card transition-all px-6 py-2.5 font-medium"
+              >
+                <Truck className="w-4 h-4 mr-2" />
+                Đang giao ({filterOrders("SHIPPING").length})
+              </TabsTrigger>
+              <TabsTrigger 
+                value="DELIVERED" 
+                className="min-w-max rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-card transition-all px-6 py-2.5 font-medium"
+              >
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Đã giao ({filterOrders("DELIVERED").length})
+              </TabsTrigger>
+              <TabsTrigger 
+                value="CANCELLED" 
+                className="min-w-max rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-card transition-all px-6 py-2.5 font-medium"
+              >
+                <XCircle className="w-4 h-4 mr-2" />
+                Đã hủy ({filterOrders("CANCELLED").length})
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
-          {["all", "PROCESSING", "SHIPPING", "DELIVERED", "CANCELLED"].map((status) => (
+          {["all", "PENDING", "SHIPPING", "DELIVERED", "CANCELLED"].map((status) => (
             <TabsContent key={status} value={status} className="space-y-4">
               {filterOrders(status as OrderStatusType ).length > 0 ? (
                 filterOrders(status as OrderStatusType ).map((order) => (
