@@ -1,3 +1,4 @@
+import { nowVN } from "@/lib/day";
 import { prisma } from "@/lib/db";
 
 export function updatePaymentStatus(orderId: string, status: "PENDING" | "SUCCESS" | "FAILED") {
@@ -5,7 +6,7 @@ export function updatePaymentStatus(orderId: string, status: "PENDING" | "SUCCES
         where: { id: orderId },
         data: { 
             paymentStatus: status,
-            paymentAt: new Date(),
+            paymentAt: nowVN().toDate(),
          },
     })
 }

@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { nowVN } from "../day";
 
 export interface VnpayConfig {
   tmnCode: string;
@@ -53,12 +54,10 @@ export class VnpaySDK {
   }
 
   createPayment(params: CreatePaymentParams): string {
-    const date = new Date();
-    const pad = (n: number) => n.toString().padStart(2, "0");
-    const formatDate = `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}${pad(date.getHours())}${pad(date.getMinutes())}${pad(date.getSeconds())}`;
-    const expire = new Date(date.getTime() + (params.expireMinutes ?? 15) * 60000);
-    const expireDate = `${expire.getFullYear()}${pad(expire.getMonth() + 1)}${pad(expire.getDate())}${pad(expire.getHours())}${pad(expire.getMinutes())}${pad(expire.getSeconds())}`;
-
+    const now = nowVN()
+    const formatDate = now.format("YYYYMMDDHHmmss")
+    const expire = now.add(params.expireMinutes ?? 15, "minute")
+    const expireDate = expire.format("YYYYMMDDHHmmss")
     const txnRef = params.txnRef ?? Math.floor(Math.random() * 1000000).toString();
     const inputData: Record<string, any> = {
       vnp_Version: "2.1.0",

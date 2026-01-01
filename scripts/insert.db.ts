@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/db";
 import { type DetailBook } from "./crawl-detail";
 import { Mutex } from 'async-mutex';
+import { nowVN } from "@/lib/day";
 
 const books: DetailBook[] = JSON.parse(
   await Bun.file("./data/detailed-books.json").text()
@@ -138,8 +139,8 @@ for await (const book of books) {
         isActive: true,
         pageCount: findTotalPages(book.attributes),
         thumbnailUrl: book.coverUrl,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: nowVN().toDate(),
+        updatedAt: nowVN().toDate(),
         displayPrice: book.price || 0,
         series: seriesId ? { connect: { id: seriesId } } : undefined,
         authors: authorIds ? { connect: authorIds.map(id => ({ id })) } : undefined,
@@ -170,8 +171,8 @@ for await (const book of books) {
                 sku: version.id || Bun.randomUUIDv7(),
                 price: parseFloat(version.price) || 0,
                 isActive: true,
-                createdAt: new Date(),
-                updatedAt: new Date(),
+                createdAt: nowVN().toDate(),
+                updatedAt: nowVN().toDate(),
             },
         });
         const coverUrl = version.coverUrl;
