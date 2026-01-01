@@ -84,32 +84,32 @@ const getMyCartItems = orpcWithAuth
 
         const cartItems = await prisma.cartItem.findMany({
             where: {
-              userId,
-              variant: {
-                product: { isActive: true },
-                isActive: true,
-              },
+                userId,
+                variant: {
+                    product: { isActive: true },
+                    isActive: true,
+                },
             },
             include: {
-              variant: {
-                select: {
-                  id: true,
-                  price: true,
-                  variantName: true,
-                  stockQuantity: true,
-                  sku: true,
-                  product: {
+                variant: {
                     select: {
-                      id: true,
-                      title: true,
-                      displayPrice: true,
-                      thumbnailUrl: true,
+                        id: true,
+                        price: true,
+                        variantName: true,
+                        stockQuantity: true,
+                        sku: true,
+                        product: {
+                            select: {
+                                id: true,
+                                title: true,
+                                displayPrice: true,
+                                thumbnailUrl: true,
+                            },
+                        },
                     },
-                  },
                 },
-              },
             },
-          })
+        })
 
         return cartItems;
     });
@@ -146,6 +146,38 @@ const removeCartItem = orpcWithAuth
     }
     );
 
+const updateCartItem = orpcWithAuth
+    .route({
+        method: "PUT",
+        path: "/cart/items",
+    })
+    .input(z.object({
+        variantId: z.string().min(1).max(36),
+        newQuantity: z.number().min(1),
+    }))
+    .handler(async ({ input, context }) => {
+        const userId = context.session.user.id;
+        const cartItem = await prisma.cartItem.findUnique({
+            where: { userId_variantId: { userId, variantId: input.variantId } },
+            include: {
+                variant: {
+                    select: { stockQuantity: true },
+                },
+            },
+        });
+        if (!cartItem) {
+            return { success: false, message: "Sản phẩm không tồn tại trong giỏ hàng" };
+        }
+        if (input.newQuantity > cartItem.variant.stockQuantity) {
+            return { success: false, message: "Số lượng trong giỏ hàng vượt quá số lượng tồn kho" };
+        }
+        await prisma.cartItem.update({
+            where: { userId_variantId: { userId, variantId: input.variantId } },
+            data: { quantity: input.newQuantity },
+        });
+        return { success: true };
+    }
+    );
 
 export const cartRoutes = {
     addToCart,
@@ -153,4 +185,5 @@ export const cartRoutes = {
     getMyCartItems,
     clearMyCart,
     removeCartItem,
+    updateCartItem,
 };
