@@ -1,4 +1,5 @@
 import '../lib/orpc.server';
+import '../lib/polyfills';
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
