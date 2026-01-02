@@ -1,7 +1,6 @@
 "use client";
-import { Moon, Sun, Bell, Search, User } from "lucide-react";
+import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,14 +10,8 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 
-interface AdminHeaderProps {
-    isDark: boolean;
-    toggleTheme: () => void;
-}
-
-export const AdminHeader = ({ isDark, toggleTheme }: AdminHeaderProps) => {
+export const AdminHeader = () => {
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border/40 bg-background/80 backdrop-blur-xl px-6">
             {/* Search */}
@@ -68,17 +61,8 @@ interface AdminLayoutProps {
 
 export const AdminLayout = ({ children }: AdminLayoutProps) => {
     const [collapsed, setCollapsed] = useState(false);
-    const [isDark, setIsDark] = useState(false);
 
-    useEffect(() => {
-        const isDarkMode = document.documentElement.classList.contains("dark");
-        setIsDark(isDarkMode);
-    }, []);
 
-    const toggleTheme = () => {
-        setIsDark(!isDark);
-        document.documentElement.classList.toggle("dark");
-    };
 
     return (
         <div className="min-h-screen bg-background">
@@ -90,7 +74,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
                     collapsed ? "ml-16" : "ml-64"
                 )}
             >
-                <AdminHeader isDark={isDark} toggleTheme={toggleTheme} />
+                <AdminHeader />
                 <main className="p-6">{children}</main>
             </div>
         </div>
@@ -104,11 +88,9 @@ import {
     ShoppingCart,
     Users,
     BarChart3,
-    Settings,
-    BookOpen,
-    LogOut,
+    Settings, LogOut,
     ChevronLeft,
-    Menu,
+    Menu
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";

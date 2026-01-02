@@ -70,8 +70,8 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             <Button asChild variant="ghost" size="icon" className="relative rounded-full h-10 w-10 glass" aria-label="Giỏ hàng">
               <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
-                { count! > 0 && <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground">
-                  {count}
+                { (count as number) > 0 && <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground">
+                  {count as number}
                 </Badge>}
               </Link>
             </Button>
@@ -109,9 +109,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                   {user?.role === "ADMIN" && (
                     <>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/admin">  
                         <Shield className="mr-2 h-4 w-4" />
-                        <span>Trang quản trị</span>
+                        <span>Trang quản trị</span></Link>
                       </DropdownMenuItem>
                     </>
                   )}
@@ -209,10 +210,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                   Cài đặt
                 </a>
                 {user?.role === "ADMIN" && (
-                  <a href="/admin" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
+                  <Link href="/admin" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
                     <Shield className="h-4 w-4" />
                     Trang quản trị
-                  </a>
+                  </Link>
                 )}
                 <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-xl transition-colors">
                   <LogOut className="h-4 w-4" />

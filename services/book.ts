@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db"
 import { os } from "@orpc/server"
 import z from "zod"
 import { computeSkipTake, paginationInput } from "./shared"
+import { Prisma } from "@/lib/generated/prisma/client"
 
 const sortInput = z
     .enum(["newest", "price_asc", "price_desc", "title_asc", "title_desc"])
@@ -55,6 +56,7 @@ const listBooks = os
             maxPrice: z.coerce.number().nonnegative().optional(),
             sort: sortInput,
             inStockOnly: z.coerce.boolean().default(false),
+            withInActive: z.boolean().optional().default(false)
         })
     )
     .handler(async ({ input }) => {
@@ -73,7 +75,7 @@ const listBooks = os
                             : ({ displayPrice: "desc" } as const)
     
         const where = {
-            isActive: true,
+            ...(input.withInActive ?{} : {isActive: true}),
             // Chuyển sang dùng mảng với `in` operator
             ...(input.categoryIds && input.categoryIds.length > 0
                 ? { categoryId: { in: input.categoryIds } }
@@ -105,7 +107,7 @@ const listBooks = os
                 : {}),
             variants: {
                 some: {
-                    isActive: true,
+                    ...(input.withInActive ?{} : {isActive: true}),
                     ...(input.inStockOnly ? { stockQuantity: { gt: 0 } } : {}),
                     ...(input.minPrice != null ? { price: { gte: input.minPrice } } : {}),
                     ...(input.maxPrice != null ? { price: { lte: input.maxPrice } } : {}),
@@ -116,7 +118,7 @@ const listBooks = os
         const [items, total] = await prisma.$transaction([
             prisma.product.findMany({
                 where,
-                orderBy: orderBy as any,
+                orderBy: orderBy as Prisma.ProductOrderByWithRelationInput,
                 skip,
                 take,
                 include: {

@@ -218,14 +218,14 @@ const AdminDashboard = () => {
           </p>
         </div>
         <div className="flex gap-2 mt-4 md:mt-0">
-          <Button variant="outline" size="sm" className="bg-card/60 backdrop-blur-md border-border/40">
+          {/* <Button variant="outline" size="sm" className="bg-card/60 backdrop-blur-md border-border/40">
             <FileText className="h-4 w-4 mr-2" />
             Xuất báo cáo
           </Button>
           <Button size="sm">
             <Plus className="h-4 w-4 mr-2" />
             Thêm sản phẩm
-          </Button>
+          </Button> */}
         </div>
       </div>
 
