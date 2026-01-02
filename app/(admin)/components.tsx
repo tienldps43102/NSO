@@ -120,6 +120,9 @@ interface AdminSidebarProps {
 
 const menuItems = [
     { title: "Dashboard", icon: LayoutDashboard, path: "/admin" },
+    { title: "Danh mục", icon: Package, path: "/admin/categories" },
+    { title: "Nhà xuất bản", icon: Package, path: "/admin/publishers" },
+    { title: "Tác giả", icon: Package, path: "/admin/authors" },
     { title: "Sản phẩm", icon: Package, path: "/admin/products" },
     { title: "Đơn hàng", icon: ShoppingCart, path: "/admin/orders" },
     { title: "Khách hàng", icon: Users, path: "/admin/customers" },
