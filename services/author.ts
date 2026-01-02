@@ -80,6 +80,11 @@ const deleteAuthor = os
     })
     .input(z.object({ id: z.string() }))
     .handler(async ({ input }) => {
+        // count the number of books in the author
+        const books = await prisma.product.count({ where: { authors: { some: { id: input.id } } } })
+        if (books > 0) {
+            throw new Error(`Tác giả có ${books} sách, không thể xóa`)
+        }
         const author = await prisma.author.delete({ where: { id: input.id } })
         return author
     });

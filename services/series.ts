@@ -82,6 +82,11 @@ const deleteSeries = os
     })
     .input(z.object({ id: z.string() }))
     .handler(async ({ input }) => {
+        // count the number of books in the series
+        const books = await prisma.product.count({ where: { seriesId: input.id } })
+        if (books > 0) {
+            throw new Error(`Bộ sách có ${books} sách, không thể xóa`)
+        }
         const series = await prisma.series.delete({ where: { id: input.id } })
         return series
     });

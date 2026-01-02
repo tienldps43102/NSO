@@ -69,6 +69,11 @@ const deletePublisher = os
     })
     .input(z.object({ id: z.string() }))
     .handler(async ({ input }) => {
+        // count the number of books in the publisher
+        const books = await prisma.product.count({ where: { publisherId: input.id } })
+        if (books > 0) {
+            throw new Error(`Nhà xuất bản có ${books} sách, không thể xóa`)
+        }
         const publisher = await prisma.publisher.delete({ where: { id: input.id } })
         return publisher
     });
