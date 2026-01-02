@@ -1,5 +1,9 @@
 "use client";
-import { User } from "lucide-react";
+import { Building2,
+FolderTree,
+Library,
+User, 
+UserPen} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -94,26 +98,32 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 interface AdminSidebarProps {
     collapsed: boolean;
     onToggle: () => void;
 }
-
 const menuItems = [
     { title: "Dashboard", icon: LayoutDashboard, path: "/admin" },
-    { title: "Danh mục", icon: Package, path: "/admin/categories" },
-    { title: "Nhà xuất bản", icon: Package, path: "/admin/publishers" },
-    { title: "Tác giả", icon: Package, path: "/admin/authors" },
+  
+    // Phân loại / quản lý dữ liệu
+    { title: "Danh mục", icon: FolderTree, path: "/admin/categories" },
+    { title: "Nhà xuất bản", icon: Building2, path: "/admin/publishers" },
+    { title: "Tác giả", icon: UserPen, path: "/admin/authors" },
+    { title: "Bộ sách", icon: Library, path: "/admin/series" },
+  
+    // Kinh doanh
     { title: "Sản phẩm", icon: Package, path: "/admin/products" },
     { title: "Đơn hàng", icon: ShoppingCart, path: "/admin/orders" },
     { title: "Khách hàng", icon: Users, path: "/admin/customers" },
+  
+    // Báo cáo
     { title: "Thống kê", icon: BarChart3, path: "/admin/analytics" },
-    { title: "Cài đặt", icon: Settings, path: "/admin/settings" },
-];
+  ];
 
 export const AdminSidebar = ({ collapsed, onToggle }: AdminSidebarProps) => {
-
+    const pathname = usePathname();
     return (
         <aside
             className={cn(
@@ -145,7 +155,7 @@ export const AdminSidebar = ({ collapsed, onToggle }: AdminSidebarProps) => {
             {/* Navigation */}
             <nav className="flex flex-col gap-1 p-2">
                 {menuItems.map((item) => {
-                    const isActive = location.pathname === item.path;
+                    const isActive = pathname === item.path;
                     return (
                         <Link
                             key={item.path}
