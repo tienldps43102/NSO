@@ -142,7 +142,7 @@ export default function AdminAuthors() {
         header: "Mô tả",
         cell: ({ row }) => (
           <div className="text-muted-foreground line-clamp-2">
-            {row.original.description || "—"}
+            {row.original.bio || "—"}
           </div>
         ),
       },
@@ -209,7 +209,7 @@ export default function AdminAuthors() {
     setSelectedAuthor(author);
     setFormData({ 
       name: author.name,
-      description: author.description || ""
+      description: author.bio || ""
     });
     setIsEditOpen(true);
   };

@@ -142,7 +142,7 @@ export default function AdminPublishers() {
         header: "Mô tả",
         cell: ({ row }) => (
           <div className="text-muted-foreground line-clamp-2">
-            {row.original.description || "—"}
+            {row.original.bio || "—"}
           </div>
         ),
       },
@@ -209,7 +209,7 @@ export default function AdminPublishers() {
     setSelectedPublisher(publisher);
     setFormData({ 
       name: publisher.name,
-      description: publisher.description || ""
+      description: publisher.bio || ""
     });
     setIsEditOpen(true);
   };
