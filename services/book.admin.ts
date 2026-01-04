@@ -150,7 +150,7 @@ const activateBook = orpcWithAuth
     });
     if (!book) throw new Error("Book not found");
     if (book.variants.length === 0) {
-        return { success: false, message: "Sách phải có ít nhất một phiên bản" };
+      return { success: false, message: "Sách phải có ít nhất một phiên bản" };
     }
     await prisma.product.update({
       where: { id: input.id },
@@ -222,6 +222,44 @@ const deleteAttribute = orpcWithAuth
   .handler(async ({ input }) => {
     const book = await prisma.attribute.delete({ where: { id: input.attributeId } });
     return book;
+  });
+
+const bulkUpdateAttributes = orpcWithAuth
+  .route({
+    method: "PUT",
+    path: "/books/:id/attributes/bulk",
+  })
+  .input(
+    z.object({
+      newAttributes: z.array(z.object({ name: z.string(), value: z.string() })),
+      removedAttributes: z.array(z.string()),
+      updatedAttributes: z.array(
+        z.object({ id: z.string(), name: z.string().optional(), value: z.string().optional() }),
+      ),
+      id: z.string(),
+    }),
+  )
+  .handler(async ({ input }) => {
+    // add new attributes
+    const newAttributes = await prisma.attribute.createMany({
+      data: input.newAttributes.map((attribute) => ({
+        name: attribute.name,
+        value: attribute.value,
+        productId: input.id,
+      })),
+    });
+    // update attributes
+    for (const attribute of input.updatedAttributes) {
+      await prisma.attribute.update({
+        where: { id: attribute.id },
+        data: { name: attribute.name, value: attribute.value },
+      });
+    }
+    // delete attributes
+    for (const attribute of input.removedAttributes) {
+      await prisma.attribute.delete({ where: { id: attribute } });
+    }
+    return { success: true, message: "Attributes updated successfully" };
   });
 
 const addImage = orpcWithAuth
@@ -401,6 +439,7 @@ export const bookAdminRoutes = {
   updateImage,
   deleteImage,
   addVariant,
+  bulkUpdateAttributes,
   updateVariant,
   addStock,
   toggleActiveVariant,
