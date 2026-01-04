@@ -1,14 +1,12 @@
 import { load } from "cheerio";
 import { Database } from "bun:sqlite";
-import PQueue from 'p-queue';
-import briefBooks from '../../data/fahasa-list.json';
+import PQueue from "p-queue";
+import briefBooks from "../../data/fahasa-list.json";
 
 async function getHtml(url: string) {
   const response = await fetch(url);
   return response.text();
 }
-
-
 
 async function parseHtml(html: string) {
   const $ = load(html);
@@ -27,10 +25,14 @@ async function parseHtml(html: string) {
 
     if (value) result[key] = value;
   });
-  const images = $(".include-in-gallery").map((_, img) => $(img).attr("href")).get();
+  const images = $(".include-in-gallery")
+    .map((_, img) => $(img).attr("href"))
+    .get();
   const description = $("#product_tabs_description_contents").html();
-  const seriesEL= $("#product_view_kasitoo > div > div.product-essential-detail-parent > div.product-essential-detail > div.block-content-product-detail.block-product-view-mobile > h1 > div.fhs_name_product_label > a ")
-  const seriesUrl = seriesEL?.attr("href")
+  const seriesEL = $(
+    "#product_view_kasitoo > div > div.product-essential-detail-parent > div.product-essential-detail > div.block-content-product-detail.block-product-view-mobile > h1 > div.fhs_name_product_label > a ",
+  );
+  const seriesUrl = seriesEL?.attr("href");
   const seriesId = seriesUrl?.split("/").pop() || "";
   const categoryName = $("#ves-breadcrumbs > div").text().trim();
   return {
@@ -40,7 +42,7 @@ async function parseHtml(html: string) {
     seriesUrl: seriesUrl,
     seriesId: seriesId,
     categoryName: categoryName,
-  }
+  };
 }
 
 // Initialize SQLite database
@@ -80,14 +82,18 @@ for (const book of briefBooks) {
       const exists = checkStmt.get({ $product_id: book.product_id });
       if (exists) {
         skipped++;
-        console.log(`[SKIP] ${book.product_name} (${processed + skipped + errors}/${briefBooks.length})`);
+        console.log(
+          `[SKIP] ${book.product_name} (${processed + skipped + errors}/${briefBooks.length})`,
+        );
         return;
       }
 
-      console.log(`[CRAWL] ${book.product_name} (${processed + skipped + errors + 1}/${briefBooks.length})`);
+      console.log(
+        `[CRAWL] ${book.product_name} (${processed + skipped + errors + 1}/${briefBooks.length})`,
+      );
       const html = await getHtml(book.product_url);
       const detail = await parseHtml(html);
-      
+
       const combinedData = {
         ...book,
         ...detail,
@@ -100,9 +106,11 @@ for (const book of briefBooks) {
       });
 
       processed++;
-      console.log(`[✓] Saved ${book.product_name} (${processed + skipped + errors}/${briefBooks.length})`);
-      
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log(
+        `[✓] Saved ${book.product_name} (${processed + skipped + errors}/${briefBooks.length})`,
+      );
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     } catch (error) {
       errors++;
       console.error(`[ERROR] Failed to crawl ${book.product_name}:`, error);

@@ -1,10 +1,10 @@
 import { prisma } from "@/lib/db";
 import { type DetailBook } from "./crawl-detail";
-import { Mutex } from 'async-mutex';
+import { Mutex } from "async-mutex";
 import { nowVN } from "@/lib/day";
 
 const books: DetailBook[] = JSON.parse(
-  await Bun.file("./data/detailed-books.json").text()
+  await Bun.file("./data/detailed-books.json").text(),
 ).reverse();
 
 const CATEGORY_NAME = "Manga";
@@ -15,8 +15,8 @@ const existingCategory = await prisma.category.findFirst({
   where: { name: CATEGORY_NAME },
 });
 
-const categoryId = existingCategory 
-  ? existingCategory.id 
+const categoryId = existingCategory
+  ? existingCategory.id
   : (await prisma.category.create({ data: { name: CATEGORY_NAME } })).id;
 
 // Initialize publisher
@@ -31,9 +31,9 @@ if (!publisher) {
 }
 
 // Helper functions
-function getIsbnFromAttribute(attributes: Record<string, string>): { 
-  isbn10?: string; 
-  isbn13?: string 
+function getIsbnFromAttribute(attributes: Record<string, string>): {
+  isbn10?: string;
+  isbn13?: string;
 } {
   let isbn10: string | undefined;
   let isbn13: string | undefined;
@@ -45,7 +45,7 @@ function getIsbnFromAttribute(attributes: Record<string, string>): {
     } else if (lowerKey.includes("isbn-13")) {
       isbn13 = value;
     } else if (lowerKey.includes("isbn")) {
-      const cleanValue = value.replace(/-/g, '');
+      const cleanValue = value.replace(/-/g, "");
       if (cleanValue.length === 10) {
         isbn10 = value;
       } else if (cleanValue.length === 13) {
@@ -98,9 +98,10 @@ async function getOrCreateSeries(seriesName: string): Promise<string> {
 const authorMutex = new Mutex();
 async function getOrCreateAuthor(authorNames: string): Promise<string[]> {
   return authorMutex.runExclusive(async () => {
-    const authorNameArray = authorNames.split("             ")
-        .map(name => name.trim())
-        .filter(name => name.length > 0);
+    const authorNameArray = authorNames
+      .split("             ")
+      .map((name) => name.trim())
+      .filter((name) => name.length > 0);
 
     const authorIds: string[] = [];
     for (const name of authorNameArray) {
@@ -143,7 +144,7 @@ for await (const book of books) {
         updatedAt: nowVN().toDate(),
         displayPrice: book.price || 0,
         series: seriesId ? { connect: { id: seriesId } } : undefined,
-        authors: authorIds ? { connect: authorIds.map(id => ({ id })) } : undefined,
+        authors: authorIds ? { connect: authorIds.map((id) => ({ id })) } : undefined,
         publisher: { connect: { id: publisher.id } },
         // Create attributes inline
         attributes: {
@@ -154,53 +155,53 @@ for await (const book of books) {
         },
         // Create images inline
         images: {
-          create: book.images.map(url => ({
+          create: book.images.map((url) => ({
             url,
           })),
         },
       },
     });
     for await (const version of book.versions || []) {
-        if(!version.title.toLocaleLowerCase().includes("bản")){
-            continue;
-        }
-        const vrant =  await prisma.productVariant.create({
-            data: {
-                product: { connect: { id: product.id } },
-                variantName: version.title,
-                sku: version.id || Bun.randomUUIDv7(),
-                price: parseFloat(version.price) || 0,
-                isActive: true,
-                createdAt: nowVN().toDate(),
-                updatedAt: nowVN().toDate(),
+      if (!version.title.toLocaleLowerCase().includes("bản")) {
+        continue;
+      }
+      const vrant = await prisma.productVariant.create({
+        data: {
+          product: { connect: { id: product.id } },
+          variantName: version.title,
+          sku: version.id || Bun.randomUUIDv7(),
+          price: parseFloat(version.price) || 0,
+          isActive: true,
+          createdAt: nowVN().toDate(),
+          updatedAt: nowVN().toDate(),
+        },
+      });
+      const coverUrl = version.coverUrl;
+      if (coverUrl) {
+        // find like operation
+        const existingImage = await prisma.productImage.findFirst({
+          where: {
+            productId: product.id,
+            url: {
+              contains: coverUrl,
             },
+          },
         });
-        const coverUrl = version.coverUrl;
-        if (coverUrl) {
-            // find like operation
-            const existingImage = await prisma.productImage.findFirst({
-                where: {
-                    productId: product.id,
-                    url: {
-                        contains: coverUrl,
-                    },
-                },
-            });
-            if (!existingImage) {
-                await prisma.productImage.create({
-                    data: {
-                        product: { connect: { id: product.id } },
-                        url: coverUrl,
-                        variantId: vrant.id,
-                    },
-                });
-            }else{
-                await prisma.productImage.update({
-                    where: { id: existingImage.id },
-                    data: { variantId: vrant.id },
-                });
-            }
+        if (!existingImage) {
+          await prisma.productImage.create({
+            data: {
+              product: { connect: { id: product.id } },
+              url: coverUrl,
+              variantId: vrant.id,
+            },
+          });
+        } else {
+          await prisma.productImage.update({
+            where: { id: existingImage.id },
+            data: { variantId: vrant.id },
+          });
         }
+      }
     }
 
     console.log(`✓ Inserted book: ${book.title} (ID: ${product.id})`);

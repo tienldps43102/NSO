@@ -1,15 +1,13 @@
 import type { ClientContext } from "@orpc/client";
 import { StandardLink, StandardRPCLinkCodec } from "@orpc/client/standard";
-import type {
-    StandardLinkOptions,
-    StandardRPCLinkCodecOptions,
-} from "@orpc/client/standard";
+import type { StandardLinkOptions, StandardRPCLinkCodecOptions } from "@orpc/client/standard";
 import type { LinkFetchClientOptions } from "@orpc/client/fetch";
 import { LinkFetchClient } from "@orpc/client/fetch";
 import { SuperJSONSerializer } from "./superjson-serializer";
 
 export interface SuperJSONLinkOptions<T extends ClientContext>
-  extends LinkFetchClientOptions<T>,
+  extends
+    LinkFetchClientOptions<T>,
     Omit<StandardLinkOptions<T>, "plugins">,
     StandardRPCLinkCodecOptions<T> {}
 

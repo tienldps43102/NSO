@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
@@ -30,7 +29,7 @@
 }
 
 @theme {
-  --font-sans: 'Be Vietnam Pro', system-ui, sans-serif;
+  --font-sans: "Be Vietnam Pro", system-ui, sans-serif;
 
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
@@ -252,7 +251,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: "Be Vietnam Pro", sans-serif;
   }
 
   /* Hide scrollbar for category chips */
@@ -264,7 +263,6 @@
     display: none;
   }
 }
-
 
 #root {
   max-width: 1280px;

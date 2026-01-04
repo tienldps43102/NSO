@@ -7,11 +7,7 @@ interface UploadedFileListProps {
   removeFile: (filename: string) => void;
 }
 
-export function FileList({
-  uploadedFiles,
-  fileProgresses,
-  removeFile,
-}: UploadedFileListProps) {
+export function FileList({ uploadedFiles, fileProgresses, removeFile }: UploadedFileListProps) {
   if (uploadedFiles.length === 0) {
     return null;
   }

@@ -1,17 +1,18 @@
 import {
-    createORPCErrorFromJson,
-    ErrorEvent,
-    isORPCErrorJson,
-    mapEventIterator,
-    toORPCError,
+  createORPCErrorFromJson,
+  ErrorEvent,
+  isORPCErrorJson,
+  mapEventIterator,
+  toORPCError,
 } from "@orpc/client";
 import type { StandardRPCSerializer } from "@orpc/client/standard";
 import { isAsyncIteratorObject } from "@orpc/shared";
 import SuperJSON from "@/lib/superjson";
 
-export class SuperJSONSerializer
-  implements Pick<StandardRPCSerializer, keyof StandardRPCSerializer>
-{
+export class SuperJSONSerializer implements Pick<
+  StandardRPCSerializer,
+  keyof StandardRPCSerializer
+> {
   serialize(data: unknown) {
     if (isAsyncIteratorObject(data)) {
       return mapEventIterator(data, {

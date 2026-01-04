@@ -18,7 +18,8 @@ export function SiteFooter() {
               <span className="font-bold text-xl text-background">NSO</span>
             </div>
             <p className="text-background/70 text-sm mb-6 leading-relaxed">
-              Nhà Sách Online – Điểm đến lý tưởng cho các tín đồ Manga và Light Novel. Chúng tôi mang đến những câu chuyện tuyệt vời nhất dành cho bạn.
+              Nhà Sách Online – Điểm đến lý tưởng cho các tín đồ Manga và Light Novel. Chúng tôi
+              mang đến những câu chuyện tuyệt vời nhất dành cho bạn.
             </p>
             <div className="flex gap-3">
               <Button

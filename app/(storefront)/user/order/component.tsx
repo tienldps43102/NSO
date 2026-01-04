@@ -1,18 +1,21 @@
 "use client";
 
-import { Package, ChevronRight, Calendar, Truck, CheckCircle, Clock, XCircle, Eye, MapPin, Phone, User, CreditCard, FileText } from "lucide-react";
+import {
+  Package,
+  ChevronRight,
+  Calendar,
+  Truck,
+  CheckCircle,
+  Clock,
+  XCircle,
+  Eye,
+  CreditCard,
+  FileText,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+
 import {
   Dialog,
   DialogContent,
@@ -22,51 +25,50 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
 import { useState } from "react";
 const getStatusConfig = (status: string) => {
-    switch (status) {
-      case "DELIVERED":
-        return {
-          label: "Đã giao",
-          icon: CheckCircle,
-          variant: "default" as const,
-          className: "bg-green-500/10 text-green-600 border-green-500/20",
-        };
-      case "SHIPPING":
-        return {
-          label: "Đang giao",
-          icon: Truck,
-          variant: "secondary" as const,
-          className: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-        };
-      case "PENDING":
-        return {
-          label: "Đang xử lý",
-          icon: Clock,
-          variant: "outline" as const,
-          className: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
-        };
-      case "CANCELLED":
-        return {
-          label: "Đã hủy",
-          icon: XCircle,
-          variant: "destructive" as const,
-          className: "bg-red-500/10 text-red-600 border-red-500/20",
-        };
-      default:
-        return {
-          label: "Không xác định",
-          icon: Package,
-          variant: "outline" as const,
-          className: "",
-        };
-    }
-  };
-  function formatDate(date: string) {
-    return new Date(date).toLocaleDateString("vi-VN");
+  switch (status) {
+    case "DELIVERED":
+      return {
+        label: "Đã giao",
+        icon: CheckCircle,
+        variant: "default" as const,
+        className: "bg-green-500/10 text-green-600 border-green-500/20",
+      };
+    case "SHIPPING":
+      return {
+        label: "Đang giao",
+        icon: Truck,
+        variant: "secondary" as const,
+        className: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+      };
+    case "PENDING":
+      return {
+        label: "Đang xử lý",
+        icon: Clock,
+        variant: "outline" as const,
+        className: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
+      };
+    case "CANCELLED":
+      return {
+        label: "Đã hủy",
+        icon: XCircle,
+        variant: "destructive" as const,
+        className: "bg-red-500/10 text-red-600 border-red-500/20",
+      };
+    default:
+      return {
+        label: "Không xác định",
+        icon: Package,
+        variant: "outline" as const,
+        className: "",
+      };
   }
+};
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("vi-VN");
+}
 
 type Order = Outputs["orderRoutes"]["getMyOrders"][number];
 
@@ -93,7 +95,9 @@ export const OrderCard = ({ order }: { order: Order }) => {
                 </div>
               </div>
             </div>
-            <Badge className={`${statusConfig.className} flex items-center gap-1.5 px-4 py-2 rounded-full font-semibold border`}>
+            <Badge
+              className={`${statusConfig.className} flex items-center gap-1.5 px-4 py-2 rounded-full font-semibold border`}
+            >
               <StatusIcon className="w-4 h-4" />
               {statusConfig.label}
             </Badge>
@@ -102,16 +106,23 @@ export const OrderCard = ({ order }: { order: Order }) => {
           {/* Order Items */}
           <div className="p-5 space-y-4 bg-card/50">
             {order.orderItems.slice(0, 2).map((item, index) => (
-              <div key={index} className="flex gap-4 p-3 rounded-xl hover:bg-muted/30 transition-colors">
+              <div
+                key={index}
+                className="flex gap-4 p-3 rounded-xl hover:bg-muted/30 transition-colors"
+              >
                 <img
                   src={item.variant.product.thumbnailUrl!}
                   alt={item.variant.product.title}
                   className="w-16 h-20 object-cover rounded-xl border-2 shadow-soft"
                 />
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-foreground truncate">{item.variant.product.title}</h4>
+                  <h4 className="font-semibold text-foreground truncate">
+                    {item.variant.product.title}
+                  </h4>
                   <p className="text-sm text-muted-foreground mt-1">Số lượng: {item.quantity}</p>
-                  <p className="text-sm font-bold text-primary mt-1">{formatPrice(Number(item.variant.price) * item.quantity)}</p>
+                  <p className="text-sm font-bold text-primary mt-1">
+                    {formatPrice(Number(item.variant.price) * item.quantity)}
+                  </p>
                 </div>
               </div>
             ))}
@@ -126,7 +137,8 @@ export const OrderCard = ({ order }: { order: Order }) => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 glass border-t">
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">
-                Thanh toán: <span className="text-foreground font-semibold">{order.paymentMethod}</span>
+                Thanh toán:{" "}
+                <span className="text-foreground font-semibold">{order.paymentMethod}</span>
               </p>
               <p className="text-xl font-bold text-foreground">
                 Tổng: <span className="text-primary">{formatPrice(Number(order.totalAmount))}</span>
@@ -134,7 +146,7 @@ export const OrderCard = ({ order }: { order: Order }) => {
             </div>
             <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger asChild>
-                <Button 
+                <Button
                   className="gap-2 rounded-full shadow-soft hover:shadow-hover transition-all px-6 py-5"
                   size="sm"
                 >
@@ -171,7 +183,9 @@ const OrderDetailModal = ({ order }: { order: Order }) => {
               Mã đơn hàng: <span className="font-semibold text-foreground">{order.orderCode}</span>
             </DialogDescription>
           </div>
-          <Badge className={`${statusConfig.className} flex items-center gap-2 px-4 py-2 rounded-full font-semibold border`}>
+          <Badge
+            className={`${statusConfig.className} flex items-center gap-2 px-4 py-2 rounded-full font-semibold border`}
+          >
             <StatusIcon className="w-4 h-4" />
             {statusConfig.label}
           </Badge>
@@ -227,20 +241,29 @@ const OrderDetailModal = ({ order }: { order: Order }) => {
           </h3>
           <div className="space-y-3">
             {order.orderItems.map((item, index) => (
-              <div key={index} className="flex gap-4 p-4 rounded-xl bg-card/50 hover:bg-muted/30 transition-colors border">
+              <div
+                key={index}
+                className="flex gap-4 p-4 rounded-xl bg-card/50 hover:bg-muted/30 transition-colors border"
+              >
                 <img
                   src={item.variant.product.thumbnailUrl!}
                   alt={item.variant.product.title}
                   className="w-20 h-24 object-cover rounded-xl border-2 shadow-soft"
                 />
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-foreground mb-2">{item.variant.product.title}</h4>
+                  <h4 className="font-semibold text-foreground mb-2">
+                    {item.variant.product.title}
+                  </h4>
                   <div className="space-y-1 text-sm">
                     <p className="text-muted-foreground">
-                      Đơn giá: <span className="font-semibold text-foreground">{formatPrice(Number(item.unitPrice))}</span>
+                      Đơn giá:{" "}
+                      <span className="font-semibold text-foreground">
+                        {formatPrice(Number(item.unitPrice))}
+                      </span>
                     </p>
                     <p className="text-muted-foreground">
-                      Số lượng: <span className="font-semibold text-foreground">{item.quantity}</span>
+                      Số lượng:{" "}
+                      <span className="font-semibold text-foreground">{item.quantity}</span>
                     </p>
                     <p className="text-base font-bold text-primary">
                       Thành tiền: {formatPrice(Number(item.lineTotal))}
@@ -267,7 +290,9 @@ const OrderDetailModal = ({ order }: { order: Order }) => {
             <Separator className="my-2" />
             <div className="flex justify-between text-lg">
               <span className="font-bold">Tổng cộng:</span>
-              <span className="font-bold text-primary text-xl">{formatPrice(Number(order.totalAmount))}</span>
+              <span className="font-bold text-primary text-xl">
+                {formatPrice(Number(order.totalAmount))}
+              </span>
             </div>
           </div>
         </div>

@@ -16,7 +16,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { toPlain } from "@/lib/toPlain";
 
-
 //  get id from params and fetch book detail data from api
 export default async function BookDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -27,11 +26,8 @@ export default async function BookDetail({ params }: { params: Promise<{ id: str
     notFound();
   }
 
-
-
   return (
-
-    <div className="container mx-auto px-4 py-6 space-y-8" >
+    <div className="container mx-auto px-4 py-6 space-y-8">
       {/* Breadcrumb */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -68,46 +64,46 @@ export default async function BookDetail({ params }: { params: Promise<{ id: str
         />
 
         {/* Right Column - Info */}
-        <ProductInfo
-          className="lg:col-span-2"
-          bookDetail={toPlain(bookDetail)}
-        />
+        <ProductInfo className="lg:col-span-2" bookDetail={toPlain(bookDetail)} />
       </section>
 
       {/* Divider */}
       <hr className="border-border" />
 
       {/* Product Details */}
-      <ProductDetails
-        description={bookDetail.description || ""}
-      />
+      <ProductDetails description={bookDetail.description || ""} />
 
       {/* Divider */}
       <hr className="border-border" />
 
-      {
-        bookDetail.seriesId && (
-          <Suspense fallback={<RelatedProductsSkeleton title="Cùng bộ" itemCount={5} />}>
-            <RelatedProducts title="Cùng bộ" 
+      {bookDetail.seriesId && (
+        <Suspense fallback={<RelatedProductsSkeleton title="Cùng bộ" itemCount={5} />}>
+          <RelatedProducts
+            title="Cùng bộ"
             moreHref={`/series/${bookDetail.seriesId}`}
             fetchFunction={async () => {
-              const seriesBooks = await $client?.bookRoutes.getBookBySeriesId({ seriesId: bookDetail.seriesId!,excludeBookId: bookDetail.id, limit: 20 });
+              const seriesBooks = await $client?.bookRoutes.getBookBySeriesId({
+                seriesId: bookDetail.seriesId!,
+                excludeBookId: bookDetail.id,
+                limit: 20,
+              });
               return toPlain(seriesBooks || []);
             }}
-            />
-          </Suspense>
-        )
-      }
+          />
+        </Suspense>
+      )}
       {/* Related Products */}
       <Suspense fallback={<RelatedProductsSkeleton title="Sản phẩm liên quan" itemCount={5} />}>
-        <RelatedProducts title="Sản phẩm liên quan"  
+        <RelatedProducts
+          title="Sản phẩm liên quan"
           fetchFunction={async () => {
-            const relatedBooks = await $client?.bookRoutes.getRelatedBooks({ bookId: bookDetail.id });
+            const relatedBooks = await $client?.bookRoutes.getRelatedBooks({
+              bookId: bookDetail.id,
+            });
             return toPlain(relatedBooks || []);
           }}
         />
       </Suspense>
     </div>
-
   );
 }

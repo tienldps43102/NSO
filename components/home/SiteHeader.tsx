@@ -1,6 +1,17 @@
 "use client";
 import { useState } from "react";
-import { Search, ShoppingCart, Menu, X, Zap, LogIn, User, Settings, LogOut, Shield } from "lucide-react";
+import {
+  Search,
+  ShoppingCart,
+  Menu,
+  X,
+  Zap,
+  LogIn,
+  User,
+  Settings,
+  LogOut,
+  Shield,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -31,9 +42,11 @@ export function SiteHeader({ user }: SiteHeaderProps) {
     window.location.href = "/";
   };
 
-  const { data: count } = useQuery($orpcQuery!.cartRoutes.countMyCartItems.queryOptions({
-    select: (data) => data.itemCount ?? 0,
-  }))
+  const { data: count } = useQuery(
+    $orpcQuery!.cartRoutes.countMyCartItems.queryOptions({
+      select: (data) => data.itemCount ?? 0,
+    }),
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full glass">
@@ -45,7 +58,9 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             <Image src="/logo.png" alt="Logo" width={40} height={40} />
             <div className="flex flex-col">
               <span className="font-bold text-lg text-primary leading-tight">NSO</span>
-              <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">Nhà Sách Online</span>
+              <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">
+                Nhà Sách Online
+              </span>
             </div>
           </Link>
 
@@ -65,14 +80,21 @@ export function SiteHeader({ user }: SiteHeaderProps) {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2">
-
             {/* Cart */}
-            <Button asChild variant="ghost" size="icon" className="relative rounded-full h-10 w-10 glass" aria-label="Giỏ hàng">
+            <Button
+              asChild
+              variant="ghost"
+              size="icon"
+              className="relative rounded-full h-10 w-10 glass"
+              aria-label="Giỏ hàng"
+            >
               <Link href="/cart">
-              <ShoppingCart className="h-5 w-5" />
-                { (count as number) > 0 && <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground">
-                  {count as number}
-                </Badge>}
+                <ShoppingCart className="h-5 w-5" />
+                {(count as number) > 0 && (
+                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-[10px] bg-primary text-primary-foreground">
+                    {count as number}
+                  </Badge>
+                )}
               </Link>
             </Button>
 
@@ -80,9 +102,15 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="hidden sm:flex items-center gap-2 h-10 rounded-full px-3 glass hover:bg-accent/60">
+                  <Button
+                    variant="ghost"
+                    className="hidden sm:flex items-center gap-2 h-10 rounded-full px-3 glass hover:bg-accent/60"
+                  >
                     <Avatar className="h-8 w-8 border-2 border-primary/20">
-                      <AvatarImage src={user?.image || "/default-avatar.png"} alt={user?.name || "User Avatar"} />
+                      <AvatarImage
+                        src={user?.image || "/default-avatar.png"}
+                        alt={user?.name || "User Avatar"}
+                      />
                       <AvatarFallback className="bg-primary/10 text-primary font-medium text-sm">
                         {user?.name?.charAt(0).toUpperCase() || "U"}
                       </AvatarFallback>
@@ -110,14 +138,18 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link href="/admin">  
-                        <Shield className="mr-2 h-4 w-4" />
-                        <span>Trang quản trị</span></Link>
+                        <Link href="/admin">
+                          <Shield className="mr-2 h-4 w-4" />
+                          <span>Trang quản trị</span>
+                        </Link>
                       </DropdownMenuItem>
                     </>
                   )}
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive">
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="text-destructive focus:text-destructive"
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Đăng xuất</span>
                   </DropdownMenuItem>
@@ -169,7 +201,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         <div
           className={cn(
             "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
-            mobileMenuOpen ? "max-h-[500px] py-4" : "max-h-0"
+            mobileMenuOpen ? "max-h-[500px] py-4" : "max-h-0",
           )}
         >
           {/* Mobile Search */}
@@ -190,7 +222,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             <div className="px-4 mb-4">
               <div className="flex items-center gap-3 p-3 rounded-xl bg-card/50 border border-border/40">
                 <Avatar className="h-10 w-10 border-2 border-primary/20">
-                  <AvatarImage src={user?.image || "/default-avatar.png"} alt={user?.name || "User Avatar"} />
+                  <AvatarImage
+                    src={user?.image || "/default-avatar.png"}
+                    alt={user?.name || "User Avatar"}
+                  />
                   <AvatarFallback className="bg-primary/10 text-primary font-medium">
                     {user?.name?.charAt(0).toUpperCase() || "U"}
                   </AvatarFallback>
@@ -201,21 +236,33 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                 </div>
               </div>
               <div className="mt-3 space-y-1">
-                <a href="/account" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
+                <a
+                  href="/account"
+                  className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors"
+                >
                   <User className="h-4 w-4" />
                   Tài khoản
                 </a>
-                <a href="/settings" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
+                <a
+                  href="/settings"
+                  className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors"
+                >
                   <Settings className="h-4 w-4" />
                   Cài đặt
                 </a>
                 {user?.role === "ADMIN" && (
-                  <Link href="/admin" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors">
+                  <Link
+                    href="/admin"
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl transition-colors"
+                  >
                     <Shield className="h-4 w-4" />
                     Trang quản trị
                   </Link>
                 )}
-                <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-xl transition-colors">
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-xl transition-colors"
+                >
                   <LogOut className="h-4 w-4" />
                   Đăng xuất
                 </button>

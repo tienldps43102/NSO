@@ -8,16 +8,15 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
-  plugins: [ nextCookies(), bearer()],
+  plugins: [nextCookies(), bearer()],
   user: {
     additionalFields: {
       role: {
         type: "string",
         input: false,
         defaultValue: "USER",
-
-      }
-    }
+      },
+    },
   },
   baseURL: process.env.BETTER_AUTH_URL,
   socialProviders: {
@@ -28,8 +27,7 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification:false,
-    
+    requireEmailVerification: false,
   },
 });
 
@@ -37,9 +35,9 @@ async function initAdminUser() {
   const adminUser = await prisma.user.findUnique({ where: { email: "admin@admin.com" } });
   if (!adminUser) {
     await auth.api.signUpEmail({
-      body:{
+      body: {
         email: "admin@admin.com",
-        name : "Admin",
+        name: "Admin",
         password: "Admin@123",
       },
       headers: {
@@ -53,7 +51,6 @@ async function initAdminUser() {
       },
     });
   }
- 
 }
 
 initAdminUser();

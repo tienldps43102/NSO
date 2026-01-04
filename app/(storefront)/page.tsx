@@ -5,19 +5,18 @@ import { PromoBanner } from "@/components/home/PromoBanner";
 import { HorizontalBookRow } from "@/components/home/HorizontalBookRow";
 import { RankedBestSellers } from "@/components/home/RankedBestSellers";
 
-const  Index = async () => {
+const Index = async () => {
   const latestBooks = await $client?.bookRoutes.getLatestBooks({ limit: 10 });
-  console.log('Latest Books:', latestBooks);
+  console.log("Latest Books:", latestBooks);
   return (
-   <>
-        <Hero />
-        <CategoryChips />
-        <FeaturedSection books={latestBooks||[]} />
-        <PromoBanner />
-        <HorizontalBookRow />
-        <RankedBestSellers />
-  
-   </>
+    <>
+      <Hero />
+      <CategoryChips />
+      <FeaturedSection books={latestBooks || []} />
+      <PromoBanner />
+      <HorizontalBookRow />
+      <RankedBestSellers />
+    </>
   );
 };
 

@@ -18,7 +18,7 @@ export function CategoryChips() {
                 "shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200",
                 activeCategory === category.id
                   ? "bg-primary text-primary-foreground shadow-soft"
-                  : "bg-card text-foreground/70 border border-border hover:border-primary/30 hover:text-primary"
+                  : "bg-card text-foreground/70 border border-border hover:border-primary/30 hover:text-primary",
               )}
             >
               {category.name}

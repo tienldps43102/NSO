@@ -24,8 +24,6 @@ export function ProductGallery({ images, title, className }: ProductGalleryProps
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        
-    
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
@@ -41,7 +39,7 @@ export function ProductGallery({ images, title, className }: ProductGalleryProps
               "relative w-20 h-24 rounded-lg overflow-hidden border-2 transition-all duration-200",
               activeIndex === index
                 ? "border-primary ring-2 ring-primary/20"
-                : "border-border hover:border-primary/50"
+                : "border-border hover:border-primary/50",
             )}
           >
             <img

@@ -3,24 +3,16 @@ import type { FetchHandlerOptions } from "@orpc/server/fetch";
 import { FetchHandler } from "@orpc/server/fetch";
 import { StrictGetMethodPlugin } from "@orpc/server/plugins";
 import type { StandardHandlerOptions } from "@orpc/server/standard";
-import {
-    StandardHandler,
-    StandardRPCCodec,
-    StandardRPCMatcher,
-} from "@orpc/server/standard";
+import { StandardHandler, StandardRPCCodec, StandardRPCMatcher } from "@orpc/server/standard";
 import { SuperJSONSerializer } from "./superjson-serializer";
 
 export interface SuperJSONHandlerOptions<T extends Context>
-  extends FetchHandlerOptions<T>,
-    Omit<StandardHandlerOptions<T>, "plugins"> {
+  extends FetchHandlerOptions<T>, Omit<StandardHandlerOptions<T>, "plugins"> {
   strictGetMethodPluginEnabled?: boolean;
 }
 
 export class SuperJSONHandler<T extends Context> extends FetchHandler<T> {
-  constructor(
-    router: Router<any, T>,
-    options: SuperJSONHandlerOptions<T> = {}
-  ) {
+  constructor(router: Router<any, T>, options: SuperJSONHandlerOptions<T> = {}) {
     options.plugins ??= [];
 
     const strictEnabled = options.strictGetMethodPluginEnabled ?? true;

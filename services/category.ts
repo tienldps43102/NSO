@@ -11,7 +11,7 @@ const getAllCategories = os
   .input(
     paginationInput.extend({
       q: z.string().trim().min(1).optional(),
-    })
+    }),
   )
   .handler(async ({ input }) => {
     const { skip, take } = computeSkipTake(input.page, input.limit);
@@ -74,7 +74,7 @@ const updateCategory = os
       id: z.string(),
       name: z.string().optional(),
       description: z.string().optional(),
-    })
+    }),
   )
   .handler(async ({ input }) => {
     const id = input.id;
@@ -94,9 +94,9 @@ const deleteCategory = os
   .input(z.object({ id: z.string() }))
   .handler(async ({ input }) => {
     // count the number of books in the category
-    const books = await prisma.product.count({ where: { categoryId: input.id } })
+    const books = await prisma.product.count({ where: { categoryId: input.id } });
     if (books > 0) {
-      throw new Error(`Danh mục có ${books} sách, không thể xóa`)
+      throw new Error(`Danh mục có ${books} sách, không thể xóa`);
     }
     const category = await prisma.category.delete({ where: { id: input.id } });
     return category;

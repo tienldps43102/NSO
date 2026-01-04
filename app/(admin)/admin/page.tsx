@@ -19,8 +19,6 @@ import {
   Eye,
   Edit,
   MoreHorizontal,
-  Plus,
-  FileText,
   Settings,
   BarChart3,
   Clock,
@@ -175,9 +173,7 @@ const StatCard = ({
 }) => (
   <Card className="bg-card/60 backdrop-blur-md border-border/40">
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-      <CardTitle className="text-sm font-medium text-muted-foreground">
-        {title}
-      </CardTitle>
+      <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
       <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
         <Icon className="h-4 w-4 text-primary" />
       </div>
@@ -213,9 +209,7 @@ const AdminDashboard = () => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground mt-1">
-            Tổng quan về hoạt động kinh doanh
-          </p>
+          <p className="text-muted-foreground mt-1">Tổng quan về hoạt động kinh doanh</p>
         </div>
         <div className="flex gap-2 mt-4 md:mt-0">
           {/* <Button variant="outline" size="sm" className="bg-card/60 backdrop-blur-md border-border/40">
@@ -264,11 +258,14 @@ const AdminDashboard = () => {
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
               <CardTitle>Đơn hàng gần đây</CardTitle>
-              <CardDescription>
-                {recentOrders.length} đơn hàng mới nhất
-              </CardDescription>
+              <CardDescription>{recentOrders.length} đơn hàng mới nhất</CardDescription>
             </div>
-            <Button variant="outline" size="sm" className="bg-card/60 backdrop-blur-md border-border/40" asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-card/60 backdrop-blur-md border-border/40"
+              asChild
+            >
               <Link href="/admin/orders">
                 Xem tất cả
                 <ArrowUpRight className="h-4 w-4 ml-1" />
@@ -381,19 +378,35 @@ const AdminDashboard = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-2 gap-2">
-              <Button variant="outline" size="sm" className="justify-start bg-card/60 backdrop-blur-md border-border/40">
+              <Button
+                variant="outline"
+                size="sm"
+                className="justify-start bg-card/60 backdrop-blur-md border-border/40"
+              >
                 <Package className="h-4 w-4 mr-2" />
                 Sản phẩm
               </Button>
-              <Button variant="outline" size="sm" className="justify-start bg-card/60 backdrop-blur-md border-border/40">
+              <Button
+                variant="outline"
+                size="sm"
+                className="justify-start bg-card/60 backdrop-blur-md border-border/40"
+              >
                 <ShoppingCart className="h-4 w-4 mr-2" />
                 Đơn hàng
               </Button>
-              <Button variant="outline" size="sm" className="justify-start bg-card/60 backdrop-blur-md border-border/40">
+              <Button
+                variant="outline"
+                size="sm"
+                className="justify-start bg-card/60 backdrop-blur-md border-border/40"
+              >
                 <Users className="h-4 w-4 mr-2" />
                 Khách hàng
               </Button>
-              <Button variant="outline" size="sm" className="justify-start bg-card/60 backdrop-blur-md border-border/40">
+              <Button
+                variant="outline"
+                size="sm"
+                className="justify-start bg-card/60 backdrop-blur-md border-border/40"
+              >
                 <BarChart3 className="h-4 w-4 mr-2" />
                 Thống kê
               </Button>

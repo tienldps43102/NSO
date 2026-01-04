@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { lightNovels, type LightNovel } from "@/lib/data";
@@ -37,11 +37,16 @@ function LightNovelCard({ novel }: { novel: LightNovel }) {
         {/* Content */}
         <div className="flex flex-col justify-between py-1 flex-1 min-w-0">
           {novel.tag && (
-            <Badge className={cn("self-start px-2 py-0.5 text-[10px] font-semibold rounded-full mb-2", getTagStyle(novel.tag))}>
+            <Badge
+              className={cn(
+                "self-start px-2 py-0.5 text-[10px] font-semibold rounded-full mb-2",
+                getTagStyle(novel.tag),
+              )}
+            >
               {novel.tag.toUpperCase()}
             </Badge>
           )}
-          
+
           <div>
             <h3 className="font-semibold text-sm text-foreground line-clamp-2 mb-1 group-hover:text-primary transition-colors">
               {novel.title}
@@ -66,11 +71,9 @@ export function HorizontalBookRow() {
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
               Light Novel Mới ✨
             </h2>
-            <p className="text-muted-foreground">
-              Thế giới chữ viết đầy màu sắc đang chờ đón bạn
-            </p>
+            <p className="text-muted-foreground">Thế giới chữ viết đầy màu sắc đang chờ đón bạn</p>
           </div>
-          
+
           {/* Arrow buttons */}
           <div className="hidden md:flex gap-2">
             <Button

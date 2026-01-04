@@ -5,57 +5,50 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Search, Plus, Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-  type ColumnDef,
-} from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
-
-
 const ITEMS_PER_PAGE = 20;
-type GetAllSeriesResponse = Outputs['seriesRoutes']['getAllSeries'];
-type Series = GetAllSeriesResponse['series'][number];
+type GetAllSeriesResponse = Outputs["seriesRoutes"]["getAllSeries"];
+type Series = GetAllSeriesResponse["series"][number];
 
 export default function AdminSeries() {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  
+
   const [selectedSeries, setSelectedSeries] = useState<Series | null>(null);
   const [formData, setFormData] = useState({ name: "", description: "" });
 
@@ -75,7 +68,7 @@ export default function AdminSeries() {
         limit: ITEMS_PER_PAGE,
         ...(debouncedSearch ? { q: debouncedSearch } : {}),
       },
-    })
+    }),
   );
 
   const { mutate: createSeries, isPending: isCreating } = useMutation(
@@ -89,7 +82,7 @@ export default function AdminSeries() {
       onError: (error) => {
         toast.error("Lỗi khi tạo bộ sách: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: updateSeries, isPending: isUpdating } = useMutation(
@@ -104,7 +97,7 @@ export default function AdminSeries() {
       onError: (error) => {
         toast.error("Lỗi khi cập nhật bộ sách: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: deleteSeries, isPending: isDeleting } = useMutation(
@@ -118,7 +111,7 @@ export default function AdminSeries() {
       onError: (error) => {
         toast.error("Lỗi khi xóa bộ sách: " + error.message);
       },
-    })
+    }),
   );
   // Define columns for TanStack Table
   const columns = useMemo<ColumnDef<Series>[]>(
@@ -126,16 +119,12 @@ export default function AdminSeries() {
       {
         accessorKey: "id",
         header: "#ID",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.id}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.id}</div>,
       },
       {
         accessorKey: "name",
         header: "Tên bộ sách",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.name}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.name}</div>,
       },
       {
         accessorKey: "description",
@@ -151,11 +140,7 @@ export default function AdminSeries() {
         header: () => <div className="text-right">Thao tác</div>,
         cell: ({ row }) => (
           <div className="flex justify-end gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => openEditModal(row.original)}
-            >
+            <Button variant="ghost" size="icon" onClick={() => openEditModal(row.original)}>
               <Pencil className="h-4 w-4" />
             </Button>
             <Button
@@ -170,7 +155,7 @@ export default function AdminSeries() {
         ),
       },
     ],
-    []
+    [],
   );
 
   const table = useReactTable({
@@ -185,31 +170,31 @@ export default function AdminSeries() {
     if (!formData.name.trim()) return;
     createSeries({
       name: formData.name.trim(),
-      description: formData.description.trim() || undefined,  
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleEdit = () => {
     if (!selectedSeries || !formData.name.trim()) return;
     updateSeries({
-        id: selectedSeries.id,
-        name: formData.name.trim(),
-        description: formData.description.trim() || undefined,
+      id: selectedSeries.id,
+      name: formData.name.trim(),
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleDelete = () => {
     if (!selectedSeries) return;
     deleteSeries({
-        id: selectedSeries.id,
+      id: selectedSeries.id,
     });
   };
 
   const openEditModal = (series: Series) => {
     setSelectedSeries(series);
-    setFormData({ 
+    setFormData({
       name: series.name,
-      description: series.description || ""
+      description: series.description || "",
     });
     setIsEditOpen(true);
   };
@@ -258,10 +243,7 @@ export default function AdminSeries() {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -286,7 +268,10 @@ export default function AdminSeries() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center text-muted-foreground"
+                  >
                     Không tìm thấy bộ sách nào
                   </TableCell>
                 </TableRow>
@@ -410,13 +395,13 @@ export default function AdminSeries() {
           <AlertDialogHeader>
             <AlertDialogTitle>Xác nhận xóa bộ sách</AlertDialogTitle>
             <AlertDialogDescription>
-              Bạn có chắc chắn muốn xóa bộ sách {selectedSeries?.name}? 
+              Bạn có chắc chắn muốn xóa bộ sách {selectedSeries?.name}?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Hủy</AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={handleDelete} 
+            <AlertDialogAction
+              onClick={handleDelete}
               disabled={isDeleting}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >

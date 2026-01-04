@@ -5,57 +5,50 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Search, Plus, Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-  type ColumnDef,
-} from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
-
-
 const ITEMS_PER_PAGE = 20;
-type GetAllAuthorsResponse = Outputs['authorRoutes']['getAllAuthors'];
-type Author = GetAllAuthorsResponse['authors'][number];
+type GetAllAuthorsResponse = Outputs["authorRoutes"]["getAllAuthors"];
+type Author = GetAllAuthorsResponse["authors"][number];
 
 export default function AdminAuthors() {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  
+
   const [selectedAuthor, setSelectedAuthor] = useState<Author | null>(null);
   const [formData, setFormData] = useState({ name: "", description: "" });
 
@@ -75,7 +68,7 @@ export default function AdminAuthors() {
         limit: ITEMS_PER_PAGE,
         ...(debouncedSearch ? { q: debouncedSearch } : {}),
       },
-    })
+    }),
   );
 
   const { mutate: createAuthor, isPending: isCreating } = useMutation(
@@ -89,7 +82,7 @@ export default function AdminAuthors() {
       onError: (error) => {
         toast.error("Lỗi khi tạo tác giả: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: updateAuthor, isPending: isUpdating } = useMutation(
@@ -104,7 +97,7 @@ export default function AdminAuthors() {
       onError: (error) => {
         toast.error("Lỗi khi cập nhật tác giả: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: deleteAuthor, isPending: isDeleting } = useMutation(
@@ -118,7 +111,7 @@ export default function AdminAuthors() {
       onError: (error) => {
         toast.error("Lỗi khi xóa tác giả: " + error.message);
       },
-    })
+    }),
   );
   // Define columns for TanStack Table
   const columns = useMemo<ColumnDef<Author>[]>(
@@ -126,24 +119,18 @@ export default function AdminAuthors() {
       {
         accessorKey: "id",
         header: "#ID",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.id}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.id}</div>,
       },
       {
         accessorKey: "name",
         header: "Tên tác giả",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.name}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.name}</div>,
       },
       {
         accessorKey: "description",
         header: "Mô tả",
         cell: ({ row }) => (
-          <div className="text-muted-foreground line-clamp-2">
-            {row.original.bio || "—"}
-          </div>
+          <div className="text-muted-foreground line-clamp-2">{row.original.bio || "—"}</div>
         ),
       },
       {
@@ -151,11 +138,7 @@ export default function AdminAuthors() {
         header: () => <div className="text-right">Thao tác</div>,
         cell: ({ row }) => (
           <div className="flex justify-end gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => openEditModal(row.original)}
-            >
+            <Button variant="ghost" size="icon" onClick={() => openEditModal(row.original)}>
               <Pencil className="h-4 w-4" />
             </Button>
             <Button
@@ -170,7 +153,7 @@ export default function AdminAuthors() {
         ),
       },
     ],
-    []
+    [],
   );
 
   const table = useReactTable({
@@ -185,31 +168,31 @@ export default function AdminAuthors() {
     if (!formData.name.trim()) return;
     createAuthor({
       name: formData.name.trim(),
-      description: formData.description.trim() || undefined,  
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleEdit = () => {
     if (!selectedAuthor || !formData.name.trim()) return;
     updateAuthor({
-        id: selectedAuthor.id,
-        name: formData.name.trim(),
-        description: formData.description.trim() || undefined,
+      id: selectedAuthor.id,
+      name: formData.name.trim(),
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleDelete = () => {
     if (!selectedAuthor) return;
     deleteAuthor({
-        id: selectedAuthor.id,
+      id: selectedAuthor.id,
     });
   };
 
   const openEditModal = (author: Author) => {
     setSelectedAuthor(author);
-    setFormData({ 
+    setFormData({
       name: author.name,
-      description: author.bio || ""
+      description: author.bio || "",
     });
     setIsEditOpen(true);
   };
@@ -258,10 +241,7 @@ export default function AdminAuthors() {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -286,7 +266,10 @@ export default function AdminAuthors() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center text-muted-foreground"
+                  >
                     Không tìm thấy tác giả nào
                   </TableCell>
                 </TableRow>
@@ -410,13 +393,13 @@ export default function AdminAuthors() {
           <AlertDialogHeader>
             <AlertDialogTitle>Xác nhận xóa tác giả</AlertDialogTitle>
             <AlertDialogDescription>
-              Bạn có chắc chắn muốn xóa tác giả {selectedAuthor?.name}? 
+              Bạn có chắc chắn muốn xóa tác giả {selectedAuthor?.name}?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Hủy</AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={handleDelete} 
+            <AlertDialogAction
+              onClick={handleDelete}
               disabled={isDeleting}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >

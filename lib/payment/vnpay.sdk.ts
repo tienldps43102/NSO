@@ -48,16 +48,14 @@ export class VnpaySDK {
   }
 
   private hmacSHA512(data: string): string {
-    return crypto.createHmac("sha512", this.config.hashSecret)
-      .update(data, "utf-8")
-      .digest("hex");
+    return crypto.createHmac("sha512", this.config.hashSecret).update(data, "utf-8").digest("hex");
   }
 
   createPayment(params: CreatePaymentParams): string {
-    const now = nowVN()
-    const formatDate = now.format("YYYYMMDDHHmmss")
-    const expire = now.add(params.expireMinutes ?? 15, "minute")
-    const expireDate = expire.format("YYYYMMDDHHmmss")
+    const now = nowVN();
+    const formatDate = now.format("YYYYMMDDHHmmss");
+    const expire = now.add(params.expireMinutes ?? 15, "minute");
+    const expireDate = expire.format("YYYYMMDDHHmmss");
     const txnRef = params.txnRef ?? Math.floor(Math.random() * 1000000).toString();
     const inputData: Record<string, any> = {
       vnp_Version: "2.1.0",
@@ -78,9 +76,7 @@ export class VnpaySDK {
     if (params.bankCode) inputData["vnp_BankCode"] = params.bankCode;
 
     const sortedKeys = Object.keys(inputData).sort();
-    const signData = sortedKeys
-      .map((k) => `${k}=${this.phpUrlEncode(inputData[k])}`)
-      .join("&");
+    const signData = sortedKeys.map((k) => `${k}=${this.phpUrlEncode(inputData[k])}`).join("&");
 
     const secureHash = this.hmacSHA512(signData);
     const query = `${signData}&vnp_SecureHash=${secureHash}`;
@@ -100,7 +96,7 @@ export class VnpaySDK {
       }
     }
 
-    const sortedKeys = Object.keys(inputData ).sort();
+    const sortedKeys = Object.keys(inputData).sort();
     const signData = sortedKeys
       .map((k) => `${k}=${this.phpUrlEncode(inputData[k] as any)}`)
       .join("&");

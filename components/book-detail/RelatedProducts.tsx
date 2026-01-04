@@ -17,17 +17,14 @@ interface RelatedProductsProps {
 }
 
 export async function RelatedProducts({ title, fetchFunction, moreHref }: RelatedProductsProps) {
-  const relatedBooks =toPlain(await fetchFunction());
+  const relatedBooks = toPlain(await fetchFunction());
 
   return (
     <section className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-foreground">{title}</h2>
         {moreHref && (
-          <Link
-            href={moreHref}
-            className="text-sm text-primary font-medium hover:underline"
-          >
+          <Link href={moreHref} className="text-sm text-primary font-medium hover:underline">
             Xem thêm
           </Link>
         )}
@@ -62,9 +59,7 @@ interface RelatedProductsSkeletonProps {
   itemCount?: number;
 }
 
-
-
-export  function RelatedProductsSkeleton({
+export function RelatedProductsSkeleton({
   title = "Sản phẩm liên quan",
   itemCount = 5,
 }: RelatedProductsSkeletonProps) {

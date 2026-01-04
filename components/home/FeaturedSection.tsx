@@ -3,21 +3,17 @@ import { Button } from "@/components/ui/button";
 import { BookCard } from "./BookCard";
 // /await $client?.bookRoutes.getLatestBooks({ limit: 10 });
 interface FeaturedSectionProps {
-  books: Outputs["bookRoutes"]["getLatestBooks"]
+  books: Outputs["bookRoutes"]["getLatestBooks"];
 }
-export function FeaturedSection({books}: FeaturedSectionProps) {
+export function FeaturedSection({ books }: FeaturedSectionProps) {
   return (
     <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
-              Mới cập nhật
-            </h2>
-            <p className="text-muted-foreground">
-              Top truyện tranh được yêu thích nhất tuần qua
-            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">Mới cập nhật</h2>
+            <p className="text-muted-foreground">Top truyện tranh được yêu thích nhất tuần qua</p>
           </div>
           <a
             href="#manga"

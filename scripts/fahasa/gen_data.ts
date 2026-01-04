@@ -1,6 +1,6 @@
 import { Database } from "bun:sqlite";
 import { genPrompt, model, outputSchema } from "../prompts/llm";
-import { generateText,Output } from "ai";
+import { generateText, Output } from "ai";
 // Initialize databases
 const sourceDb = new Database("fahasa-detail.sqlite", { readonly: true });
 const targetDb = new Database("fahasa-processed.sqlite", { create: true });
@@ -69,9 +69,7 @@ const checkProductExists = targetDb.query(`
 
 // Helper function to generate random ID
 function generateId(prefix: string): string {
-  return `${prefix}_${Math.random()
-    .toString(36)
-    .substring(2, 9)}_${Date.now()}`;
+  return `${prefix}_${Math.random().toString(36).substring(2, 9)}_${Date.now()}`;
 }
 
 // Helper function to parse authors from string
@@ -86,9 +84,7 @@ function parseAuthors(authorString: string | null | undefined): string[] {
 // Process all products
 console.log("Starting data processing...");
 
-const allProducts = sourceDb
-  .query("SELECT product_id, data FROM products")
-  .all() as Array<{
+const allProducts = sourceDb.query("SELECT product_id, data FROM products").all() as Array<{
   product_id: string;
   data: string;
 }>;
@@ -106,7 +102,9 @@ for (const row of allProducts) {
     const exists = checkProductExists.get({ $product_id: row.product_id });
     if (exists) {
       skipped++;
-      console.log(`[SKIP] Already processed (${processed + skipped + errors}/${allProducts.length})`);
+      console.log(
+        `[SKIP] Already processed (${processed + skipped + errors}/${allProducts.length})`,
+      );
       continue;
     }
 
@@ -158,15 +156,15 @@ for (const row of allProducts) {
     let series_title = null;
     let volume = null;
     let variant = null;
-    
+
     try {
       console.log(`  [AI] Generating series info...`);
       const result = await generateText({
         model: model,
         prompt: prompt,
         output: Output.object({
-            schema: outputSchema
-          }),
+          schema: outputSchema,
+        }),
         temperature: 0.2,
       });
       console.log(result?.output);
@@ -174,9 +172,12 @@ for (const row of allProducts) {
       volume = result?.output?.volume || null;
       variant = result?.output?.variant || null;
       console.log(`  [AI] ✓ Series: ${series_title}, Volume: ${volume}, Variant: ${variant}`);
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      await new Promise((resolve) => setTimeout(resolve, 5000));
     } catch (error) {
-      console.error(`  [AI ERROR] Failed to generate AI data:`, error instanceof Error ? error.message : error);
+      console.error(
+        `  [AI ERROR] Failed to generate AI data:`,
+        error instanceof Error ? error.message : error,
+      );
     }
 
     // Insert product with processed data
@@ -201,15 +202,15 @@ for (const row of allProducts) {
 }
 
 // Print statistics
-const authorCount = targetDb
-  .query("SELECT COUNT(*) as count FROM authors")
-  .get() as { count: number };
-const publisherCount = targetDb
-  .query("SELECT COUNT(*) as count FROM publishers")
-  .get() as { count: number };
-const productCount = targetDb
-  .query("SELECT COUNT(*) as count FROM products")
-  .get() as { count: number };
+const authorCount = targetDb.query("SELECT COUNT(*) as count FROM authors").get() as {
+  count: number;
+};
+const publisherCount = targetDb.query("SELECT COUNT(*) as count FROM publishers").get() as {
+  count: number;
+};
+const productCount = targetDb.query("SELECT COUNT(*) as count FROM products").get() as {
+  count: number;
+};
 
 console.log("\n=== Processing Complete ===");
 console.log(`Total books in source: ${allProducts.length}`);
@@ -227,16 +228,12 @@ const sampleAuthors = targetDb.query("SELECT * FROM authors LIMIT 5").all();
 console.log(sampleAuthors);
 
 console.log("\n=== Sample Publishers ===");
-const samplePublishers = targetDb
-  .query("SELECT * FROM publishers LIMIT 5")
-  .all();
+const samplePublishers = targetDb.query("SELECT * FROM publishers LIMIT 5").all();
 console.log(samplePublishers);
 
 console.log("\n=== Sample Product ===");
 const sampleProduct = targetDb
-  .query(
-    "SELECT product_id, title, isbn, publisherId, authorIds FROM products LIMIT 1"
-  )
+  .query("SELECT product_id, title, isbn, publisherId, authorIds FROM products LIMIT 1")
   .get();
 console.log(sampleProduct);
 

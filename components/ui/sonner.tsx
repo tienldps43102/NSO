@@ -1,6 +1,12 @@
-import React from 'react';
-import { CircleCheckIcon, OctagonXIcon, TriangleAlertIcon, InfoIcon, Loader2Icon } from 'lucide-react';
-import { Toaster as Sonner, toast } from 'sonner';
+import React from "react";
+import {
+  CircleCheckIcon,
+  OctagonXIcon,
+  TriangleAlertIcon,
+  InfoIcon,
+  Loader2Icon,
+} from "lucide-react";
+import { Toaster as Sonner } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
@@ -20,9 +26,9 @@ export const Toaster = ({ ...props }: ToasterProps) => {
           toast:
             "group toast group-[.toaster]:bg-card group-[.toaster]:text-card-foreground group-[.toaster]:border group-[.toaster]:border-border group-[.toaster]:rounded-lg group-[.toaster]:shadow-card group-[.toaster]:backdrop-blur-sm",
           description: "group-[.toast]:text-muted-foreground group-[.toast]:text-sm",
-          actionButton: 
+          actionButton:
             "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground group-[.toast]:hover:bg-primary/90 group-[.toast]:rounded-md group-[.toast]:px-3 group-[.toast]:py-1.5 group-[.toast]:text-sm group-[.toast]:font-medium group-[.toast]:transition-colors",
-          cancelButton: 
+          cancelButton:
             "group-[.toast]:bg-secondary group-[.toast]:text-secondary-foreground group-[.toast]:hover:bg-secondary/80 group-[.toast]:rounded-md group-[.toast]:px-3 group-[.toast]:py-1.5 group-[.toast]:text-sm group-[.toast]:transition-colors",
           closeButton:
             "group-[.toast]:bg-background group-[.toast]:border group-[.toast]:border-border group-[.toast]:text-foreground group-[.toast]:hover:bg-accent",
@@ -36,4 +42,3 @@ export const Toaster = ({ ...props }: ToasterProps) => {
     />
   );
 };
- 

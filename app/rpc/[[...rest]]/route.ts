@@ -1,34 +1,34 @@
-import { RPCHandler } from '@orpc/server/fetch'
-import { onError } from '@orpc/server'
-import { router } from '@/lib/orpc.router'
-import { auth } from '@/lib/auth'
+import { RPCHandler } from "@orpc/server/fetch";
+import { onError } from "@orpc/server";
+import { router } from "@/lib/orpc.router";
+import { auth } from "@/lib/auth";
 
 const handler = new RPCHandler(router, {
   interceptors: [
     onError((error) => {
-      console.error(error)
+      console.error(error);
     }),
   ],
-})
+});
 
 async function handleRequest(request: Request) {
   console.log("request", request);
-  const session = await auth.api.getSession({ headers: request.headers })
+  const session = await auth.api.getSession({ headers: request.headers });
   console.log("session", session);
   const { response } = await handler.handle(request, {
-    prefix: '/rpc',
+    prefix: "/rpc",
     context: {
-        headers: request.headers,
-        session,
+      headers: request.headers,
+      session,
     },
-  })
+  });
 
-  return response ?? new Response('Not found', { status: 404 })
+  return response ?? new Response("Not found", { status: 404 });
 }
 
-export const HEAD = handleRequest
-export const GET = handleRequest
-export const POST = handleRequest
-export const PUT = handleRequest
-export const PATCH = handleRequest
-export const DELETE = handleRequest
+export const HEAD = handleRequest;
+export const GET = handleRequest;
+export const POST = handleRequest;
+export const PUT = handleRequest;
+export const PATCH = handleRequest;
+export const DELETE = handleRequest;

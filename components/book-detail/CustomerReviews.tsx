@@ -45,7 +45,7 @@ export function CustomerReviews({
                   "w-5 h-5",
                   i < Math.floor(averageRating)
                     ? "fill-amber-400 text-amber-400"
-                    : "fill-muted text-muted"
+                    : "fill-muted text-muted",
                 )}
               />
             ))}
@@ -103,7 +103,7 @@ export function CustomerReviews({
                             "w-3.5 h-3.5",
                             i < review.rating
                               ? "fill-amber-400 text-amber-400"
-                              : "fill-muted text-muted"
+                              : "fill-muted text-muted",
                           )}
                         />
                       ))}
@@ -115,9 +115,7 @@ export function CustomerReviews({
             </div>
 
             {/* Content */}
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {review.content}
-            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{review.content}</p>
 
             {/* Images */}
             {review.images && review.images.length > 0 && (

@@ -5,57 +5,50 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Search, Plus, Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-  type ColumnDef,
-} from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
-
-
 const ITEMS_PER_PAGE = 20;
-type GetAllPublishersResponse = Outputs['publisherRoutes']['getAllPublishers'];
-type Publisher = GetAllPublishersResponse['publishers'][number];
+type GetAllPublishersResponse = Outputs["publisherRoutes"]["getAllPublishers"];
+type Publisher = GetAllPublishersResponse["publishers"][number];
 
 export default function AdminPublishers() {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  
+
   const [selectedPublisher, setSelectedPublisher] = useState<Publisher | null>(null);
   const [formData, setFormData] = useState({ name: "", description: "" });
 
@@ -75,7 +68,7 @@ export default function AdminPublishers() {
         limit: ITEMS_PER_PAGE,
         ...(debouncedSearch ? { q: debouncedSearch } : {}),
       },
-    })
+    }),
   );
 
   const { mutate: createPublisher, isPending: isCreating } = useMutation(
@@ -89,7 +82,7 @@ export default function AdminPublishers() {
       onError: (error) => {
         toast.error("Lỗi khi tạo nhà xuất bản: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: updatePublisher, isPending: isUpdating } = useMutation(
@@ -104,7 +97,7 @@ export default function AdminPublishers() {
       onError: (error) => {
         toast.error("Lỗi khi cập nhật nhà xuất bản: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: deletePublisher, isPending: isDeleting } = useMutation(
@@ -118,7 +111,7 @@ export default function AdminPublishers() {
       onError: (error) => {
         toast.error("Lỗi khi xóa nhà xuất bản: " + error.message);
       },
-    })
+    }),
   );
   // Define columns for TanStack Table
   const columns = useMemo<ColumnDef<Publisher>[]>(
@@ -126,24 +119,18 @@ export default function AdminPublishers() {
       {
         accessorKey: "id",
         header: "#ID",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.id}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.id}</div>,
       },
       {
         accessorKey: "name",
         header: "Tên nhà xuất bản",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.name}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.name}</div>,
       },
       {
         accessorKey: "description",
         header: "Mô tả",
         cell: ({ row }) => (
-          <div className="text-muted-foreground line-clamp-2">
-            {row.original.bio || "—"}
-          </div>
+          <div className="text-muted-foreground line-clamp-2">{row.original.bio || "—"}</div>
         ),
       },
       {
@@ -151,11 +138,7 @@ export default function AdminPublishers() {
         header: () => <div className="text-right">Thao tác</div>,
         cell: ({ row }) => (
           <div className="flex justify-end gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => openEditModal(row.original)}
-            >
+            <Button variant="ghost" size="icon" onClick={() => openEditModal(row.original)}>
               <Pencil className="h-4 w-4" />
             </Button>
             <Button
@@ -170,7 +153,7 @@ export default function AdminPublishers() {
         ),
       },
     ],
-    []
+    [],
   );
 
   const table = useReactTable({
@@ -185,31 +168,31 @@ export default function AdminPublishers() {
     if (!formData.name.trim()) return;
     createPublisher({
       name: formData.name.trim(),
-      description: formData.description.trim() || undefined,  
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleEdit = () => {
     if (!selectedPublisher || !formData.name.trim()) return;
     updatePublisher({
-        id: selectedPublisher.id,
-        name: formData.name.trim(),
-        description: formData.description.trim() || undefined,
+      id: selectedPublisher.id,
+      name: formData.name.trim(),
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleDelete = () => {
     if (!selectedPublisher) return;
     deletePublisher({
-        id: selectedPublisher.id,
+      id: selectedPublisher.id,
     });
   };
 
   const openEditModal = (publisher: Publisher) => {
     setSelectedPublisher(publisher);
-    setFormData({ 
+    setFormData({
       name: publisher.name,
-      description: publisher.bio || ""
+      description: publisher.bio || "",
     });
     setIsEditOpen(true);
   };
@@ -258,10 +241,7 @@ export default function AdminPublishers() {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -286,7 +266,10 @@ export default function AdminPublishers() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center text-muted-foreground"
+                  >
                     Không tìm thấy nhà xuất bản nào
                   </TableCell>
                 </TableRow>
@@ -410,13 +393,13 @@ export default function AdminPublishers() {
           <AlertDialogHeader>
             <AlertDialogTitle>Xác nhận xóa nhà xuất bản</AlertDialogTitle>
             <AlertDialogDescription>
-              Bạn có chắc chắn muốn xóa nhà xuất bản {selectedPublisher?.name}? 
+              Bạn có chắc chắn muốn xóa nhà xuất bản {selectedPublisher?.name}?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Hủy</AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={handleDelete} 
+            <AlertDialogAction
+              onClick={handleDelete}
               disabled={isDeleting}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >

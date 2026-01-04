@@ -27,7 +27,7 @@ export const deleteFile = orpcWithAuth
   .input(
     z.object({
       url: z.string(),
-    })
+    }),
   )
   .handler(async ({ input }) => {
     if (!input.url) {

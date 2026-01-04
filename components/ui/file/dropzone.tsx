@@ -27,9 +27,7 @@ export function FileDropzone({
         <div className="mb-2 bg-muted rounded-full p-3">
           <Upload className="h-5 w-5 text-muted-foreground" />
         </div>
-        <p className="text-sm font-medium text-foreground">
-          Upload a project image
-        </p>
+        <p className="text-sm font-medium text-foreground">Upload a project image</p>
         <p className="text-sm text-muted-foreground mt-1">
           or,{" "}
           <label

@@ -3,19 +3,14 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Save, Plus, Trash2, Upload } from "lucide-react";
+import { ArrowLeft, Save } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { AutocompleteSelect } from "@/components/ui/autocomplete";
 import z from "zod";
 import { client, orpcQuery } from "@/lib/orpc.client";
-import {
-  MultiSelectOption,
-  MultiSelectPills,
-} from "@/components/ui/select-pills";
+import { MultiSelectOption, MultiSelectPills } from "@/components/ui/select-pills";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FileDropzone } from "@/components/ui/file/dropzone";
@@ -29,17 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-interface ProductAttribute {
-  id: string;
-  key: string;
-  value: string;
-}
 
-interface ProductImage {
-  id: string;
-  url: string;
-  alt: string;
-}
 const createFromSchema = z.object({
   title: z.string().min(1, { message: "Tên sản phẩm là bắt buộc" }),
   description: z.string().optional(),
@@ -78,9 +63,7 @@ const AdminProductCreate = () => {
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadedFiles, setUploadedFiles] = useState<File>();
-  const [fileProgresses, setFileProgresses] = useState<Record<string, number>>(
-    {}
-  );
+  const [fileProgresses, setFileProgresses] = useState<Record<string, number>>({});
 
   const startFakeProgress = (fileName: string) => {
     let progress = 0;
@@ -110,7 +93,7 @@ const AdminProductCreate = () => {
         }));
         form.setValue("thumbnailUrl", data.url);
       },
-    })
+    }),
   );
   const deleteFileMutation = useMutation(
     orpcQuery.fileRoutes.deleteFile.mutationOptions({
@@ -118,7 +101,7 @@ const AdminProductCreate = () => {
         setUploadedFiles(undefined);
         form.setValue("thumbnailUrl", "");
       },
-    })
+    }),
   );
   const handleFileSelect = async (files: FileList | null) => {
     if (!files) return;
@@ -170,7 +153,7 @@ const AdminProductCreate = () => {
       onError: (error: Error) => {
         toast.error(error.message);
       },
-    })
+    }),
   );
 
   const handleSubmit = async (data: CreateFromSchema) => {
@@ -190,11 +173,21 @@ const AdminProductCreate = () => {
       publicationDate: data.publicationDate,
     });
   };
+  const searchPublisher = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
+    const res = await client.publisherRoutes.getAllPublishers({
+      q,
+      limit,
+      page: 1,
+    });
+    return (
+      res?.publishers?.map((publisher) => ({
+        value: publisher.id,
+        label: publisher.name,
+      })) || []
+    );
+  };
 
-  const searchAuthor = async (
-    q: string,
-    limit: number = 10
-  ): Promise<MultiSelectOption[]> => {
+  const searchAuthor = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
     const res = await client.authorRoutes.getAllAuthors({
       q,
       limit,
@@ -207,10 +200,7 @@ const AdminProductCreate = () => {
       })) || []
     );
   };
-  const searchCategory = async (
-    q: string,
-    limit: number = 10
-  ): Promise<MultiSelectOption[]> => {
+  const searchCategory = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
     const res = await client.categoryRoutes.getAllCategories({
       q,
       limit,
@@ -223,10 +213,7 @@ const AdminProductCreate = () => {
       })) || []
     );
   };
-  const searchSeries = async (
-    q: string,
-    limit: number = 10
-  ): Promise<MultiSelectOption[]> => {
+  const searchSeries = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
     const res = await client.seriesRoutes.getAllSeries({
       q,
       limit,
@@ -256,9 +243,7 @@ const AdminProductCreate = () => {
             </Button>
             <div>
               <h1 className="text-2xl font-bold">Thêm sản phẩm mới</h1>
-              <p className="text-muted-foreground">
-                Tạo sản phẩm mới cho cửa hàng
-              </p>
+              <p className="text-muted-foreground">Tạo sản phẩm mới cho cửa hàng</p>
             </div>
           </div>
           <Button type="submit">
@@ -378,9 +363,7 @@ const AdminProductCreate = () => {
                         type="number"
                         placeholder="0"
                         {...field}
-                        onChange={(e) =>
-                          field.onChange(parseFloat(e.target.value))
-                        }
+                        onChange={(e) => field.onChange(parseFloat(e.target.value))}
                       />
                     </FormControl>
                     <FormMessage />
@@ -456,11 +439,7 @@ const AdminProductCreate = () => {
                 <FormItem>
                   <FormLabel>Mô tả chi tiết</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Nhập mô tả chi tiết cho sản phẩm"
-                      rows={5}
-                      {...field}
-                    />
+                    <Textarea placeholder="Nhập mô tả chi tiết cho sản phẩm" rows={5} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

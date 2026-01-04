@@ -9,10 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary/85 shadow-lg shadow-primary/25 backdrop-blur-md text-primary-foreground border border-primary/20 hover:bg-primary/70 shadow-xs",
-        destructive: "bg-destructive/85 backdrop-blur-md text-destructive-foreground border border-destructive/20 hover:bg-destructive/95",
-        outline: "border border-input bg-background/60 backdrop-blur-md hover:bg-accent/80 hover:text-accent-foreground",
-        secondary: "bg-card/70 backdrop-blur-md text-secondary-foreground border border-border/40 hover:bg-card/90 shadow-xs",
+        default:
+          "bg-primary/85 shadow-lg shadow-primary/25 backdrop-blur-md text-primary-foreground border border-primary/20 hover:bg-primary/70 shadow-xs",
+        destructive:
+          "bg-destructive/85 backdrop-blur-md text-destructive-foreground border border-destructive/20 hover:bg-destructive/95",
+        outline:
+          "border border-input bg-background/60 backdrop-blur-md hover:bg-accent/80 hover:text-accent-foreground",
+        secondary:
+          "bg-card/70 backdrop-blur-md text-secondary-foreground border border-border/40 hover:bg-card/90 shadow-xs",
         ghost: "hover:bg-accent/60 hover:backdrop-blur-xs hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
@@ -31,15 +35,16 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
-    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
+    return (
+      <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
+    );
   },
 );
 Button.displayName = "Button";

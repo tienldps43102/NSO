@@ -5,57 +5,50 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Search, Plus, Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-  type ColumnDef,
-} from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
-
-
 const ITEMS_PER_PAGE = 20;
-type GetAllCategoriesResponse = Outputs['categoryRoutes']['getAllCategories'];
-type Category = GetAllCategoriesResponse['categories'][number];
+type GetAllCategoriesResponse = Outputs["categoryRoutes"]["getAllCategories"];
+type Category = GetAllCategoriesResponse["categories"][number];
 
 export default function AdminCategories() {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  
+
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [formData, setFormData] = useState({ name: "", description: "" });
 
@@ -75,7 +68,7 @@ export default function AdminCategories() {
         limit: ITEMS_PER_PAGE,
         ...(debouncedSearch ? { q: debouncedSearch } : {}),
       },
-    })
+    }),
   );
 
   const { mutate: createCategory, isPending: isCreating } = useMutation(
@@ -89,7 +82,7 @@ export default function AdminCategories() {
       onError: (error) => {
         toast.error("Lỗi khi tạo danh mục: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: updateCategory, isPending: isUpdating } = useMutation(
@@ -104,7 +97,7 @@ export default function AdminCategories() {
       onError: (error) => {
         toast.error("Lỗi khi cập nhật danh mục: " + error.message);
       },
-    })
+    }),
   );
 
   const { mutate: deleteCategory, isPending: isDeleting } = useMutation(
@@ -118,7 +111,7 @@ export default function AdminCategories() {
       onError: (error) => {
         toast.error("Lỗi khi xóa danh mục: " + error.message);
       },
-    })
+    }),
   );
   // Define columns for TanStack Table
   const columns = useMemo<ColumnDef<Category>[]>(
@@ -126,16 +119,12 @@ export default function AdminCategories() {
       {
         accessorKey: "id",
         header: "#ID",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.id}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.id}</div>,
       },
       {
         accessorKey: "name",
         header: "Tên danh mục",
-        cell: ({ row }) => (
-          <div className="font-medium">{row.original.name}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium">{row.original.name}</div>,
       },
       {
         accessorKey: "description",
@@ -151,11 +140,7 @@ export default function AdminCategories() {
         header: () => <div className="text-right">Thao tác</div>,
         cell: ({ row }) => (
           <div className="flex justify-end gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => openEditModal(row.original)}
-            >
+            <Button variant="ghost" size="icon" onClick={() => openEditModal(row.original)}>
               <Pencil className="h-4 w-4" />
             </Button>
             <Button
@@ -170,7 +155,7 @@ export default function AdminCategories() {
         ),
       },
     ],
-    []
+    [],
   );
 
   const table = useReactTable({
@@ -185,31 +170,31 @@ export default function AdminCategories() {
     if (!formData.name.trim()) return;
     createCategory({
       name: formData.name.trim(),
-      description: formData.description.trim() || undefined,  
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleEdit = () => {
     if (!selectedCategory || !formData.name.trim()) return;
     updateCategory({
-        id: selectedCategory.id,
-        name: formData.name.trim(),
-        description: formData.description.trim() || undefined,
+      id: selectedCategory.id,
+      name: formData.name.trim(),
+      description: formData.description.trim() || undefined,
     });
   };
 
   const handleDelete = () => {
     if (!selectedCategory) return;
     deleteCategory({
-        id: selectedCategory.id,
+      id: selectedCategory.id,
     });
   };
 
   const openEditModal = (category: Category) => {
     setSelectedCategory(category);
-    setFormData({ 
+    setFormData({
       name: category.name,
-      description: category.description || ""
+      description: category.description || "",
     });
     setIsEditOpen(true);
   };
@@ -258,10 +243,7 @@ export default function AdminCategories() {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -286,7 +268,10 @@ export default function AdminCategories() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center text-muted-foreground"
+                  >
                     Không tìm thấy danh mục nào
                   </TableCell>
                 </TableRow>
@@ -410,13 +395,13 @@ export default function AdminCategories() {
           <AlertDialogHeader>
             <AlertDialogTitle>Xác nhận xóa danh mục</AlertDialogTitle>
             <AlertDialogDescription>
-              Bạn có chắc chắn muốn xóa danh mục {selectedCategory?.name}? 
+              Bạn có chắc chắn muốn xóa danh mục {selectedCategory?.name}?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Hủy</AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={handleDelete} 
+            <AlertDialogAction
+              onClick={handleDelete}
               disabled={isDeleting}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >

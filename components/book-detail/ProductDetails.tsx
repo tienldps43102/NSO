@@ -18,7 +18,6 @@ export function ProductDetails({ description }: ProductDetailsProps) {
 
   return (
     <section className="space-y-6">
-
       {/* Description */}
       <div className="space-y-4">
         <h3 className="font-semibold text-foreground">Mô tả sản phẩm</h3>
@@ -26,19 +25,18 @@ export function ProductDetails({ description }: ProductDetailsProps) {
           <div
             className={cn(
               "prose prose-sm max-w-none text-muted-foreground transition-all duration-300",
-              !isExpanded && "max-h-32 overflow-hidden"
+              !isExpanded && "max-h-32 overflow-hidden",
             )}
           >
             <div dangerouslySetInnerHTML={{ __html: description }} />
-
           </div>
-          
+
           {/* Gradient overlay when collapsed */}
           {!isExpanded && (
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-background to-transparent" />
           )}
         </div>
-        
+
         <Button
           variant="ghost"
           size="sm"
@@ -58,7 +56,6 @@ export function ProductDetails({ description }: ProductDetailsProps) {
       </div>
 
       {/* Details Table */}
-    
     </section>
   );
 }

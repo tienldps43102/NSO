@@ -1,4 +1,3 @@
-
 "use client";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -64,18 +63,13 @@ export function RankedBestSellers() {
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
             Bán Chạy Trong Tháng 🏆
           </h2>
-          <p className="text-muted-foreground">
-            Những tựa sách đang được săn đón nhiều nhất
-          </p>
+          <p className="text-muted-foreground">Những tựa sách đang được săn đón nhiều nhất</p>
         </div>
 
         {/* Ranked Cards */}
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {bestSellers.map((book, index) => (
-            <RankedCard
-              key={book.id}
-              book={book}
-            />
+            <RankedCard key={book.id} book={book} />
           ))}
         </div>
       </div>

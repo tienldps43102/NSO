@@ -8,17 +8,14 @@ export default async function StorefrontLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
 
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader user={session?.user || null} />
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
 
       <SiteFooter />
     </div>

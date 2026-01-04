@@ -1,5 +1,5 @@
-import PQueue from 'p-queue';
-import { load } from 'cheerio';
+import PQueue from "p-queue";
+import { load } from "cheerio";
 
 const url = (page: number) =>
   `https://nxbkimdong.com.vn/search?q=filter%3D(product_type%3Aproduct%3DManga%20-%20comic)&page=${page}`;
@@ -30,38 +30,34 @@ function toAbsUrl(u: string): string {
 }
 function parseList(html: string): BriefBook[] {
   const CARD_SELECTOR =
-    '.grid__item.product--loop.product--grid-item.large--one-quarter.medium--one-third.small--one-half.pd-left0.search-item';
-  const IMAGE_SELECTOR = '.product-img >a> img';
-  const TITLE_SELECTOR = '.product-title';
-  const DETAIL_URL_SELECTOR = '.product-title a';
-  const PRICE_SELECTOR = '.current-price';
-  const OLD_PRICE_SELECTOR = '.original-price';
+    ".grid__item.product--loop.product--grid-item.large--one-quarter.medium--one-third.small--one-half.pd-left0.search-item";
+  const IMAGE_SELECTOR = ".product-img >a> img";
+  const TITLE_SELECTOR = ".product-title";
+  const DETAIL_URL_SELECTOR = ".product-title a";
+  const PRICE_SELECTOR = ".current-price";
+  const OLD_PRICE_SELECTOR = ".original-price";
 
   const $ = load(html);
   const cards = $(CARD_SELECTOR);
   const books: BriefBook[] = [];
 
   cards.each((_, el) => {
-    const coverUrl = $(el).find(IMAGE_SELECTOR).attr('src') || '';
+    const coverUrl = $(el).find(IMAGE_SELECTOR).attr("src") || "";
     const title = $(el).find(TITLE_SELECTOR).text().trim();
-    const detailUrl = $(el).find(DETAIL_URL_SELECTOR).attr('href') || '';
-    const id = $(el).find(IMAGE_SELECTOR).attr('id') || '';
-    const price = $(el)
-      .find(PRICE_SELECTOR)
-      .text()
-      .trim()
-      .replace(/[,đ₫]/g, '');
+    const detailUrl = $(el).find(DETAIL_URL_SELECTOR).attr("href") || "";
+    const id = $(el).find(IMAGE_SELECTOR).attr("id") || "";
+    const price = $(el).find(PRICE_SELECTOR).text().trim().replace(/[,đ₫]/g, "");
     const oldPriceRaw = $(el).find(OLD_PRICE_SELECTOR).text().trim();
-    const oldPrice = oldPriceRaw ? oldPriceRaw.replace(/[,đ₫]/g, '') : undefined;
+    const oldPrice = oldPriceRaw ? oldPriceRaw.replace(/[,đ₫]/g, "") : undefined;
 
-    books.push({ id, title, price, oldPrice, coverUrl:toAbsUrl(coverUrl), detailUrl });
+    books.push({ id, title, price, oldPrice, coverUrl: toAbsUrl(coverUrl), detailUrl });
   });
 
   return books;
 }
 
 const TOTAL_PAGES = 10;
-const JSON_OUTPUT_PATH = './data/brief-books.json';
+const JSON_OUTPUT_PATH = "./data/brief-books.json";
 
 async function crawlPage(page: number): Promise<BriefBook[]> {
   console.log(`Crawling page ${page}...`);
@@ -89,5 +85,5 @@ async function crawlList() {
 }
 
 crawlList().catch((err) => {
-  console.error('Error during crawling:', err);
+  console.error("Error during crawling:", err);
 });

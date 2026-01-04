@@ -44,9 +44,7 @@ export class MomoSDK {
   }
 
   private hmacSHA256(data: string): string {
-    return crypto.createHmac("sha256", this.config.secretKey)
-      .update(data)
-      .digest("hex");
+    return crypto.createHmac("sha256", this.config.secretKey).update(data).digest("hex");
   }
 
   async createPayment(params: CreatePaymentParams): Promise<MomoPaymentResponse> {
@@ -98,7 +96,7 @@ export class MomoSDK {
       throw new Error(`MoMo API error: ${response.status} ${response.statusText}`);
     }
 
-    return await response.json() as MomoPaymentResponse;
+    return (await response.json()) as MomoPaymentResponse;
   }
 
   validateCallback(data: Record<string, any>): boolean {

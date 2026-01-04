@@ -22,19 +22,16 @@ interface CreatePaymentParams {
   orderInfo: string;
   method: "MOMO" | "VNPAY";
 }
-export async function createPayment({
-  id,
-  amount,
-  orderInfo,
-  method,
-}: CreatePaymentParams) {
+export async function createPayment({ id, amount, orderInfo, method }: CreatePaymentParams) {
   if (method === "MOMO") {
-    return await momoSdk.createPayment({
-      amount: amount,
-      orderInfo: orderInfo,
-      requestId: id,
-      lang: "vi",
-    }).then((res) => res.payUrl!);
+    return await momoSdk
+      .createPayment({
+        amount: amount,
+        orderInfo: orderInfo,
+        requestId: id,
+        lang: "vi",
+      })
+      .then((res) => res.payUrl!);
   } else if (method === "VNPAY") {
     return vnpaySdk.createPayment({
       amount: amount,
@@ -67,4 +64,3 @@ export function verifyPayment({ args, method }: VerifyPaymentParams) {
   }
   throw new Error("Invalid method");
 }
-

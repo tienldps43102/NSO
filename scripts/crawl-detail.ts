@@ -3,9 +3,7 @@ import PQueue from "p-queue";
 import { BriefBook } from "./crawl-list";
 import { DetailCrawlData } from "./type";
 
-const books: BriefBook[] = JSON.parse(
-  await Bun.file("./data/brief-books.json").text()
-);
+const books: BriefBook[] = JSON.parse(await Bun.file("./data/brief-books.json").text());
 
 function toAbsUrl(u: string): string {
   if (!u) return "";
@@ -40,8 +38,7 @@ type DetailPart = Pick<DetailBook, "images" | "description" | "series" | "attrib
 function parseDetail(html: string): DetailPart {
   const $ = load(html);
   const THUMB_SELECTOR = ".thumbnail-item img";
-  const ATTR_SELECTOR =
-    ".grid__item.large--one-half.medium--one-whole.small--one-whole ul li";
+  const ATTR_SELECTOR = ".grid__item.large--one-half.medium--one-whole.small--one-whole ul li";
   const DESC_SELECTOR = "#protab0";
   const SERIES_ATTR_NAME = "Bộ sách";
   const VERSION_SELECTOR = "#variant-swatch-0";
@@ -86,7 +83,6 @@ function parseDetail(html: string): DetailPart {
           price: "",
           coverUrl: toAbsUrl(versionImg),
           detailUrl: "",
-
         });
       }
     });
@@ -97,13 +93,13 @@ function parseDetail(html: string): DetailPart {
   }
 
   const metaJson = match[1];
-  const meta = JSON.parse(metaJson) as DetailCrawlData
+  const meta = JSON.parse(metaJson) as DetailCrawlData;
   // tìm và bổ xung giá, id
-  meta.product.variants.forEach(variant => {
+  meta.product.variants.forEach((variant) => {
     if (versions) {
-      const v = versions.find(v => v.title.includes(variant.variant_title));
+      const v = versions.find((v) => v.title.includes(variant.variant_title));
       if (v) {
-        v.id = variant.sku?.toString()|| "";
+        v.id = variant.sku?.toString() || "";
         v.price = variant.price.toString();
       }
     }
@@ -133,7 +129,7 @@ const tasks = books.map((book, idx) =>
       console.error(`❌ [${idx + 1}/${books.length}] ${book.id} ${book.title}`, e);
       return null;
     }
-  })
+  }),
 );
 
 const results = await Promise.all(tasks);

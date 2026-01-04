@@ -1,14 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { X, Check, Loader2 } from 'lucide-react';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
-import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
+import React, { useState, useRef, useEffect } from "react";
+import { X, Check, Loader2 } from "lucide-react";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 export interface MultiSelectOption {
   value: string;
   label: string;
 }
-export type onSearchFn = (query: string,limit: number) => Promise<MultiSelectOption[]>;
+export type onSearchFn = (query: string, limit: number) => Promise<MultiSelectOption[]>;
 
 interface MultiSelectPillsProps {
   options?: MultiSelectOption[];
@@ -23,21 +30,23 @@ interface MultiSelectPillsProps {
 export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
   options = [],
   defaultValue = [],
-  placeholder = 'Search...',
+  placeholder = "Search...",
   onChange,
   className,
   onSearch,
-  debounceMs = 300
+  debounceMs = 300,
 }) => {
   const [selected, setSelected] = useState<string[]>(defaultValue);
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState<MultiSelectOption[]>(options);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedOptionsMap, setSelectedOptionsMap] = useState<Map<string, MultiSelectOption>>(
-    new Map(options.filter(opt => defaultValue.includes(opt.value)).map(opt => [opt.value, opt]))
+    new Map(
+      options.filter((opt) => defaultValue.includes(opt.value)).map((opt) => [opt.value, opt]),
+    ),
   );
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const onSearchRef = useRef(onSearch);
@@ -56,8 +65,8 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -83,10 +92,10 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
 
       debounceTimerRef.current = setTimeout(async () => {
         try {
-          const results = await currentOnSearch(search,10);
+          const results = await currentOnSearch(search, 10);
           setSearchResults(results);
         } catch (error) {
-          console.error('Search error:', error);
+          console.error("Search error:", error);
           setSearchResults([]);
         } finally {
           setIsLoading(false);
@@ -100,9 +109,9 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
       };
     } else {
       // Fallback: client-side filter if no onSearch provided
-      const filtered = currentOptions.filter((opt) =>
-        opt.label.toLowerCase().includes(search.toLowerCase()) &&
-        !selected.includes(opt.value)
+      const filtered = currentOptions.filter(
+        (opt) =>
+          opt.label.toLowerCase().includes(search.toLowerCase()) && !selected.includes(opt.value),
       );
       setSearchResults(filtered);
     }
@@ -111,32 +120,32 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
   const handleSelect = (option: MultiSelectOption) => {
     const newSelected = [...selected, option.value];
     setSelected(newSelected);
-    
+
     // Store the full option data
-    setSelectedOptionsMap(prev => new Map(prev).set(option.value, option));
-    
+    setSelectedOptionsMap((prev) => new Map(prev).set(option.value, option));
+
     onChange?.(newSelected);
-    setSearch('');
+    setSearch("");
   };
 
   const handleRemove = (value: string, e: React.MouseEvent) => {
     e.stopPropagation();
     const newSelected = selected.filter((item) => item !== value);
     setSelected(newSelected);
-    
-    setSelectedOptionsMap(prev => {
+
+    setSelectedOptionsMap((prev) => {
       const newMap = new Map(prev);
       newMap.delete(value);
       return newMap;
     });
-    
+
     onChange?.(newSelected);
   };
 
   const selectedOptions = Array.from(selectedOptionsMap.values());
 
   return (
-    <div ref={containerRef} className={cn('w-full', className)}>
+    <div ref={containerRef} className={cn("w-full", className)}>
       <div className="space-y-4">
         {/* Selected Pills */}
         {selectedOptions.length > 0 && (
@@ -145,7 +154,6 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
               <Badge
                 key={option.value}
                 variant="secondary"
-                
                 className="px-2 py-1 text-sm font-normal bg-gray-100 hover:bg-gray-200 text-gray-900 text-xs "
               >
                 {option.label}
@@ -180,9 +188,7 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
             {open && (
               <CommandList className="absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-auto rounded-md border bg-white shadow-md">
                 {isLoading ? (
-                  <div className="py-6 text-center text-sm text-gray-500">
-                    Đang tìm kiếm...
-                  </div>
+                  <div className="py-6 text-center text-sm text-gray-500">Đang tìm kiếm...</div>
                 ) : searchResults.length === 0 ? (
                   <CommandEmpty>Không tìm thấy kết quả.</CommandEmpty>
                 ) : (
@@ -196,9 +202,7 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
                       >
                         <div className="flex items-center justify-between w-full">
                           <span>{option.label}</span>
-                          {selected.includes(option.value) && (
-                            <Check className="h-4 w-4" />
-                          )}
+                          {selected.includes(option.value) && <Check className="h-4 w-4" />}
                         </div>
                       </CommandItem>
                     ))}

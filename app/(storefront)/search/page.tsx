@@ -1,26 +1,45 @@
 import { Search as SearchIcon, SlidersHorizontal, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectWithNavigation } from "@/components/ui/select";
+import {
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectWithNavigation,
+} from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { BookCard } from "@/components/home/BookCard";
 import { toPlain } from "@/lib/toPlain";
 import { FilterContent } from "./filter";
 import { searchSchema } from "./schema";
-import Link from "next/link";
 import qs from "qs";
 
-
-
-export default async function Search({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+export default async function Search({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const params = await searchParams;
   const valitatedParams = searchSchema.safeParse(params);
   const searchResult = await $client?.bookRoutes.listBooks({
     q: valitatedParams.data?.q as string,
     page: valitatedParams.data?.page as number,
     limit: valitatedParams.data?.limit as number,
-    sort: valitatedParams.data?.sort as "newest" | "price_asc" | "price_desc" | "title_asc" | "title_desc",
+    sort: valitatedParams.data?.sort as
+      | "newest"
+      | "price_asc"
+      | "price_desc"
+      | "title_asc"
+      | "title_desc",
     inStockOnly: valitatedParams.data?.inStockOnly as boolean,
     authorIds: valitatedParams.data?.authorIds as string[],
     categoryIds: valitatedParams.data?.categoryIds as string[],
@@ -28,15 +47,25 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
     maxPrice: valitatedParams.data?.maxPrice as number,
     minPrice: valitatedParams.data?.minPrice as number,
     seriesIds: valitatedParams.data?.seriesIds as string[],
-  })
-  const allBooks = toPlain(searchResult?.items)
-  const pagination = searchResult?.pagination
-  const currentSort = valitatedParams.data?.sort as "newest" | "price_asc" | "price_desc" | "title_asc" | "title_desc"
+  });
+  const allBooks = toPlain(searchResult?.items);
+  const pagination = searchResult?.pagination;
+  const currentSort = valitatedParams.data?.sort as
+    | "newest"
+    | "price_asc"
+    | "price_desc"
+    | "title_asc"
+    | "title_desc";
   function getSortLink(sort: "newest" | "price_asc" | "price_desc" | "title_asc" | "title_desc") {
-    const queryString = qs.stringify({...valitatedParams, sort}, {
-      arrayFormat: "repeat",
-    }).toString()
-    return `/search?${queryString}`
+    const queryString = qs
+      .stringify(
+        { ...valitatedParams, sort },
+        {
+          arrayFormat: "repeat",
+        },
+      )
+      .toString();
+    return `/search?${queryString}`;
   }
   const sortItems = [
     { value: "newest", label: "Mới nhất", href: getSortLink("newest") },
@@ -44,13 +73,12 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
     { value: "price_desc", label: "Giá: Cao → Thấp", href: getSortLink("price_desc") },
     { value: "title_asc", label: "Tên: A → Z", href: getSortLink("title_asc") },
     { value: "title_desc", label: "Tên: Z → A", href: getSortLink("title_desc") },
-  ]
-  const currentSortDisplay = sortItems.find(item => item.value === currentSort)?.label
+  ];
+  const currentSortDisplay = sortItems.find((item) => item.value === currentSort)?.label;
   return (
     <div className="container mx-auto px-4 py-6 lg:py-8">
       {/* Search Header */}
       <div className="mb-6">
-
         {/* Search Bar */}
         <div className="flex gap-3 flex-col sm:flex-row">
           <form className="relative flex-1" action="/search">
@@ -100,12 +128,17 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
           {/* Toolbar */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 p-4 bg-card/70 backdrop-blur-md rounded-2xl border border-border/40">
             <p className="text-sm text-muted-foreground">
-              Hiển thị <span className="font-medium text-foreground">{allBooks?.length}</span> kết quả
+              Hiển thị <span className="font-medium text-foreground">{allBooks?.length}</span> kết
+              quả
             </p>
 
             <div className="flex items-center gap-3">
               {/* Sort */}
-              <SelectWithNavigation items={sortItems} placeholder={currentSortDisplay} defaultValue={currentSort}>
+              <SelectWithNavigation
+                items={sortItems}
+                placeholder={currentSortDisplay}
+                defaultValue={currentSort}
+              >
                 <SelectTrigger className="w-[180px] h-10 bg-background/50">
                   <ArrowUpDown className="h-4 w-4 mr-1" />
                   <SelectValue placeholder="Sắp xếp" />
@@ -113,7 +146,7 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
 
                 <SelectContent>
                   {sortItems.map((item) => (
-                    <SelectItem key={item.value} value={item.value} href={item.href} >
+                    <SelectItem key={item.value} value={item.value} href={item.href}>
                       {item.label}
                     </SelectItem>
                   ))}
@@ -121,10 +154,7 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
               </SelectWithNavigation>
 
               {/* View Mode */}
-              <div className="hidden sm:flex items-center border border-border/40 rounded-lg overflow-hidden">
-
-
-              </div>
+              <div className="hidden sm:flex items-center border border-border/40 rounded-lg overflow-hidden"></div>
             </div>
           </div>
 
@@ -144,15 +174,16 @@ export default async function Search({ searchParams }: { searchParams: Promise<{
                     isActive={pagination?.page === 1}
                   />
                 </PaginationItem>
-                {
-                  Array.from({ length: pagination?.totalPages ?? 0 }, (_, index) => (
-                    <PaginationItem key={index}>
-                      <PaginationLink href={`/search?page=${index + 1}`} isActive={pagination?.page === index + 1}>
-                        {index + 1}
-                      </PaginationLink>
-                    </PaginationItem>
-                  ))
-                }
+                {Array.from({ length: pagination?.totalPages ?? 0 }, (_, index) => (
+                  <PaginationItem key={index}>
+                    <PaginationLink
+                      href={`/search?page=${index + 1}`}
+                      isActive={pagination?.page === index + 1}
+                    >
+                      {index + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
                 <PaginationItem>
                   <PaginationNext
                     href={`/search?page=${(pagination?.page ?? 1) + 1}`}

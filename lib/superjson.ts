@@ -1,7 +1,6 @@
 import SuperJSON from "superjson";
 import { Prisma } from "./generated/prisma/client";
 
-
 // Prisma.Decimal is a class -> register custom serializer
 SuperJSON.registerCustom<Prisma.Decimal, string>(
   {
@@ -9,7 +8,7 @@ SuperJSON.registerCustom<Prisma.Decimal, string>(
     serialize: (v) => v.toString(),
     deserialize: (v) => Number(v) as any,
   },
-  "PrismaDecimal"
+  "PrismaDecimal",
 );
 
 export default SuperJSON;

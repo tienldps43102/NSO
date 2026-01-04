@@ -21,7 +21,7 @@ export function BookCard({ book, className, style }: BookCardProps) {
       href={`/products/${book.id}`}
       className={cn(
         "group relative bg-card rounded-2xl overflow-hidden shadow-card transition-all duration-300 hover:shadow-hover hover:-translate-y-1",
-        className
+        className,
       )}
       style={style}
     >
@@ -32,8 +32,6 @@ export function BookCard({ book, className, style }: BookCardProps) {
           alt={book.title}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-
-
 
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
@@ -50,7 +48,6 @@ export function BookCard({ book, className, style }: BookCardProps) {
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
             <span className="font-bold text-primary">{formatPrice(Number(book.displayPrice))}</span>
-
           </div>
 
           <Button
@@ -75,10 +72,7 @@ interface BookCardSkeletonProps {
 export function BookCardSkeleton({ className, style }: BookCardSkeletonProps) {
   return (
     <div
-      className={cn(
-        "relative bg-card rounded-2xl overflow-hidden shadow-card",
-        className
-      )}
+      className={cn("relative bg-card rounded-2xl overflow-hidden shadow-card", className)}
       style={style}
     >
       {/* Cover Image */}
@@ -107,4 +101,3 @@ export function BookCardSkeleton({ className, style }: BookCardSkeletonProps) {
     </div>
   );
 }
-

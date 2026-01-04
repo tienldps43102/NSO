@@ -21,32 +21,31 @@
 //     "body": null,
 //     "method": "GET"
 //   });
-import {appendFile} from 'fs/promises';
 
-import { FahasaListResponse,ProductList } from "./type";
-import PQueue from 'p-queue';
+import { FahasaListResponse, ProductList } from "./type";
+import PQueue from "p-queue";
 
 async function getJson(page: number) {
-    const url = `https://www.fahasa.com/fahasa_catalog/product/loadproducts?category_id=6718&currentPage=${page}&limit=24&order=created_at&series_type=0`;
-    const response = await fetch(url);
-    const data: FahasaListResponse = await response.json();
-    return data;
+  const url = `https://www.fahasa.com/fahasa_catalog/product/loadproducts?category_id=6718&currentPage=${page}&limit=24&order=created_at&series_type=0`;
+  const response = await fetch(url);
+  const data: FahasaListResponse = await response.json();
+  return data;
 }
-const JSON_OUTPUT_PATH = './data/fahasa-list.jsonl';
+const JSON_OUTPUT_PATH = "./data/fahasa-list.jsonl";
 const END_PAGE = 100;
 const queue = new PQueue({ concurrency: 10 });
-const data:ProductList[] = [];
+const data: ProductList[] = [];
 for (let page = 1; page <= END_PAGE; page++) {
-    queue.add(async () => {
-        console.log(`Crawling page ${page}`);
-        const res = await getJson(page);
-        console.log(`Found ${res.product_list.length} products`);
-        res.product_list.forEach(product => {
-            if(product.type_id=="simple"){
-                data.push(product);
-            }
-        });
+  queue.add(async () => {
+    console.log(`Crawling page ${page}`);
+    const res = await getJson(page);
+    console.log(`Found ${res.product_list.length} products`);
+    res.product_list.forEach((product) => {
+      if (product.type_id == "simple") {
+        data.push(product);
+      }
     });
+  });
 }
 await queue.onIdle();
 await Bun.write(JSON_OUTPUT_PATH, JSON.stringify(data, null, 2));

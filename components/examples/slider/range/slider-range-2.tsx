@@ -12,13 +12,7 @@ const Example = () => {
   return (
     <div className="flex w-full max-w-md flex-col gap-2">
       <Label htmlFor="slider">Price Range</Label>
-      <Slider
-        id="slider"
-        max={1000}
-        min={0}
-        onValueChange={setValue}
-        value={value}
-      />
+      <Slider id="slider" max={1000} min={0} onValueChange={setValue} value={value} />
       <div className="flex items-center justify-between text-muted-foreground text-sm">
         <span>${value[0]}</span>
         <span>${value[1]}</span>

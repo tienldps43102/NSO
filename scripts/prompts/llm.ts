@@ -1,14 +1,14 @@
-import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
-import { z } from 'zod';
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
+import { z } from "zod";
 
 const provider = createOpenAICompatible({
-  name: 'megallm',
+  name: "megallm",
   apiKey: process.env.MEGA_LLM_API,
-  baseURL: 'https://ai.megallm.io/v1',
+  baseURL: "https://ai.megallm.io/v1",
   includeUsage: false, // Include usage information in streaming responses
 });
 export const genPrompt = (prompt: string) => {
- return `
+  return `
  Bạn là bộ trích xuất dữ liệu sản phẩm sách/manga từ tiêu đề (product title) tiếng Việt.
 
 NHIỆM VỤ
@@ -62,11 +62,11 @@ Output:
 
 Bây giờ hãy xử lý input sau và trả về đúng JSON theo format đã định nghĩa.
 Input: ${prompt}
-`
-}
+`;
+};
 export const outputSchema = z.object({
   series_title: z.string(),
   volume: z.number().optional(),
   variant: z.string().optional(),
 });
-export const model = provider('qwen/qwen3-next-80b-a3b-instruct');
+export const model = provider("qwen/qwen3-next-80b-a3b-instruct");

@@ -1,6 +1,5 @@
 "use client";
-import { useCallback,
-useState, useMemo, useEffect } from "react";
+import { useCallback, useState, useMemo, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -41,17 +40,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
 import { formatPrice } from "@/lib/utils";
 import Image from "next/image";
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-  type ColumnDef,
-} from "@tanstack/react-table";
-import { onSuccess } from "@orpc/client";
+import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
-type ListBooksResponse = Outputs['bookRoutes']['listBooks'];
-type BookItem = ListBooksResponse['items'][number];
+type ListBooksResponse = Outputs["bookRoutes"]["listBooks"];
+type BookItem = ListBooksResponse["items"][number];
 
 const sortOptions = [
   { value: "newest", label: "Mới nhất" },
@@ -67,7 +60,9 @@ const AdminProducts = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<boolean | undefined>();
-  const [sort, setSort] = useState<"newest" | "price_asc" | "price_desc" | "title_asc" | "title_desc">("newest");
+  const [sort, setSort] = useState<
+    "newest" | "price_asc" | "price_desc" | "title_asc" | "title_desc"
+  >("newest");
 
   // Debounce search
   useEffect(() => {
@@ -78,7 +73,7 @@ const AdminProducts = () => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { data, isLoading,refetch } = useQuery<ListBooksResponse>(
+  const { data, isLoading, refetch } = useQuery<ListBooksResponse>(
     orpcQuery.bookRoutes.listBooks.queryOptions({
       input: {
         page,
@@ -87,32 +82,38 @@ const AdminProducts = () => {
         sort,
         ...(debouncedSearch ? { q: debouncedSearch } : {}),
       },
-    })
+    }),
   );
-  const mutateActivateBook = useMutation(orpcQuery.bookAdminRoutes.activateBook.mutationOptions({
-    onSuccess:(data)=>{
-      refetch()
-      toast.info("Thành công")
- }
-  }))
-  const mutateDeactivateBook = useMutation(orpcQuery.bookAdminRoutes.deactivateBook.mutationOptions({
-    onSuccess:(data)=>{
-      refetch()
-      toast.info("Thành công")
- }
-  }))
- 
-  const toggleActiveBook = useCallback((id: string, isActive: boolean) => {
-    console.log(id, isActive)
-    if(isActive){
-      mutateDeactivateBook.mutate({id})
-    }else{
-      mutateActivateBook.mutate({id})
-    }
-  }, [mutateDeactivateBook, mutateActivateBook])
-  // Filter by status client-side since 
-  // API doesn't have this filter
+  const mutateActivateBook = useMutation(
+    orpcQuery.bookAdminRoutes.activateBook.mutationOptions({
+      onSuccess: (data) => {
+        refetch();
+        toast.info("Thành công");
+      },
+    }),
+  );
+  const mutateDeactivateBook = useMutation(
+    orpcQuery.bookAdminRoutes.deactivateBook.mutationOptions({
+      onSuccess: (data) => {
+        refetch();
+        toast.info("Thành công");
+      },
+    }),
+  );
 
+  const toggleActiveBook = useCallback(
+    (id: string, isActive: boolean) => {
+      console.log(id, isActive);
+      if (isActive) {
+        mutateDeactivateBook.mutate({ id });
+      } else {
+        mutateActivateBook.mutate({ id });
+      }
+    },
+    [mutateDeactivateBook, mutateActivateBook],
+  );
+  // Filter by status client-side since
+  // API doesn't have this filter
 
   // Define columns
   const columns = useMemo<ColumnDef<BookItem>[]>(
@@ -133,33 +134,25 @@ const AdminProducts = () => {
       {
         accessorKey: "title",
         header: "Tên sản phẩm",
-        cell: ({ row }) => (
-          <div className="font-medium line-clamp-2">{row.original.title}</div>
-        ),
+        cell: ({ row }) => <div className="font-medium line-clamp-2">{row.original.title}</div>,
       },
       {
         accessorKey: "publisher.name",
         header: "Nhà xuất bản",
         cell: ({ row }) => (
-          <div className="text-muted-foreground">
-            {row.original.publisher?.name}
-          </div>
+          <div className="text-muted-foreground">{row.original.publisher?.name}</div>
         ),
       },
       {
         accessorKey: "category.name",
         header: "Danh mục",
-        cell: ({ row }) => (
-          <Badge variant="outline">{row.original.category.name}</Badge>
-        ),
+        cell: ({ row }) => <Badge variant="outline">{row.original.category.name}</Badge>,
       },
       {
         accessorKey: "displayPrice",
         header: "Giá",
         cell: ({ row }) => (
-          <div className="text-right">
-            {formatPrice(Number(row.original.displayPrice))}
-          </div>
+          <div className="text-right">{formatPrice(Number(row.original.displayPrice))}</div>
         ),
       },
       {
@@ -167,9 +160,7 @@ const AdminProducts = () => {
         header: "Trạng thái",
         cell: ({ row }) => (
           <div className="text-center">
-            <Badge
-              variant={row.original.isActive ? "default" : "secondary"}
-            >
+            <Badge variant={row.original.isActive ? "default" : "secondary"}>
               {row.original.isActive ? "Đang bán" : "Ngừng bán"}
             </Badge>
           </div>
@@ -178,41 +169,44 @@ const AdminProducts = () => {
       {
         id: "actions",
         header: "",
-        cell: ({ row }) =>{ 
+        cell: ({ row }) => {
           return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem asChild>
-                <Link href={`/admin/products/${row.original.id}/edit`}>
-                  <Pencil className="mr-2 h-4 w-4" />
-                  Chỉnh sửa
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => toggleActiveBook(row.original.id, row.original.isActive)}>
-                {row.original.isActive ? (
-                  <>
-                    <PowerOff className="mr-2 h-4 w-4" />
-                    Ngừng bán
-                  </>
-                ) : (
-                  <>
-                    <Power className="mr-2 h-4 w-4" />
-                    Kích hoạt
-                  </>
-                )}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )},
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-8 w-8">
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem asChild>
+                  <Link href={`/admin/products/${row.original.id}/edit`}>
+                    <Pencil className="mr-2 h-4 w-4" />
+                    Chỉnh sửa
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => toggleActiveBook(row.original.id, row.original.isActive)}
+                >
+                  {row.original.isActive ? (
+                    <>
+                      <PowerOff className="mr-2 h-4 w-4" />
+                      Ngừng bán
+                    </>
+                  ) : (
+                    <>
+                      <Power className="mr-2 h-4 w-4" />
+                      Kích hoạt
+                    </>
+                  )}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          );
+        },
       },
     ],
-    [toggleActiveBook]
+    [toggleActiveBook],
   );
 
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -224,151 +218,145 @@ const AdminProducts = () => {
     pageCount: data?.pagination.totalPages ?? 0,
   });
 
-
   return (
     <div className="space-y-6">
-    {/* Header */}
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <div>
-        <h1 className="text-2xl font-bold">Quản lý sản phẩm</h1>
-        <p className="text-muted-foreground">
-          Quản lý danh sách sản phẩm của cửa hàng
-        </p>
+      {/* Header */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Quản lý sản phẩm</h1>
+          <p className="text-muted-foreground">Quản lý danh sách sản phẩm của cửa hàng</p>
+        </div>
+        <Button asChild>
+          <Link href="/admin/products/create">
+            <Plus className="mr-2 h-4 w-4" />
+            Thêm sản phẩm
+          </Link>
+        </Button>
       </div>
-      <Button asChild>
-        <Link href="/admin/products/create">
-          <Plus className="mr-2 h-4 w-4" />
-          Thêm sản phẩm
-        </Link>
-      </Button>
-    </div>
 
-    {/* Filters */}
-    <div className="flex flex-col gap-4 rounded-xl border border-border/40 bg-card/50 p-4 backdrop-blur-sm sm:flex-row sm:items-center">
-      <div className="relative flex-1">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          placeholder="Tìm kiếm sản phẩm..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-9"
-        />
-      </div>
-      <div className="flex gap-2">
-        <Select
-          value={sort}
-          onValueChange={(value) => {
-            setSort(value as typeof sort);
-            setPage(1);
-          }}
-        >
-          <SelectTrigger className="w-[150px]">
-            <SelectValue placeholder="Sắp xếp" />
-          </SelectTrigger>
-          <SelectContent>
-            {sortOptions.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Select
-          value={statusFilter === undefined ? "all" : statusFilter ? "active" : "inactive"}
-          onValueChange={(value) => {
-            setStatusFilter(value === "all" ? undefined : value === "active");
-            setPage(1);
-          }}
-        >
-          <SelectTrigger className="w-[140px]">
-            <SelectValue placeholder="Trạng thái" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tất cả</SelectItem>
-            <SelectItem value="active">Đang bán</SelectItem>
-            <SelectItem value="inactive">Ngừng bán</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-    </div>
-
-    {/* Products Table */}
-    <div className="rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm">
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </TableHead>
+      {/* Filters */}
+      <div className="flex flex-col gap-4 rounded-xl border border-border/40 bg-card/50 p-4 backdrop-blur-sm sm:flex-row sm:items-center">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            placeholder="Tìm kiếm sản phẩm..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-9"
+          />
+        </div>
+        <div className="flex gap-2">
+          <Select
+            value={sort}
+            onValueChange={(value) => {
+              setSort(value as typeof sort);
+              setPage(1);
+            }}
+          >
+            <SelectTrigger className="w-[150px]">
+              <SelectValue placeholder="Sắp xếp" />
+            </SelectTrigger>
+            <SelectContent>
+              {sortOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
               ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {isLoading ? (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                Đang tải...
-              </TableCell>
-            </TableRow>
-          ) : table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
+            </SelectContent>
+          </Select>
+          <Select
+            value={statusFilter === undefined ? "all" : statusFilter ? "active" : "inactive"}
+            onValueChange={(value) => {
+              setStatusFilter(value === "all" ? undefined : value === "active");
+              setPage(1);
+            }}
+          >
+            <SelectTrigger className="w-[140px]">
+              <SelectValue placeholder="Trạng thái" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Tất cả</SelectItem>
+              <SelectItem value="active">Đang bán</SelectItem>
+              <SelectItem value="inactive">Ngừng bán</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      {/* Products Table */}
+      <div className="rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
                 ))}
               </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                Không tìm thấy sản phẩm nào
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </div>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {isLoading ? (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  Đang tải...
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  Không tìm thấy sản phẩm nào
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
 
-    {/* Pagination */}
-    <div className="flex items-center justify-between">
-      <div className="text-sm text-muted-foreground">
-        Hiển thị {data?.items.length} / {data?.pagination.total ?? 0} sản phẩm
-      </div>
-      <div className="flex items-center gap-2">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setPage((p) => Math.max(1, p - 1))}
-          disabled={page === 1 || isLoading}
-        >
-          <ChevronLeft className="h-4 w-4" />
-          Trước
-        </Button>
-        <div className="text-sm">
-          Trang {page} / {data?.pagination.totalPages ?? 1}
+      {/* Pagination */}
+      <div className="flex items-center justify-between">
+        <div className="text-sm text-muted-foreground">
+          Hiển thị {data?.items.length} / {data?.pagination.total ?? 0} sản phẩm
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setPage((p) => p + 1)}
-          disabled={page >= (data?.pagination.totalPages ?? 1) || isLoading}
-        >
-          Sau
-          <ChevronRight className="h-4 w-4" />
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1 || isLoading}
+          >
+            <ChevronLeft className="h-4 w-4" />
+            Trước
+          </Button>
+          <div className="text-sm">
+            Trang {page} / {data?.pagination.totalPages ?? 1}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage((p) => p + 1)}
+            disabled={page >= (data?.pagination.totalPages ?? 1) || isLoading}
+          >
+            Sau
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 

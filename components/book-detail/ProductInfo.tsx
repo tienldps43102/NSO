@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Minus, Plus, ShoppingCart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Link from 'next/link';
+import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 interface Variant {
   id: string;
@@ -16,14 +16,10 @@ interface Variant {
 interface ProductInfoProps {
   bookDetail: Outputs["bookRoutes"]["getBookById"];
   className?: string;
-
 }
-import { toast } from "sonner"
+import { toast } from "sonner";
 
-export function ProductInfo({
-  bookDetail,
-  className,
-}: ProductInfoProps) {
+export function ProductInfo({ bookDetail, className }: ProductInfoProps) {
   const [selectedVariant, setSelectedVariant] = useState(bookDetail.variants[0]);
   const [quantity, setQuantity] = useState(1);
   const isOneVariant = bookDetail.variants.length === 1;
@@ -32,19 +28,22 @@ export function ProductInfo({
     return new Intl.NumberFormat("vi-VN").format(price) + "đ";
   };
   const queryClient = useQueryClient();
-  const { mutate: addToCart } = useMutation($orpcQuery!.cartRoutes.addToCart.mutationOptions({
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: $orpcQuery!.cartRoutes.countMyCartItems.queryKey() });
-      if (data.success) {
-        toast.success("Thêm vào giỏ hàng thành công");
-      } else {
-        toast.error("Thêm vào giỏ hàng thất bại",{
-          description: data?.message,
+  const { mutate: addToCart } = useMutation(
+    $orpcQuery!.cartRoutes.addToCart.mutationOptions({
+      onSuccess: (data) => {
+        queryClient.invalidateQueries({
+          queryKey: $orpcQuery!.cartRoutes.countMyCartItems.queryKey(),
         });
-      }
-    },
-   
-  }));
+        if (data.success) {
+          toast.success("Thêm vào giỏ hàng thành công");
+        } else {
+          toast.error("Thêm vào giỏ hàng thất bại", {
+            description: data?.message,
+          });
+        }
+      },
+    }),
+  );
 
   const handleAddToCart = () => {
     if (!selectedVariant?.id) return;
@@ -54,11 +53,9 @@ export function ProductInfo({
     });
   };
 
-
   return (
     <div className={cn("flex flex-col gap-5", className)}>
       {/* Status Tags */}
-
 
       <h1 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
         {bookDetail.title}
@@ -68,20 +65,18 @@ export function ProductInfo({
       <div className="flex flex-col items-start gap-x-4 gap-y-2 text-sm text-muted-foreground">
         <span>
           Tác giả:{" "}
-          {
-            bookDetail.authors.map((author) => (
-              <React.Fragment key={author.id}>
-                <Link
-                  key={author.id}
-                  href={`/author/${author.id}`}
-                  className="text-primary hover:underline font-medium"
-                >
-                  {author.name}
-                </Link>
-                <span>, </span>
-              </React.Fragment>
-            ))
-          }
+          {bookDetail.authors.map((author) => (
+            <React.Fragment key={author.id}>
+              <Link
+                key={author.id}
+                href={`/author/${author.id}`}
+                className="text-primary hover:underline font-medium"
+              >
+                {author.name}
+              </Link>
+              <span>, </span>
+            </React.Fragment>
+          ))}
         </span>
         <span>
           Nhà xuất bản:{" "}
@@ -93,23 +88,19 @@ export function ProductInfo({
             {bookDetail.publisher?.name}
           </Link>
         </span>
-        {
-          bookDetail.series && (
-            <span>
-              Series:{" "}
-              <Link
-                key={bookDetail.series?.id}
-                href={`/series/${bookDetail.series?.id}`}
-                className="text-primary hover:underline font-medium"
-              >
-                {bookDetail.series?.name}
-              </Link>
-            </span>
-          )
-        }
+        {bookDetail.series && (
+          <span>
+            Series:{" "}
+            <Link
+              key={bookDetail.series?.id}
+              href={`/series/${bookDetail.series?.id}`}
+              className="text-primary hover:underline font-medium"
+            >
+              {bookDetail.series?.name}
+            </Link>
+          </span>
+        )}
       </div>
-
-
 
       {/* Price Block */}
       <div className="bg-accent/50 rounded-xl p-4 space-y-2">
@@ -117,9 +108,7 @@ export function ProductInfo({
           <span className="text-3xl font-bold text-primary">
             {formatPrice(Number(selectedVariant?.price || 0) || 0)}
           </span>
-
         </div>
-
       </div>
 
       {/* Variant Selector */}
@@ -137,7 +126,7 @@ export function ProductInfo({
                   selectedVariant.id === variant.id
                     ? "border-primary bg-primary/10 text-primary"
                     : "border-border hover:border-primary/50 text-foreground",
-                  variant.stockQuantity === 0 && "opacity-50 cursor-not-allowed"
+                  variant.stockQuantity === 0 && "opacity-50 cursor-not-allowed",
                 )}
               >
                 {variant.variantName}
@@ -172,13 +161,13 @@ export function ProductInfo({
         </div>
 
         {/* Add to Cart */}
-        <Button variant="outline" className="flex-1 gap-2" size={'lg'} onClick={handleAddToCart}>
+        <Button variant="outline" className="flex-1 gap-2" size={"lg"} onClick={handleAddToCart}>
           <ShoppingCart className="w-4 h-4" />
           Thêm vào giỏ
         </Button>
 
         {/* Buy Now */}
-        <Button className="flex-1 gap-2" size={'lg'}>
+        <Button className="flex-1 gap-2" size={"lg"}>
           <Zap className="w-4 h-4" />
           Mua ngay
         </Button>
@@ -193,15 +182,13 @@ export function ProductInfo({
                   key={detail.name}
                   className={cn(
                     "border-b border-border last:border-b-0",
-                    index % 2 === 0 ? "bg-muted/30" : "bg-background"
+                    index % 2 === 0 ? "bg-muted/30" : "bg-background",
                   )}
                 >
                   <td className="px-4 py-3 text-sm font-medium text-muted-foreground w-1/3">
                     {detail.name}
                   </td>
-                  <td className="px-4 py-3 text-sm text-foreground">
-                    {detail.value}
-                  </td>
+                  <td className="px-4 py-3 text-sm text-foreground">{detail.value}</td>
                 </tr>
               ))}
             </tbody>
