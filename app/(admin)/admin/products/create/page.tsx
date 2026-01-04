@@ -8,7 +8,7 @@ import { ArrowLeft, Save } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { AutocompleteSelect } from "@/components/ui/autocomplete";
-import z from "zod";
+import { createFromSchema, type CreateFromSchema } from "../schema";
 import { client, orpcQuery } from "@/lib/orpc.client";
 import { MultiSelectOption, MultiSelectPills } from "@/components/ui/select-pills";
 import { useForm } from "react-hook-form";
@@ -25,21 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const createFromSchema = z.object({
-  title: z.string().min(1, { message: "Tên sản phẩm là bắt buộc" }),
-  description: z.string().optional(),
-  isbn10: z.string().optional(),
-  isbn13: z.string().optional(),
-  publisherId: z.string().min(1, { message: "Nhà xuất bản là bắt buộc" }),
-  publicationDate: z.string().optional(),
-  pageCount: z.number().optional(),
-  displayPrice: z.number().min(1, { message: "Giá gốc là bắt buộc" }),
-  thumbnailUrl: z.string().min(1, { message: "Ảnh là bắt buộc" }),
-  seriesId: z.string().optional(),
-  categoryId: z.string().min(1, { message: "Danh mục là bắt buộc" }),
-  authors: z.array(z.string()).min(1, { message: "Tác giả là bắt buộc" }),
-});
-type CreateFromSchema = z.infer<typeof createFromSchema>;
+
 
 const AdminProductCreate = () => {
   const router = useRouter();

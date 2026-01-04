@@ -105,16 +105,16 @@ const listBooks = os
             ],
           }
         : {}),
-      variants: {
-        some: {
-          ...(input.withInActive ? {} : { isActive: true }),
-          ...(input.inStockOnly ? { stockQuantity: { gt: 0 } } : {}),
-          ...(input.minPrice != null ? { price: { gte: input.minPrice } } : {}),
-          ...(input.maxPrice != null ? { price: { lte: input.maxPrice } } : {}),
-        },
-      },
+      // variants: {
+      //   some: {
+      //     ...(input.withInActive ? {} : { isActive: true }),
+      //     ...(input.inStockOnly ? { stockQuantity: { gt: 0 } } : {}),
+      //     ...(input.minPrice != null ? { price: { gte: input.minPrice } } : {}),
+      //     ...(input.maxPrice != null ? { price: { lte: input.maxPrice } } : {}),
+      //   },
+      // },
     };
-
+    console.log(where,orderBy);
     const [items, total] = await prisma.$transaction([
       prisma.product.findMany({
         where,
@@ -125,11 +125,7 @@ const listBooks = os
           category: true,
           publisher: true,
           images: true,
-          // show price range quickly
-          variants: {
-            where: { isActive: true },
-            select: { price: true, stockQuantity: true },
-          },
+          
         },
       }),
       prisma.product.count({ where }),

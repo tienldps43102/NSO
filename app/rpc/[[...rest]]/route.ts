@@ -12,9 +12,7 @@ const handler = new RPCHandler(router, {
 });
 
 async function handleRequest(request: Request) {
-  console.log("request", request);
   const session = await auth.api.getSession({ headers: request.headers });
-  console.log("session", session);
   const { response } = await handler.handle(request, {
     prefix: "/rpc",
     context: {

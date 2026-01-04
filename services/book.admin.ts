@@ -149,7 +149,9 @@ const activateBook = orpcWithAuth
       include: { variants: true },
     });
     if (!book) throw new Error("Book not found");
-    if (book.variants.length === 0) throw new Error("Book must have at least one variant");
+    if (book.variants.length === 0) {
+        return { success: false, message: "Sách phải có ít nhất một phiên bản" };
+    }
     await prisma.product.update({
       where: { id: input.id },
       data: {

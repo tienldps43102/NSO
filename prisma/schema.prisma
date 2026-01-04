@@ -72,7 +72,7 @@ model Product {
   description     String?
   isbn13          String?   @unique @db.VarChar(20)
   publisherId     String?   @map("publisher_id") @db.VarChar(36)
-  publicationDate DateTime? @map("publication_date") @db.Date
+  publicationDate String? @map("publication_date") @db.VarChar(36)
   pageCount       Int?      @map("page_count")
   displayPrice    BigInt    @map("display_price") @db.BigInt
   thumbnailUrl    String?   @map("thumbnail_url")

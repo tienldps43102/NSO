@@ -19,7 +19,7 @@ export type onSearchFn = (query: string, limit: number) => Promise<MultiSelectOp
 
 interface MultiSelectPillsProps {
   options?: MultiSelectOption[];
-  defaultValue?: string[];
+  defaultValue?: MultiSelectOption[];
   placeholder?: string;
   onChange?: (values: string[]) => void;
   className?: string;
@@ -36,16 +36,13 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
   onSearch,
   debounceMs = 300,
 }) => {
-  const [selected, setSelected] = useState<string[]>(defaultValue);
+  const [selected, setSelected] = useState<MultiSelectOption[]>(defaultValue);
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState<MultiSelectOption[]>(options);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedOptionsMap, setSelectedOptionsMap] = useState<Map<string, MultiSelectOption>>(
-    new Map(
-      options.filter((opt) => defaultValue.includes(opt.value)).map((opt) => [opt.value, opt]),
-    ),
-  );
+ 
+  
 
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -75,7 +72,7 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
 
     // If no search query, show default options
     if (!search.trim()) {
-      const filtered = currentOptions.filter((opt) => !selected.includes(opt.value));
+      const filtered = currentOptions.filter((opt) => !selected.includes(opt));
       setSearchResults(filtered);
       setIsLoading(false);
       return;
@@ -111,46 +108,36 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
       // Fallback: client-side filter if no onSearch provided
       const filtered = currentOptions.filter(
         (opt) =>
-          opt.label.toLowerCase().includes(search.toLowerCase()) && !selected.includes(opt.value),
+          opt.label.toLowerCase().includes(search.toLowerCase()) && !selected.includes(opt),
       );
       setSearchResults(filtered);
     }
   }, [search, selected, debounceMs]);
 
   const handleSelect = (option: MultiSelectOption) => {
-    const newSelected = [...selected, option.value];
+    const newSelected = [...selected, option];
     setSelected(newSelected);
 
-    // Store the full option data
-    setSelectedOptionsMap((prev) => new Map(prev).set(option.value, option));
 
-    onChange?.(newSelected);
+    onChange?.(newSelected.map((opt) => opt.value));
     setSearch("");
   };
 
   const handleRemove = (value: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    const newSelected = selected.filter((item) => item !== value);
+    const newSelected = selected.filter((item) => item.value !== value);
     setSelected(newSelected);
 
-    setSelectedOptionsMap((prev) => {
-      const newMap = new Map(prev);
-      newMap.delete(value);
-      return newMap;
-    });
-
-    onChange?.(newSelected);
+    onChange?.(newSelected.map((opt) => opt.value));
   };
-
-  const selectedOptions = Array.from(selectedOptionsMap.values());
 
   return (
     <div ref={containerRef} className={cn("w-full", className)}>
       <div className="space-y-4">
         {/* Selected Pills */}
-        {selectedOptions.length > 0 && (
+        {selected.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {selectedOptions.map((option) => (
+            {selected.map((option) => (
               <Badge
                 key={option.value}
                 variant="secondary"
@@ -202,7 +189,7 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
                       >
                         <div className="flex items-center justify-between w-full">
                           <span>{option.label}</span>
-                          {selected.includes(option.value) && <Check className="h-4 w-4" />}
+                          {selected.includes(option) && <Check className="h-4 w-4" />}
                         </div>
                       </CommandItem>
                     ))}
