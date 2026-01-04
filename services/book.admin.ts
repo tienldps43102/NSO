@@ -261,7 +261,6 @@ const bulkUpdateAttributes = orpcWithAuth
     }
     return { success: true, message: "Attributes updated successfully" };
   });
-
 const addImage = orpcWithAuth
   .route({
     method: "POST",
@@ -323,6 +322,44 @@ const deleteImage = orpcWithAuth
   .handler(async ({ input }) => {
     const book = await prisma.productImage.delete({ where: { id: input.imageId } });
     return book;
+  });
+
+
+
+const bulkUpdateImages = orpcWithAuth
+  .route({
+    method: "PUT",
+    path: "/books/:id/images/bulk",
+  })
+  .input(
+    z.object({
+      id: z.string(),
+      newImages: z.array(z.object({ image: z.string(), variantId: z.string().optional() })),
+      removedImages: z.array(z.string()),
+      updatedImages: z.array(z.object({ id: z.string(), image: z.string().optional(), variantId: z.string().optional() })),
+    }),
+  )
+  .handler(async ({ input }) => {
+    // add new images
+    const newImages = await prisma.productImage.createMany({
+      data: input.newImages.map((image) => ({
+        url: image.image,
+        variantId: image.variantId,
+        productId: input.id,
+      })),
+    });
+    // update images
+    for (const image of input.updatedImages) {
+      await prisma.productImage.update({
+        where: { id: image.id },
+        data: { url: image.image, variantId: image.variantId },
+      });
+    }
+    // delete images
+    for (const image of input.removedImages) {
+      await prisma.productImage.delete({ where: { id: image } });
+    }
+    return { success: true, message: "Images updated successfully" };
   });
 import { randomUUID } from "crypto";
 import { nowVN } from "@/lib/day";
@@ -443,4 +480,5 @@ export const bookAdminRoutes = {
   updateVariant,
   addStock,
   toggleActiveVariant,
+  bulkUpdateImages,
 };
