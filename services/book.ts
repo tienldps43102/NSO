@@ -253,6 +253,21 @@ const getVariantById = os
     return variant;
   });
 
+const getVariantOptionsByProductId = os
+  .route({
+    method: "GET",
+    path: "/books/:id/variants/options",
+  })
+  .input(z.object({ id: z.string() }))
+  .handler(async ({ input }) => {
+    const variants = await prisma.productVariant.findMany({
+      where: { productId: input.id, isActive: true },
+    });
+    return variants.map((variant) => ({
+      id: variant.id,
+      name: variant.variantName,
+    }));
+  });
 //cud book
 
 export const bookRoutes = os.router({
@@ -262,4 +277,5 @@ export const bookRoutes = os.router({
   getRelatedBooks,
   getBookBySeriesId,
   getVariantById,
+  getVariantOptionsByProductId,
 });

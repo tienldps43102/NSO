@@ -132,9 +132,9 @@ const AdminProductCreate = () => {
 
   const { mutateAsync: createBook } = useMutation(
     orpcQuery.bookAdminRoutes.createBook.mutationOptions({
-      onSuccess: () => {
+      onSuccess: (data) => {
         toast.success("Tạo sản phẩm thành công");
-        router.push("/admin/products");
+        router.push(`/admin/products/${data.id}/edit`);
       },
       onError: (error: Error) => {
         toast.error(error.message);
@@ -267,11 +267,12 @@ const AdminProductCreate = () => {
                     <FormLabel>Tác giả *</FormLabel>
                     <FormControl>
                       <MultiSelectPills
-                        defaultValue={field.value}
+                        defaultValue={[]}
                         placeholder="Tìm kiếm tác giả"
                         onChange={field.onChange}
                         onSearch={searchAuthor}
                         debounceMs={300}
+                        
                       />
                     </FormControl>
                     <FormMessage />

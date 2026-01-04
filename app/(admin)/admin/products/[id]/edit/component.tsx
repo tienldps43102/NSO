@@ -39,7 +39,7 @@ interface ProductAttribute {
 interface ProductImage {
   id: string;
   url: string;
-  alt: string;
+  variantId?: string|null|undefined;
 }
 
 export default function EditProductPage({ productData }: { productData: Product }) {
@@ -75,7 +75,7 @@ export default function EditProductPage({ productData }: { productData: Product 
 
   // Product Images State
   const initialImages: ProductImage[] =
-    productData?.images.map((img) => ({ id: img.id, url: img.url, alt: "" })) || [];
+    productData?.images.map((img) => ({ id: img.id, url: img.url, variantId: img.variantId })) || [];
 
   const startFakeProgress = (fileName: string) => {
     let progress = 0;
@@ -551,7 +551,7 @@ export default function EditProductPage({ productData }: { productData: Product 
 
           {/* Media Tab */}
           <TabsContent value="media" className="space-y-6">
-            <ImagesTab initialImages={initialImages} />
+            <ImagesTab initialImages={initialImages} productId={productData.id} />
           </TabsContent>
         </Tabs>
       </form>
