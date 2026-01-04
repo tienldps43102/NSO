@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2, Save, RotateCcw } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface ProductAttribute {
   id: string;
@@ -15,9 +17,10 @@ interface ProductAttribute {
 
 interface AttributesTabProps {
   initialAttributes?: ProductAttribute[];
+  productId: string;
 }
 
-export function AttributesTab({ initialAttributes = [] }: AttributesTabProps) {
+export function AttributesTab({ initialAttributes = [], productId }: AttributesTabProps) {
   const [attributes, setAttributes] = useState<ProductAttribute[]>(
     initialAttributes.length > 0 ? initialAttributes : [{ id: "1", key: "", value: "" }]
   );
@@ -77,15 +80,27 @@ export function AttributesTab({ initialAttributes = [] }: AttributesTabProps) {
       );
     }
   };
+  const router = useRouter();
   
-  const newAttributesMutation = useMutation(orpcQuery.bookAdminRoutes.addAttribute.mutationOptions());
-  const updateAttributesMutation = useMutation(orpcQuery.bookAdminRoutes.updateAttribute.mutationOptions());
-  const deleteAttributesMutation = useMutation(orpcQuery.bookAdminRoutes.deleteAttribute.mutationOptions());
+  const bulkUpdateAttributesMutation = useMutation(orpcQuery.bookAdminRoutes.bulkUpdateAttributes.mutationOptions(
+    {
+      onSuccess: () => {
+        toast.success("Cập nhật thuộc tính thành công");
+        router.refresh()
+      },
+      onError: (error: Error) => {
+        toast.error(error.message);
+      },
+    }
+  ));
   const handleSave = () => {
-    // console.log("=== ATTRIBUTES SAVE ===");
-    // console.log("Removed Attributes:", removedAttributes);
-    // console.log("New Attributes:", newAttributes);
-    // console.log("Updated Attributes:", Array.from(updatedAttributes.values()));
+    bulkUpdateAttributesMutation.mutate({
+      id: productId,
+      newAttributes: newAttributes.map((attr) => ({ name: attr.key, value: attr.value })),
+      removedAttributes: removedAttributes,
+      updatedAttributes: Array.from(updatedAttributes.values()).map((attr) => ({ id: attr.id, name: attr.key, value: attr.value })),
+    });
+    
   };
 
   const handleReset = () => {

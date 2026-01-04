@@ -546,7 +546,7 @@ export default function EditProductPage({ productData }: { productData: Product 
 
           {/* Attributes Tab */}
           <TabsContent value="attributes" className="space-y-6">
-            <AttributesTab initialAttributes={initialAttributes} />
+            <AttributesTab initialAttributes={initialAttributes} productId={productData.id} />
           </TabsContent>
 
           {/* Media Tab */}
