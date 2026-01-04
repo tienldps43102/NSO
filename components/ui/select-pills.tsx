@@ -8,6 +8,7 @@ export interface MultiSelectOption {
   value: string;
   label: string;
 }
+export type onSearchFn = (query: string,limit: number) => Promise<MultiSelectOption[]>;
 
 interface MultiSelectPillsProps {
   options?: MultiSelectOption[];
@@ -15,7 +16,7 @@ interface MultiSelectPillsProps {
   placeholder?: string;
   onChange?: (values: string[]) => void;
   className?: string;
-  onSearch?: (query: string) => Promise<MultiSelectOption[]>;
+  onSearch?: onSearchFn;
   debounceMs?: number;
 }
 
@@ -82,7 +83,7 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
 
       debounceTimerRef.current = setTimeout(async () => {
         try {
-          const results = await currentOnSearch(search);
+          const results = await currentOnSearch(search,10);
           setSearchResults(results);
         } catch (error) {
           console.error('Search error:', error);

@@ -1,5 +1,6 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useCallback,
+useState, useMemo, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -36,7 +37,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
 import { formatPrice } from "@/lib/utils";
 import Image from "next/image";
@@ -46,6 +47,8 @@ import {
   flexRender,
   type ColumnDef,
 } from "@tanstack/react-table";
+import { onSuccess } from "@orpc/client";
+import { toast } from "sonner";
 
 type ListBooksResponse = Outputs['bookRoutes']['listBooks'];
 type BookItem = ListBooksResponse['items'][number];
@@ -75,7 +78,7 @@ const AdminProducts = () => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { data, isLoading } = useQuery<ListBooksResponse>(
+  const { data, isLoading,refetch } = useQuery<ListBooksResponse>(
     orpcQuery.bookRoutes.listBooks.queryOptions({
       input: {
         page,
@@ -86,13 +89,29 @@ const AdminProducts = () => {
       },
     })
   );
-
-  // Filter by status client-side since API doesn't have this filter
-  const filteredItems = useMemo(() => {
-    if (!data?.items) return [];
-    if (statusFilter === undefined) return data.items;
-    return data.items.filter((item: BookItem) => item.isActive === statusFilter);
-  }, [data, statusFilter]);
+  const mutateActivateBook = useMutation(orpcQuery.bookAdminRoutes.activateBook.mutationOptions({
+    onSuccess:(data)=>{
+      refetch()
+      toast.info("Thành công")
+ }
+  }))
+  const mutateDeactivateBook = useMutation(orpcQuery.bookAdminRoutes.deactivateBook.mutationOptions({
+    onSuccess:(data)=>{
+      refetch()
+      toast.info("Thành công")
+ }
+  }))
+ 
+  const toggleActiveBook = useCallback((id: string, isActive: boolean) => {
+    console.log(id, isActive)
+    if(isActive){
+      mutateDeactivateBook.mutate({id})
+    }else{
+      mutateActivateBook.mutate({id})
+    }
+  }, [mutateDeactivateBook, mutateActivateBook])
+  // Filter by status client-side since 
+  // API doesn't have this filter
 
 
   // Define columns
@@ -159,7 +178,8 @@ const AdminProducts = () => {
       {
         id: "actions",
         header: "",
-        cell: ({ row }) => (
+        cell: ({ row }) =>{ 
+          return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="h-8 w-8">
@@ -174,7 +194,7 @@ const AdminProducts = () => {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => toggleActiveBook(row.original.id, row.original.isActive)}>
                 {row.original.isActive ? (
                   <>
                     <PowerOff className="mr-2 h-4 w-4" />
@@ -189,14 +209,15 @@ const AdminProducts = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        ),
+        )},
       },
     ],
-    []
+    [toggleActiveBook]
   );
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
-    data: filteredItems,
+    data: data?.items ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
@@ -321,7 +342,7 @@ const AdminProducts = () => {
     {/* Pagination */}
     <div className="flex items-center justify-between">
       <div className="text-sm text-muted-foreground">
-        Hiển thị {filteredItems.length} / {data?.pagination.total ?? 0} sản phẩm
+        Hiển thị {data?.items.length} / {data?.pagination.total ?? 0} sản phẩm
       </div>
       <div className="flex items-center gap-2">
         <Button

@@ -10,6 +10,7 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
+    "@ai-sdk/openai-compatible": "^2.0.2",
     "@hookform/resolvers": "^5.2.2",
     "@orpc/client": "^1.13.1",
     "@orpc/openapi": "^1.13.1",
@@ -48,6 +49,7 @@
     "@tanstack/react-table": "^8.21.3",
     "@types/pg": "^8.16.0",
     "@vercel/blob": "^2.0.0",
+    "ai": "^6.0.5",
     "better-auth": "^1.4.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
