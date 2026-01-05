@@ -14,7 +14,7 @@ import { orpc } from "./orpc/base";
 import { fileRoutes } from "@/services/file";
 import { authRoutes } from "@/services/auth";
 import { addressRoutes } from "@/services/address";
-
+import analyticsRoutes from "@/services/analytics";
 export const securedProc = os
   .$context<{ headers: Headers; session?: Session | null }>()
   .handler(async ({ context }) => {
@@ -42,4 +42,5 @@ export const router = {
   fileRoutes: orpc.tag("file").router(fileRoutes),
   authRoutes: orpc.tag("auth").router(authRoutes),
   addressRoutes: orpc.tag("address").router(addressRoutes),
+  analyticsRoutes: orpc.tag("analytics").router(analyticsRoutes),
 };
