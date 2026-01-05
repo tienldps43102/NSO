@@ -2,10 +2,10 @@ import { prisma } from "@/lib/db";
 import z from "zod";
 import { orpcWithAuth } from "@/lib/orpc/base";
 
-const getTotalRevenue = orpcWithAuth
+const getOverviewStats = orpcWithAuth
   .route({
     method: "GET",
-    path: "/analytics/revenue",
+    path: "/analytics/overview",
   })
   .input(
     z.object({
@@ -14,13 +14,22 @@ const getTotalRevenue = orpcWithAuth
     }),
   )
   .handler(async ({ input }) => {
-    const revenue = await prisma.order.aggregate({
-      where: { status: "COMPLETED", createdAt: { gte: input.startDate, lte: input.endDate } },
-      _sum: { totalAmount: true },
-      _count: true,
-    });
+    const [revenue, productCount] = await Promise.all([
+      prisma.order.aggregate({
+        where: { status: "DELIVERED", createdAt: { gte: input.startDate, lte: input.endDate } },
+        _sum: { totalAmount: true },
+        _count: true,
+      }),
+      prisma.product.count({
+        where: { isActive: true },
+      }),
+    ]);
 
-    return revenue;
+    return {
+      totalRevenue: revenue._sum.totalAmount ?? BigInt(0),
+      totalOrders: revenue._count,
+      totalProducts: productCount,
+    };
   });
 
 const getMonthlyRevenue = orpcWithAuth
@@ -30,29 +39,40 @@ const getMonthlyRevenue = orpcWithAuth
   })
   .input(
     z.object({
-      startDate: z.date(),
-      endDate: z.date(),
+      year: z.number(),
     }),
   )
-
   .handler(async ({ input }) => {
-    const monthlyRevenue = await prisma.order.groupBy({
-      by: ["createdAt"],
-      where: { status: "COMPLETED", createdAt: { gte: input.startDate, lte: input.endDate } },
-      _sum: { totalAmount: true },
-      _count: true,
-    });
-    return monthlyRevenue;
-  });
-//   Top sản phẩm bán chạy:
+    const startDate = new Date(input.year, 0, 1);
+    const endDate = new Date(input.year, 11, 31, 23, 59, 59);
 
-//   typescriptawait prisma.orderItem.groupBy({
-//     by: ['variantId'],
-//     _sum: { quantity: true, lineTotal: true },
-//     orderBy: { _sum: { quantity: 'desc' } },
-//     take: 8
-//   })
-//   // Sau đó join với ProductVariant và Product để lấy thông tin
+    const orders = await prisma.order.findMany({
+      where: {
+        status: "DELIVERED",
+        createdAt: { gte: startDate, lte: endDate },
+      },
+      select: {
+        createdAt: true,
+        totalAmount: true,
+      },
+    });
+
+    // Group by month
+    const monthlyData = Array.from({ length: 12 }, (_, i) => ({
+      month: i + 1,
+      revenue: BigInt(0),
+      orders: 0,
+    }));
+
+    orders.forEach((order) => {
+      const month = order.createdAt.getMonth();
+      monthlyData[month].revenue += order.totalAmount;
+      monthlyData[month].orders += 1;
+    });
+
+    return monthlyData;
+  });
+
 const getTopSellingProducts = orpcWithAuth
   .route({
     method: "GET",
@@ -62,39 +82,30 @@ const getTopSellingProducts = orpcWithAuth
     z.object({
       startDate: z.date(),
       endDate: z.date(),
+      limit: z.number().optional().default(8),
     }),
-  )
-  .output(
-    z.array(
-      z.object({
-        product: z.object({
-          id: z.string(),
-          title: z.string(),
-          thumbnailUrl: z.string().nullable(),
-        }),
-        sold: z.number(),
-      }),
-    ),
   )
   .handler(async ({ input }) => {
     const topSellingProducts = await prisma.orderItem.groupBy({
       by: ["variantId"],
       _sum: { quantity: true, lineTotal: true },
       orderBy: { _sum: { quantity: "desc" } },
-      take: 8,
+      take: input.limit,
       where: {
         order: {
-          status: "COMPLETED",
+          status: "DELIVERED",
           createdAt: { gte: input.startDate, lte: input.endDate },
         },
       },
     });
+
     const products = await prisma.productVariant.findMany({
       where: { id: { in: topSellingProducts.map((product) => product.variantId) } },
       include: {
         product: true,
       },
     });
+
     return topSellingProducts.map((product) => ({
       product: {
         id: product.variantId,
@@ -103,13 +114,75 @@ const getTopSellingProducts = orpcWithAuth
           products.find((p) => p.id === product.variantId)?.product.thumbnailUrl ?? null,
       },
       sold: product._sum.quantity ?? 0,
+      revenue: product._sum.lineTotal ?? BigInt(0),
+    }));
+  });
+
+const getRevenueByCategory = orpcWithAuth
+  .route({
+    method: "GET",
+    path: "/analytics/revenue-by-category",
+  })
+  .input(
+    z.object({
+      startDate: z.date(),
+      endDate: z.date(),
+    }),
+  )
+  .handler(async ({ input }) => {
+    const orders = await prisma.orderItem.findMany({
+      where: {
+        order: {
+          status: "DELIVERED",
+          createdAt: { gte: input.startDate, lte: input.endDate },
+        },
+      },
+      include: {
+        variant: {
+          include: {
+            product: {
+              include: {
+                category: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    // Group by category
+    const categoryMap = new Map<string, { name: string; revenue: bigint; count: number }>();
+
+    orders.forEach((item) => {
+      const categoryId = item.variant.product.category.id;
+      const categoryName = item.variant.product.category.name;
+
+      if (!categoryMap.has(categoryId)) {
+        categoryMap.set(categoryId, {
+          name: categoryName,
+          revenue: BigInt(0),
+          count: 0,
+        });
+      }
+
+      const category = categoryMap.get(categoryId)!;
+      category.revenue += item.lineTotal;
+      category.count += item.quantity;
+    });
+
+    return Array.from(categoryMap.entries()).map(([id, data]) => ({
+      id,
+      name: data.name,
+      revenue: data.revenue,
+      count: data.count,
     }));
   });
 
 const analyticsRoutes = {
-  getTotalRevenue,
+  getOverviewStats,
   getMonthlyRevenue,
   getTopSellingProducts,
+  getRevenueByCategory,
 };
 
 export default analyticsRoutes;
