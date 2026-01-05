@@ -5,6 +5,7 @@ import { computeSkipTake, paginationInput } from "./shared";
 import { createPayment } from "@/lib/payment";
 import { nowVN } from "@/lib/day";
 import { Prisma } from "@/lib/generated/prisma/client";
+import { OrderOrderByWithRelationInput } from "@/lib/generated/prisma/models";
 
 function generateOrderCode(createDate: Date): string {
   // DH-DDMMYYYY-XXXX(random 4 digits)
@@ -267,53 +268,49 @@ const getAllOrders = orpcWithAuth
   )
   .handler(async ({ input }) => {
     const { skip, take } = computeSkipTake(input.page, input.limit);
+
     let listUserIds: string[] = [];
     if (input.q) {
       const users = await prisma.user.findMany({
-        where: {
-          name: { contains: input.q, mode: "insensitive" },
-        },
-        select: {
-          id: true,
-        },
+        where: { name: { contains: input.q, mode: "insensitive" } },
+        select: { id: true },
       });
-      listUserIds = users.map((user) => user.id);
+      listUserIds = users.map(u => u.id);
     }
-    let sortBy: Prisma.OrderOrderByWithRelationInput = {};
-    if (input.sort === "newest") {
-      sortBy = { createdAt: "desc" };
-    } else if (input.sort === "oldest") {
-      sortBy = { createdAt: "asc" };
-    } else if (input.sort === "totalAmount_asc") {
-      sortBy = { totalAmount: "asc" };
-    } else if (input.sort === "totalAmount_desc") {
-      sortBy = { totalAmount: "desc" };
-    }
+    
+    const orderBy =
+      input.sort === "newest" ? { createdAt: "desc" } :
+      input.sort === "oldest" ? { createdAt: "asc" } :
+      input.sort === "totalAmount_asc" ? { totalAmount: "asc" } :
+      input.sort === "totalAmount_desc" ? { totalAmount: "desc" } :
+      undefined; // hoặc default { createdAt: "desc" }
+    
+    const createdAt =
+      input.dateRange
+        ? {
+            ...(input.dateRange.startDate ? { gte: input.dateRange.startDate } : {}),
+            ...(input.dateRange.endDate ? { lte: input.dateRange.endDate } : {}),
+          }
+        : undefined;
+    
+    const where: Prisma.OrderWhereInput = {
+      ...(input.status ? { status: input.status } : {}),
+      ...(createdAt && Object.keys(createdAt).length ? { createdAt } : {}),
+      ...(input.q
+        ? {
+            OR: [
+              { orderCode: { contains: input.q, mode: "insensitive" } },
+              ...(listUserIds.length ? [{ userId: { in: listUserIds } }] : []),
+            ],
+          }
+        : {}),
+    };
+    
     const orders = await prisma.order.findMany({
       skip,
       take,
-      orderBy: sortBy,
-      // name of user, order code
-      where: {
-        AND: [
-          {
-            OR: [
-              {
-                orderCode: { contains: input.q, mode: "insensitive" },
-              },
-              {
-                userId: { in: listUserIds },
-              },
-            ],
-          },
-          {
-            ...(input.status ? { status: input.status } : {}),
-            ...(input.dateRange
-              ? { createdAt: { gte: input.dateRange.startDate, lte: input.dateRange.endDate } }
-              : {}),
-          },
-        ],
-      },
+      orderBy: orderBy as OrderOrderByWithRelationInput,
+      where,
     });
     return orders;
   });
