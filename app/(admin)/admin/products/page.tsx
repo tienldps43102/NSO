@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import {
-Package,
+  Package,
   Plus,
   Search,
   MoreHorizontal,
@@ -89,7 +89,7 @@ const AdminProducts = () => {
     orpcQuery.bookAdminRoutes.activateBook.mutationOptions({
       onSuccess: (data) => {
         refetch();
-        if(data.success) {
+        if (data.success) {
           toast.success("Kích hoạt sản phẩm thành công");
         } else {
           toast.error(data.message);

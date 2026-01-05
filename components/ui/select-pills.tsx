@@ -41,8 +41,6 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState<MultiSelectOption[]>(options);
   const [isLoading, setIsLoading] = useState(false);
- 
-  
 
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -107,8 +105,7 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
     } else {
       // Fallback: client-side filter if no onSearch provided
       const filtered = currentOptions.filter(
-        (opt) =>
-          opt.label.toLowerCase().includes(search.toLowerCase()) && !selected.includes(opt),
+        (opt) => opt.label.toLowerCase().includes(search.toLowerCase()) && !selected.includes(opt),
       );
       setSearchResults(filtered);
     }
@@ -117,7 +114,6 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
   const handleSelect = (option: MultiSelectOption) => {
     const newSelected = [...selected, option];
     setSelected(newSelected);
-
 
     onChange?.(newSelected.map((opt) => opt.value));
     setSearch("");

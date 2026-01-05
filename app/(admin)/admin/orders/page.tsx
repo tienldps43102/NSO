@@ -50,6 +50,7 @@ import { formatPrice } from "@/lib/utils";
 import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 type Order = {
   id: string;
@@ -66,6 +67,18 @@ type Order = {
   createdAt: Date;
   paymentAt: Date | null;
   addressId: string;
+  user: {
+    name: string;
+    email: string;
+  };
+  address: {
+    id: string;
+    fullName: string;
+    phone: string;
+    detail: string;
+    province: string;
+    ward: string;
+  };
 };
 
 const sortOptions = [
@@ -101,11 +114,25 @@ export default function AdminOrdersPage() {
   const [limit] = useState(20);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"PENDING" | "CONFIRMED" | "SHIPPING" | "DELIVERED" | "CANCELED" | "all">("all");
-  const [paymentStatusFilter, setPaymentStatusFilter] = useState<"PENDING" | "SUCCESS" | "FAILED" | "all">("all");
-  const [sort, setSort] = useState<"newest" | "oldest" | "totalAmount_asc" | "totalAmount_desc">("newest");
+  const [statusFilter, setStatusFilter] = useState<
+    "PENDING" | "CONFIRMED" | "SHIPPING" | "DELIVERED" | "CANCELED" | "all"
+  >("all");
+  const [paymentStatusFilter, setPaymentStatusFilter] = useState<
+    "PENDING" | "SUCCESS" | "FAILED" | "all"
+  >("all");
+  const [sort, setSort] = useState<"newest" | "oldest" | "totalAmount_asc" | "totalAmount_desc">(
+    "newest",
+  );
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
+
+  // Query chi tiết đơn hàng khi mở modal
+  const { data: orderDetail, isLoading: isLoadingDetail } = useQuery({
+    ...orpcQuery.orderRoutes.getOrderById.queryOptions({
+      input: { id: selectedOrder?.id ?? "" },
+    }),
+    enabled: !!selectedOrder?.id && detailsOpen,
+  });
 
   // Debounce search
   useEffect(() => {
@@ -116,8 +143,12 @@ export default function AdminOrdersPage() {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { data: orders, isLoading, refetch } = useQuery(
-    orpcQuery.orderRoutes.getAllOrders.queryOptions({
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery(
+    orpcQuery!.orderRoutes!.getAllOrders!.queryOptions({
       input: {
         page,
         limit,
@@ -155,34 +186,32 @@ export default function AdminOrdersPage() {
 
   const handleStatusChange = useCallback(
     (orderId: string, newStatus: string) => {
-      setStatusMutation.mutate({ id: orderId, status: newStatus as "PENDING" | "CONFIRMED" | "SHIPPING" | "DELIVERED" | "CANCELLED" });
+      setStatusMutation.mutate({
+        id: orderId,
+        status: newStatus as "PENDING" | "CONFIRMED" | "SHIPPING" | "DELIVERED" | "CANCELLED",
+      });
     },
     [setStatusMutation],
   );
 
   const handlePaymentStatusChange = useCallback(
     (orderId: string, newStatus: string) => {
-      updatePaymentStatusMutation.mutate({ id: orderId, status: newStatus as "PENDING" | "SUCCESS" | "FAILED" });
+      updatePaymentStatusMutation.mutate({
+        id: orderId,
+        status: newStatus as "PENDING" | "SUCCESS" | "FAILED",
+      });
     },
     [updatePaymentStatusMutation],
   );
 
   const getStatusBadge = (status: string) => {
     const option = statusOptions.find((s) => s.value === status);
-    return (
-      <Badge className={`${option?.color} text-white`}>
-        {option?.label || status}
-      </Badge>
-    );
+    return <Badge className={`${option?.color} text-white`}>{option?.label || status}</Badge>;
   };
 
   const getPaymentStatusBadge = (status: string) => {
     const option = paymentStatusOptions.find((s) => s.value === status);
-    return (
-      <Badge variant={option?.variant || "secondary"}>
-        {option?.label || status}
-      </Badge>
-    );
+    return <Badge variant={option?.variant || "secondary"}>{option?.label || status}</Badge>;
   };
 
   const columns = useMemo<ColumnDef<Order>[]>(
@@ -191,8 +220,16 @@ export default function AdminOrdersPage() {
         accessorKey: "orderCode",
         header: "Mã đơn",
         cell: ({ row }) => (
-          <div className="font-mono font-semibold text-sm">
-            {row.original.orderCode}
+          <div className="font-mono font-semibold text-sm">{row.original.orderCode}</div>
+        ),
+      },
+      {
+        accessorKey: "user",
+        header: "Khách hàng",
+        cell: ({ row }) => (
+          <div className="text-sm">
+            <div className="font-medium">{row.original.user.name}</div>
+            <div className="text-xs text-muted-foreground">{row.original.user.email}</div>
           </div>
         ),
       },
@@ -227,9 +264,7 @@ export default function AdminOrdersPage() {
         accessorKey: "status",
         header: "Trạng thái",
         cell: ({ row }) => (
-          <div className="flex justify-center">
-            {getStatusBadge(row.original.status)}
-          </div>
+          <div className="flex justify-center">{getStatusBadge(row.original.status)}</div>
         ),
       },
       {
@@ -246,7 +281,7 @@ export default function AdminOrdersPage() {
         header: "",
         cell: ({ row }) => {
           const order = row.original;
-          
+
           // Xác định các actions hợp lệ dựa trên state machine
           const getAvailableStatusActions = () => {
             const status = order.status;
@@ -262,9 +297,7 @@ export default function AdminOrdersPage() {
                   { value: "CANCELLED", label: "Hủy đơn", icon: XCircle },
                 ];
               case "SHIPPING":
-                return [
-                  { value: "DELIVERED", label: "Đã giao hàng", icon: Package },
-                ];
+                return [{ value: "DELIVERED", label: "Đã giao hàng", icon: Package }];
               case "DELIVERED":
               case "CANCELED":
               case "CANCELLED":
@@ -283,9 +316,7 @@ export default function AdminOrdersPage() {
                   { value: "FAILED", label: "Thanh toán thất bại" },
                 ];
               case "FAILED":
-                return [
-                  { value: "SUCCESS", label: "Đã thanh toán" },
-                ];
+                return [{ value: "SUCCESS", label: "Đã thanh toán" }];
               case "SUCCESS":
                 return [];
               default:
@@ -314,9 +345,9 @@ export default function AdminOrdersPage() {
                   <Eye className="mr-2 h-4 w-4" />
                   Xem chi tiết
                 </DropdownMenuItem>
-                
+
                 {hasActions && <DropdownMenuSeparator />}
-                
+
                 {statusActions.length > 0 && (
                   <>
                     <DropdownMenuLabel>Cập nhật đơn hàng</DropdownMenuLabel>
@@ -334,7 +365,7 @@ export default function AdminOrdersPage() {
                     })}
                   </>
                 )}
-                
+
                 {paymentActions.length > 0 && (
                   <>
                     {statusActions.length > 0 && <DropdownMenuSeparator />}
@@ -499,9 +530,7 @@ export default function AdminOrdersPage() {
 
       {/* Pagination */}
       <div className="flex items-center justify-between">
-        <div className="text-sm text-muted-foreground">
-          Hiển thị {filteredData.length} đơn hàng
-        </div>
+        <div className="text-sm text-muted-foreground">Hiển thị {filteredData.length} đơn hàng</div>
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
@@ -527,83 +556,188 @@ export default function AdminOrdersPage() {
 
       {/* Order Details Modal */}
       <Dialog open={detailsOpen} onOpenChange={setDetailsOpen}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Chi tiết đơn hàng</DialogTitle>
-            <DialogDescription>
-              Mã đơn: {selectedOrder?.orderCode}
-            </DialogDescription>
+            <DialogDescription>Mã đơn: {selectedOrder?.orderCode}</DialogDescription>
           </DialogHeader>
-          {selectedOrder && (
-            <div className="space-y-4">
+          {isLoadingDetail ? (
+            <div className="flex justify-center items-center py-8">
+              <div className="text-sm text-muted-foreground">Đang tải...</div>
+            </div>
+          ) : orderDetail ? (
+            <div className="space-y-6">
+              {/* Thông tin khách hàng */}
+              <div className="rounded-lg border p-4 bg-muted/30">
+                <h3 className="text-sm font-semibold mb-3">Thông tin khách hàng</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <div className="text-xs text-muted-foreground">Tên khách hàng</div>
+                    <div className="text-sm font-medium">{orderDetail.user.name}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Email</div>
+                    <div className="text-sm">{orderDetail.user.email}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Địa chỉ giao hàng */}
+              <div className="rounded-lg border p-4 bg-muted/30">
+                <h3 className="text-sm font-semibold mb-3">Địa chỉ giao hàng</h3>
+                <div className="space-y-2">
+                  <div>
+                    <div className="text-xs text-muted-foreground">Người nhận</div>
+                    <div className="text-sm font-medium">{orderDetail.address.fullName}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Số điện thoại</div>
+                    <div className="text-sm">{orderDetail.address.phone}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Địa chỉ</div>
+                    <div className="text-sm">{orderDetail.address.detail}</div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <div className="text-xs text-muted-foreground">Phường/Xã</div>
+                      <div className="text-sm">{orderDetail.address.ward}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-muted-foreground">Tỉnh/Thành phố</div>
+                      <div className="text-sm">{orderDetail.address.province}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Trạng thái đơn hàng */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">Ngày đặt</div>
                   <div className="text-sm">
-                    {dayjs(selectedOrder.createdAt).format("DD/MM/YYYY HH:mm")}
+                    {dayjs(orderDetail.createdAt).format("DD/MM/YYYY HH:mm")}
                   </div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">Trạng thái</div>
-                  <div className="mt-1">{getStatusBadge(selectedOrder.status)}</div>
+                  <div className="mt-1">{getStatusBadge(orderDetail.status)}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">Phương thức thanh toán</div>
-                  <div className="text-sm">
-                    {paymentMethodLabels[selectedOrder.paymentMethod]}
+                  <div className="text-sm font-medium text-muted-foreground">
+                    Phương thức thanh toán
                   </div>
+                  <div className="text-sm">{paymentMethodLabels[orderDetail.paymentMethod]}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">Trạng thái thanh toán</div>
-                  <div className="mt-1">{getPaymentStatusBadge(selectedOrder.paymentStatus)}</div>
+                  <div className="text-sm font-medium text-muted-foreground">
+                    Trạng thái thanh toán
+                  </div>
+                  <div className="mt-1">{getPaymentStatusBadge(orderDetail.paymentStatus)}</div>
                 </div>
               </div>
 
+              {/* Danh sách sản phẩm */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold">Sản phẩm đã đặt</h3>
+                <div className="rounded-lg border">
+                  {orderDetail.orderItems.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className={`flex gap-4 p-3 ${
+                        index !== orderDetail.orderItems.length - 1 ? "border-b" : ""
+                      }`}
+                    >
+                      <div className="shrink-0">
+                        <Image
+                          src={item.variant.product.thumbnailUrl ?? "/placeholder.png"}
+                          alt={item.variant.product.title}
+                          width={60}
+                          height={80}
+                          className="rounded object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium line-clamp-2">
+                          {item.variant.product.title}
+                        </div>
+                        <div className="text-xs text-muted-foreground mt-1">
+                          Phân loại: {item.variant.variantName}
+                        </div>
+                        <div className="flex items-center justify-between mt-2">
+                          <div className="text-sm">
+                            <span className="text-muted-foreground">SL:</span>{" "}
+                            <span className="font-medium">x{item.quantity}</span>
+                          </div>
+                          <div className="text-sm font-semibold">
+                            {formatPrice(Number(item.unitPrice))}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="text-right">
+                          <div className="text-sm font-semibold text-primary">
+                            {formatPrice(Number(item.lineTotal))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Chi tiết giá */}
               <div className="space-y-2">
-                <div className="text-sm font-medium">Chi tiết giá</div>
-                <div className="rounded-lg border p-3 space-y-2">
+                <div className="text-sm font-medium">Tổng thanh toán</div>
+                <div className="rounded-lg border p-3 space-y-2 bg-muted/20">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Tạm tính:</span>
-                    <span>{formatPrice(Number(selectedOrder.subtotalAmount))}</span>
+                    <span>{formatPrice(Number(orderDetail.subtotalAmount))}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Phí vận chuyển:</span>
-                    <span>{formatPrice(Number(selectedOrder.shippingFee))}</span>
+                    <span>{formatPrice(Number(orderDetail.shippingFee))}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Giảm giá:</span>
                     <span className="text-red-500">
-                      -{formatPrice(Number(selectedOrder.discountTotal))}
+                      -{formatPrice(Number(orderDetail.discountTotal))}
                     </span>
                   </div>
-                  <div className="border-t pt-2 flex justify-between font-semibold">
+                  <div className="border-t pt-2 flex justify-between font-semibold text-base">
                     <span>Tổng cộng:</span>
                     <span className="text-primary">
-                      {formatPrice(Number(selectedOrder.totalAmount))}
+                      {formatPrice(Number(orderDetail.totalAmount))}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {selectedOrder.note && (
+              {/* Ghi chú */}
+              {orderDetail.note && (
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground mb-1">Ghi chú</div>
+                  <div className="text-sm font-medium text-muted-foreground mb-2">
+                    Ghi chú đơn hàng
+                  </div>
                   <div className="text-sm rounded-lg border p-3 bg-muted/50">
-                    {selectedOrder.note}
+                    {orderDetail.note}
                   </div>
                 </div>
               )}
 
-              {selectedOrder.paymentAt && (
+              {/* Thời gian thanh toán */}
+              {orderDetail.paymentAt && (
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">Thời gian thanh toán</div>
+                  <div className="text-sm font-medium text-muted-foreground">
+                    Thời gian thanh toán
+                  </div>
                   <div className="text-sm">
-                    {dayjs(selectedOrder.paymentAt).format("DD/MM/YYYY HH:mm")}
+                    {dayjs(orderDetail.paymentAt).format("DD/MM/YYYY HH:mm")}
                   </div>
                 </div>
               )}
             </div>
-          )}
+          ) : null}
         </DialogContent>
       </Dialog>
     </div>

@@ -39,12 +39,12 @@ interface ProductAttribute {
 interface ProductImage {
   id: string;
   url: string;
-  variantId?: string|null|undefined;
+  variantId?: string | null | undefined;
 }
 
 export default function EditProductPage({ productData }: { productData: Product }) {
   const router = useRouter();
-  
+
   // Book Info State
   const form = useForm<CreateFromSchema>({
     resolver: zodResolver(createFromSchema),
@@ -75,7 +75,8 @@ export default function EditProductPage({ productData }: { productData: Product 
 
   // Product Images State
   const initialImages: ProductImage[] =
-    productData?.images.map((img) => ({ id: img.id, url: img.url, variantId: img.variantId })) || [];
+    productData?.images.map((img) => ({ id: img.id, url: img.url, variantId: img.variantId })) ||
+    [];
 
   const startFakeProgress = (fileName: string) => {
     let progress = 0;
@@ -172,14 +173,14 @@ export default function EditProductPage({ productData }: { productData: Product 
   const handleSubmit = async (data: CreateFromSchema) => {
     console.log("=== BASIC INFO SAVE ===");
     console.log(data);
-    
+
     // Calculate which authors to add/remove
     const currentAuthorIds = productData?.authors.map((author) => author.id) || [];
     const newAuthorIds = data.authors;
-    
+
     const addAuthors = newAuthorIds.filter((id) => !currentAuthorIds.includes(id));
     const removeAuthors = currentAuthorIds.filter((id) => !newAuthorIds.includes(id));
-    
+
     await updateBook({
       id: productData.id,
       addAuthors: addAuthors.length > 0 ? addAuthors : undefined,
@@ -355,10 +356,12 @@ export default function EditProductPage({ productData }: { productData: Product 
                         <FormLabel>Tác giả *</FormLabel>
                         <FormControl>
                           <MultiSelectPills
-                            defaultValue={productData?.authors.map((author) => ({
-                              value: author.id,
-                              label: author.name,
-                            })) || []}
+                            defaultValue={
+                              productData?.authors.map((author) => ({
+                                value: author.id,
+                                label: author.name,
+                              })) || []
+                            }
                             placeholder="Tìm kiếm tác giả"
                             onChange={field.onChange}
                             onSearch={searchAuthor}

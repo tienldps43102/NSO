@@ -22,14 +22,14 @@ interface AttributesTabProps {
 
 export function AttributesTab({ initialAttributes = [], productId }: AttributesTabProps) {
   const [attributes, setAttributes] = useState<ProductAttribute[]>(
-    initialAttributes.length > 0 ? initialAttributes : [{ id: "1", key: "", value: "" }]
+    initialAttributes.length > 0 ? initialAttributes : [{ id: "1", key: "", value: "" }],
   );
-  
+
   // Track changes
   const [removedAttributes, setRemovedAttributes] = useState<string[]>([]);
   const [newAttributes, setNewAttributes] = useState<ProductAttribute[]>([]);
   const [updatedAttributes, setUpdatedAttributes] = useState<Map<string, ProductAttribute>>(
-    new Map()
+    new Map(),
   );
 
   const isExistingAttribute = (id: string) => {
@@ -44,7 +44,7 @@ export function AttributesTab({ initialAttributes = [], productId }: AttributesT
 
   const removeAttribute = (attrId: string) => {
     setAttributes(attributes.filter((attr) => attr.id !== attrId));
-    
+
     // If it's an existing attribute, track it for removal
     if (isExistingAttribute(attrId)) {
       setRemovedAttributes([...removedAttributes, attrId]);
@@ -52,7 +52,7 @@ export function AttributesTab({ initialAttributes = [], productId }: AttributesT
       // If it's a new attribute, remove it from newAttributes
       setNewAttributes(newAttributes.filter((attr) => attr.id !== attrId));
     }
-    
+
     // Remove from updated list if it was there
     const newUpdated = new Map(updatedAttributes);
     newUpdated.delete(attrId);
@@ -61,10 +61,10 @@ export function AttributesTab({ initialAttributes = [], productId }: AttributesT
 
   const updateAttribute = (attrId: string, field: "key" | "value", value: string) => {
     const updatedList = attributes.map((attr) =>
-      attr.id === attrId ? { ...attr, [field]: value } : attr
+      attr.id === attrId ? { ...attr, [field]: value } : attr,
     );
     setAttributes(updatedList);
-    
+
     // Track update for existing attributes only
     if (isExistingAttribute(attrId)) {
       const updatedAttr = updatedList.find((attr) => attr.id === attrId);
@@ -76,35 +76,40 @@ export function AttributesTab({ initialAttributes = [], productId }: AttributesT
     } else {
       // Update in newAttributes list
       setNewAttributes(
-        newAttributes.map((attr) => (attr.id === attrId ? { ...attr, [field]: value } : attr))
+        newAttributes.map((attr) => (attr.id === attrId ? { ...attr, [field]: value } : attr)),
       );
     }
   };
   const router = useRouter();
-  
-  const bulkUpdateAttributesMutation = useMutation(orpcQuery.bookAdminRoutes.bulkUpdateAttributes.mutationOptions(
-    {
+
+  const bulkUpdateAttributesMutation = useMutation(
+    orpcQuery.bookAdminRoutes.bulkUpdateAttributes.mutationOptions({
       onSuccess: () => {
         toast.success("Cập nhật thuộc tính thành công");
-        router.refresh()
+        router.refresh();
       },
       onError: (error: Error) => {
         toast.error(error.message);
       },
-    }
-  ));
+    }),
+  );
   const handleSave = () => {
     bulkUpdateAttributesMutation.mutate({
       id: productId,
       newAttributes: newAttributes.map((attr) => ({ name: attr.key, value: attr.value })),
       removedAttributes: removedAttributes,
-      updatedAttributes: Array.from(updatedAttributes.values()).map((attr) => ({ id: attr.id, name: attr.key, value: attr.value })),
+      updatedAttributes: Array.from(updatedAttributes.values()).map((attr) => ({
+        id: attr.id,
+        name: attr.key,
+        value: attr.value,
+      })),
     });
-    
   };
 
   const handleReset = () => {
-    setAttributes(initialAttributes.length > 0 ? initialAttributes : [{ id: "1", key: "", value: "" }]);
+    setAttributes(
+      initialAttributes.length > 0 ? initialAttributes : [{ id: "1", key: "", value: "" }],
+    );
     setRemovedAttributes([]);
     setNewAttributes([]);
     setUpdatedAttributes(new Map());

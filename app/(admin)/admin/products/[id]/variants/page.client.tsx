@@ -25,8 +25,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ArrowLeft,
-Plus, MoreHorizontal, Pencil, Package, Power } from "lucide-react";
+import { ArrowLeft, Plus, MoreHorizontal, Pencil, Package, Power } from "lucide-react";
 import z from "zod";
 import { formatPrice } from "@/lib/utils";
 import { useForm } from "react-hook-form";
@@ -62,12 +61,18 @@ const stockSchema = z.object({
 });
 type StockInput = z.infer<typeof stockSchema>;
 
-export default function AdminVariantsClientPage({ variants, productId }: { variants: Variant[], productId: string }) {
+export default function AdminVariantsClientPage({
+  variants,
+  productId,
+}: {
+  variants: Variant[];
+  productId: string;
+}) {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isStockOpen, setIsStockOpen] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState<Variant | null>(null);
-  
+
   const variantForm = useForm<VariantInput>({
     resolver: zodResolver(variantSchema),
     defaultValues: {
@@ -85,7 +90,7 @@ export default function AdminVariantsClientPage({ variants, productId }: { varia
       stockQuantity: 0,
     },
   });
-const router = useRouter();
+  const router = useRouter();
   const addVariantMutation = useMutation(
     orpcQuery.bookAdminRoutes.addVariant.mutationOptions({
       onSuccess: () => {
@@ -97,7 +102,7 @@ const router = useRouter();
       onError: (error: Error) => {
         toast.error(error.message);
       },
-    })
+    }),
   );
 
   const updateVariantMutation = useMutation(
@@ -111,16 +116,18 @@ const router = useRouter();
       onError: (error: Error) => {
         toast.error(error.message);
       },
-    })
+    }),
   );
-  const addStockMutation = useMutation(orpcQuery.bookAdminRoutes.addStock.mutationOptions({
-    onSuccess: () => {
-      toast.success("Thêm tồn kho thành công");
-    },
-    onError: (error: Error) => {
-      toast.error(error.message);
-    },
-  }));
+  const addStockMutation = useMutation(
+    orpcQuery.bookAdminRoutes.addStock.mutationOptions({
+      onSuccess: () => {
+        toast.success("Thêm tồn kho thành công");
+      },
+      onError: (error: Error) => {
+        toast.error(error.message);
+      },
+    }),
+  );
 
   const handleCreate = (data: VariantInput) => {
     addVariantMutation.mutate({
@@ -161,7 +168,7 @@ const router = useRouter();
       onError: (error: Error) => {
         toast.error(error.message);
       },
-    })
+    }),
   );
 
   const handleToggleActive = (variant: Variant) => {
@@ -211,9 +218,6 @@ const router = useRouter();
     stockForm.reset();
   };
 
-
-
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -222,20 +226,18 @@ const router = useRouter();
           <p className="text-muted-foreground">Quản lý các biến thể sản phẩm (SKU)</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline"  asChild>
+          <Button variant="outline" asChild>
             <Link href={`/admin/products`}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Quay lại
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Quay lại
             </Link>
           </Button>
-        <Button onClick={handleOpenCreateModal}>
-          <Plus className="mr-2 h-4 w-4" />
-          Thêm biến thể
-        </Button>
-          </div>
+          <Button onClick={handleOpenCreateModal}>
+            <Plus className="mr-2 h-4 w-4" />
+            Thêm biến thể
+          </Button>
+        </div>
       </div>
-
-     
 
       <div className="rounded-lg border bg-card">
         <Table>
@@ -517,7 +519,6 @@ const router = useRouter();
           </Form>
         </DialogContent>
       </Dialog>
-
     </div>
   );
 }

@@ -25,8 +25,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-
-
 const AdminProductCreate = () => {
   const router = useRouter();
   // Book Info State
@@ -272,7 +270,6 @@ const AdminProductCreate = () => {
                         onChange={field.onChange}
                         onSearch={searchAuthor}
                         debounceMs={300}
-                        
                       />
                     </FormControl>
                     <FormMessage />
