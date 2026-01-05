@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import {
+Package,
   Plus,
   Search,
   MoreHorizontal,
@@ -186,6 +187,14 @@ const AdminProducts = () => {
                   <Link href={`/admin/products/${row.original.id}/edit`}>
                     <Pencil className="mr-2 h-4 w-4" />
                     Chỉnh sửa
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+
+                <DropdownMenuItem asChild>
+                  <Link href={`/admin/products/${row.original.id}/variants`}>
+                    <Package className="mr-2 h-4 w-4" />
+                    Biến thể
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

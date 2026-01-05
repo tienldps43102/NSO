@@ -8,6 +8,7 @@ declare global {
   type Outputs = InferClientOutputs<typeof client>;
   var $orpcQuery: ReturnType<typeof createTanstackQueryUtils<typeof client>> | undefined;
 }
+export type Outputs = InferClientOutputs<typeof client>;
 
 const link = new RPCLink({
   url: () => {
