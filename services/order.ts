@@ -4,6 +4,7 @@ import z from "zod";
 import { computeSkipTake, paginationInput } from "./shared";
 import { createPayment } from "@/lib/payment";
 import { nowVN } from "@/lib/day";
+import { Prisma } from "@/lib/generated/prisma/client";
 
 function generateOrderCode(createDate: Date): string {
   // DH-DDMMYYYY-XXXX(random 4 digits)
@@ -246,9 +247,112 @@ const getOrderById = orpcWithAuth
     return order;
   });
 
+const getAllOrders = orpcWithAuth
+  .route({
+    method: "GET",
+    path: "/orders",
+  })
+  .input(
+    paginationInput.extend({
+      q: z.string().trim().min(1).optional(), // name of user, order code
+      status: z.enum(["PENDING", "CONFIRMED", "SHIPPING", "DELIVERED", "CANCELED"]).optional(),
+      sort: z.enum(["newest", "oldest", "totalAmount_asc", "totalAmount_desc"]).optional(),
+      dateRange: z
+        .object({
+          startDate: z.date().optional(),
+          endDate: z.date().optional(),
+        })
+        .optional(),
+    }),
+  )
+  .handler(async ({ input }) => {
+    const { skip, take } = computeSkipTake(input.page, input.limit);
+    let listUserIds: string[] = [];
+    if (input.q) {
+      const users = await prisma.user.findMany({
+        where: {
+          name: { contains: input.q, mode: "insensitive" },
+        },
+        select: {
+          id: true,
+        },
+      });
+      listUserIds = users.map((user) => user.id);
+    }
+    let sortBy: Prisma.OrderOrderByWithRelationInput = {};
+    if (input.sort === "newest") {
+      sortBy = { createdAt: "desc" };
+    } else if (input.sort === "oldest") {
+      sortBy = { createdAt: "asc" };
+    } else if (input.sort === "totalAmount_asc") {
+      sortBy = { totalAmount: "asc" };
+    } else if (input.sort === "totalAmount_desc") {
+      sortBy = { totalAmount: "desc" };
+    }
+    const orders = await prisma.order.findMany({
+      skip,
+      take,
+      orderBy: sortBy,
+      // name of user, order code
+      where: {
+        AND: [
+          {
+            OR: [
+              {
+                orderCode: { contains: input.q, mode: "insensitive" },
+              },
+              {
+                userId: { in: listUserIds },
+              },
+            ],
+          },
+          {
+            ...(input.status ? { status: input.status } : {}),
+            ...(input.dateRange
+              ? { createdAt: { gte: input.dateRange.startDate, lte: input.dateRange.endDate } }
+              : {}),
+          },
+        ],
+      },
+    });
+    return orders;
+  });
+
+const setStatus = orpcWithAuth
+  .route({
+    method: "PATCH",
+    path: "/orders/:id/status",
+  })
+  .input(
+    z.object({
+      id: z.string().min(1).max(36),
+      status: z.enum(["PENDING", "CONFIRMED", "SHIPPING", "DELIVERED", "CANCELLED"]),
+    }),
+  )
+  .handler(async ({ input }) => {
+    const order = await prisma.order.update({
+      where: { id: input.id },
+      data: { status: input.status },
+    });
+    return order;
+  });
+
+const updatePaymentStatus = orpcWithAuth
+  .route({
+    method: "PATCH",
+    path: "/orders/:id/payment-status",
+  })
+  .input(z.object({ id: z.string().min(1).max(36), status: z.enum(["PENDING", "SUCCESS", "FAILED"]) }))
+  .handler(async ({ input }) => {
+    const order = await prisma.order.update({ where: { id: input.id }, data: { paymentStatus: input.status } });
+    return order;
+  });
 export const orderRoutes = {
   createOrder,
   cancelOrder,
   getMyOrders,
   getOrderById,
+  getAllOrders,
+  setStatus,
+  updatePaymentStatus,
 };

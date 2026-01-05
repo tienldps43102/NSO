@@ -1,10 +1,11 @@
 export enum OrderStatus {
   PENDING = "PENDING",
+  CONFIRMED = "CONFIRMED",
   SHIPPING = "SHIPPING",
   DELIVERED = "DELIVERED",
   CANCELLED = "CANCELLED",
 }
-export type OrderStatusType = "PENDING" | "SHIPPING" | "DELIVERED" | "CANCELLED";
+export type OrderStatusType = "PENDING" |"CONFIRMED" | "SHIPPING" | "DELIVERED" | "CANCELLED";
 
 export enum PaymentStatus {
   PENDING = "PENDING",

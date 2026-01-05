@@ -114,7 +114,7 @@ const listBooks = os
       //   },
       // },
     };
-    console.log(where,orderBy);
+    console.log(where, orderBy);
     const [items, total] = await prisma.$transaction([
       prisma.product.findMany({
         where,
@@ -125,7 +125,6 @@ const listBooks = os
           category: true,
           publisher: true,
           images: true,
-          
         },
       }),
       prisma.product.count({ where }),
@@ -149,10 +148,10 @@ const getBookById = os
     method: "GET",
     path: "/books/:id",
   })
-  .input(z.object({ id: z.string() }))
+  .input(z.object({ id: z.string(), withInActive: z.boolean().optional().default(false) }))
   .handler(async ({ input }) => {
     const book = await prisma.product.findFirst({
-      where: { id: input.id, isActive: true },
+      where: { id: input.id, ...(input.withInActive ? {} : { isActive: true }) },
       include: {
         category: true,
         publisher: true,
@@ -161,7 +160,7 @@ const getBookById = os
         images: true,
         series: true,
         variants: {
-          where: { isActive: true },
+          where: { ...(input.withInActive ? {} : { isActive: true }) },
           orderBy: { price: "asc" },
         },
       },
@@ -261,12 +260,25 @@ const getVariantOptionsByProductId = os
   .input(z.object({ id: z.string() }))
   .handler(async ({ input }) => {
     const variants = await prisma.productVariant.findMany({
-      where: { productId: input.id, isActive: true },
+      where: { productId: input.id },
     });
     return variants.map((variant) => ({
       id: variant.id,
       name: variant.variantName,
     }));
+  });
+
+const getVariantsByProductId = os
+  .route({
+    method: "GET",
+    path: "/books/:id/variants",
+  })
+  .input(z.object({ id: z.string() }))
+  .handler(async ({ input }) => {
+    const variants = await prisma.productVariant.findMany({
+      where: { productId: input.id },
+    });
+    return variants;
   });
 //cud book
 
@@ -278,4 +290,5 @@ export const bookRoutes = os.router({
   getBookBySeriesId,
   getVariantById,
   getVariantOptionsByProductId,
+  getVariantsByProductId,
 });

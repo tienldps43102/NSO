@@ -158,7 +158,7 @@ const activateBook = orpcWithAuth
         isActive: true,
       },
     });
-    return { message: "Book activated successfully" };
+    return { success: true, message: "Book activated successfully" };
   });
 
 const addAttribute = orpcWithAuth
