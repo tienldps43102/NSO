@@ -324,8 +324,6 @@ const deleteImage = orpcWithAuth
     return book;
   });
 
-
-
 const bulkUpdateImages = orpcWithAuth
   .route({
     method: "PUT",
@@ -336,7 +334,13 @@ const bulkUpdateImages = orpcWithAuth
       id: z.string(),
       newImages: z.array(z.object({ image: z.string(), variantId: z.string().optional() })),
       removedImages: z.array(z.string()),
-      updatedImages: z.array(z.object({ id: z.string(), image: z.string().optional(), variantId: z.string().optional() })),
+      updatedImages: z.array(
+        z.object({
+          id: z.string(),
+          image: z.string().optional(),
+          variantId: z.string().optional(),
+        }),
+      ),
     }),
   )
   .handler(async ({ input }) => {

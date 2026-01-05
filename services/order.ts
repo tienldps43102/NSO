@@ -227,9 +227,8 @@ const getOrderById = orpcWithAuth
     }),
   )
   .handler(async ({ context, input }) => {
-    const userId = context.session.user.id;
     const order = await prisma.order.findFirst({
-      where: { id: input.id, userId },
+      where: { id: input.id },
       include: {
         orderItems: {
           include: {
@@ -238,6 +237,13 @@ const getOrderById = orpcWithAuth
                 product: true,
               },
             },
+          },
+        },
+        address: true,
+        user: {
+          select: {
+            name: true,
+            email: true,
           },
         },
       },
@@ -275,24 +281,27 @@ const getAllOrders = orpcWithAuth
         where: { name: { contains: input.q, mode: "insensitive" } },
         select: { id: true },
       });
-      listUserIds = users.map(u => u.id);
+      listUserIds = users.map((u) => u.id);
     }
-    
+
     const orderBy =
-      input.sort === "newest" ? { createdAt: "desc" } :
-      input.sort === "oldest" ? { createdAt: "asc" } :
-      input.sort === "totalAmount_asc" ? { totalAmount: "asc" } :
-      input.sort === "totalAmount_desc" ? { totalAmount: "desc" } :
-      undefined; // hoặc default { createdAt: "desc" }
-    
-    const createdAt =
-      input.dateRange
-        ? {
-            ...(input.dateRange.startDate ? { gte: input.dateRange.startDate } : {}),
-            ...(input.dateRange.endDate ? { lte: input.dateRange.endDate } : {}),
-          }
-        : undefined;
-    
+      input.sort === "newest"
+        ? { createdAt: "desc" }
+        : input.sort === "oldest"
+          ? { createdAt: "asc" }
+          : input.sort === "totalAmount_asc"
+            ? { totalAmount: "asc" }
+            : input.sort === "totalAmount_desc"
+              ? { totalAmount: "desc" }
+              : undefined; // hoặc default { createdAt: "desc" }
+
+    const createdAt = input.dateRange
+      ? {
+          ...(input.dateRange.startDate ? { gte: input.dateRange.startDate } : {}),
+          ...(input.dateRange.endDate ? { lte: input.dateRange.endDate } : {}),
+        }
+      : undefined;
+
     const where: Prisma.OrderWhereInput = {
       ...(input.status ? { status: input.status } : {}),
       ...(createdAt && Object.keys(createdAt).length ? { createdAt } : {}),
@@ -305,12 +314,21 @@ const getAllOrders = orpcWithAuth
           }
         : {}),
     };
-    
+
     const orders = await prisma.order.findMany({
       skip,
       take,
       orderBy: orderBy as OrderOrderByWithRelationInput,
       where,
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+        address: true,
+      },
     });
     return orders;
   });
@@ -339,9 +357,14 @@ const updatePaymentStatus = orpcWithAuth
     method: "PATCH",
     path: "/orders/:id/payment-status",
   })
-  .input(z.object({ id: z.string().min(1).max(36), status: z.enum(["PENDING", "SUCCESS", "FAILED"]) }))
+  .input(
+    z.object({ id: z.string().min(1).max(36), status: z.enum(["PENDING", "SUCCESS", "FAILED"]) }),
+  )
   .handler(async ({ input }) => {
-    const order = await prisma.order.update({ where: { id: input.id }, data: { paymentStatus: input.status } });
+    const order = await prisma.order.update({
+      where: { id: input.id },
+      data: { paymentStatus: input.status },
+    });
     return order;
   });
 export const orderRoutes = {
