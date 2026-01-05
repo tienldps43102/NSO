@@ -162,6 +162,7 @@ model Order {
   addressId String @map("address_id") @db.VarChar(36)
   address   Address @relation(fields: [addressId], references: [id], onDelete: Restrict)
   orderItems OrderItem[]
+  user      User   @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@index([userId], map: "idx_orders_user")
   @@index([createdAt], map: "idx_orders_created_at")
@@ -212,7 +213,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   role          String    @default("CUSTOMER") // Possible values: ADMIN, CUSTOMER
-
+  orders        Order[]  
   @@unique([email])
   @@map("user")
 }

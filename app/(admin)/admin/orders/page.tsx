@@ -93,6 +93,7 @@ const statusOptions = [
   { value: "CONFIRMED", label: "Đã xác nhận", color: "bg-blue-500" },
   { value: "SHIPPING", label: "Đang giao", color: "bg-purple-500" },
   { value: "DELIVERED", label: "Đã giao", color: "bg-green-500" },
+
   { value: "CANCELED", label: "Đã hủy", color: "bg-red-500" },
   { value: "CANCELLED", label: "Đã hủy", color: "bg-red-500" },
 ] as const;
@@ -299,6 +300,8 @@ export default function AdminOrdersPage() {
               case "SHIPPING":
                 return [{ value: "DELIVERED", label: "Đã giao hàng", icon: Package }];
               case "DELIVERED":
+             
+              case "COMPLETED":
               case "CANCELED":
               case "CANCELLED":
                 return [];
