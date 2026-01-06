@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { bestSellers, type BestSeller } from "@/lib/data";
 
-function RankedCard({ book }: { book: BestSeller }) {
+function RankedCard({ product }: { product: BestSeller }) {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("vi-VN").format(price) + "đ";
   };
@@ -12,15 +12,15 @@ function RankedCard({ book }: { book: BestSeller }) {
     <article className="relative bg-card rounded-2xl shadow-card overflow-hidden group hover:shadow-hover transition-all duration-300">
       {/* Large faint rank number */}
       <span className="absolute -left-2 top-1/2 -translate-y-1/2 text-[120px] font-black text-muted/30 leading-none pointer-events-none select-none">
-        {book.rank}
+        {product.rank}
       </span>
 
       <div className="relative z-10 flex items-center gap-6 p-6">
         {/* Cover */}
         <div className="relative w-28 h-40 shrink-0 rounded-xl overflow-hidden bg-muted shadow-lg">
           <img
-            src={book.cover}
-            alt={book.title}
+            src={product.cover}
+            alt={product.title}
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
@@ -28,21 +28,21 @@ function RankedCard({ book }: { book: BestSeller }) {
         {/* Content */}
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
-            {book.title}
+            {product.title}
           </h3>
-          <p className="text-sm text-muted-foreground mb-4">{book.author}</p>
+          <p className="text-sm text-muted-foreground mb-4">{product.author}</p>
 
           <div className="flex items-center gap-3 mb-4">
-            <span className="font-bold text-xl text-primary">{formatPrice(book.price)}</span>
-            {book.discount && (
+            <span className="font-bold text-xl text-primary">{formatPrice(product.price)}</span>
+            {product.discount && (
               <Badge className="bg-primary text-primary-foreground px-2 py-0.5 text-xs font-semibold rounded-full">
-                -{book.discount}%
+                -{product.discount}%
               </Badge>
             )}
           </div>
 
           <a
-            href={`#book-${book.id}`}
+            href={`#product-${product.id}`}
             className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
           >
             Xem chi tiết
@@ -68,8 +68,8 @@ export function RankedBestSellers() {
 
         {/* Ranked Cards */}
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {bestSellers.map((book, index) => (
-            <RankedCard key={book.id} book={book} />
+          {bestSellers.map((product, index) => (
+            <RankedCard key={product.id} product={product} />
           ))}
         </div>
       </div>

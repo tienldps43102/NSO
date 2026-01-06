@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { AutocompleteSelect } from "@/components/ui/autocomplete";
 import { createFromSchema, type CreateFromSchema } from "../schema";
 import { client, orpcQuery } from "@/lib/orpc.client";
-import { MultiSelectOption, MultiSelectPills } from "@/components/ui/select-pills";
+import { MultiSelectOption } from "@/components/ui/select-pills";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FileDropzone } from "@/components/ui/file/dropzone";
@@ -27,22 +27,16 @@ import {
 
 const AdminProductCreate = () => {
   const router = useRouter();
-  // Book Info State
+  // Product Info State
   const form = useForm<CreateFromSchema>({
     resolver: zodResolver(createFromSchema),
     defaultValues: {
       title: "",
       description: "",
-      isbn10: "",
-      isbn13: "",
-      publisherId: "",
-      publicationDate: undefined,
-      pageCount: undefined,
-      authors: [],
       thumbnailUrl: "",
       categoryId: "",
+      brandId: "",
       displayPrice: 0,
-      seriesId: "",
     },
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -128,8 +122,8 @@ const AdminProductCreate = () => {
 
   // Product Attributes State
 
-  const { mutateAsync: createBook } = useMutation(
-    orpcQuery.bookAdminRoutes.createBook.mutationOptions({
+  const { mutateAsync: createProduct } = useMutation(
+    orpcQuery.productAdminRoutes.createProduct.mutationOptions({
       onSuccess: (data) => {
         toast.success("Tạo sản phẩm thành công");
         router.push(`/admin/products/${data.id}/edit`);
@@ -142,48 +136,30 @@ const AdminProductCreate = () => {
 
   const handleSubmit = async (data: CreateFromSchema) => {
     console.log(data);
-    await createBook({
-      authors: data.authors,
+    await createProduct({
+      brandId: data.brandId,
       categoryId: data.categoryId,
       displayPrice: data.displayPrice,
-      publisherId: data.publisherId,
-      seriesId: data.seriesId,
       thumbnailUrl: data.thumbnailUrl,
       title: data.title,
-      description: data.description,
-      isbn10: data.isbn13,
-      isbn13: data.isbn13,
-      pageCount: data.pageCount,
-      publicationDate: data.publicationDate,
+      description: data.description || undefined,
     });
   };
-  const searchPublisher = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
-    const res = await client.publisherRoutes.getAllPublishers({
+  const searchBrand = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
+    const res = await client.brandRoutes.getAllBrands({
       q,
       limit,
       page: 1,
     });
     return (
-      res?.publishers?.map((publisher) => ({
-        value: publisher.id,
-        label: publisher.name,
+      res?.brands?.map((brand) => ({
+        value: brand.id,
+        label: brand.name,
       })) || []
     );
   };
 
-  const searchAuthor = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
-    const res = await client.authorRoutes.getAllAuthors({
-      q,
-      limit,
-      page: 1,
-    });
-    return (
-      res?.authors?.map((author) => ({
-        value: author.id,
-        label: author.name,
-      })) || []
-    );
-  };
+
   const searchCategory = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
     const res = await client.categoryRoutes.getAllCategories({
       q,
@@ -194,19 +170,6 @@ const AdminProductCreate = () => {
       res?.categories?.map((category) => ({
         value: category.id,
         label: category.name,
-      })) || []
-    );
-  };
-  const searchSeries = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
-    const res = await client.seriesRoutes.getAllSeries({
-      q,
-      limit,
-      page: 1,
-    });
-    return (
-      res?.series?.map((series) => ({
-        value: series.id,
-        label: series.name,
       })) || []
     );
   };
@@ -259,38 +222,33 @@ const AdminProductCreate = () => {
               />
               <FormField
                 control={form.control}
-                name="authors"
+                name="displayPrice"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tác giả *</FormLabel>
+                    <FormLabel>Giá gốc *</FormLabel>
                     <FormControl>
-                      <MultiSelectPills
-                        defaultValue={[]}
-                        placeholder="Tìm kiếm tác giả"
-                        onChange={field.onChange}
-                        onSearch={searchAuthor}
-                        debounceMs={300}
-                      />
+                      <Input type="number" placeholder="0" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+             
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
               <FormField
                 control={form.control}
-                name="publisherId"
+                name="brandId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nhà xuất bản *</FormLabel>
+                    <FormLabel>Hãng *</FormLabel>
                     <FormControl>
                       <AutocompleteSelect
                         debounceMs={300}
                         onChange={(value) => field.onChange(value?.value)}
-                        onSearch={searchPublisher}
-                        placeholder="Tìm kiếm nhà xuất bản"
+                        onSearch={searchBrand}
+                        placeholder="Tìm kiếm hãng"
                       />
                     </FormControl>
                     <FormMessage />
@@ -317,77 +275,7 @@ const AdminProductCreate = () => {
               />
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <FormField
-                control={form.control}
-                name="seriesId"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Series</FormLabel>
-                    <FormControl>
-                      <AutocompleteSelect
-                        debounceMs={300}
-                        onChange={(value) => field.onChange(value?.value)}
-                        onSearch={searchSeries}
-                        placeholder="Tìm kiếm series"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="displayPrice"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Giá gốc *</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        placeholder="0"
-                        {...field}
-                        onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <FormField
-                control={form.control}
-                name="publicationDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Ngày xuất bản</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Nhập ngày xuất bản"
-                        value={field.value}
-                        onChange={(e) => field.onChange(e.target.value)}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="isbn13"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>ISBN</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Nhập mã ISBN" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+        
             <div className="grid gap-4 md:grid-cols-2">
               <FormField
                 control={form.control}

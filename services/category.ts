@@ -93,10 +93,10 @@ const deleteCategory = os
   })
   .input(z.object({ id: z.string() }))
   .handler(async ({ input }) => {
-    // count the number of books in the category
-    const books = await prisma.product.count({ where: { categoryId: input.id } });
-    if (books > 0) {
-      throw new Error(`Danh mục có ${books} sách, không thể xóa`);
+    // count the number of products in the category
+    const products = await prisma.product.count({ where: { categoryId: input.id } });
+    if (products > 0) {
+      throw new Error(`Danh mục có ${products} sách, không thể xóa`);
     }
     const category = await prisma.category.delete({ where: { id: input.id } });
     return category;

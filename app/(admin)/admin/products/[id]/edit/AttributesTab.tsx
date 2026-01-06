@@ -83,7 +83,7 @@ export function AttributesTab({ initialAttributes = [], productId }: AttributesT
   const router = useRouter();
 
   const bulkUpdateAttributesMutation = useMutation(
-    orpcQuery.bookAdminRoutes.bulkUpdateAttributes.mutationOptions({
+    orpcQuery.productAdminRoutes.bulkUpdateAttributes.mutationOptions({
       onSuccess: () => {
         toast.success("Cập nhật thuộc tính thành công");
         router.refresh();

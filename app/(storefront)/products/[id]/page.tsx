@@ -1,8 +1,8 @@
 import { Home } from "lucide-react";
-import { ProductGallery } from "@/components/book-detail/ProductGallery";
-import { ProductInfo } from "@/components/book-detail/ProductInfo";
-import { ProductDetails } from "@/components/book-detail/ProductDetails";
-import { RelatedProducts, RelatedProductsSkeleton } from "@/components/book-detail/RelatedProducts";
+import { ProductGallery } from "@/components/product-detail/ProductGallery";
+import { ProductInfo } from "@/components/product-detail/ProductInfo";
+import { ProductDetails } from "@/components/product-detail/ProductDetails";
+import { RelatedProducts, RelatedProductsSkeleton } from "@/components/product-detail/RelatedProducts";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -16,13 +16,13 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { toPlain } from "@/lib/toPlain";
 
-//  get id from params and fetch book detail data from api
-export default async function BookDetail({ params }: { params: Promise<{ id: string }> }) {
+//  get id from params and fetch product detail data from api
+export default async function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  // Fetch book detail data from API
-  const bookDetail = await $client?.bookRoutes.getBookById({ id });
-  if (!bookDetail) {
+  // Fetch product detail data from API
+  const productDetail = await $client?.productRoutes.getProductById({ id });
+  if (!productDetail) {
     notFound();
   }
 
@@ -42,14 +42,14 @@ export default async function BookDetail({ params }: { params: Promise<{ id: str
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href={`/search?categories=${bookDetail.category?.id}`}>
-                {bookDetail.category?.name || "Truyện tranh"}
+              <Link href={`/search?categories=${productDetail.category?.id}`}>
+                {productDetail.category?.name || "Truyện tranh"}
               </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{bookDetail.title}</BreadcrumbPage>
+            <BreadcrumbPage>{productDetail.title}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -58,36 +58,34 @@ export default async function BookDetail({ params }: { params: Promise<{ id: str
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
         {/* Left Column - Gallery */}
         <ProductGallery
-          images={bookDetail.images.map((img) => img.url)!}
-          title={bookDetail.title}
+          images={productDetail.images.map((img) => img.url)!}
+          title={productDetail.title}
           className="lg:col-span-1"
         />
 
         {/* Right Column - Info */}
-        <ProductInfo className="lg:col-span-2" bookDetail={toPlain(bookDetail)} />
+        <ProductInfo className="lg:col-span-2" productDetail={toPlain(productDetail)} />
       </section>
 
       {/* Divider */}
       <hr className="border-border" />
 
       {/* Product Details */}
-      <ProductDetails description={bookDetail.description || ""} />
+      <ProductDetails description={productDetail.description || ""} />
 
       {/* Divider */}
       <hr className="border-border" />
 
-      {bookDetail.seriesId && (
+      {productDetail.brandId && (
         <Suspense fallback={<RelatedProductsSkeleton title="Cùng bộ" itemCount={5} />}>
           <RelatedProducts
-            title="Cùng bộ"
-            moreHref={`/series/${bookDetail.seriesId}`}
+            title="Cùng hãng"
+            moreHref={`/brand/${productDetail.brandId}`}
             fetchFunction={async () => {
-              const seriesBooks = await $client?.bookRoutes.getBookBySeriesId({
-                seriesId: bookDetail.seriesId!,
-                excludeBookId: bookDetail.id,
-                limit: 20,
+              const brandProducts = await $client?.productRoutes.getProductByBrandId({
+                brandId: productDetail.brandId!
               });
-              return toPlain(seriesBooks || []);
+              return toPlain(brandProducts || []);
             }}
           />
         </Suspense>
@@ -97,10 +95,10 @@ export default async function BookDetail({ params }: { params: Promise<{ id: str
         <RelatedProducts
           title="Sản phẩm liên quan"
           fetchFunction={async () => {
-            const relatedBooks = await $client?.bookRoutes.getRelatedBooks({
-              bookId: bookDetail.id,
+            const relatedProducts = await $client?.productRoutes.getRelatedProducts({
+              productId: productDetail.id,
             });
-            return toPlain(relatedBooks || []);
+            return toPlain(relatedProducts || []);
           }}
         />
       </Suspense>

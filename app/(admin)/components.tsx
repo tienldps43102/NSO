@@ -1,5 +1,5 @@
 "use client";
-import { Building2, FolderTree, Library, User, UserPen } from "lucide-react";
+import { Building2, FolderTree, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -92,9 +92,7 @@ const menuItems = [
 
   // Phân loại / quản lý dữ liệu
   { title: "Danh mục", icon: FolderTree, path: "/admin/categories" },
-  { title: "Nhà xuất bản", icon: Building2, path: "/admin/publishers" },
-  { title: "Tác giả", icon: UserPen, path: "/admin/authors" },
-  { title: "Bộ sách", icon: Library, path: "/admin/series" },
+  { title: "Hãng", icon: Building2, path: "/admin/brands" },
 
   // Kinh doanh
   { title: "Sản phẩm", icon: Package, path: "/admin/products" },

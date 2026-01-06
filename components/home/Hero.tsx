@@ -1,6 +1,5 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-books.jpg";
 import Image from "next/image";
 export function Hero() {
   return (
@@ -63,15 +62,14 @@ export function Hero() {
               {/* Hero Image */}
               <div className="relative aspect-square rounded-3xl shadow-card overflow-hidden">
                 <Image
-                  src={heroImage}
+                  src={"https://img.pikbest.com/origin/09/06/37/125pIkbEsTPm3.jpg!w700wp"}
+                  width={500}
+                  height={500}
                   alt="Bộ sưu tập Manga và Light Novel"
                   className="w-full h-full object-cover"
                 />
 
-                {/* Floating badge */}
-                <div className="absolute top-6 right-6 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-bold shadow-lg">
-                  -20%
-                </div>
+             
               </div>
             </div>
           </div>

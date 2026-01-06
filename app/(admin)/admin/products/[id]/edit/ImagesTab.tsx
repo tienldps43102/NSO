@@ -49,7 +49,7 @@ export function ImagesTab({ initialImages = [], productId }: ImagesTabProps) {
   };
   const router = useRouter();
   const bulkUpdateImagesMutation = useMutation(
-    orpcQuery.bookAdminRoutes.bulkUpdateImages.mutationOptions({
+    orpcQuery.productAdminRoutes.bulkUpdateImages.mutationOptions({
       onSuccess: () => {
         toast.success("Cập nhật hình ảnh thành công");
         router.refresh();
@@ -98,7 +98,7 @@ export function ImagesTab({ initialImages = [], productId }: ImagesTabProps) {
   };
 
   const { data: variantOptions } = useQuery(
-    orpcQuery.bookRoutes.getVariantOptionsByProductId.queryOptions({
+    orpcQuery.productRoutes.getVariantOptionsByProductId.queryOptions({
       input: {
         id: productId,
       },

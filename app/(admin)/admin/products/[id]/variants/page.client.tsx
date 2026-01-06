@@ -44,7 +44,7 @@ import {
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-type Variant = Outputs["bookRoutes"]["getVariantsByProductId"][number];
+type Variant = Outputs["productRoutes"]["getVariantsByProductId"][number];
 
 const variantSchema = z.object({
   id: z.string().optional(),
@@ -92,7 +92,7 @@ export default function AdminVariantsClientPage({
   });
   const router = useRouter();
   const addVariantMutation = useMutation(
-    orpcQuery.bookAdminRoutes.addVariant.mutationOptions({
+    orpcQuery.productAdminRoutes.addVariant.mutationOptions({
       onSuccess: () => {
         toast.success("Thêm biến thể thành công");
         setIsCreateOpen(false);
@@ -106,7 +106,7 @@ export default function AdminVariantsClientPage({
   );
 
   const updateVariantMutation = useMutation(
-    orpcQuery.bookAdminRoutes.updateVariant.mutationOptions({
+    orpcQuery.productAdminRoutes.updateVariant.mutationOptions({
       onSuccess: () => {
         toast.success("Cập nhật biến thể thành công");
         setIsEditOpen(false);
@@ -119,7 +119,7 @@ export default function AdminVariantsClientPage({
     }),
   );
   const addStockMutation = useMutation(
-    orpcQuery.bookAdminRoutes.addStock.mutationOptions({
+    orpcQuery.productAdminRoutes.addStock.mutationOptions({
       onSuccess: () => {
         toast.success("Thêm tồn kho thành công");
       },
@@ -160,7 +160,7 @@ export default function AdminVariantsClientPage({
   };
 
   const toggleActiveMutation = useMutation(
-    orpcQuery.bookAdminRoutes.toggleActiveVariant.mutationOptions({
+    orpcQuery.productAdminRoutes.toggleActiveVariant.mutationOptions({
       onSuccess: () => {
         toast.success("Cập nhật trạng thái thành công");
         router.refresh();
