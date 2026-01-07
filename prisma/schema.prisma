@@ -185,6 +185,7 @@ model User {
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  status        String    @default("ACTIVE") // Possible values: ACTIVE, INACTIVE
   sessions      Session[]
   accounts      Account[]
   role          String    @default("CUSTOMER") // Possible values: ADMIN, CUSTOMER
