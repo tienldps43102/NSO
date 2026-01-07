@@ -35,6 +35,8 @@ import {
   PowerOff,
   ChevronLeft,
   ChevronRight,
+  Star,
+  StarOff,
 } from "lucide-react";
 import Link from "next/link";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -61,6 +63,7 @@ const AdminProducts = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<boolean | undefined>();
+  const [featuredFilter, setFeaturedFilter] = useState<boolean | undefined>();
   const [sort, setSort] = useState<
     "newest" | "price_asc" | "price_desc" | "title_asc" | "title_desc"
   >("newest");
@@ -82,6 +85,7 @@ const AdminProducts = () => {
         withInActive: true,
         sort,
         ...(debouncedSearch ? { q: debouncedSearch } : {}),
+        ...(featuredFilter !== undefined ? { isFeatured: featuredFilter } : {}),
       },
     }),
   );
@@ -99,9 +103,17 @@ const AdminProducts = () => {
   );
   const mutateDeactivateProduct = useMutation(
     orpcQuery.productAdminRoutes.deactivateProduct.mutationOptions({
-      onSuccess: (data) => {
+      onSuccess: () => {
         refetch();
         toast.info("Thành công");
+      },
+    }),
+  );
+  const mutateToggleFeatured = useMutation(
+    orpcQuery.productAdminRoutes.toggleFeaturedProduct.mutationOptions({
+      onSuccess: (data) => {
+        refetch();
+        toast.success(data.isFeature ? "Đã bật đề xuất" : "Đã tắt đề xuất");
       },
     }),
   );
@@ -116,6 +128,13 @@ const AdminProducts = () => {
       }
     },
     [mutateDeactivateProduct, mutateActivateProduct],
+  );
+
+  const toggleFeaturedProduct = useCallback(
+    (id: string) => {
+      mutateToggleFeatured.mutate({ id });
+    },
+    [mutateToggleFeatured],
   );
   // Filter by status client-side since
   // API doesn't have this filter
@@ -172,6 +191,19 @@ const AdminProducts = () => {
         ),
       },
       {
+        accessorKey: "isFeature",
+        header: "Đề xuất",
+        cell: ({ row }) => (
+          <div className="text-center">
+            {row.original.isFeature ? (
+              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 inline" />
+            ) : (
+              <StarOff className="h-4 w-4 text-muted-foreground inline" />
+            )}
+          </div>
+        ),
+      },
+      {
         id: "actions",
         header: "",
         cell: ({ row }) => {
@@ -213,13 +245,27 @@ const AdminProducts = () => {
                     </>
                   )}
                 </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => toggleFeaturedProduct(row.original.id)}>
+                  {row.original.isFeature ? (
+                    <>
+                      <StarOff className="mr-2 h-4 w-4" />
+                      Tắt đề xuất
+                    </>
+                  ) : (
+                    <>
+                      <Star className="mr-2 h-4 w-4" />
+                      Bật đề xuất
+                    </>
+                  )}
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           );
         },
       },
     ],
-    [toggleActiveProduct],
+    [toggleActiveProduct, toggleFeaturedProduct],
   );
 
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -291,6 +337,22 @@ const AdminProducts = () => {
               <SelectItem value="all">Tất cả</SelectItem>
               <SelectItem value="active">Đang bán</SelectItem>
               <SelectItem value="inactive">Ngừng bán</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select
+            value={featuredFilter === undefined ? "all" : featuredFilter ? "featured" : "not_featured"}
+            onValueChange={(value) => {
+              setFeaturedFilter(value === "all" ? undefined : value === "featured");
+              setPage(1);
+            }}
+          >
+            <SelectTrigger className="w-[140px]">
+              <SelectValue placeholder="Đề xuất" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Tất cả</SelectItem>
+              <SelectItem value="featured">Đề xuất</SelectItem>
+              <SelectItem value="not_featured">Không đề xuất</SelectItem>
             </SelectContent>
           </Select>
         </div>

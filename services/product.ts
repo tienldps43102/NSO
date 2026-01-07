@@ -56,6 +56,7 @@ const listProducts = os
       sort: sortInput,
       inStockOnly: z.coerce.boolean().default(false),
       withInActive: z.boolean().optional().default(false),
+      isFeatured: z.boolean().optional(),
     }),
   )
   .handler(async ({ input }) => {
@@ -80,7 +81,7 @@ const listProducts = os
       ...(input.brandIds && input.brandIds.length > 0
         ? { brandId: { in: input.brandIds } }
         : {}),
-     
+      ...(input.isFeatured !== undefined ? { isFeature: input.isFeatured } : {}),
       ...(input.q
         ? {
             OR: [
