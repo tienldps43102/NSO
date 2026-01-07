@@ -28,6 +28,7 @@ const getLatestProducts = os
       take: input.limit,
       include: {
         category: true,
+        brand: true,
       },
     });
     return products;

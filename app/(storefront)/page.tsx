@@ -9,11 +9,10 @@ const Index = async () => {
   console.log("Latest Products:", latestProducts);
   return (
     <>
-      {/* <Hero /> */}
-      <FeaturedSection products={latestProducts || []} />
-      {/* <PromoBanner /> */}
-      <HorizontalProductRow />
-      <RankedBestSellers />
+      <Hero />
+        <FeaturedSection />
+        <HorizontalProductRow />
+        <RankedBestSellers />
     </>
   );
 };

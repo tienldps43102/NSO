@@ -64,7 +64,7 @@ model Product {
   category  Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   attributes Attribute[]
   images    ProductImage[]
-    
+  isFeature Boolean  @default(false) @map("is_feature")
 
   @@index([isActive], map: "idx_products_active")
   @@map("products")
