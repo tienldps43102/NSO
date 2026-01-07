@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ProductCard } from "./ProductCard";
 
 export async function FeaturedSection() {
-  const products = await $client?.productRoutes.getLatestProducts({
+  const products = await $client?.productRoutes.getFeaturedProducts({
     limit: 5,
   })
 

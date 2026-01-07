@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn, formatPrice } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 export async function RankedBestSellers() {
   const bestSellers = await $client?.productRoutes.getLatestProducts({
@@ -61,9 +62,12 @@ export async function RankedBestSellers() {
                   <Button
                     variant="ghost"
                     className="w-full mt-2 rounded-full text-primary hover:text-primary hover:bg-primary/10"
+                    asChild
                   >
+                    <Link href={`/products/${product.id}`}>
                     Xem chi tiết
                     <ArrowRight className="h-4 w-4 ml-2" />
+                    </Link>
                   </Button>
                 </div>
               </div>

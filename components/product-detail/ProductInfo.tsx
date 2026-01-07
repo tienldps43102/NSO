@@ -22,6 +22,7 @@ import { toast } from "sonner";
 export function ProductInfo({ productDetail, className }: ProductInfoProps) {
   const [selectedVariant, setSelectedVariant] = useState(productDetail.variants[0]);
   const [quantity, setQuantity] = useState(1);
+  const [showAllAttributes, setShowAllAttributes] = useState(false);
   const isOneVariant = productDetail.variants.length === 1;
 
   const formatPrice = (price: number) => {
@@ -161,7 +162,10 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
         <div className="border border-border rounded-xl overflow-hidden">
           <table className="w-full">
             <tbody>
-              {productDetail.attributes.map((detail, index) => (
+              {(showAllAttributes 
+                ? productDetail.attributes 
+                : productDetail.attributes.slice(0, 6)
+              ).map((detail, index) => (
                 <tr
                   key={detail.id}
                   className={cn(
@@ -178,6 +182,15 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
             </tbody>
           </table>
         </div>
+        {productDetail.attributes.length > 6 && (
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => setShowAllAttributes(!showAllAttributes)}
+          >
+            {showAllAttributes ? "Thu gọn" : `Xem thêm (${productDetail.attributes.length - 6} thông tin)`}
+          </Button>
+        )}
       </div>
     </div>
   );

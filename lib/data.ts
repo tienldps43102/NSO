@@ -26,9 +26,9 @@ export interface BestSeller extends Book {
 
 
 export const navLinks = [
-  { name: "Điện thoại", href: "#manga" },
-  { name: "Máy tính bảng", href: "#lightnovel" },
-  { name: "Phụ Kiện", href: "#comicviet" },
+  { name: "Điện thoại", href: "/search?categoryIds=01KE7FR4NPZYPQMCPEQZ302494" },
+  { name: "Máy tính bảng", href: "/search?categoryIds=01KE7FR513W441GZ97030PBGG5" },
+  { name: "Ốp lưng", href: "/search?categoryIds=01KE7FRE4BBFKCW6V7FW3DJTVZ" },
 ];
 
 export const featuredManga: Book[] = [
