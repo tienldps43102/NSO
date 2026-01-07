@@ -19,7 +19,7 @@ const getCustomers = orpcWithAuth
     const where: Prisma.UserWhereInput = {
       ...(input.status ? { status: input.status } : {}),
       ...(input.q ? { OR: [{ name: { contains: input.q, mode: "insensitive" } }, { email: { contains: input.q, mode: "insensitive" } }] } : {}),
-      role: "CUSTOMER",
+      role: "USER",
     };
     const customers = await prisma.user.findMany({
       skip,

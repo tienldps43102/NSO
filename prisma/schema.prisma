@@ -188,7 +188,7 @@ model User {
   status        String    @default("ACTIVE") // Possible values: ACTIVE, INACTIVE
   sessions      Session[]
   accounts      Account[]
-  role          String    @default("CUSTOMER") // Possible values: ADMIN, CUSTOMER
+  role          String    @default("USER") // Possible values: ADMIN, CUSTOMER
   orders        Order[]  
   @@unique([email])
   @@map("user")
