@@ -23,23 +23,12 @@ export interface BestSeller extends Book {
   rank: number;
 }
 
-export const categories: Category[] = [
-  { id: "all", name: "Tất cả", active: true },
-  { id: "isekai", name: "Isekai" },
-  { id: "romance", name: "Romance" },
-  { id: "shonen", name: "Shonen" },
-  { id: "slice-of-life", name: "Slice of Life" },
-  { id: "school-life", name: "School Life" },
-  { id: "horror", name: "Horror" },
-  { id: "comedy", name: "Comedy" },
-  { id: "detective", name: "Detective" },
-];
+
 
 export const navLinks = [
-  { name: "Manga", href: "#manga" },
-  { name: "Light Novel", href: "#lightnovel" },
-  { name: "Comic Việt", href: "#comicviet" },
-  { name: "Sách Mới", href: "#sachmoi" },
+  { name: "Điện thoại", href: "#manga" },
+  { name: "Máy tính bảng", href: "#lightnovel" },
+  { name: "Phụ Kiện", href: "#comicviet" },
 ];
 
 export const featuredManga: Book[] = [

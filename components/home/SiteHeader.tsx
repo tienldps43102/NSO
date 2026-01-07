@@ -1,17 +1,6 @@
 "use client";
 import { useState } from "react";
-import {
-  Search,
-  ShoppingCart,
-  Menu,
-  X,
-  Zap,
-  LogIn,
-  User,
-  Settings,
-  LogOut,
-  Shield,
-} from "lucide-react";
+import { Search, ShoppingCart, Menu, X, LogIn, User, Settings, LogOut, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -28,7 +17,6 @@ import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { authClient, type AuthUser } from "@/lib/auth-client";
 import Link from "next/link";
-import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 
 interface SiteHeaderProps {
@@ -54,13 +42,22 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         {/* Main Header */}
         <div className="flex items-center justify-between h-16 px-4 lg:px-0">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          {/* <Link href="/" className="flex items-center gap-2">
             <Image src="/logo.png" alt="Logo" width={40} height={40} />
             <div className="flex flex-col">
               <span className="font-bold text-lg text-primary leading-tight">NSO</span>
               <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">
                 Nhà Sách Online
               </span>
+            </div>
+          </Link> */}
+          <Link className="cursor-pointer flex items-center gap-2" href="/" >
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-lg">
+              F5
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="font-bold text-lg leading-tight">F5Tech</h1>
+              <p className="text-xs text-muted-foreground leading-tight">Công nghệ chính hãng</p>
             </div>
           </Link>
 
@@ -70,7 +67,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Tìm kiếm sách ..."
+                placeholder="Tìm kiếm sản phẩm ..."
                 enterKeyHint="search"
                 name="q"
                 className="w-full pl-10 pr-4 h-10 rounded-full bg-muted/50 border-border/50 focus:bg-card focus:border-primary/30"
@@ -188,13 +185,6 @@ export function SiteHeader({ user }: SiteHeaderProps) {
               {link.name}
             </a>
           ))}
-          <a
-            href="#khuyenmai"
-            className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-primary bg-primary/10 rounded-full hover:bg-primary/15 transition-colors"
-          >
-            <Zap className="h-4 w-4" />
-            Khuyến Mãi
-          </a>
         </nav>
 
         {/* Mobile Menu */}
@@ -290,13 +280,6 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                 {link.name}
               </a>
             ))}
-            <a
-              href="#khuyenmai"
-              className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-primary bg-primary/10 rounded-xl"
-            >
-              <Zap className="h-4 w-4" />
-              Khuyến Mãi
-            </a>
           </nav>
         </div>
       </div>

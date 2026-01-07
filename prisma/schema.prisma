@@ -13,23 +13,15 @@ datasource db {
   provider = "postgresql"
 }
 
-model Publisher {
+model Brand {
   id       String    @id @default(ulid()) @db.VarChar(36)
   name     String    @unique @db.VarChar(200)
-  bio      String?
+  description String?
   products Product[]
 
-  @@map("publishers")
+  @@map("brands")
 }
 
-model Author {
-  id       String    @id @default(ulid()) @db.VarChar(36)
-  name     String    @db.VarChar(200)
-  bio      String?
-  products Product[] @relation("ProductAuthors")
-
-  @@map("authors")
-}
 
 model Category {
   id       String  @id @default(ulid()) @db.VarChar(36)
@@ -47,7 +39,7 @@ model Attribute {
   id    String @id @default(ulid()) @db.VarChar(36)
   productId String @map("product_id") @db.VarChar(36)
   name  String @db.VarChar(200)
-  value String @db.VarChar(200)
+  value String @db.VarChar(400)
 
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   @@map("attributes")
@@ -55,41 +47,24 @@ model Attribute {
 
 
 
-model Series {
-  id          String  @id @default(ulid()) @db.VarChar(36)
-  name        String  @db.VarChar(200)
-  description String?
-
-  products    Product[]
-
-  @@map("series")
-}
-
 model Product {
   id              String    @id @default(ulid()) @db.VarChar(36)
   title           String    @db.VarChar(300)
-  isbn10          String?   @unique @db.VarChar(20)
   description     String?
-  isbn13          String?   @unique @db.VarChar(20)
-  publisherId     String?   @map("publisher_id") @db.VarChar(36)
-  publicationDate String? @map("publication_date") @db.VarChar(36)
-  pageCount       Int?      @map("page_count")
   displayPrice    BigInt    @map("display_price") @db.BigInt
   thumbnailUrl    String?   @map("thumbnail_url")
   isActive        Boolean   @default(true) @map("is_active")
   createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt       DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
-  seriesId        String?   @map("series_id") @db.VarChar(36)
+  brandId         String    @map("brand_id") @db.VarChar(36)
   categoryId      String    @map("category_id") @db.VarChar(36)
 
-  publisher Publisher?       @relation(fields: [publisherId], references: [id], onDelete: SetNull)
   variants  ProductVariant[]
-  series    Series?        @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+  brand     Brand            @relation(fields: [brandId], references: [id], onDelete: Restrict)
   category  Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  authors   Author[]         @relation("ProductAuthors")
   attributes Attribute[]
   images    ProductImage[]
-  
+  isFeature Boolean  @default(false) @map("is_feature")
 
   @@index([isActive], map: "idx_products_active")
   @@map("products")
@@ -109,8 +84,8 @@ model ProductImage {
 model ProductVariant {
   id            String   @id @default(ulid()) @db.VarChar(36)
   productId     String   @map("product_id") @db.VarChar(36)
-  sku           String   @unique @db.VarChar(80)
-  variantName   String   @map("variant_name") @db.VarChar(200)
+  sku           String   @unique @db.VarChar(200)
+  variantName   String   @map("variant_name") @db.VarChar(400)
   price         BigInt   @db.BigInt 
   stockQuantity Int      @default(0) @map("stock_quantity")
   isActive      Boolean  @default(true) @map("is_active")

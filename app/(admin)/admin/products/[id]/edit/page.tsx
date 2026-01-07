@@ -6,7 +6,7 @@ import EditProductPage from "./component";
 const AdminProductEdit = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
-  const productData = await $client?.bookRoutes.getBookById({ id, withInActive: true });
+  const productData = await $client?.productRoutes.getProductById({ id, withInActive: true });
 
   if (!productData) {
     return (

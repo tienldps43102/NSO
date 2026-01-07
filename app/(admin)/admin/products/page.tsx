@@ -44,8 +44,8 @@ import Image from "next/image";
 import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
-type ListBooksResponse = Outputs["bookRoutes"]["listBooks"];
-type BookItem = ListBooksResponse["items"][number];
+type ListProductsResponse = Outputs["productRoutes"]["listProducts"];
+type ProductItem = ListProductsResponse["items"][number];
 
 const sortOptions = [
   { value: "newest", label: "Mới nhất" },
@@ -74,8 +74,8 @@ const AdminProducts = () => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { data, isLoading, refetch } = useQuery<ListBooksResponse>(
-    orpcQuery.bookRoutes.listBooks.queryOptions({
+  const { data, isLoading, refetch } = useQuery<ListProductsResponse>(
+    orpcQuery.productRoutes.listProducts.queryOptions({
       input: {
         page,
         limit,
@@ -85,8 +85,8 @@ const AdminProducts = () => {
       },
     }),
   );
-  const mutateActivateBook = useMutation(
-    orpcQuery.bookAdminRoutes.activateBook.mutationOptions({
+  const mutateActivateProduct = useMutation(
+    orpcQuery.productAdminRoutes.activateProduct.mutationOptions({
       onSuccess: (data) => {
         refetch();
         if (data.success) {
@@ -97,8 +97,8 @@ const AdminProducts = () => {
       },
     }),
   );
-  const mutateDeactivateBook = useMutation(
-    orpcQuery.bookAdminRoutes.deactivateBook.mutationOptions({
+  const mutateDeactivateProduct = useMutation(
+    orpcQuery.productAdminRoutes.deactivateProduct.mutationOptions({
       onSuccess: (data) => {
         refetch();
         toast.info("Thành công");
@@ -106,22 +106,22 @@ const AdminProducts = () => {
     }),
   );
 
-  const toggleActiveBook = useCallback(
+  const toggleActiveProduct = useCallback(
     (id: string, isActive: boolean) => {
       console.log(id, isActive);
       if (isActive) {
-        mutateDeactivateBook.mutate({ id });
+        mutateDeactivateProduct.mutate({ id });
       } else {
-        mutateActivateBook.mutate({ id });
+        mutateActivateProduct.mutate({ id });
       }
     },
-    [mutateDeactivateBook, mutateActivateBook],
+    [mutateDeactivateProduct, mutateActivateProduct],
   );
   // Filter by status client-side since
   // API doesn't have this filter
 
   // Define columns
-  const columns = useMemo<ColumnDef<BookItem>[]>(
+  const columns = useMemo<ColumnDef<ProductItem>[]>(
     () => [
       {
         accessorKey: "thumbnailUrl",
@@ -142,10 +142,10 @@ const AdminProducts = () => {
         cell: ({ row }) => <div className="font-medium line-clamp-2">{row.original.title}</div>,
       },
       {
-        accessorKey: "publisher.name",
-        header: "Nhà xuất bản",
+        accessorKey: "brand.name",
+        header: "Hãng",
         cell: ({ row }) => (
-          <div className="text-muted-foreground">{row.original.publisher?.name}</div>
+          <div className="text-muted-foreground">{row.original.brand.name}</div>
         ),
       },
       {
@@ -199,7 +199,7 @@ const AdminProducts = () => {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                  onClick={() => toggleActiveBook(row.original.id, row.original.isActive)}
+                  onClick={() => toggleActiveProduct(row.original.id, row.original.isActive)}
                 >
                   {row.original.isActive ? (
                     <>
@@ -219,7 +219,7 @@ const AdminProducts = () => {
         },
       },
     ],
-    [toggleActiveBook],
+    [toggleActiveProduct],
   );
 
   // eslint-disable-next-line react-hooks/incompatible-library

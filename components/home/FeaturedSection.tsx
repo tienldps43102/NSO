@@ -1,46 +1,46 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BookCard } from "./BookCard";
-// /await $client?.bookRoutes.getLatestBooks({ limit: 10 });
-interface FeaturedSectionProps {
-  books: Outputs["bookRoutes"]["getLatestBooks"];
-}
-export function FeaturedSection({ books }: FeaturedSectionProps) {
+import { ProductCard } from "./ProductCard";
+
+export async function FeaturedSection() {
+  const products = await $client?.productRoutes.getLatestProducts({
+    limit: 5,
+  })
+
   return (
-    <section className="py-12 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="py-10 md:py-14">
+      <div className="container">
         {/* Header */}
-        <div className="flex items-end justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">Mới cập nhật</h2>
-            <p className="text-muted-foreground">Top truyện tranh được yêu thích nhất tuần qua</p>
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Sản Phẩm Nổi Bật
+            </h2>
+            <p className="text-muted-foreground mt-1">
+              Những sản phẩm được yêu thích nhất tuần này
+            </p>
           </div>
-          <a
-            href="#manga"
-            className="hidden md:flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-          >
-            Xem tất cả
-            <ArrowRight className="h-4 w-4" />
-          </a>
+         
         </div>
 
-        {/* Grid */}
+        {/* Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-          {books.map((book, index) => (
-            <BookCard
-              key={book.id}
-              book={book}
+          {products?.map((product, index) => (
+            <div
+              key={product.id}
               className="animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` } as React.CSSProperties}
-            />
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
 
-        {/* Mobile CTA */}
-        <div className="mt-8 md:hidden">
-          <Button variant="outline" className="w-full rounded-full h-12">
-            Xem tất cả
-            <ArrowRight className="ml-2 h-4 w-4" />
+        {/* Mobile View All Button */}
+        <div className="mt-6 sm:hidden">
+          <Button variant="outline" className="w-full rounded-full">
+            Xem tất cả sản phẩm
+            <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
         </div>
       </div>

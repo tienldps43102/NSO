@@ -17,7 +17,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { BookCard } from "@/components/home/BookCard";
+import { ProductCard } from "@/components/home/ProductCard";
 import { toPlain } from "@/lib/toPlain";
 import { FilterContent } from "./filter";
 import { searchSchema } from "./schema";
@@ -30,7 +30,7 @@ export default async function Search({
 }) {
   const params = await searchParams;
   const valitatedParams = searchSchema.safeParse(params);
-  const searchResult = await $client?.bookRoutes.listBooks({
+  const searchResult = await $client?.productRoutes.listProducts({
     q: valitatedParams.data?.q as string,
     page: valitatedParams.data?.page as number,
     limit: valitatedParams.data?.limit as number,
@@ -41,14 +41,12 @@ export default async function Search({
       | "title_asc"
       | "title_desc",
     inStockOnly: valitatedParams.data?.inStockOnly as boolean,
-    authorIds: valitatedParams.data?.authorIds as string[],
     categoryIds: valitatedParams.data?.categoryIds as string[],
-    publisherIds: valitatedParams.data?.publisherIds as string[],
+    brandIds: valitatedParams.data?.brandIds as string[],
     maxPrice: valitatedParams.data?.maxPrice as number,
     minPrice: valitatedParams.data?.minPrice as number,
-    seriesIds: valitatedParams.data?.seriesIds as string[],
   });
-  const allBooks = toPlain(searchResult?.items);
+  const allProducts = toPlain(searchResult?.items);
   const pagination = searchResult?.pagination;
   const currentSort = valitatedParams.data?.sort as
     | "newest"
@@ -128,7 +126,7 @@ export default async function Search({
           {/* Toolbar */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 p-4 bg-card/70 backdrop-blur-md rounded-2xl border border-border/40">
             <p className="text-sm text-muted-foreground">
-              Hiển thị <span className="font-medium text-foreground">{allBooks?.length}</span> kết
+              Hiển thị <span className="font-medium text-foreground">{allProducts?.length}</span> kết
               quả
             </p>
 
@@ -160,8 +158,8 @@ export default async function Search({
 
           {/* Results Grid/List */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-            {allBooks?.map((book) => (
-              <BookCard key={book.id} book={book} />
+            {allProducts?.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
           {/* Pagination */}

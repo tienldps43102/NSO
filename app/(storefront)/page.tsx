@@ -1,21 +1,18 @@
 import { Hero } from "@/components/home/Hero";
-import { CategoryChips } from "@/components/home/CategoryChips";
 import { FeaturedSection } from "@/components/home/FeaturedSection";
-import { PromoBanner } from "@/components/home/PromoBanner";
-import { HorizontalBookRow } from "@/components/home/HorizontalBookRow";
+// import { PromoBanner } from "@/components/home/PromoBanner";
+import { HorizontalProductRow } from "@/components/home/HorizontalProductRow";
 import { RankedBestSellers } from "@/components/home/RankedBestSellers";
 
 const Index = async () => {
-  const latestBooks = await $client?.bookRoutes.getLatestBooks({ limit: 10 });
-  console.log("Latest Books:", latestBooks);
+  const latestProducts = await $client?.productRoutes.getLatestProducts({ limit: 10 });
+  console.log("Latest Products:", latestProducts);
   return (
     <>
       <Hero />
-      <CategoryChips />
-      <FeaturedSection books={latestBooks || []} />
-      <PromoBanner />
-      <HorizontalBookRow />
-      <RankedBestSellers />
+        <FeaturedSection />
+        <HorizontalProductRow />
+        <RankedBestSellers />
     </>
   );
 };

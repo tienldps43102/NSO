@@ -6,22 +6,8 @@ import { Controller, useForm } from "react-hook-form";
 import { SearchSchema, searchSchema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-const genres = [
-  "Isekai",
-  "Romance",
-  "Shonen",
-  "Slice of Life",
-  "School Life",
-  "Horror",
-  "Comedy",
-  "Detective",
-  "Fantasy",
-  "Action",
-  "Drama",
-];
 
-const formats = ["Manga", "Light Novel", "Comic Việt"];
-const publishers = ["Kim Đồng", "Trẻ", "IPM", "Skycomics", "AMAK"];
+
 export const FilterSection = ({
   title,
   children,
@@ -58,14 +44,12 @@ export const FilterContent = ({ currentParams }: { currentParams: SearchParams }
   const onSubmit = (data: FormSchema) => {
     const search: SearchSchema = {
       ...currentParams,
-      authorIds: data.authorIds || [],
       categoryIds: data.categoryIds || [],
-      publisherIds: data.publisherIds || [],
       maxPrice: data.price[1],
       minPrice: data.price[0],
       sort: data.sort || "newest",
       inStockOnly: data.inStockOnly || true,
-      seriesIds: data.seriesIds || [],
+      brandIds: data.brandIds || [],
     } as any;
     const queryString = qs.stringify(search, {
       arrayFormat: "repeat",
@@ -87,28 +71,15 @@ export const FilterContent = ({ currentParams }: { currentParams: SearchParams }
     );
   };
   const searchPublishers = async (query: string): Promise<MultiSelectOption[]> => {
-    const res = await client.publisherRoutes.getAllPublishers({
+    const res = await client.brandRoutes.getAllBrands({
       q: query,
       page: 1,
       limit: 10,
     });
     return (
-      res?.publishers.map((publisher) => ({
-        value: publisher.id,
-        label: publisher.name,
-      })) || []
-    );
-  };
-  const searchAuthors = async (query: string): Promise<MultiSelectOption[]> => {
-    const res = await client.authorRoutes.getAllAuthors({
-      q: query,
-      page: 1,
-      limit: 10,
-    });
-    return (
-      res?.authors.map((author) => ({
-        value: author.id,
-        label: author.name,
+      res?.brands.map((brand) => ({
+        value: brand.id,
+        label: brand.name,
       })) || []
     );
   };
@@ -141,14 +112,13 @@ export const FilterContent = ({ currentParams }: { currentParams: SearchParams }
       </FilterSection>
 
       {/* Genres */}
-      <FilterSection title="Thể loại">
+      <FilterSection title="Danh mục">
         <Controller
           control={form.control}
           name="categoryIds"
           render={({ field }) => (
             <MultiSelectPills
-              defaultValue={field.value}
-              placeholder="Tìm kiếm thể loại"
+              placeholder="Tìm kiếm danh mục"
               onChange={field.onChange}
               onSearch={searchCategories}
               debounceMs={300}
@@ -158,14 +128,13 @@ export const FilterContent = ({ currentParams }: { currentParams: SearchParams }
       </FilterSection>
 
       {/* Publishers */}
-      <FilterSection title="Nhà xuất bản">
+      <FilterSection title="Hãng">
         <Controller
           control={form.control}
-          name="publisherIds"
+          name="brandIds"
           render={({ field }) => (
             <MultiSelectPills
-              defaultValue={field.value}
-              placeholder="Tìm kiếm nhà xuất bản"
+              placeholder="Tìm kiếm hãng"
               onChange={field.onChange}
               onSearch={searchPublishers}
               debounceMs={300}
@@ -174,22 +143,6 @@ export const FilterContent = ({ currentParams }: { currentParams: SearchParams }
         />
       </FilterSection>
 
-      {/* Authors */}
-      <FilterSection title="Tác giả">
-        <Controller
-          control={form.control}
-          name="authorIds"
-          render={({ field }) => (
-            <MultiSelectPills
-              defaultValue={field.value}
-              placeholder="Tìm kiếm tác giả"
-              onChange={field.onChange}
-              onSearch={searchAuthors}
-              debounceMs={300}
-            />
-          )}
-        />
-      </FilterSection>
 
       <div className="flex  flex-col gap-2">
         <Button type="submit" className="w-full ">

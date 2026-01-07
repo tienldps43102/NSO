@@ -35,9 +35,7 @@ export const searchSchema = z
     inStockOnly: boolQuery.default(true).catch(true),
 
     categoryIds: strArray,
-    publisherIds: strArray,
-    authorIds: strArray,
-    seriesIds: strArray,
+    brandIds: strArray,
 
     minPrice: z.coerce.number().nonnegative().optional().catch(undefined),
     maxPrice: z.coerce.number().nonnegative().optional().catch(undefined),

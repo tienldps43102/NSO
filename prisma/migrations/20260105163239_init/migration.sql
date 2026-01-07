@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "product_variants" ALTER COLUMN "sku" SET DATA TYPE VARCHAR(200),
+ALTER COLUMN "variant_name" SET DATA TYPE VARCHAR(400);

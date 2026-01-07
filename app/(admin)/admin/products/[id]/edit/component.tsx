@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { AutocompleteSelect } from "@/components/ui/autocomplete";
 import { createFromSchema, type CreateFromSchema } from "../../schema";
 import { client, orpcQuery } from "@/lib/orpc.client";
-import { MultiSelectOption, MultiSelectPills } from "@/components/ui/select-pills";
+import { MultiSelectOption } from "@/components/ui/select-pills";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FileDropzone } from "@/components/ui/file/dropzone";
@@ -28,7 +28,7 @@ import {
 import { AttributesTab } from "./AttributesTab";
 import { ImagesTab } from "./ImagesTab";
 
-type Product = Outputs["bookRoutes"]["getBookById"];
+type Product = Outputs["productRoutes"]["getProductById"];
 
 interface ProductAttribute {
   id: string;
@@ -45,22 +45,16 @@ interface ProductImage {
 export default function EditProductPage({ productData }: { productData: Product }) {
   const router = useRouter();
 
-  // Book Info State
+  // Product Info State
   const form = useForm<CreateFromSchema>({
     resolver: zodResolver(createFromSchema),
     defaultValues: {
       title: productData.title || "",
       description: productData?.description || "",
-      isbn10: productData?.isbn10 || "",
-      isbn13: productData?.isbn13 || "",
-      authors: productData?.authors.map((author) => author.id) || [],
       categoryId: productData?.categoryId || "",
+      brandId: productData?.brandId || "",
       displayPrice: Number(productData?.displayPrice) || 0,
-      publisherId: productData?.publisherId || "",
-      seriesId: productData?.seriesId || "",
       thumbnailUrl: productData?.thumbnailUrl || "",
-      pageCount: productData?.pageCount || undefined,
-      publicationDate: productData?.publicationDate || "",
     },
   });
 
@@ -158,8 +152,8 @@ export default function EditProductPage({ productData }: { productData: Product 
     });
   };
 
-  const { mutateAsync: updateBook } = useMutation(
-    orpcQuery.bookAdminRoutes.updateBook.mutationOptions({
+  const { mutateAsync: updateProduct } = useMutation(
+    orpcQuery.productAdminRoutes.updateProduct.mutationOptions({
       onSuccess: () => {
         toast.success("Cập nhật sản phẩm thành công");
         router.push("/admin/products");
@@ -175,27 +169,14 @@ export default function EditProductPage({ productData }: { productData: Product 
     console.log(data);
 
     // Calculate which authors to add/remove
-    const currentAuthorIds = productData?.authors.map((author) => author.id) || [];
-    const newAuthorIds = data.authors;
-
-    const addAuthors = newAuthorIds.filter((id) => !currentAuthorIds.includes(id));
-    const removeAuthors = currentAuthorIds.filter((id) => !newAuthorIds.includes(id));
-
-    await updateBook({
+    await updateProduct({
       id: productData.id,
-      addAuthors: addAuthors.length > 0 ? addAuthors : undefined,
-      removeAuthors: removeAuthors.length > 0 ? removeAuthors : undefined,
       categoryId: data.categoryId,
       displayPrice: data.displayPrice,
-      publisherId: data.publisherId,
-      seriesId: data.seriesId,
+      brandId: data.brandId,
       thumbnailUrl: data.thumbnailUrl,
       title: data.title,
       description: data.description,
-      isbn10: data.isbn13,
-      isbn13: data.isbn13,
-      pageCount: data.pageCount,
-      publicationDate: data.publicationDate,
     });
   };
 
@@ -203,43 +184,23 @@ export default function EditProductPage({ productData }: { productData: Product 
     form.reset({
       title: productData.title || "",
       description: productData?.description || "",
-      isbn10: productData?.isbn10 || "",
-      isbn13: productData?.isbn13 || "",
-      authors: productData?.authors.map((author) => author.id) || [],
       categoryId: productData?.categoryId || "",
+      brandId: productData?.brandId || "",
       displayPrice: Number(productData?.displayPrice) || 0,
-      publisherId: productData?.publisherId || "",
-      seriesId: productData?.seriesId || "",
       thumbnailUrl: productData?.thumbnailUrl || "",
-      pageCount: productData?.pageCount || undefined,
-      publicationDate: productData?.publicationDate || "",
     });
   };
 
-  const searchPublisher = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
-    const res = await client.publisherRoutes.getAllPublishers({
+  const searchBrand = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
+    const res = await client.brandRoutes.getAllBrands({
       q,
       limit,
       page: 1,
     });
     return (
-      res?.publishers?.map((publisher) => ({
-        value: publisher.id,
-        label: publisher.name,
-      })) || []
-    );
-  };
-
-  const searchAuthor = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
-    const res = await client.authorRoutes.getAllAuthors({
-      q,
-      limit,
-      page: 1,
-    });
-    return (
-      res?.authors?.map((author) => ({
-        value: author.id,
-        label: author.name,
+      res?.brands?.map((brand) => ({
+        value: brand.id,
+        label: brand.name,
       })) || []
     );
   };
@@ -258,19 +219,7 @@ export default function EditProductPage({ productData }: { productData: Product 
     );
   };
 
-  const searchSeries = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
-    const res = await client.seriesRoutes.getAllSeries({
-      q,
-      limit,
-      page: 1,
-    });
-    return (
-      res?.series?.map((series) => ({
-        value: series.id,
-        label: series.name,
-      })) || []
-    );
-  };
+
 
   if (!productData) {
     return (
@@ -317,7 +266,7 @@ export default function EditProductPage({ productData }: { productData: Product 
             <TabsTrigger value="media">Hình ảnh</TabsTrigger>
           </TabsList>
 
-          {/* Book Info Tab */}
+          {/* Product Info Tab */}
           <TabsContent value="info" className="space-y-6">
             <Card className="border-border/40 bg-card/50 backdrop-blur-sm">
               <CardHeader className="flex flex-row items-center justify-between">
@@ -350,22 +299,16 @@ export default function EditProductPage({ productData }: { productData: Product 
                   />
                   <FormField
                     control={form.control}
-                    name="authors"
+                    name="displayPrice"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Tác giả *</FormLabel>
+                        <FormLabel>Giá gốc *</FormLabel>
                         <FormControl>
-                          <MultiSelectPills
-                            defaultValue={
-                              productData?.authors.map((author) => ({
-                                value: author.id,
-                                label: author.name,
-                              })) || []
-                            }
-                            placeholder="Tìm kiếm tác giả"
-                            onChange={field.onChange}
-                            onSearch={searchAuthor}
-                            debounceMs={300}
+                          <Input
+                            type="number"
+                            placeholder="0"
+                            {...field}
+                            onChange={(e) => field.onChange(parseFloat(e.target.value))}
                           />
                         </FormControl>
                         <FormMessage />
@@ -377,19 +320,19 @@ export default function EditProductPage({ productData }: { productData: Product 
                 <div className="grid gap-4 md:grid-cols-2">
                   <FormField
                     control={form.control}
-                    name="publisherId"
+                    name="brandId"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Nhà xuất bản *</FormLabel>
+                        <FormLabel>Hãng *</FormLabel>
                         <FormControl>
                           <AutocompleteSelect
                             debounceMs={300}
                             onChange={(value) => field.onChange(value?.value)}
-                            onSearch={searchPublisher}
-                            placeholder="Tìm kiếm nhà xuất bản"
+                            onSearch={searchBrand}
+                            placeholder="Tìm kiếm hãng"
                             defaultValue={{
-                              label: productData?.publisher?.name || "",
-                              value: productData?.publisherId || "",
+                              label: productData?.brand?.name || "",
+                              value: productData?.brandId || "",
                             }}
                           />
                         </FormControl>
@@ -421,82 +364,7 @@ export default function EditProductPage({ productData }: { productData: Product 
                   />
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  <FormField
-                    control={form.control}
-                    name="seriesId"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Series</FormLabel>
-                        <FormControl>
-                          <AutocompleteSelect
-                            debounceMs={300}
-                            onChange={(value) => field.onChange(value?.value)}
-                            onSearch={searchSeries}
-                            placeholder="Tìm kiếm series"
-                            defaultValue={{
-                              label: productData?.series?.name || "",
-                              value: productData?.seriesId || "",
-                            }}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="displayPrice"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Giá gốc *</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="number"
-                            placeholder="0"
-                            {...field}
-                            onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid gap-4 md:grid-cols-2">
-                  <FormField
-                    control={form.control}
-                    name="publicationDate"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Ngày xuất bản</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="text"
-                            placeholder="Nhập ngày xuất bản"
-                            value={field.value}
-                            onChange={(e) => field.onChange(e.target.value)}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="isbn13"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>ISBN</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Nhập mã ISBN" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+               
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <FormField

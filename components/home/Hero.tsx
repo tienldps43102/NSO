@@ -1,77 +1,82 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Truck, ShieldCheck, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-books.jpg";
-import Image from "next/image";
+
 export function Hero() {
   return (
-    <section className="relative overflow-hidden hero-gradient">
-      {/* Decorative circles */}
-      <div className="absolute top-10 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+    <section className="relative overflow-hidden">
+      {/* Background with decorative elements */}
+      <div className="absolute inset-0 gradient-hero" />
+      <div className="absolute top-20 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 -right-32 w-80 h-80 bg-primary/15 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 py-12 lg:py-20">
+      <div className="container relative py-12 md:py-20 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Content */}
-          <div className="relative z-10 animate-fade-in">
-            {/* Promo Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              <Sparkles className="h-4 w-4" />
-              Đại tiệc Manga tháng 10
-            </div>
+          {/* Left Content */}
+          <div className="space-y-6 text-center lg:text-left">
+            {/* Promo Pill */}
+        
 
             {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Thế giới <span className="text-primary">truyện tranh</span>
-              <br />
-              dành cho bạn
-            </h1>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              Nâng cấp thiết bị{" "}
+              <span className="text-primary">chuẩn gu</span>
+            </h2>
 
-            {/* Description */}
-            <p className="text-lg text-muted-foreground max-w-md mb-8">
-              Khám phá hàng ngàn tựa sách Manga, Light Novel và Comic Việt hot nhất hiện nay với
-              nhiều ưu đãi hấp dẫn.
-            </p>
+            {/* Features */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Truck className="h-4 w-4 text-primary" />
+                <span>Giao nhanh 2h</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-primary" />
+                <span>Chính hãng 100%</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CreditCard className="h-4 w-4 text-primary" />
+                <span>Trả góp 0%</span>
+              </div>
+            </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
               <Button
                 size="lg"
-                className="rounded-full h-12 px-8 text-base font-semibold transition-all"
+                className="rounded-full px-8 h-12 text-base font-semibold gradient-primary hover:opacity-90 transition-opacity"
               >
                 Khám phá ngay
-                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full h-12 px-8 text-base font-semibold glass hover:bg-card"
-              >
-                Xem khuyến mãi
-              </Button>
+             
             </div>
           </div>
 
-          {/* Hero Image */}
-          <div
-            className="relative flex justify-center lg:justify-end animate-slide-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            <div className="relative w-full max-w-md lg:max-w-lg">
-              {/* Gradient background for image */}
-              <div className="absolute inset-0 bg-linear-to-br from-primary/20 via-primary/10 to-transparent rounded-3xl transform rotate-3" />
-
-              {/* Hero Image */}
-              <div className="relative aspect-square rounded-3xl shadow-card overflow-hidden">
-                <Image
-                  src={heroImage}
-                  alt="Bộ sưu tập Manga và Light Novel"
-                  className="w-full h-full object-cover"
-                />
-
-                {/* Floating badge */}
-                <div className="absolute top-6 right-6 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-bold shadow-lg">
-                  -20%
+          {/* Right - Hero Image Area */}
+          <div className="relative flex items-center justify-center">
+            <div className="relative w-full max-w-md lg:max-w-lg aspect-square">
+              {/* Decorative rings */}
+              <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20 animate-spin-slow" />
+              <div className="absolute inset-8 rounded-full border-2 border-dashed border-primary/15 animate-spin-slower" style={{ animationDirection: 'reverse' }} />
+              
+              {/* Main gradient placeholder */}
+              <div className="absolute inset-16 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent flex items-center justify-center overflow-hidden">
+                <div className="text-center p-6">
+                  <div className="w-24 h-32 mx-auto mb-4 rounded-2xl bg-gradient-to-b from-card to-card/50 shadow-elevated flex items-center justify-center">
+                    <div className="w-16 h-24 rounded-xl bg-foreground/10" />
+                  </div>
+                  <p className="text-sm text-muted-foreground">Sản phẩm nổi bật</p>
                 </div>
+              </div>
+
+              {/* Floating badges */}
+              <div className="absolute top-12 right-4 glass rounded-2xl px-4 py-3 shadow-medium animate-float">
+                <p className="text-xs text-muted-foreground">Giảm đến</p>
+                <p className="text-lg font-bold text-primary">50%</p>
+              </div>
+              
+              <div className="absolute bottom-16 left-0 glass rounded-2xl px-4 py-3 shadow-medium animate-float" style={{ animationDelay: '1s' }}>
+                <p className="text-xs text-muted-foreground">Freeship</p>
+                <p className="text-sm font-semibold">Đơn từ 500K</p>
               </div>
             </div>
           </div>

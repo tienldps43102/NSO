@@ -171,7 +171,7 @@ export default function Cart({ cartItems: initialCartItems }: CartProps) {
                 </div>
 
                 {/* Product Image */}
-                <Link href={`/book/${item.variant.product.id}`} className="shrink-0">
+                <Link href={`/product/${item.variant.product.id}`} className="shrink-0">
                   <Image
                     src={item.variant.product.thumbnailUrl!}
                     alt={item.variant.product.title}
@@ -186,7 +186,7 @@ export default function Cart({ cartItems: initialCartItems }: CartProps) {
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
                       <Link
-                        href={`/book/${item.variant.product.id}`}
+                        href={`/product/${item.variant.product.id}`}
                         className="font-semibold text-foreground hover:text-primary line-clamp-2 transition-colors"
                       >
                         {item.variant.product.title}
