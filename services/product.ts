@@ -250,6 +250,17 @@ const getProductByBrandId = os
     return products;
   });
 
+const getFeaturedProducts = os
+
+  .route({
+    method: "GET",
+    path: "/products/featured",
+  })
+  .input(z.object({ limit: z.coerce.number().min(1).max(20).default(10) }))
+  .handler(async ({ input }) => {
+    const products = await prisma.product.findMany({ where: { isFeature: true }, take: input.limit, include: { category: true, brand: true } });
+    return products;
+  });
 export const productRoutes = os.router({
   getLatestProducts,
   getProductById,
@@ -259,4 +270,5 @@ export const productRoutes = os.router({
   getVariantOptionsByProductId,
   getVariantsByProductId,
   getProductByBrandId,
+  getFeaturedProducts,
 });

@@ -420,6 +420,22 @@ const toggleActiveVariant = orpcWithAuth
     return newVariant;
   });
 
+const toggleFeaturedProduct = orpcWithAuth
+  .route({
+    method: "POST",
+    path: "/products/:id/toggle-featured",
+  })
+  .input(z.object({ id: z.string() }))
+  .handler(async ({ input }) => {
+    const product = await prisma.product.findUnique({ where: { id: input.id } });
+    if (!product) throw new Error("Product not found");
+    const newProduct = await prisma.product.update({
+      where: { id: input.id },
+      data: { isFeature: !product.isFeature },
+    });
+    return newProduct;
+  });
+
 export const productAdminRoutes = {
   createProduct,
   updateProduct,
@@ -437,4 +453,5 @@ export const productAdminRoutes = {
   addStock,
   toggleActiveVariant,
   bulkUpdateImages,
+  toggleFeaturedProduct,
 };
