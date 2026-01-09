@@ -12,4 +12,13 @@ export const authMiddleware = orpc.middleware(async ({ next, context }) => {
     context: { ...context, session },
   });
 });
+export const adminMiddleware = orpc.middleware(async ({ next, context }) => {
+  const session = context.session ?? (await auth.api.getSession({ headers: context.headers }));
+
+  if (session?.user?.role !== "ADMIN") throw new ORPCError("UNAUTHORIZED");
+  return next({
+    context: { ...context, session },
+  });
+});
 export const orpcWithAuth = orpc.use(authMiddleware);
+export const orpcWithAdmin = orpc.use(adminMiddleware);

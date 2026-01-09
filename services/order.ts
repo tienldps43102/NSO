@@ -6,6 +6,7 @@ import { createPayment } from "@/lib/payment";
 import { nowVN } from "@/lib/day";
 import { Prisma } from "@/lib/generated/prisma/client";
 import { OrderOrderByWithRelationInput } from "@/lib/generated/prisma/models";
+import { useVoucher } from "./voucher";
 
 function generateOrderCode(createDate: Date): string {
   // DH-DDMMYYYY-XXXX(random 4 digits)
@@ -27,6 +28,7 @@ const createOrder = orpcWithAuth
       paymentMethod: z.enum(["COD", "VNPAY", "MOMO"]),
       variantIds: z.array(z.string().min(1).max(36)).min(1),
       note: z.string().max(500).optional(),
+      voucherCode: z.string().optional(),
     }),
   )
   .handler(async ({ input, context }) => {
@@ -77,25 +79,33 @@ const createOrder = orpcWithAuth
         };
       }
     }
+    // kiểm tra voucher
+   
     // Tính tổng tiền
     let totalAmount = 0;
     for (const variant of variants) {
       const quantityInCart = variantQuantityMap.get(variant.id) || 0;
       totalAmount += Number(BigInt(variant.price) * BigInt(quantityInCart));
     }
+      const voucher = await useVoucher(totalAmount,input.voucherCode);
+     
+    const finalTotalAmount = totalAmount - (voucher?.reducedAmount || 0);
     // Tạo đơn hàng
     const newOrder = await prisma.order.create({
       data: {
         userId,
         addressId: input.addressId,
         paymentMethod: input.paymentMethod,
-        totalAmount,
+        totalAmount: finalTotalAmount,
         status: "PENDING",
         orderCode: generateOrderCode(nowVN().toDate()),
         createdAt: nowVN().toDate(),
         paymentStatus: "PENDING",
         subtotalAmount: totalAmount,
         note: input.note,
+        voucherId: voucher.voucher?.id || null,
+        discountTotal: voucher.reducedAmount || 0,
+
       },
     });
     // Tạo order items
@@ -134,7 +144,7 @@ const createOrder = orpcWithAuth
       // Todo: Tích hợp với cổng thanh toán để tạo URL thanh toán
       const payURL = await createPayment({
         id: newOrder.id + "#" + newOrder.orderCode,
-        amount: totalAmount,
+        amount: finalTotalAmount,
         orderInfo: `Đơn hàng ${newOrder.orderCode}`,
         method: input.paymentMethod,
       });
