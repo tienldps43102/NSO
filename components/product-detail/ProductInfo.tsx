@@ -18,6 +18,8 @@ interface ProductInfoProps {
   className?: string;
 }
 import { toast } from "sonner";
+import useCartSelection from "@/hooks/use-cart-selection";
+import { useRouter } from "next/navigation";
 
 export function ProductInfo({ productDetail, className }: ProductInfoProps) {
   const [selectedVariant, setSelectedVariant] = useState(productDetail.variants[0]);
@@ -29,7 +31,7 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
     return new Intl.NumberFormat("vi-VN").format(price) + "đ";
   };
   const queryClient = useQueryClient();
-  const { mutate: addToCart } = useMutation(
+  const { mutateAsync: addToCart } = useMutation(
     $orpcQuery!.cartRoutes.addToCart.mutationOptions({
       onSuccess: (data) => {
         queryClient.invalidateQueries({
@@ -52,6 +54,19 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
       variantId: selectedVariant?.id,
       quantity: quantity,
     });
+  };
+  const { setSelection } = useCartSelection();
+  const router = useRouter();
+  const handleBuyNow = async () => {
+    if (!selectedVariant?.id) return;
+    const data = await addToCart({
+      variantId: selectedVariant?.id,
+      quantity: quantity,
+    })
+    if (data.success) {
+      setSelection([selectedVariant?.id]);
+      router.push("/cart");
+    } 
   };
 
   return (
@@ -151,7 +166,7 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
         </Button>
 
         {/* Buy Now */}
-        <Button className="flex-1 gap-2" size={"lg"}>
+        <Button className="flex-1 gap-2" size={"lg"} onClick={handleBuyNow}>
           <Zap className="w-4 h-4" />
           Mua ngay
         </Button>
