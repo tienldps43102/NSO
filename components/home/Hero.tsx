@@ -15,12 +15,10 @@ export function Hero() {
           {/* Left Content */}
           <div className="space-y-6 text-center lg:text-left">
             {/* Promo Pill */}
-        
 
             {/* Headline */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Nâng cấp thiết bị{" "}
-              <span className="text-primary">chuẩn gu</span>
+              Nâng cấp thiết bị <span className="text-primary">chuẩn gu</span>
             </h2>
 
             {/* Features */}
@@ -47,7 +45,6 @@ export function Hero() {
               >
                 Khám phá ngay
               </Button>
-             
             </div>
           </div>
 
@@ -56,8 +53,11 @@ export function Hero() {
             <div className="relative w-full max-w-md lg:max-w-lg aspect-square">
               {/* Decorative rings */}
               <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20 animate-spin-slow" />
-              <div className="absolute inset-8 rounded-full border-2 border-dashed border-primary/15 animate-spin-slower" style={{ animationDirection: 'reverse' }} />
-              
+              <div
+                className="absolute inset-8 rounded-full border-2 border-dashed border-primary/15 animate-spin-slower"
+                style={{ animationDirection: "reverse" }}
+              />
+
               {/* Main gradient placeholder */}
               <div className="absolute inset-16 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent flex items-center justify-center overflow-hidden">
                 <div className="text-center p-6">
@@ -73,8 +73,11 @@ export function Hero() {
                 <p className="text-xs text-muted-foreground">Giảm đến</p>
                 <p className="text-lg font-bold text-primary">50%</p>
               </div>
-              
-              <div className="absolute bottom-16 left-0 glass rounded-2xl px-4 py-3 shadow-medium animate-float" style={{ animationDelay: '1s' }}>
+
+              <div
+                className="absolute bottom-16 left-0 glass rounded-2xl px-4 py-3 shadow-medium animate-float"
+                style={{ animationDelay: "1s" }}
+              >
                 <p className="text-xs text-muted-foreground">Freeship</p>
                 <p className="text-sm font-semibold">Đơn từ 500K</p>
               </div>

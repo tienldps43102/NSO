@@ -18,7 +18,14 @@ const getCustomers = orpcWithAuth
     const { skip, take } = computeSkipTake(input.page, input.limit);
     const where: Prisma.UserWhereInput = {
       ...(input.status ? { status: input.status } : {}),
-      ...(input.q ? { OR: [{ name: { contains: input.q, mode: "insensitive" } }, { email: { contains: input.q, mode: "insensitive" } }] } : {}),
+      ...(input.q
+        ? {
+            OR: [
+              { name: { contains: input.q, mode: "insensitive" } },
+              { email: { contains: input.q, mode: "insensitive" } },
+            ],
+          }
+        : {}),
       role: "USER",
     };
     const customers = await prisma.user.findMany({
@@ -38,18 +45,21 @@ const getCustomers = orpcWithAuth
     return customers;
   });
 
-  const toggleCustomerStatus = orpcWithAuth
-    .route({
-      method: "POST",
-      path: "/customers/:id/toggle-status",
-    })
-    .input(z.object({ id: z.string() }))
-    .handler(async ({ input }) => {
-      const customer = await prisma.user.findUnique({ where: { id: input.id } });
-      if (!customer) throw new Error("Customer not found");
-      const newCustomer = await prisma.user.update({ where: { id: input.id }, data: { status: customer.status === "ACTIVE" ? "INACTIVE" : "ACTIVE" } });
-      return newCustomer;
+const toggleCustomerStatus = orpcWithAuth
+  .route({
+    method: "POST",
+    path: "/customers/:id/toggle-status",
+  })
+  .input(z.object({ id: z.string() }))
+  .handler(async ({ input }) => {
+    const customer = await prisma.user.findUnique({ where: { id: input.id } });
+    if (!customer) throw new Error("Customer not found");
+    const newCustomer = await prisma.user.update({
+      where: { id: input.id },
+      data: { status: customer.status === "ACTIVE" ? "INACTIVE" : "ACTIVE" },
     });
+    return newCustomer;
+  });
 export const customerRoutes = {
   getCustomers,
   toggleCustomerStatus,

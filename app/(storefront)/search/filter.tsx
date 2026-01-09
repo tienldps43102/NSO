@@ -7,7 +7,6 @@ import { SearchSchema, searchSchema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
-
 export const FilterSection = ({
   title,
   children,
@@ -142,7 +141,6 @@ export const FilterContent = ({ currentParams }: { currentParams: SearchParams }
           )}
         />
       </FilterSection>
-
 
       <div className="flex  flex-col gap-2">
         <Button type="submit" className="w-full ">

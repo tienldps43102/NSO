@@ -163,9 +163,7 @@ const AdminProducts = () => {
       {
         accessorKey: "brand.name",
         header: "Hãng",
-        cell: ({ row }) => (
-          <div className="text-muted-foreground">{row.original.brand.name}</div>
-        ),
+        cell: ({ row }) => <div className="text-muted-foreground">{row.original.brand.name}</div>,
       },
       {
         accessorKey: "category.name",
@@ -340,7 +338,9 @@ const AdminProducts = () => {
             </SelectContent>
           </Select>
           <Select
-            value={featuredFilter === undefined ? "all" : featuredFilter ? "featured" : "not_featured"}
+            value={
+              featuredFilter === undefined ? "all" : featuredFilter ? "featured" : "not_featured"
+            }
             onValueChange={(value) => {
               setFeaturedFilter(value === "all" ? undefined : value === "featured");
               setPage(1);

@@ -8,7 +8,7 @@ export const auth = betterAuth({
     provider: "postgresql",
   }),
   plugins: [nextCookies(), bearer()],
- 
+
   user: {
     additionalFields: {
       role: {

@@ -126,8 +126,8 @@ export default async function Search({
           {/* Toolbar */}
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 p-4 bg-card/70 backdrop-blur-md rounded-2xl border border-border/40">
             <p className="text-sm text-muted-foreground">
-              Hiển thị <span className="font-medium text-foreground">{allProducts?.length}</span> kết
-              quả
+              Hiển thị <span className="font-medium text-foreground">{allProducts?.length}</span>{" "}
+              kết quả
             </p>
 
             <div className="flex items-center gap-3">

@@ -2,7 +2,10 @@ import { Home } from "lucide-react";
 import { ProductGallery } from "@/components/product-detail/ProductGallery";
 import { ProductInfo } from "@/components/product-detail/ProductInfo";
 import { ProductDetails } from "@/components/product-detail/ProductDetails";
-import { RelatedProducts, RelatedProductsSkeleton } from "@/components/product-detail/RelatedProducts";
+import {
+  RelatedProducts,
+  RelatedProductsSkeleton,
+} from "@/components/product-detail/RelatedProducts";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -83,7 +86,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
             moreHref={`/brand/${productDetail.brandId}`}
             fetchFunction={async () => {
               const brandProducts = await $client?.productRoutes.getProductByBrandId({
-                brandId: productDetail.brandId!
+                brandId: productDetail.brandId!,
               });
               return toPlain(brandProducts || []);
             }}

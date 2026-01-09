@@ -5,7 +5,7 @@ import { ProductCard } from "./ProductCard";
 export async function FeaturedSection() {
   const products = await $client?.productRoutes.getFeaturedProducts({
     limit: 5,
-  })
+  });
 
   return (
     <section className="py-10 md:py-14">
@@ -13,14 +13,11 @@ export async function FeaturedSection() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold">
-              Sản Phẩm Nổi Bật
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold">Sản Phẩm Nổi Bật</h2>
             <p className="text-muted-foreground mt-1">
               Những sản phẩm được yêu thích nhất tuần này
             </p>
           </div>
-         
         </div>
 
         {/* Products Grid */}

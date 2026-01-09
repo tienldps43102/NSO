@@ -219,8 +219,6 @@ export default function EditProductPage({ productData }: { productData: Product 
     );
   };
 
-
-
   if (!productData) {
     return (
       <div className="flex flex-col items-center justify-center py-12">
@@ -363,8 +361,6 @@ export default function EditProductPage({ productData }: { productData: Product 
                     )}
                   />
                 </div>
-
-               
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <FormField

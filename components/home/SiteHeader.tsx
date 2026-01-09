@@ -51,7 +51,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
               </span>
             </div>
           </Link> */}
-          <Link className="cursor-pointer flex items-center gap-2" href="/" >
+          <Link className="cursor-pointer flex items-center gap-2" href="/">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-lg">
               F5
             </div>

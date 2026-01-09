@@ -23,8 +23,6 @@ export interface BestSeller extends Book {
   rank: number;
 }
 
-
-
 export const navLinks = [
   { name: "Điện thoại", href: "/search?categoryIds=01KE7FR4NPZYPQMCPEQZ302494" },
   { name: "Máy tính bảng", href: "/search?categoryIds=01KE7FR513W441GZ97030PBGG5" },

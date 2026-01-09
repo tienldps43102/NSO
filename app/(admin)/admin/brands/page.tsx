@@ -130,7 +130,9 @@ export default function AdminBrands() {
         accessorKey: "description",
         header: "Mô tả",
         cell: ({ row }) => (
-          <div className="text-muted-foreground line-clamp-2">{row.original.description || "—"}</div>
+          <div className="text-muted-foreground line-clamp-2">
+            {row.original.description || "—"}
+          </div>
         ),
       },
       {

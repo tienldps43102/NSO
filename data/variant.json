@@ -1,3051 +1,3662 @@
-[{
-  "sku": "samsung-galaxy-z-fold7-5g-12gb-256gb-00919910",
-  "productId": 1,
-  "variantName": "256 GB - Xám Bạc",
-  "price": 46990000.00
-}, {
-  "sku": "samsung-galaxy-z-fold7-5g-12gb-256gb-00919908",
-  "productId": 1,
-  "variantName": "256 GB - Xanh Navy",
-  "price": 46990000.00
-}, {
-  "sku": "samsung-galaxy-z-fold7-5g-12gb-256gb-00919909",
-  "productId": 1,
-  "variantName": "256 GB - Đen Tuyền",
-  "price": 46990000.00
-}, {
-  "sku": "samsung-galaxy-z-fold7-5g-12gb-512gb-00919913",
-  "productId": 1,
-  "variantName": "512 GB - Xám Bạc",
-  "price": 50990000.00
-}, {
-  "sku": "samsung-galaxy-z-fold7-5g-12gb-512gb-00919911",
-  "productId": 1,
-  "variantName": "512 GB - Xanh Navy",
-  "price": 50990000.00
-}, {
-  "sku": "samsung-galaxy-z-fold7-5g-12gb-512gb-00919912",
-  "productId": 1,
-  "variantName": "512 GB - Đen Tuyền",
-  "price": 50990000.00
-}, {
-  "sku": "samsung-galaxy-z-flip7-5g-12gb-256gb-00919890",
-  "productId": 2,
-  "variantName": "256 GB - Đỏ San Hô",
-  "price": 28990000.00
-}, {
-  "sku": "samsung-galaxy-z-flip7-5g-12gb-512gb-00919892",
-  "productId": 2,
-  "variantName": "512 GB - Đen Tuyền",
-  "price": 32990000.00
-}, {
-  "sku": "samsung-galaxy-z-flip7-5g-12gb-256gb-00919889",
-  "productId": 2,
-  "variantName": "256 GB - Đen Tuyền",
-  "price": 28990000.00
-}, {
-  "sku": "samsung-galaxy-z-flip7-5g-12gb-512gb-00919891",
-  "productId": 2,
-  "variantName": "512 GB - Xanh Navy",
-  "price": 32990000.00
-}, {
-  "sku": "samsung-galaxy-z-flip7-5g-12gb-256gb-00919888",
-  "productId": 2,
-  "variantName": "256 GB - Xanh Navy",
-  "price": 28990000.00
-}, {
-  "sku": "samsung-galaxy-z-flip7-5g-12gb-512gb-00919893",
-  "productId": 2,
-  "variantName": "512 GB - Đỏ San Hô",
-  "price": 32990000.00
-}, {
-  "sku": "iphone-16-pro-max-256gb-00911046",
-  "productId": 3,
-  "variantName": "256 GB - Titan Đen",
-  "price": 34290000.00
-}, {
-  "sku": "iphone-16-pro-max-256gb-00911048",
-  "productId": 3,
-  "variantName": "256 GB - Titan Sa Mạc",
-  "price": 34290000.00
-}, {
-  "sku": "iphone-16-pro-max-1tb-00911056",
-  "productId": 3,
-  "variantName": "1 TB - Titan Sa Mạc",
-  "price": 46090000.00
-}, {
-  "sku": "iphone-16-pro-max-256gb-00911047",
-  "productId": 3,
-  "variantName": "256 GB - Titan Tự nhiên",
-  "price": 34290000.00
-}, {
-  "sku": "iphone-16-pro-max-256gb-00911049",
-  "productId": 3,
-  "variantName": "256 GB - Titan Trắng",
-  "price": 34290000.00
-}, {
-  "sku": "iphone-16-pro-max-512gb-00911052",
-  "productId": 3,
-  "variantName": "512 GB - Titan Sa Mạc",
-  "price": 40190000.00
-}, {
-  "sku": "iphone-16-pro-max-1tb-00911054",
-  "productId": 3,
-  "variantName": "1 TB - Titan Đen",
-  "price": 46090000.00
-}, {
-  "sku": "iphone-17-pro-256gb-00921740",
-  "productId": 4,
-  "variantName": "256 GB - Cam Vũ Trụ",
-  "price": 34990000.00
-}, {
-  "sku": "iphone-17-pro-256gb-00921741",
-  "productId": 4,
-  "variantName": "256 GB - Xanh Đậm",
-  "price": 34990000.00
-}, {
-  "sku": "iphone-17-pro-512gb-00921744",
-  "productId": 4,
-  "variantName": "512 GB - Cam Vũ Trụ",
-  "price": 41490000.00
-}, {
-  "sku": "iphone-17-pro-512gb-00921745",
-  "productId": 4,
-  "variantName": "512 GB - Xanh Đậm",
-  "price": 41490000.00
-}, {
-  "sku": "iphone-17-pro-1tb-00921749",
-  "productId": 4,
-  "variantName": "1 TB - Xanh Đậm",
-  "price": 47990000.00
-}, {
-  "sku": "iphone-17-pro-1tb-00921748",
-  "productId": 4,
-  "variantName": "1 TB - Cam Vũ Trụ",
-  "price": 47990000.00
-}, {
-  "sku": "xiaomi-poco-x7-5g-12gb-512gb-00918994",
-  "productId": 5,
-  "variantName": "512 GB - Đen",
-  "price": 9350000.00
-}, {
-  "sku": "xiaomi-poco-x7-5g-12gb-512gb-00918995",
-  "productId": 5,
-  "variantName": "512 GB - Bạc",
-  "price": 9350000.00
-}, {
-  "sku": "xiaomi-poco-x7-5g-12gb-512gb-00918996",
-  "productId": 5,
-  "variantName": "512 GB - Xanh lá",
-  "price": 9350000.00
-}, {
-  "sku": "tecno-pova-7-8gb-128gb-00919822",
-  "productId": 6,
-  "variantName": "128 GB - Đen",
-  "price": 4590000.00
-}, {
-  "sku": "tecno-pova-7-8gb-256gb-00919827",
-  "productId": 6,
-  "variantName": "256 GB - Nâu",
-  "price": 5290000.00
-}, {
-  "sku": "tecno-pova-7-8gb-128gb-00919824",
-  "productId": 6,
-  "variantName": "128 GB - Nâu",
-  "price": 4590000.00
-}, {
-  "sku": "tecno-pova-7-8gb-256gb-00919826",
-  "productId": 6,
-  "variantName": "256 GB - Bạc",
-  "price": 5290000.00
-}, {
-  "sku": "tecno-pova-7-8gb-128gb-00919823",
-  "productId": 6,
-  "variantName": "128 GB - Bạc",
-  "price": 4590000.00
-}, {
-  "sku": "tecno-pova-7-8gb-256gb-00919825",
-  "productId": 6,
-  "variantName": "256 GB - Đen",
-  "price": 5290000.00
-}, {
-  "sku": "iphone-16-plus-128gb-00911146",
-  "productId": 7,
-  "variantName": "128 GB - Trắng",
-  "price": 25490000.00
-}, {
-  "sku": "iphone-16-plus-128gb-00911149",
-  "productId": 7,
-  "variantName": "128 GB - Xanh Mòng Két",
-  "price": 25490000.00
-}, {
-  "sku": "iphone-16-plus-256gb-00911152",
-  "productId": 7,
-  "variantName": "256 GB - Hồng",
-  "price": 28390000.00
-}, {
-  "sku": "iphone-16-plus-128gb-00911150",
-  "productId": 7,
-  "variantName": "128 GB - Xanh Lưu Ly",
-  "price": 25490000.00
-}, {
-  "sku": "iphone-16-plus-128gb-00911147",
-  "productId": 7,
-  "variantName": "128 GB - Hồng",
-  "price": 25490000.00
-}, {
-  "sku": "iphone-16-plus-256gb-00911151",
-  "productId": 7,
-  "variantName": "256 GB - Trắng",
-  "price": 28390000.00
-}, {
-  "sku": "iphone-16-plus-256gb-00911153",
-  "productId": 7,
-  "variantName": "256 GB - Đen",
-  "price": 28390000.00
-}, {
-  "sku": "iphone-16-plus-256gb-00911154",
-  "productId": 7,
-  "variantName": "256 GB - Xanh Mòng Két",
-  "price": 28390000.00
-}, {
-  "sku": "iphone-16-plus-128gb-00911148",
-  "productId": 7,
-  "variantName": "128 GB - Đen",
-  "price": 25490000.00
-}, {
-  "sku": "iphone-16-plus-256gb-00911155",
-  "productId": 7,
-  "variantName": "256 GB - Xanh Lưu Ly",
-  "price": 28390000.00
-}, {
-  "sku": "honor-400-pro-5g-12gb-512gb-00919333",
-  "productId": 8,
-  "variantName": "512 GB - Đen",
-  "price": 18650000.00
-}, {
-  "sku": "honor-400-pro-5g-12gb-512gb-00919334",
-  "productId": 8,
-  "variantName": "512 GB - Xám",
-  "price": 18650000.00
-}, {
-  "sku": "samsung-galaxy-s24-fe-5g-128gb-00911815",
-  "productId": 9,
-  "variantName": "128 GB - Xanh biển",
-  "price": 16690000.00
-}, {
-  "sku": "samsung-galaxy-s24-fe-5g-128gb-00911818",
-  "productId": 9,
-  "variantName": "128 GB - Đen",
-  "price": 16690000.00
-}, {
-  "sku": "samsung-galaxy-s24-fe-5g-128gb-00911816",
-  "productId": 9,
-  "variantName": "128 GB - Xanh lá",
-  "price": 16690000.00
-}, {
-  "sku": "samsung-galaxy-s24-fe-5g-128gb-00911817",
-  "productId": 9,
-  "variantName": "128 GB - Xám",
-  "price": 16690000.00
-}, {
-  "sku": "oppo-reno14-f-5g-8gb-256gb-00919216",
-  "productId": 10,
-  "variantName": "256 GB - Xanh lá",
-  "price": 10300000.00
-}, {
-  "sku": "oppo-reno14-f-5g-8gb-256gb-00919217",
-  "productId": 10,
-  "variantName": "256 GB - Xanh dương",
-  "price": 10300000.00
-}, {
-  "sku": "iphone-16-128gb-00911194",
-  "productId": 11,
-  "variantName": "128 GB - Xanh Mòng Két",
-  "price": 22490000.00
-}, {
-  "sku": "iphone-16-128gb-00911191",
-  "productId": 11,
-  "variantName": "128 GB - Hồng",
-  "price": 22490000.00
-}, {
-  "sku": "iphone-16-128gb-00911193",
-  "productId": 11,
-  "variantName": "128 GB - Đen",
-  "price": 22490000.00
-}, {
-  "sku": "iphone-16-128gb-00911195",
-  "productId": 11,
-  "variantName": "128 GB - Xanh Lưu Ly",
-  "price": 22490000.00
-}, {
-  "sku": "iphone-16-128gb-00911192",
-  "productId": 11,
-  "variantName": "128 GB - Trắng",
-  "price": 22490000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906074",
-  "productId": 12,
-  "variantName": "256 GB - Đen Titan",
-  "price": 29450000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906075",
-  "productId": 12,
-  "variantName": "256 GB - Xám Titan",
-  "price": 29450000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906081",
-  "productId": 12,
-  "variantName": "512 GB - Vàng Titan",
-  "price": 36810000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906080",
-  "productId": 12,
-  "variantName": "512 GB - Tím Titan",
-  "price": 36810000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906078",
-  "productId": 12,
-  "variantName": "512 GB - Đen Titan",
-  "price": 36810000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906079",
-  "productId": 12,
-  "variantName": "512 GB - Xám Titan",
-  "price": 36810000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906077",
-  "productId": 12,
-  "variantName": "256 GB - Vàng Titan",
-  "price": 29450000.00
-}, {
-  "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906076",
-  "productId": 12,
-  "variantName": "256 GB - Tím Titan",
-  "price": 29450000.00
-}, {
-  "sku": "oppo-a3-6gb-128gb-00910606",
-  "productId": 13,
-  "variantName": "128 GB - Tím",
-  "price": 4900000.00
-}, {
-  "sku": "oppo-a3-6gb-128gb-00910605",
-  "productId": 13,
-  "variantName": "128 GB - Đen",
-  "price": 4900000.00
-}, {
-  "sku": "xiaomi-redmi-13x-8gb-128gb-00920391",
-  "productId": 14,
-  "variantName": "128 GB - Đen",
-  "price": 4190000.00
-}, {
-  "sku": "xiaomi-redmi-13x-8gb-128gb-00920393",
-  "productId": 14,
-  "variantName": "128 GB - Vàng",
-  "price": 4190000.00
-}, {
-  "sku": "xiaomi-redmi-13x-8gb-128gb-00920392",
-  "productId": 14,
-  "variantName": "128 GB - Xanh dương",
-  "price": 4190000.00
-}, {
-  "sku": "samsung-galaxy-a06-5g-4gb-128gb-00916567",
-  "productId": 15,
-  "variantName": "128 GB - Xanh Nhạt",
-  "price": 3920000.00
-}, {
-  "sku": "samsung-galaxy-a06-5g-4gb-128gb-00916569",
-  "productId": 15,
-  "variantName": "128 GB - Đen",
-  "price": 3920000.00
-}, {
-  "sku": "samsung-galaxy-a06-5g-4gb-128gb-00916568",
-  "productId": 15,
-  "variantName": "128 GB - Xám Nhạt",
-  "price": 3920000.00
-}, {
-  "sku": "iphone-air-256gb-00921699",
-  "productId": 16,
-  "variantName": "256 GB - Xanh Da Trời",
-  "price": 31990000.00
-}, {
-  "sku": "iphone-air-256gb-00921697",
-  "productId": 16,
-  "variantName": "256 GB - Đen Không Gian",
-  "price": 31990000.00
-}, {
-  "sku": "iphone-air-256gb-00921698",
-  "productId": 16,
-  "variantName": "256 GB - Vàng Nhạt",
-  "price": 31990000.00
-}, {
-  "sku": "iphone-air-256gb-00921696",
-  "productId": 16,
-  "variantName": "256 GB - Trắng Mây",
-  "price": 31990000.00
-}, {
-  "sku": "iphone-air-1tb-00921694",
-  "productId": 16,
-  "variantName": "1 TB - Xanh Da Trời",
-  "price": 44990000.00
-}, {
-  "sku": "iphone-air-1tb-00921691",
-  "productId": 16,
-  "variantName": "1 TB - Trắng Mây",
-  "price": 44990000.00
-}, {
-  "sku": "iphone-air-1tb-00921693",
-  "productId": 16,
-  "variantName": "1 TB - Vàng Nhạt",
-  "price": 44990000.00
-}, {
-  "sku": "iphone-air-1tb-00921692",
-  "productId": 16,
-  "variantName": "1 TB - Đen Không Gian",
-  "price": 44990000.00
-}, {
-  "sku": "iphone-air-512gb-00921702",
-  "productId": 16,
-  "variantName": "512 GB - Đen Không Gian",
-  "price": 38490000.00
-}, {
-  "sku": "iphone-air-512gb-00921704",
-  "productId": 16,
-  "variantName": "512 GB - Xanh Da Trời",
-  "price": 38490000.00
-}, {
-  "sku": "iphone-16-pro-128gb-00911085",
-  "productId": 17,
-  "variantName": "128 GB - Titan Trắng",
-  "price": 28390000.00
-}, {
-  "sku": "iphone-16-pro-128gb-00911084",
-  "productId": 17,
-  "variantName": "128 GB - Titan Sa Mạc",
-  "price": 28390000.00
-}, {
-  "sku": "samsung-galaxy-a07-4gb-128gb-00920690",
-  "productId": 19,
-  "variantName": "128 GB - Đen",
-  "price": 3390000.00
-}, {
-  "sku": "samsung-galaxy-a07-4gb-128gb-00920688",
-  "productId": 19,
-  "variantName": "128 GB - Tím",
-  "price": 3390000.00
-}, {
-  "sku": "samsung-galaxy-a07-4gb-128gb-00920689",
-  "productId": 19,
-  "variantName": "128 GB - Xanh",
-  "price": 3390000.00
-}, {
-  "sku": "samsung-galaxy-a17-8gb-128gb-00920686",
-  "productId": 20,
-  "variantName": "128 GB - Xám",
-  "price": 5190000.00
-}, {
-  "sku": "samsung-galaxy-a17-8gb-128gb-00920685",
-  "productId": 20,
-  "variantName": "128 GB - Xanh Nhạt",
-  "price": 5190000.00
-}, {
-  "sku": "samsung-galaxy-a17-8gb-128gb-00920687",
-  "productId": 20,
-  "variantName": "128 GB - Đen",
-  "price": 5190000.00
-}, {
-  "sku": "honor-x6c-6gb-128gb-00920191",
-  "productId": 21,
-  "variantName": "128 GB - Đen",
-  "price": 4290000.00
-}, {
-  "sku": "honor-x6c-6gb-128gb-00920190",
-  "productId": 21,
-  "variantName": "128 GB - Xanh",
-  "price": 4290000.00
-}, {
-  "sku": "nubia-a76-4gb-128gb-(nfc)-00919674",
-  "productId": 22,
-  "variantName": "128 GB - Đen",
-  "price": 2490000.00
-}, {
-  "sku": "nubia-a76-4gb-128gb-(nfc)-00919675",
-  "productId": 22,
-  "variantName": "128 GB - Xám",
-  "price": 2490000.00
-}, {
-  "sku": "nubia-a76-4gb-128gb-(nfc)-00919676",
-  "productId": 22,
-  "variantName": "128 GB - Vàng",
-  "price": 2490000.00
-}, {
-  "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00920479",
-  "productId": 23,
-  "variantName": "256 GB - Đen",
-  "price": 6370000.00
-}, {
-  "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00917822",
-  "productId": 23,
-  "variantName": "256 GB - Tím",
-  "price": 6370000.00
-}, {
-  "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00917821",
-  "productId": 23,
-  "variantName": "256 GB - Bạc",
-  "price": 6370000.00
-}, {
-  "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00917820",
-  "productId": 23,
-  "variantName": "256 GB - Xanh lá",
-  "price": 6370000.00
-}, {
-  "sku": "nubia-v70-design-8gb-256gb-00916391",
-  "productId": 24,
-  "variantName": "256 GB - Xám",
-  "price": 2990000.00
-}, {
-  "sku": "nubia-v70-design-8gb-256gb-00916394",
-  "productId": 24,
-  "variantName": "256 GB - Xanh lá",
-  "price": 2990000.00
-}, {
-  "sku": "nubia-v70-design-8gb-256gb-00916393",
-  "productId": 24,
-  "variantName": "256 GB - Cam",
-  "price": 2990000.00
-}, {
-  "sku": "nubia-v70-design-8gb-128gb-00917129",
-  "productId": 24,
-  "variantName": "128 GB - Xanh lá",
-  "price": 2790000.00
-}, {
-  "sku": "nubia-v70-design-8gb-128gb-00917128",
-  "productId": 24,
-  "variantName": "128 GB - Xám",
-  "price": 2790000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-6gb-128gb-00913785",
-  "productId": 25,
-  "variantName": "128 GB - Tím",
-  "price": 4900000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-6gb-128gb-00913784",
-  "productId": 25,
-  "variantName": "128 GB - Xanh lá",
-  "price": 4900000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-6gb-128gb-00913783",
-  "productId": 25,
-  "variantName": "128 GB - Đen",
-  "price": 4900000.00
-}, {
-  "sku": "samsung-galaxy-a16-4gb-128gb-00913501",
-  "productId": 26,
-  "variantName": "128 GB - Xám",
-  "price": 5000000.00
-}, {
-  "sku": "samsung-galaxy-a16-4gb-128gb-00913500",
-  "productId": 26,
-  "variantName": "128 GB - Xanh lá",
-  "price": 5000000.00
-}, {
-  "sku": "samsung-galaxy-a16-4gb-128gb-00913502",
-  "productId": 26,
-  "variantName": "128 GB - Đen",
-  "price": 5000000.00
-}, {
-  "sku": "iphone-13-128gb-00773150",
-  "productId": 27,
-  "variantName": "128 GB - Trắng",
-  "price": 14690000.00
-}, {
-  "sku": "iphone-13-128gb-00773147",
-  "productId": 27,
-  "variantName": "128 GB - Đen",
-  "price": 14690000.00
-}, {
-  "sku": "samsung-galaxy-a56-5g-8gb-128gb-00916571",
-  "productId": 28,
-  "variantName": "128 GB - Đen",
-  "price": 9810000.00
-}, {
-  "sku": "samsung-galaxy-a56-5g-8gb-128gb-00918989",
-  "productId": 28,
-  "variantName": "128 GB - Hồng",
-  "price": 9810000.00
-}, {
-  "sku": "samsung-galaxy-a56-5g-8gb-128gb-00916570",
-  "productId": 28,
-  "variantName": "128 GB - Xanh",
-  "price": 9810000.00
-}, {
-  "sku": "samsung-galaxy-a56-5g-8gb-128gb-00916572",
-  "productId": 28,
-  "variantName": "128 GB - Xám",
-  "price": 9810000.00
-}, {
-  "sku": "masstel-izi-15-4g-00873189",
-  "productId": 29,
-  "variantName": "128 MB - Đen",
-  "price": 470000.00
-}, {
-  "sku": "masstel-izi-15-4g-00873191",
-  "productId": 29,
-  "variantName": "128 MB - Xanh",
-  "price": 470000.00
-}, {
-  "sku": "iphone-14-128gb-00832859",
-  "productId": 30,
-  "variantName": "128 GB - Đen",
-  "price": 17590000.00
-}, {
-  "sku": "iphone-14-128gb-00832860",
-  "productId": 30,
-  "variantName": "128 GB - Trắng",
-  "price": 17590000.00
-}, {
-  "sku": "iphone-14-128gb-00832862",
-  "productId": 30,
-  "variantName": "128 GB - Xanh dương",
-  "price": 17590000.00
-}, {
-  "sku": "xiaomi-15t-5g-12gb-512gb-00922263",
-  "productId": 31,
-  "variantName": "512 GB - Đen",
-  "price": 14990000.00
-}, {
-  "sku": "xiaomi-15t-5g-12gb-512gb-00922262",
-  "productId": 31,
-  "variantName": "512 GB - Vàng",
-  "price": 14990000.00
-}, {
-  "sku": "iphone-15-128gb-00904213",
-  "productId": 32,
-  "variantName": "128 GB - Xanh dương",
-  "price": 19590000.00
-}, {
-  "sku": "iphone-15-256gb-00904218",
-  "productId": 32,
-  "variantName": "256 GB - Xanh dương",
-  "price": 22490000.00
-}, {
-  "sku": "iphone-15-256gb-00904219",
-  "productId": 32,
-  "variantName": "256 GB - Hồng",
-  "price": 22490000.00
-}, {
-  "sku": "iphone-15-256gb-00904221",
-  "productId": 32,
-  "variantName": "256 GB - Đen",
-  "price": 22490000.00
-}, {
-  "sku": "iphone-15-128gb-00904214",
-  "productId": 32,
-  "variantName": "128 GB - Hồng",
-  "price": 19590000.00
-}, {
-  "sku": "iphone-15-128gb-00904216",
-  "productId": 32,
-  "variantName": "128 GB - Đen",
-  "price": 19590000.00
-}, {
-  "sku": "iphone-15-128gb-00904215",
-  "productId": 32,
-  "variantName": "128 GB - Vàng",
-  "price": 19590000.00
-}, {
-  "sku": "iphone-15-128gb-00904217",
-  "productId": 32,
-  "variantName": "128 GB - Xanh lá",
-  "price": 19590000.00
-}, {
-  "sku": "iphone-15-256gb-00904222",
-  "productId": 32,
-  "variantName": "256 GB - Xanh lá",
-  "price": 22490000.00
-}, {
-  "sku": "honor-x5b-4gb-64gb-00913872",
-  "productId": 33,
-  "variantName": "64 GB - Xanh",
-  "price": 2460000.00
-}, {
-  "sku": "honor-x5b-4gb-64gb-00913873",
-  "productId": 33,
-  "variantName": "64 GB - Đen",
-  "price": 2460000.00
-}, {
-  "sku": "oppo-a5i-4gb-128gb-00920164",
-  "productId": 34,
-  "variantName": "128 GB - Đỏ",
-  "price": 3690000.00
-}, {
-  "sku": "oppo-a5i-4gb-64gb-00920302",
-  "productId": 34,
-  "variantName": "64 GB - Đỏ",
-  "price": 3290000.00
-}, {
-  "sku": "oppo-a5i-4gb-64gb-00920301",
-  "productId": 34,
-  "variantName": "64 GB - Tím",
-  "price": 3290000.00
-}, {
-  "sku": "oppo-a5i-4gb-128gb-00920163",
-  "productId": 34,
-  "variantName": "128 GB - Tím",
-  "price": 3690000.00
-}, {
-  "sku": "tcl-60r-5g-4gb-128gb-00918546",
-  "productId": 35,
-  "variantName": "128 GB - Xám",
-  "price": 3990000.00
-}, {
-  "sku": "tcl-60r-5g-4gb-128gb-00918547",
-  "productId": 35,
-  "variantName": "128 GB - Trắng",
-  "price": 3990000.00
-}, {
-  "sku": "masstel-alfa-5-00921227",
-  "productId": 36,
-  "variantName": "24 MB - Xanh dương",
-  "price": 1490000.00
-}, {
-  "sku": "masstel-alfa-5-00921228",
-  "productId": 36,
-  "variantName": "24 MB - Vàng Gold",
-  "price": 1490000.00
-}, {
-  "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921054",
-  "productId": 37,
-  "variantName": "128 GB - Đen",
-  "price": 16690000.00
-}, {
-  "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921057",
-  "productId": 37,
-  "variantName": "128 GB - Xanh Icy",
-  "price": 16690000.00
-}, {
-  "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921056",
-  "productId": 37,
-  "variantName": "128 GB - Xanh Navy",
-  "price": 16690000.00
-}, {
-  "sku": "samsung-galaxy-s25-fe-5g-8gb-512gb-00921500",
-  "productId": 37,
-  "variantName": "512 GB - Xanh Navy",
-  "price": 21990000.00
-}, {
-  "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921055",
-  "productId": 37,
-  "variantName": "128 GB - Trắng",
-  "price": 16690000.00
-}, {
-  "sku": "masstel-izi-16-4g-00911810",
-  "productId": 38,
-  "variantName": "128 MB - Xanh",
-  "price": 450000.00
-}, {
-  "sku": "masstel-izi-16-4g-00911809",
-  "productId": 38,
-  "variantName": "128 MB - Đen",
-  "price": 450000.00
-}, {
-  "sku": "tecno-spark-30-8gb-128gb-00920804",
-  "productId": 39,
-  "variantName": "128 GB - Vàng",
-  "price": 3820000.00
-}, {
-  "sku": "tecno-spark-30-8gb-128gb-00920803",
-  "productId": 39,
-  "variantName": "128 GB - Đen",
-  "price": 3820000.00
-}, {
-  "sku": "tecno-spark-30-8gb-128gb-00920802",
-  "productId": 39,
-  "variantName": "128 GB - Trắng",
-  "price": 3820000.00
-}, {
-  "sku": "honor-x5b-plus-4gb-128gb-00918463",
-  "productId": 40,
-  "variantName": "128 GB - Đen",
-  "price": 2940000.00
-}, {
-  "sku": "samsung-galaxy-a36-5g-8gb-128gb-00916573",
-  "productId": 41,
-  "variantName": "128 GB - Xanh",
-  "price": 8140000.00
-}, {
-  "sku": "samsung-galaxy-a36-5g-8gb-128gb-00916575",
-  "productId": 41,
-  "variantName": "128 GB - Đen",
-  "price": 8140000.00
-}, {
-  "sku": "samsung-galaxy-a36-5g-8gb-128gb-00916574",
-  "productId": 41,
-  "variantName": "128 GB - Tím",
-  "price": 8140000.00
-}, {
-  "sku": "honor-x9c-5g-12gb-256gb-00913877",
-  "productId": 42,
-  "variantName": "256 GB - Tím",
-  "price": 9320000.00
-}, {
-  "sku": "honor-x9c-5g-12gb-256gb-00913876",
-  "productId": 42,
-  "variantName": "256 GB - Xanh",
-  "price": 9320000.00
-}, {
-  "sku": "honor-x9c-5g-12gb-256gb-00913878",
-  "productId": 42,
-  "variantName": "256 GB - Đen",
-  "price": 9320000.00
-}, {
-  "sku": "nokia-105-ds-pro-4g-00887716",
-  "productId": 43,
-  "variantName": "128 MB - Đen",
-  "price": 690000.00
-}, {
-  "sku": "nokia-105-ds-pro-4g-00887718",
-  "productId": 43,
-  "variantName": "128 MB - Xanh",
-  "price": 690000.00
-}, {
-  "sku": "oppo-a6-pro-8gb-256gb-00922203",
-  "productId": 44,
-  "variantName": "256 GB - Xám Titan",
-  "price": 8290000.00
-}, {
-  "sku": "oppo-a6-pro-8gb-256gb-00922205",
-  "productId": 44,
-  "variantName": "256 GB - Hồng",
-  "price": 8290000.00
-}, {
-  "sku": "oppo-a6-pro-8gb-256gb-00922204",
-  "productId": 44,
-  "variantName": "256 GB - Xanh dương",
-  "price": 8290000.00
-}, {
-  "sku": "samsung-galaxy-m55-5g-256gb-00909355",
-  "productId": 45,
-  "variantName": "256 GB - Đen",
-  "price": 10010000.00
-}, {
-  "sku": "samsung-galaxy-m55-5g-256gb-00909354",
-  "productId": 45,
-  "variantName": "256 GB - Xanh lá",
-  "price": 10010000.00
-}, {
-  "sku": "oppo-a5i-6gb-128gb-00920641",
-  "productId": 46,
-  "variantName": "128 GB - Đỏ",
-  "price": 4490000.00
-}, {
-  "sku": "oppo-a5i-6gb-128gb-00920640",
-  "productId": 46,
-  "variantName": "128 GB - Tím",
-  "price": 4490000.00
-}, {
-  "sku": "nubia-air-5g-8gb-256gb-00922513",
-  "productId": 47,
-  "variantName": "256 GB - Xám",
-  "price": 5990000.00
-}, {
-  "sku": "nubia-air-5g-8gb-256gb-00922514",
-  "productId": 47,
-  "variantName": "256 GB - Vàng",
-  "price": 5990000.00
-}, {
-  "sku": "honor-x7c-8gb-256gb-00912625",
-  "productId": 48,
-  "variantName": "256 GB - Trắng",
-  "price": 5400000.00
-}, {
-  "sku": "honor-x7c-8gb-256gb-00912627",
-  "productId": 48,
-  "variantName": "256 GB - Xanh",
-  "price": 5400000.00
-}, {
-  "sku": "honor-x7c-8gb-256gb-00912626",
-  "productId": 48,
-  "variantName": "256 GB - Đen",
-  "price": 5400000.00
-}, {
-  "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914098",
-  "productId": 49,
-  "variantName": "256 GB - Xanh Dương Nhạt",
-  "price": 22580000.00
-}, {
-  "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914100",
-  "productId": 49,
-  "variantName": "256 GB - Xám Bạc",
-  "price": 22580000.00
-}, {
-  "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914099",
-  "productId": 49,
-  "variantName": "256 GB - Xanh lá",
-  "price": 22580000.00
-}, {
-  "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914097",
-  "productId": 49,
-  "variantName": "256 GB - Xanh Navy",
-  "price": 22580000.00
-}, {
-  "sku": "samsung-galaxy-s25-5g-12gb-512gb-00914101",
-  "productId": 49,
-  "variantName": "512 GB - Xanh Navy",
-  "price": 26010000.00
-}, {
-  "sku": "samsung-galaxy-s25-5g-12gb-512gb-00914103",
-  "productId": 49,
-  "variantName": "512 GB - Xanh lá",
-  "price": 26010000.00
-}, {
-  "sku": "redmagic-10s-pro-5g-16gb-512gb-00919471",
-  "productId": 50,
-  "variantName": "512 GB - Bạc",
-  "price": 24990000.00
-}, {
-  "sku": "redmagic-10s-pro-5g-16gb-512gb-00919470",
-  "productId": 50,
-  "variantName": "512 GB - Xám",
-  "price": 24990000.00
-}, {
-  "sku": "inoi-240-modern-4g-00910959",
-  "productId": 51,
-  "variantName": "128 MB - Xanh",
-  "price": 390000.00
-}, {
-  "sku": "inoi-240-modern-4g-00910960",
-  "productId": 51,
-  "variantName": "128 MB - Đen",
-  "price": 390000.00
-}, {
-  "sku": "nokia-3210-4g-00908739",
-  "productId": 52,
-  "variantName": "128 MB - Vàng",
-  "price": 1590000.00
-}, {
-  "sku": "nokia-3210-4g-00908738",
-  "productId": 52,
-  "variantName": "128 MB - Đen",
-  "price": 1590000.00
-}, {
-  "sku": "nokia-3210-4g-00908740",
-  "productId": 52,
-  "variantName": "128 MB - Xanh",
-  "price": 1590000.00
-}, {
-  "sku": "oppo-reno13-f-8gb-256gb-00913796",
-  "productId": 53,
-  "variantName": "256 GB - Tím",
-  "price": 8830000.00
-}, {
-  "sku": "oppo-reno13-f-8gb-256gb-00913797",
-  "productId": 53,
-  "variantName": "256 GB - Xám",
-  "price": 8830000.00
-}, {
-  "sku": "oppo-a58-8gb-128gb-00909735",
-  "productId": 54,
-  "variantName": "128 GB - Đen",
-  "price": 5490000.00
-}, {
-  "sku": "oppo-a58-8gb-128gb-00909734",
-  "productId": 54,
-  "variantName": "128 GB - Xanh",
-  "price": 5490000.00
-}, {
-  "sku": "benco-v91c-4gb-128gb-00911629",
-  "productId": 55,
-  "variantName": "128 GB - Xám",
-  "price": 2690000.00
-}, {
-  "sku": "benco-v91c-4gb-128gb-00911628",
-  "productId": 55,
-  "variantName": "128 GB - Trắng Cầu Vồng",
-  "price": 2690000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-5g-8gb-256gb-00917297",
-  "productId": 56,
-  "variantName": "256 GB - Xanh lá",
-  "price": 7160000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-5g-8gb-256gb-00917298",
-  "productId": 56,
-  "variantName": "256 GB - Tím",
-  "price": 7160000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-5g-8gb-256gb-00917296",
-  "productId": 56,
-  "variantName": "256 GB - Đen",
-  "price": 7160000.00
-}, {
-  "sku": "nubia-a56-4gb-128gb-00919392",
-  "productId": 57,
-  "variantName": "128 GB - Đen",
-  "price": 2290000.00
-}, {
-  "sku": "nubia-a56-4gb-128gb-00919393",
-  "productId": 57,
-  "variantName": "128 GB - Vàng",
-  "price": 2290000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-pro-plus-5g-8gb-256gb-00913776",
-  "productId": 58,
-  "variantName": "256 GB - Đen",
-  "price": 10800000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-pro-plus-5g-8gb-256gb-00913777",
-  "productId": 58,
-  "variantName": "256 GB - Tím",
-  "price": 10800000.00
-}, {
-  "sku": "xiaomi-redmi-note-14-pro-plus-5g-8gb-256gb-00913778",
-  "productId": 58,
-  "variantName": "256 GB - Xanh dương",
-  "price": 10800000.00
-}, {
-  "sku": "mobell-m139-4g-00910966",
-  "productId": 59,
-  "variantName": "128 MB - Xanh dương",
-  "price": 390000.00
-}, {
-  "sku": "mobell-m139-4g-00910967",
-  "productId": 59,
-  "variantName": "128 MB - Đỏ",
-  "price": 390000.00
-}, {
-  "sku": "mobell-m139-4g-00910968",
-  "productId": 59,
-  "variantName": "128 MB - Đen",
-  "price": 390000.00
-}, {
-  "sku": "tecno-spark-40-6gb-128gb-00921116",
-  "productId": 60,
-  "variantName": "128 GB - Đen",
-  "price": 3490000.00
-}, {
-  "sku": "tecno-spark-40-6gb-128gb-00921118",
-  "productId": 60,
-  "variantName": "128 GB - Xám",
-  "price": 3490000.00
-}, {
-  "sku": "tecno-spark-40-6gb-128gb-00921119",
-  "productId": 60,
-  "variantName": "128 GB - Tím",
-  "price": 3490000.00
-}, {
-  "sku": "tecno-spark-40-6gb-128gb-00921117",
-  "productId": 60,
-  "variantName": "128 GB - Trắng",
-  "price": 3490000.00
-}, {
-  "sku": "xiaomi-redmi-15c-4gb-128gb-(nfc)-00922779",
-  "productId": 70,
-  "variantName": "128 GB - Đen",
-  "price": 3690000.00
-}, {
-  "sku": "xiaomi-redmi-15c-4gb-128gb-(nfc)-00922780",
-  "productId": 70,
-  "variantName": "128 GB - Xanh lam",
-  "price": 3690000.00
-}, {
-  "sku": "xiaomi-redmi-15c-4gb-128gb-(nfc)-00922781",
-  "productId": 70,
-  "variantName": "128 GB - Cam",
-  "price": 3690000.00
-}, {
-  "sku": "masstel-fami-60s-4g-00906759",
-  "productId": 71,
-  "variantName": "128 MB - Xanh",
-  "price": 720000.00
-}, {
-  "sku": "masstel-fami-60s-4g-00906758",
-  "productId": 71,
-  "variantName": "128 MB - Đen",
-  "price": 720000.00
-}, {
-  "sku": "oppo-a5i-pro-8gb-128gb-00920167",
-  "productId": 72,
-  "variantName": "128 GB - Trắng",
-  "price": 5490000.00
-}, {
-  "sku": "oppo-a5i-pro-8gb-128gb-00920168",
-  "productId": 72,
-  "variantName": "128 GB - Tím",
-  "price": 5490000.00
-}, {
-  "sku": "oppo-reno14-5g-12gb-256gb-00919212",
-  "productId": 73,
-  "variantName": "256 GB - Trắng",
-  "price": 15700000.00
-}, {
-  "sku": "oppo-reno14-5g-12gb-256gb-00919213",
-  "productId": 73,
-  "variantName": "256 GB - Xanh",
-  "price": 15700000.00
-}, {
-  "sku": "xiaomi-poco-m6-pro-8gb-256gb-00906273",
-  "productId": 74,
-  "variantName": "256 GB - Đen",
-  "price": 6370000.00
-}, {
-  "sku": "xiaomi-poco-m6-pro-8gb-256gb-00906275",
-  "productId": 74,
-  "variantName": "256 GB - Tím",
-  "price": 6370000.00
-}, {
-  "sku": "xiaomi-poco-m6-pro-8gb-256gb-00906274",
-  "productId": 74,
-  "variantName": "256 GB - Xanh dương",
-  "price": 6370000.00
-}, {
-  "sku": "samsung-galaxy-a17-5g-8gb-128gb-00920682",
-  "productId": 75,
-  "variantName": "128 GB - Xanh",
-  "price": 6190000.00
-}, {
-  "sku": "samsung-galaxy-a17-5g-8gb-128gb-00920680",
-  "productId": 75,
-  "variantName": "128 GB - Xám",
-  "price": 6190000.00
-}, {
-  "sku": "samsung-galaxy-a17-5g-8gb-128gb-00920681",
-  "productId": 75,
-  "variantName": "128 GB - Đen",
-  "price": 6190000.00
-}, {
-  "sku": "xiaomi-15-5g-12gb-256gb-00916350",
-  "productId": 76,
-  "variantName": "256 GB - Đen",
-  "price": 24540000.00
-}, {
-  "sku": "xiaomi-15-5g-12gb-256gb-00916352",
-  "productId": 76,
-  "variantName": "256 GB - Xanh",
-  "price": 24540000.00
-}, {
-  "sku": "viettel-sumo-t2-4g-00911867",
-  "productId": 77,
-  "variantName": "128 MB - Đen",
-  "price": 550000.00
-}, {
-  "sku": "viettel-sumo-t2-4g-00911868",
-  "productId": 77,
-  "variantName": "128 MB - Xanh",
-  "price": 550000.00
-}, {
-  "sku": "xiaomi-redmi-14c-4gb-128gb-00910947",
-  "productId": 78,
-  "variantName": "128 GB - Đen",
-  "price": 3230000.00
-}, {
-  "sku": "xiaomi-redmi-14c-4gb-128gb-00910948",
-  "productId": 78,
-  "variantName": "128 GB - Xanh dương",
-  "price": 3230000.00
-}, {
-  "sku": "xiaomi-poco-c71-4gb-128gb-00918991",
-  "productId": 79,
-  "variantName": "128 GB - Đen",
-  "price": 3150000.00
-}, {
-  "sku": "xiaomi-poco-c71-4gb-128gb-00918993",
-  "productId": 79,
-  "variantName": "128 GB - Vàng",
-  "price": 3150000.00
-}, {
-  "sku": "xiaomi-poco-c71-4gb-128gb-00918992",
-  "productId": 79,
-  "variantName": "128 GB - Xanh dương",
-  "price": 3150000.00
-}, {
-  "sku": "xiaomi-15t-pro-5g-12gb-512gb-00922256",
-  "productId": 80,
-  "variantName": "512 GB - Xám",
-  "price": 19490000.00
-}, {
-  "sku": "xiaomi-15t-pro-5g-12gb-512gb-00922257",
-  "productId": 80,
-  "variantName": "512 GB - Vàng",
-  "price": 19490000.00
-}, {
-  "sku": "mieng-dan-film-trong-mat-sau-may-tinh-cat-thu-cong-yvs-00549687",
-  "productId": 81,
-  "variantName": "Trong suốt",
-  "price": 120000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-pro-max-5d-yvs-00920866",
-  "productId": 82,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-pro-5d-yvs-00920867",
-  "productId": 83,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-5d-yvs-00920869",
-  "productId": 84,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-17-pro-max-mipow-00920920",
-  "productId": 85,
-  "variantName": "Miếng dán màn hình kính cường lực chống nhìn trộm iPhone 17 Pro Max Mipow",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-17-pro-mipow-00920921",
-  "productId": 86,
-  "variantName": "Miếng dán màn hình kính cường lực chống nhìn trộm iPhone 17 Pro Mipow",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-17-mipow-00921067",
-  "productId": 87,
-  "variantName": "Miếng dán màn hình kính cường lực chống ánh sáng xanh iPhone 17 Mipow",
-  "price": 449000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-17-pro17-pro-max-esr-00920924",
-  "productId": 88,
-  "variantName": "Miếng dán kính cường lực camera iPhone 17 Pro/17 Pro Max ESR",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-pro-max-zagg-00920986",
-  "productId": 89,
-  "variantName": "Miếng dán màn hình kính cường lực iPhone 17 Pro Max ZAGG",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a56-samsung-s25-fe-yvs-00916470",
-  "productId": 90,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-honor-magic-v5-urr-00922304",
-  "productId": 91,
-  "variantName": "Miếng dán màn hình kính cường lực Honor Magic V5 URR",
-  "price": 299000.00
-}, {
-  "sku": "kinh-cuong-luc-samsung-m55-5g-yvs-00909167",
-  "productId": 92,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-z-fold7-yvs-00919545",
-  "productId": 93,
-  "variantName": "Trong suốt",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a06-yvs-00911593",
-  "productId": 94,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-s25-ultra-5d-yvs-00913741",
-  "productId": 95,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-air-2.5d-yvs-00920917",
-  "productId": 96,
-  "variantName": "Miếng dán màn hình kính cường lực iPhone Air 2.5D YVS",
-  "price": 199000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-air-5d-yvs-00920868",
-  "productId": 97,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-honor-400-yvs-00919533",
-  "productId": 98,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-xiaomi-poco-m7-pro-yvs-00917984",
-  "productId": 99,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-honor-x8c-yvs-00917588",
-  "productId": 100,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a36-yvs-00916469",
-  "productId": 101,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a26-yvs-00916468",
-  "productId": 102,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-ppf-honor-x9c-yvs-00913908",
-  "productId": 103,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-oppo-reno-13f-yvs-00913744",
-  "productId": 104,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-max-vien-trong-suot-yvs-5d-00912754",
-  "productId": 105,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-vien-trong-suot-yvs-5d-00912755",
-  "productId": 106,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-16-plus-mipow-00910722",
-  "productId": 107,
-  "variantName": "Trong suốt",
-  "price": 499000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-5d-yvs-00910728",
-  "productId": 108,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1616-plus-yvs-00910737",
-  "productId": 109,
-  "variantName": "Đen",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-khuon-mtxt-15.6\"-yvs-00910218",
-  "productId": 110,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-z-flip-6-yvs-00909887",
-  "productId": 111,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-a15-a25-yvs-00905421",
-  "productId": 112,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-xiaomi-redmi-note-13-yvs-00905606",
-  "productId": 113,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-a05s-redmi-13c-yvs-00900927",
-  "productId": 114,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899896",
-  "productId": 115,
-  "variantName": "Xám",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899897",
-  "productId": 115,
-  "variantName": "Bạc",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899899",
-  "productId": 115,
-  "variantName": "Vàng",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899900",
-  "productId": 115,
-  "variantName": "Xanh dương",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-iphone-15-pro-max-6d-yvs-00890659",
-  "productId": 116,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-oppo-a58oppo-a3-yvs-00892038",
-  "productId": 117,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-ppf-oppo-reno10-honor-x9b-yvs-00886638",
-  "productId": 118,
-  "variantName": "Trong suốt",
-  "price": 39000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-van-tay-iphone-14iphone-16e-10d-yvs-00870386",
-  "productId": 119,
-  "variantName": "Trong suốt",
-  "price": 390000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-14-iphone-16e-10d-yvs-00870388",
-  "productId": 120,
-  "variantName": "Trong suốt",
-  "price": 430000.00
-}, {
-  "sku": "mieng-dan-film-trong-mat-sau-ipad-air-cat-thu-cong-yvs-00541926",
-  "productId": 121,
-  "variantName": "Trong suốt",
-  "price": 100000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-iphone-12-mini-yvs-tran-vien-00718018",
-  "productId": 122,
-  "variantName": "Trong suốt",
-  "price": 190000.00
-}, {
-  "sku": "mieng-dan-film-trong-mat-sau-8.5-cat-thu-cong-yvs-00537635",
-  "productId": 123,
-  "variantName": "Trong suốt",
-  "price": 50000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-iphone-13-6d-yvs-tran-vien-00772453",
-  "productId": 124,
-  "variantName": "Trong suốt",
-  "price": 290000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-iphone-13-pro-max-belkin-00772451",
-  "productId": 125,
-  "variantName": "Trong suốt",
-  "price": 199000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-xiaomi-redmi-note-11soppo-a74-a95-yvs-00747638",
-  "productId": 126,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-samsung-galaxy-a34-yvs-00861527",
-  "productId": 127,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-14-proiphone-15-2.5d-yvs-00831898",
-  "productId": 128,
-  "variantName": "Trong suốt",
-  "price": 190000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-samsung-galaxy-a54-yvs-00861528",
-  "productId": 129,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899906",
-  "productId": 130,
-  "variantName": "Đen",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899907",
-  "productId": 130,
-  "variantName": "Bạc",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899908",
-  "productId": 130,
-  "variantName": "Xám",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899913",
-  "productId": 130,
-  "variantName": "Xanh",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-samsung-a52a53-yvs-00740073",
-  "productId": 131,
-  "variantName": "Trắng",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-air-yvs-00920913",
-  "productId": 132,
-  "variantName": "Trong suốt",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-ipad-air-m2-11\"-yvs-00908671",
-  "productId": 133,
-  "variantName": "Trong suốt",
-  "price": 390000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-oppo-a16k-a15-a57-yvs-00791130",
-  "productId": 134,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-14-proiphone-15-belkin-00832729",
-  "productId": 135,
-  "variantName": "Trong suốt",
-  "price": 400000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-17-yvs-00920914",
-  "productId": 136,
-  "variantName": "Trong suốt",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-chong-anh-sang-xanh-iphone-15-pro-10d-yvs-00890663",
-  "productId": 137,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-van-tay-iphone-14-proiphone-15-jcpal-00832706",
-  "productId": 138,
-  "variantName": "Trong suốt",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-14-iphone-16e-2.5d-yvs-00831911",
-  "productId": 139,
-  "variantName": "Trong suốt",
-  "price": 190000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899911",
-  "productId": 140,
-  "variantName": "Xám",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899912",
-  "productId": 140,
-  "variantName": "Xanh",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899914",
-  "productId": 140,
-  "variantName": "Bạc",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899910",
-  "productId": 140,
-  "variantName": "Đen",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-max-esr-00910714",
-  "productId": 141,
-  "variantName": "Trong suốt",
-  "price": 199000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-oppo-a55-a96-yvs-00791125",
-  "productId": 142,
-  "variantName": "Trong suốt",
-  "price": 150000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-samsung-galaxy-s25-ultra-mipow-00913740",
-  "productId": 143,
-  "variantName": "Trong suốt",
-  "price": 499000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-ipad-air-m2-13\"-yvs-00908670",
-  "productId": 144,
-  "variantName": "Trong suốt",
-  "price": 390000.00
-}, {
-  "sku": "mieng-dan-cuong-luc-samsung-s23-plus-6d-yvs-00857982",
-  "productId": 145,
-  "variantName": "Trong suốt",
-  "price": 290000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-tab-a9-00908544",
-  "productId": 146,
-  "variantName": "Trong suốt",
-  "price": 190000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-air-uniq-00920919",
-  "productId": 147,
-  "variantName": "Miếng dán kính cường lực camera iPhone Air UNIQ",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-chong-van-tay-iphone-15-pro-max-10d-yvs-00890677",
-  "productId": 148,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-chong-van-tay-iphone-15-pro-10d-yvs-00890676",
-  "productId": 149,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-1717-pro-zagg-00920988",
-  "productId": 150,
-  "variantName": "Miếng dán màn hình kính cường lực iPhone 17/17 Pro ZAGG",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-5-in-1-macbook-air-13\"-jcpal-00818404",
-  "productId": 151,
-  "variantName": "Bạc",
-  "price": 750000.00
-}, {
-  "sku": "mieng-dan-man-hinh-5-in-1-macbook-air-13\"-jcpal-00818435",
-  "productId": 151,
-  "variantName": "Vàng hồng",
-  "price": 750000.00
-}, {
-  "sku": "mieng-dan-man-hinh-5-in-1-macbook-air-13\"-jcpal-00818432",
-  "productId": 151,
-  "variantName": "Xám",
-  "price": 750000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-chong-nhin-trom-iphone-15-pro-10d-yvs-00890671",
-  "productId": 152,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-16-pro16-pro-max-uniq-00910707",
-  "productId": 153,
-  "variantName": "Vàng",
-  "price": 399000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-max-5d-yvs-00910727",
-  "productId": 154,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-ipad-mini-6-8.3\"-2021-jcpal-00819143",
-  "productId": 155,
-  "variantName": "Trong suốt",
-  "price": 370000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-yvs-00899895",
-  "productId": 156,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-yvs-00899893",
-  "productId": 156,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-yvs-00899894",
-  "productId": 156,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-man-hinh-3m-diamond-guard-6-in-1-macbook-pro-13\"-2020-m1-m2-innostyle-00879650",
-  "productId": 157,
-  "variantName": "Bạc",
-  "price": 860000.00
-}, {
-  "sku": "mieng-dan-man-hinh-3m-diamond-guard-6-in-1-macbook-pro-13\"-2020-m1-m2-innostyle-00879649",
-  "productId": 157,
-  "variantName": "Xám",
-  "price": 860000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1515-plus-yvs-00899890",
-  "productId": 158,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1515-plus-yvs-00899892",
-  "productId": 158,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1515-plus-yvs-00899891",
-  "productId": 158,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-17-pro-mipow-00921065",
-  "productId": 159,
-  "variantName": "Miếng dán màn hình kính cường lực chống ánh sáng xanh iPhone 17 Pro Mipow",
-  "price": 449000.00
-}, {
-  "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-air-mipow-00921066",
-  "productId": 160,
-  "variantName": "Miếng dán màn hình kính cường lực chống ánh sáng xanh iPhone Air Mipow",
-  "price": 449000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-17-pro-nhua-tpu-chong-soc-creative-case-00920909",
-  "productId": 161,
-  "variantName": "Trong suốt",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-17-nhua-tpu-chong-soc-esr-00920899",
-  "productId": 162,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-17-pro-max-nhua-tpu-chong-soc-innostyle-00920888",
-  "productId": 163,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-16-pro-nhua-cung-chong-soc-esr-00910807",
-  "productId": 164,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-16-pro-max-nhua-cung-chong-soc-esr-trong-suot-00910805",
-  "productId": 165,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-xiaomi-redmi-note-13-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00906136",
-  "productId": 166,
-  "variantName": "Xanh",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-xiaomi-redmi-note-13-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00906135",
-  "productId": 166,
-  "variantName": "Đen",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-apple-clear-case-with-magsafe-00904552",
-  "productId": 167,
-  "variantName": "Trong suốt",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904555",
-  "productId": 167,
-  "variantName": "Xanh lá",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904558",
-  "productId": 167,
-  "variantName": "Cam nhạt",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904553",
-  "productId": 167,
-  "variantName": "Đen",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904556",
-  "productId": 167,
-  "variantName": "Hồng đào",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904560",
-  "productId": 167,
-  "variantName": "Xanh biển",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904559",
-  "productId": 167,
-  "variantName": "Xanh Đen",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-apple-clear-case-with-magsafe-00904543",
-  "productId": 168,
-  "variantName": "Trong suốt",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904551",
-  "productId": 168,
-  "variantName": "Xanh biển",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904546",
-  "productId": 168,
-  "variantName": "Xanh lá",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904549",
-  "productId": 168,
-  "variantName": "Cam nhạt",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904548",
-  "productId": 168,
-  "variantName": "Hồng nhạt",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904544",
-  "productId": 168,
-  "variantName": "Đen",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904547",
-  "productId": 168,
-  "variantName": "Hồng đào",
-  "price": 1298000.00
-}, {
-  "sku": "op-lung-samsung-a05s-nhua-cung-vien-deo-pc+tpu-meetu-00901783",
-  "productId": 169,
-  "variantName": "Xanh rêu",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-samsung-a05s-nhua-cung-vien-deo-pc+tpu-meetu-00901784",
-  "productId": 170,
-  "variantName": "Đen",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-promax-meetu-nhua-cung-00896409",
-  "productId": 171,
-  "variantName": "Tím",
-  "price": 99000.00
-}, {
-  "sku": "op-lung-bao-ve-iphone-15-promax-meetu-nhua-tpu-chong-soc-hoa-tiet-00895592",
-  "productId": 172,
-  "variantName": "Xanh dương",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-promax-uniq-coehl-linear-nhua-tpu-chong-soc-chong-o-vang-00895671",
-  "productId": 173,
-  "variantName": "Mixed",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-bao-ve-iphone-15-promax-devia-keep-smile-nhua-cung-hoa-van-nhieu-mau-00896740",
-  "productId": 174,
-  "variantName": "Đa sắc",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-pro-devia-nhua-cung-co-dje-dung-00896733",
-  "productId": 175,
-  "variantName": "Đen",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-pro-devia-nhua-cung-co-dje-dung-00896734",
-  "productId": 175,
-  "variantName": "Trắng",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-bao-ve-yvs-iphone-15-promax-nhua-tpu-+-pc-chong-soc-chong-o-vang-chong-van-tay-00895201",
-  "productId": 176,
-  "variantName": "Đen",
-  "price": 99000.00
-}, {
-  "sku": "vi-da-esr-magnetic-kiem-gia-djo-halolock-00886637",
-  "productId": 177,
-  "variantName": "Đen",
-  "price": 599000.00
-}, {
-  "sku": "vi-da-esr-magnetic-kiem-gia-djo-halolock-00886636",
-  "productId": 177,
-  "variantName": "Nâu",
-  "price": 599000.00
-}, {
-  "sku": "vi-da-magsafe-jcpal-iphone-00882715",
-  "productId": 178,
-  "variantName": "Xanh",
-  "price": 599000.00
-}, {
-  "sku": "vi-da-magsafe-jcpal-iphone-00882718",
-  "productId": 178,
-  "variantName": "Đen",
-  "price": 599000.00
-}, {
-  "sku": "vi-da-magsafe-jcpal-iphone-00882717",
-  "productId": 178,
-  "variantName": "Nâu",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-chong-soc-xiaomi-redmi-note-12-my-choice-silicone-00873700",
-  "productId": 179,
-  "variantName": "Đỏ",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-dja-nang-iphone-13-pro-max-meetu-silicone-trong-suot-00772446",
-  "productId": 180,
-  "variantName": "Trong suốt",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-dja-nang-iphone-13-pro-meetu-silicone-trong-suot-00772465",
-  "productId": 181,
-  "variantName": "Trong suốt",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-magsafe-chong-soc-iphone-14-plus-mipow-00831846",
-  "productId": 182,
-  "variantName": "Trong suốt",
-  "price": 400000.00
-}, {
-  "sku": "op-lung-dja-nang-iphone-14-plus-meetu-silicone-00831571",
-  "productId": 183,
-  "variantName": "Trong suốt",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-iphone-14-plus-tpu-chong-soc-mipow-00833587",
-  "productId": 184,
-  "variantName": "Trong suốt",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-chong-soc-samsung-galaxy-a14-yvs-00862380",
-  "productId": 185,
-  "variantName": "Trong suốt",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-chong-soc-samsung-galaxy-a14-yvs-00862381",
-  "productId": 185,
-  "variantName": "Đen",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-magsafe-samsung-galaxy-s25-ultra-nhua-cung-chong-soc-esr-00913684",
-  "productId": 186,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-iphone-air-apple-clear-case-with-magsafe-00920853",
-  "productId": 187,
-  "variantName": "Trong suốt",
-  "price": 1429000.00
-}, {
-  "sku": "op-lung-iphone-air-apple-case-with-magsafe-00922079",
-  "productId": 187,
-  "variantName": "Sương Chiều",
-  "price": 1429000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-16e-nhua-cung-chong-soc-esr-00916491",
-  "productId": 188,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "hop-djung-tai-nghe-airpods-4-coteci-chat-lieu-nhua-00912638",
-  "productId": 189,
-  "variantName": "Xám",
-  "price": 299000.00
-}, {
-  "sku": "op-lung-iphone-13-pro-max-meetu-dje-dung-dja-nang-00785619",
-  "productId": 190,
-  "variantName": "Xanh Đen",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-iphone-13-pro-max-meetu-dje-dung-dja-nang-00785618",
-  "productId": 190,
-  "variantName": "Đen",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-iphone-13-pro-max-meetu-dje-dung-dja-nang-00785620",
-  "productId": 190,
-  "variantName": "Xanh Đậm",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-dja-nang-iphone-15-pro-meetu-silicone-00892846",
-  "productId": 191,
-  "variantName": "Trong suốt",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-17-nhua-tpu-chong-soc-creative-case-00920989",
-  "productId": 192,
-  "variantName": "Trong suốt",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-co-gia-djo-devia-00920906",
-  "productId": 193,
-  "variantName": "Đen",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-creative-case-00920910",
-  "productId": 194,
-  "variantName": "Trong suốt",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-16-pro-max-nhua-nham-slimcase-mipow-00910829",
-  "productId": 195,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-meetu-kim-cuong-00892862",
-  "productId": 196,
-  "variantName": "Xanh",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-innostyle-00920890",
-  "productId": 197,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-samsung-fold-4-seine-scene-00825820",
-  "productId": 198,
-  "variantName": "Trong suốt",
-  "price": 299000.00
-}, {
-  "sku": "bao-da-samsung-galaxy-a54-araree-mustang-diary-00866939",
-  "productId": 199,
-  "variantName": "Xám",
-  "price": 199000.00
-}, {
-  "sku": "bao-da-samsung-galaxy-a54-araree-mustang-diary-00866937",
-  "productId": 199,
-  "variantName": "Đen",
-  "price": 199000.00
-}, {
-  "sku": "bao-da-samsung-galaxy-a54-araree-mustang-diary-00866940",
-  "productId": 199,
-  "variantName": "Xanh",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-chong-soc-iphone-14-pro-max-spigen-liquid-air-matte-00831850",
-  "productId": 200,
-  "variantName": "Xanh dương",
-  "price": 400000.00
-}, {
-  "sku": "op-lung-chong-soc-iphone-14-pro-max-spigen-liquid-air-matte-00831849",
-  "productId": 200,
-  "variantName": "Đen",
-  "price": 400000.00
-}, {
-  "sku": "op-lung-trong-samsung-galaxy-s24-ultra-00906202",
-  "productId": 201,
-  "variantName": "Trong suốt",
-  "price": 480000.00
-}, {
-  "sku": "op-lung-magsafe-yvs-iphone-15-promax-nhua-tpu-+-pc-chong-soc-chong-o-vang-pha-mau-00895198",
-  "productId": 202,
-  "variantName": "Mixed",
-  "price": 99000.00
-}, {
-  "sku": "bao-da-magnetic-kem-ban-phim-ipad-air-11-(20242025)-air-5-air-4-pro-11-(202120202018)-esr-00885270",
-  "productId": 203,
-  "variantName": "Đen",
-  "price": 3090000.00
-}, {
-  "sku": "op-lung-samsung-galaxy-a25-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00905469",
-  "productId": 204,
-  "variantName": "Đen",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-samsung-galaxy-a25-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00905470",
-  "productId": 204,
-  "variantName": "Nâu",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-dje-dung-iphone-14-pro-max-spigen-ultra-hybrid-s-00831851",
-  "productId": 205,
-  "variantName": "Trong suốt",
-  "price": 400000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-promax-devia-nhua-cung-co-dje-dung-00896736",
-  "productId": 206,
-  "variantName": "Trắng",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-promax-devia-nhua-cung-co-dje-dung-00896735",
-  "productId": 206,
-  "variantName": "Đen",
-  "price": 399000.00
-}, {
-  "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917285",
-  "productId": 208,
-  "variantName": "Xanh Da Trời",
-  "price": 2253000.00
-}, {
-  "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917282",
-  "productId": 208,
-  "variantName": "Trắng",
-  "price": 2253000.00
-}, {
-  "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917283",
-  "productId": 208,
-  "variantName": "Vàng Chanh",
-  "price": 2253000.00
-}, {
-  "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917284",
-  "productId": 208,
-  "variantName": "Đỏ",
-  "price": 2253000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-13-pro-max-mipow-00772462",
-  "productId": 209,
-  "variantName": "Trong suốt",
-  "price": 540000.00
-}, {
-  "sku": "op-lung-dja-nang-iphone-15-pro-max-meetu-silicone-00892847",
-  "productId": 210,
-  "variantName": "Trong suốt",
-  "price": 49000.00
-}, {
-  "sku": "bao-da-ipad-pro-13-inch-2024-apple-smart-folio-00908431",
-  "productId": 211,
-  "variantName": "Đen",
-  "price": 2841000.00
-}, {
-  "sku": "bao-da-ipad-pro-13-inch-2024-apple-smart-folio-00908432",
-  "productId": 211,
-  "variantName": "Xanh Denim",
-  "price": 2841000.00
-}, {
-  "sku": "bao-da-ipad-pro-13-inch-2024-apple-smart-folio-00908430",
-  "productId": 211,
-  "variantName": "Trắng",
-  "price": 2841000.00
-}, {
-  "sku": "op-lung-magsafe-chong-soc-iphone-14-pro-max-yvs-00831825",
-  "productId": 212,
-  "variantName": "Đen",
-  "price": 99000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-16-pro-nhua-tpu-chong-soc-co-gia-djo-camera-esr-00910806",
-  "productId": 213,
-  "variantName": "Trong suốt",
-  "price": 799000.00
-}, {
-  "sku": "op-lung-samsung-galaxy-a05s-silicone-trong-suot-00904955",
-  "productId": 214,
-  "variantName": "Trong suốt",
-  "price": 186000.00
-}, {
-  "sku": "op-lung-bao-ve-iphone-16-plus-silicon-chong-soc-chong-tray-xuoc-meetu-00910815",
-  "productId": 215,
-  "variantName": "Trong suốt",
-  "price": 149000.00
-}, {
-  "sku": "bao-da-rebound-magnetic-ipad-air-11-(20242025)-air-5-air-4-ipad-pro-11-(2018)-esr-00908661",
-  "productId": 216,
-  "variantName": "Đen",
-  "price": 790000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-16-silicon-nature-series-devia-djen-00910803",
-  "productId": 217,
-  "variantName": "Đen",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-promax-meetu-silicone-00892863",
-  "productId": 218,
-  "variantName": "Trong suốt",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-magsafe-dje-dung-iphone-14-pro-max-meetu-gia-da-00831599",
-  "productId": 219,
-  "variantName": "Đen",
-  "price": 99000.00
-}, {
-  "sku": "op-lung-bao-ve-iphone-16-pro-max-silicon-urr-co-tu-tinh-djoi-hinh-chong-soc-chong-tray-xuoc-00910785",
-  "productId": 220,
-  "variantName": "Đen",
-  "price": 1399000.00
-}, {
-  "sku": "hop-djung-tai-nghe-airpods-pro-likgus-chat-lieu-nhua-nham-00907428",
-  "productId": 221,
-  "variantName": "Xám",
-  "price": 299000.00
-}, {
-  "sku": "hop-djung-tai-nghe-airpods-pro-likgus-chat-lieu-nhua-nham-00907429",
-  "productId": 221,
-  "variantName": "Đen",
-  "price": 299000.00
-}, {
-  "sku": "op-lung-magsafe-samsung-galaxy-s24-ultra-xandm-nhua-silicon-co-dje-dung-00905741",
-  "productId": 222,
-  "variantName": "Đen",
-  "price": 399000.00
-}, {
-  "sku": "op-lung-iphone-13-switcheasy-artist-mondrian-tpu-00810745",
-  "productId": 223,
-  "variantName": "Đa sắc",
-  "price": 600000.00
-}, {
-  "sku": "op-lung-samsung-galaxy-s22-plus-clear-cover-00797056",
-  "productId": 225,
-  "variantName": "Trong suốt",
-  "price": 578000.00
-}, {
-  "sku": "op-lung-chong-soc-iphone-14-yvs-silicone-00831819",
-  "productId": 226,
-  "variantName": "Trong suốt",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-iphone-13-pro-max-switcheasy-artist-mondrian-tpu-00810626",
-  "productId": 228,
-  "variantName": "Đa sắc",
-  "price": 600000.00
-}, {
-  "sku": "op-lung-pha-mau-iphone-15-promax-meetu-00892864",
-  "productId": 229,
-  "variantName": "Xám",
-  "price": 49000.00
-}, {
-  "sku": "op-lung-trong-samsung-galaxy-a25-00906481",
-  "productId": 230,
-  "variantName": "Trong suốt",
-  "price": 382000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-esr-00920898",
-  "productId": 231,
-  "variantName": "Trong suốt",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-iphone-17-pro-max-apple-clear-case-with-magsafe-00920851",
-  "productId": 232,
-  "variantName": "Trong suốt",
-  "price": 1429000.00
-}, {
-  "sku": "op-lung-samsung-galaxy-a06-4g-silicon-fashion-00911591",
-  "productId": 233,
-  "variantName": "Trong suốt",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-16-pro-max-lung-kinh-vien-deo-fashion-00910812",
-  "productId": 234,
-  "variantName": "Vàng hồng",
-  "price": 599000.00
-}, {
-  "sku": "op-lung-nhua-silicon-class-samsung-m55-trong-suot-00909164",
-  "productId": 235,
-  "variantName": "Trong suốt",
-  "price": 99000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-promax-mipow-nhua-chong-soc-chong-o-vang-co-dje-dung-00895593",
-  "productId": 236,
-  "variantName": "Trong suốt",
-  "price": 400000.00
-}, {
-  "sku": "op-lung-magsafe-iphone-15-pro-mipow-nhua-chong-soc-chong-o-vang-co-dje-dung-00895252",
-  "productId": 237,
-  "variantName": "Trong suốt",
-  "price": 400000.00
-}, {
-  "sku": "op-lung-bao-ve-iphone-15-promax-meetu-gia-da-co-khe-djung-the-00895427",
-  "productId": 238,
-  "variantName": "Đen",
-  "price": 199000.00
-}, {
-  "sku": "op-lung-magsafe-yvs-iphone-15-promax-nhua-tpu-+-pc-chong-soc-chong-o-vang-00895199",
-  "productId": 239,
-  "variantName": "Đen",
-  "price": 99000.00
-}, {
-  "sku": "op-lung-iphone-15-pro-max-meetu-00892873",
-  "productId": 240,
-  "variantName": "Xám",
-  "price": 49000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-8.7-wifi-4gb-128gb-00910636",
-  "productId": 241,
-  "variantName": "128 GB - Xám",
-  "price": 3920000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-8.7-wifi-4gb-128gb-00910637",
-  "productId": 241,
-  "variantName": "128 GB - Xanh lá",
-  "price": 3920000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-8.7-wifi-4gb-128gb-00910638",
-  "productId": 241,
-  "variantName": "128 GB - Xanh dương",
-  "price": 3920000.00
-}, {
-  "sku": "honor-pad-x7-wifi-4gb-128gb-00921517",
-  "productId": 242,
-  "variantName": "128 GB - Xám",
-  "price": 3790000.00
-}, {
-  "sku": "honor-pad-x7-wifi-4gb-64gb-00921516",
-  "productId": 242,
-  "variantName": "64 GB - Xám",
-  "price": 3290000.00
-}, {
-  "sku": "samsung-galaxy-tab-a9-wifi-8gb-128gb-00905135",
-  "productId": 243,
-  "variantName": "128 GB - Xám",
-  "price": 4900000.00
-}, {
-  "sku": "samsung-galaxy-tab-a9-wifi-8gb-128gb-00905134",
-  "productId": 243,
-  "variantName": "128 GB - Xanh Đậm",
-  "price": 4900000.00
-}, {
-  "sku": "samsung-galaxy-tab-a9-wifi-8gb-128gb-00905136",
-  "productId": 243,
-  "variantName": "128 GB - Bạc",
-  "price": 4900000.00
-}, {
-  "sku": "ipad-a16-wifi-128gb-00917019",
-  "productId": 244,
-  "variantName": "128 GB - Bạc",
-  "price": 9790000.00
-}, {
-  "sku": "ipad-a16-wifi-128gb-00917020",
-  "productId": 244,
-  "variantName": "128 GB - Xanh dương",
-  "price": 9790000.00
-}, {
-  "sku": "ipad-a16-wifi-128gb-00917022",
-  "productId": 244,
-  "variantName": "128 GB - Hồng",
-  "price": 9790000.00
-}, {
-  "sku": "ipad-a16-wifi-256gb-00917024",
-  "productId": 244,
-  "variantName": "256 GB - Xanh dương",
-  "price": 12290000.00
-}, {
-  "sku": "ipad-a16-wifi-256gb-00917023",
-  "productId": 244,
-  "variantName": "256 GB - Bạc",
-  "price": 12290000.00
-}, {
-  "sku": "ipad-a16-wifi-128gb-00917021",
-  "productId": 244,
-  "variantName": "128 GB - Vàng",
-  "price": 9790000.00
-}, {
-  "sku": "ipad-a16-wifi-256gb-00917026",
-  "productId": 244,
-  "variantName": "256 GB - Hồng",
-  "price": 12290000.00
-}, {
-  "sku": "ipad-a16-wifi-256gb-00917025",
-  "productId": 244,
-  "variantName": "256 GB - Vàng",
-  "price": 12290000.00
-}, {
-  "sku": "ipad-a16-wifi-512gb-00917029",
-  "productId": 244,
-  "variantName": "512 GB - Vàng",
-  "price": 17690000.00
-}, {
-  "sku": "ipad-a16-wifi-512gb-00917028",
-  "productId": 244,
-  "variantName": "512 GB - Xanh dương",
-  "price": 17690000.00
-}, {
-  "sku": "ipad-a16-wifi-512gb-00917030",
-  "productId": 244,
-  "variantName": "512 GB - Hồng",
-  "price": 17690000.00
-}, {
-  "sku": "honor-pad-x9a-wifi-6gb-128gb-00919536",
-  "productId": 245,
-  "variantName": "128 GB - Xám",
-  "price": 5890000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-lite-wifi-6gb-128gb-00921096",
-  "productId": 246,
-  "variantName": "128 GB - Xám",
-  "price": 8990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-lite-wifi-6gb-128gb-00921097",
-  "productId": 246,
-  "variantName": "128 GB - Bạc",
-  "price": 8990000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916856",
-  "productId": 247,
-  "variantName": "128 GB - Tím",
-  "price": 16690000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916858",
-  "productId": 247,
-  "variantName": "256 GB - Xanh dương",
-  "price": 19190000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916854",
-  "productId": 247,
-  "variantName": "128 GB - Xanh dương",
-  "price": 16690000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916860",
-  "productId": 247,
-  "variantName": "256 GB - Tím",
-  "price": 19190000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916853",
-  "productId": 247,
-  "variantName": "128 GB - Xám không gian",
-  "price": 16690000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916855",
-  "productId": 247,
-  "variantName": "128 GB - Ánh Sao",
-  "price": 16690000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916859",
-  "productId": 247,
-  "variantName": "256 GB - Ánh Sao",
-  "price": 19190000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916857",
-  "productId": 247,
-  "variantName": "256 GB - Xám không gian",
-  "price": 19190000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-512gb-00916862",
-  "productId": 247,
-  "variantName": "512 GB - Xanh dương",
-  "price": 24590000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916868",
-  "productId": 247,
-  "variantName": "1 TB - Tím",
-  "price": 30490000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916867",
-  "productId": 247,
-  "variantName": "1 TB - Ánh Sao",
-  "price": 30490000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916865",
-  "productId": 247,
-  "variantName": "1 TB - Xám không gian",
-  "price": 30490000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916866",
-  "productId": 247,
-  "variantName": "1 TB - Xanh dương",
-  "price": 30490000.00
-}, {
-  "sku": "lenovo-idea-tab-pro-wifi-8gb-256gb-00919679",
-  "productId": 248,
-  "variantName": "256 GB - Xám",
-  "price": 11790000.00
-}, {
-  "sku": "lenovo-idea-tab-wifi-4gb-128gb-00920436",
-  "productId": 249,
-  "variantName": "128 GB - Xanh dương",
-  "price": 5790000.00
-}, {
-  "sku": "lenovo-idea-tab-wifi-4gb-128gb-00920437",
-  "productId": 249,
-  "variantName": "128 GB - Xám",
-  "price": 5790000.00
-}, {
-  "sku": "samsung-galaxy-tab-a11-wifi-4gb-64gb-00921105",
-  "productId": 250,
-  "variantName": "64 GB - Bạc",
-  "price": 3990000.00
-}, {
-  "sku": "samsung-galaxy-tab-a11-wifi-4gb-64gb-00921104",
-  "productId": 250,
-  "variantName": "64 GB - Xám",
-  "price": 3990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-wifi-12gb-128gb-00921092",
-  "productId": 251,
-  "variantName": "128 GB - Xám",
-  "price": 20990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-wifi-12gb-128gb-00921093",
-  "productId": 251,
-  "variantName": "128 GB - Bạc",
-  "price": 20990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-wifi-12gb-256gb-00921106",
-  "productId": 251,
-  "variantName": "256 GB - Xám",
-  "price": 22990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-wifi-12gb-256gb-00921107",
-  "productId": 251,
-  "variantName": "256 GB - Bạc",
-  "price": 22990000.00
-}, {
-  "sku": "xiaomi-redmi-pad-2-wifi-6gb-128gb-00919451",
-  "productId": 252,
-  "variantName": "128 GB - Xám",
-  "price": 5690000.00
-}, {
-  "sku": "xiaomi-redmi-pad-2-wifi-6gb-128gb-00919450",
-  "productId": 252,
-  "variantName": "128 GB - Xanh",
-  "price": 5690000.00
-}, {
-  "sku": "xiaomi-redmi-pad-2-wifi-6gb-128gb-00919449",
-  "productId": 252,
-  "variantName": "128 GB - Tím",
-  "price": 5690000.00
-}, {
-  "sku": "huawei-matepad-11.5-wifi-6gb-128gb-00920398",
-  "productId": 253,
-  "variantName": "128 GB - Xám",
-  "price": 6568000.00
-}, {
-  "sku": "huawei-matepad-pro-12.2-wifi-12gb-512gb-00921287",
-  "productId": 254,
-  "variantName": "512 GB - Xanh lá",
-  "price": 23990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-fe-wifi-8gb-128gb-00917547",
-  "productId": 255,
-  "variantName": "128 GB - Xám",
-  "price": 11780000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-fe-wifi-8gb-128gb-00917548",
-  "productId": 255,
-  "variantName": "128 GB - Xanh dương",
-  "price": 11780000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-fe-wifi-8gb-128gb-00917549",
-  "productId": 255,
-  "variantName": "128 GB - Bạc",
-  "price": 11780000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-5g-12gb-128gb-00921082",
-  "productId": 256,
-  "variantName": "128 GB - Xám",
-  "price": 23990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-5g-12gb-128gb-00921083",
-  "productId": 256,
-  "variantName": "128 GB - Bạc",
-  "price": 23990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-5g-12gb-256gb-00921084",
-  "productId": 256,
-  "variantName": "256 GB - Xám",
-  "price": 25990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s11-5g-12gb-256gb-00921085",
-  "productId": 256,
-  "variantName": "256 GB - Bạc",
-  "price": 25990000.00
-}, {
-  "sku": "ipad-pro-11-inch-m4-2024-wifi-256gb-00908334",
-  "productId": 257,
-  "variantName": "256 GB - Ðen",
-  "price": 28490000.00
-}, {
-  "sku": "ipad-pro-11-inch-m4-2024-wifi-256gb-00908335",
-  "productId": 257,
-  "variantName": "256 GB - Bạc",
-  "price": 28490000.00
-}, {
-  "sku": "ipad-pro-11-inch-m4-2024-wifi-2tb-00908341",
-  "productId": 257,
-  "variantName": "2 TB - Bạc",
-  "price": 57490000.00
-}, {
-  "sku": "ipad-pro-11-inch-m4-2024-wifi-1tb-00908339",
-  "productId": 257,
-  "variantName": "1 TB - Bạc",
-  "price": 45990000.00
-}, {
-  "sku": "ipad-pro-11-inch-m4-2024-wifi-1tb-00908338",
-  "productId": 257,
-  "variantName": "1 TB - Ðen",
-  "price": 45990000.00
-}, {
-  "sku": "ipad-pro-11-inch-m4-2024-wifi-512gb-00908336",
-  "productId": 257,
-  "variantName": "512 GB - Ðen",
-  "price": 33890000.00
-}, {
-  "sku": "ipad-pro-11-inch-m4-2024-wifi-2tb-00908340",
-  "productId": 257,
-  "variantName": "2 TB - Ðen",
-  "price": 57490000.00
-}, {
-  "sku": "samsung-galaxy-tab-a9-wifi-4gb-64gb-00905140",
-  "productId": 258,
-  "variantName": "64 GB - Xám",
-  "price": 3920000.00
-}, {
-  "sku": "samsung-galaxy-tab-a9-wifi-4gb-64gb-00905142",
-  "productId": 258,
-  "variantName": "64 GB - Bạc",
-  "price": 3920000.00
-}, {
-  "sku": "samsung-galaxy-tab-a9-wifi-4gb-64gb-00905141",
-  "productId": 258,
-  "variantName": "64 GB - Xanh Đậm",
-  "price": 3920000.00
-}, {
-  "sku": "masstel-tab-10-edu-4g-3gb-32gb-00912385",
-  "productId": 259,
-  "variantName": "32 GB - Đen",
-  "price": 2490000.00
-}, {
-  "sku": "masstel-tab-10-edu-4g-3gb-32gb-00912384",
-  "productId": 259,
-  "variantName": "32 GB - Xanh",
-  "price": 2490000.00
-}, {
-  "sku": "lenovo-tab-10.1-wifi-4gb-128gb-00915828",
-  "productId": 260,
-  "variantName": "128 GB - Xám",
-  "price": 4150000.00
-}, {
-  "sku": "lenovo-tab-10.1-wifi-4gb-128gb-00915829",
-  "productId": 260,
-  "variantName": "128 GB - Xanh dương",
-  "price": 4150000.00
-}, {
-  "sku": "lenovo-tab-10.1-wifi-4gb-64gb-00915826",
-  "productId": 260,
-  "variantName": "64 GB - Xám",
-  "price": 3450000.00
-}, {
-  "sku": "lenovo-tab-10.1-wifi-4gb-64gb-00915827",
-  "productId": 260,
-  "variantName": "64 GB - Xanh dương",
-  "price": 3450000.00
-}, {
-  "sku": "lenovo-tab-10.1-4g-4gb-128gb-00915820",
-  "productId": 261,
-  "variantName": "128 GB - Xám",
-  "price": 4950000.00
-}, {
-  "sku": "lenovo-tab-10.1-4g-4gb-64gb-00915818",
-  "productId": 261,
-  "variantName": "64 GB - Xám",
-  "price": 4150000.00
-}, {
-  "sku": "lenovo-tab-10.1-4g-4gb-128gb-00915821",
-  "productId": 261,
-  "variantName": "128 GB - Xanh dương",
-  "price": 4950000.00
-}, {
-  "sku": "lenovo-tab-10.1-4g-4gb-64gb-00915819",
-  "productId": 261,
-  "variantName": "64 GB - Xanh dương",
-  "price": 4150000.00
-}, {
-  "sku": "may-tinh-bang-tre-em-joystar-j10-4g-4gb-64gb-00912386",
-  "productId": 262,
-  "variantName": "64 GB - Xanh",
-  "price": 3690000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-128gb-00912550",
-  "productId": 263,
-  "variantName": "128 GB - Xám không gian",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-128gb-00912551",
-  "productId": 263,
-  "variantName": "128 GB - Xanh dương",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-128gb-00912553",
-  "productId": 263,
-  "variantName": "128 GB - Ánh Sao",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-128gb-00912552",
-  "productId": 263,
-  "variantName": "128 GB - Tím",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-512gb-00912558",
-  "productId": 263,
-  "variantName": "512 GB - Xám không gian",
-  "price": 21590000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-256gb-00912554",
-  "productId": 263,
-  "variantName": "256 GB - Xám không gian",
-  "price": 16190000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-256gb-00912556",
-  "productId": 263,
-  "variantName": "256 GB - Tím",
-  "price": 16190000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-256gb-00912555",
-  "productId": 263,
-  "variantName": "256 GB - Xanh dương",
-  "price": 16190000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-512gb-00912560",
-  "productId": 263,
-  "variantName": "512 GB - Tím",
-  "price": 21590000.00
-}, {
-  "sku": "masstel-tab-11-pro-4g-4gb-128gb-00910944",
-  "productId": 264,
-  "variantName": "128 GB - Xám",
-  "price": 4490000.00
-}, {
-  "sku": "tcl-tab-10l-gen-3-4g-4gb-64gb-00912648",
-  "productId": 265,
-  "variantName": "64 GB - Đen",
-  "price": 3290000.00
-}, {
-  "sku": "samsung-galaxy-tab-a9-plus-wifi-4gb-64gb-00905139",
-  "productId": 266,
-  "variantName": "64 GB - Bạc",
-  "price": 5890000.00
-}, {
-  "sku": "may-tinh-bang-tre-em-joystar-j6-wifi-4gb-64gb-00918808",
-  "productId": 267,
-  "variantName": "64 GB - Xanh",
-  "price": 2990000.00
-}, {
-  "sku": "samsung-galaxy-tab-s6-lite-2024-4g-4gb-64gb-00907671",
-  "productId": 268,
-  "variantName": "64 GB - Xám",
-  "price": 7360000.00
-}, {
-  "sku": "samsung-galaxy-tab-s6-lite-2024-4g-4gb-64gb-00907670",
-  "productId": 268,
-  "variantName": "64 GB - Xanh lá",
-  "price": 7360000.00
-}, {
-  "sku": "lenovo-tab-one-4g-4gb-128gb-00918459",
-  "productId": 269,
-  "variantName": "128 GB - Xám",
-  "price": 4150000.00
-}, {
-  "sku": "lenovo-tab-one-4g-4gb-64gb-00918458",
-  "productId": 269,
-  "variantName": "64 GB - Xám",
-  "price": 3350000.00
-}, {
-  "sku": "samsung-galaxy-tab-a11-4g-4gb-64gb-00921100",
-  "productId": 270,
-  "variantName": "64 GB - Xám",
-  "price": 5490000.00
-}, {
-  "sku": "samsung-galaxy-tab-a11-4g-4gb-64gb-00921101",
-  "productId": 270,
-  "variantName": "64 GB - Bạc",
-  "price": 5490000.00
-}, {
-  "sku": "huawei-matepad-se-11-wifi-6gb-128gb-00911242",
-  "productId": 271,
-  "variantName": "128 GB - Xám",
-  "price": 5490000.00
-}, {
-  "sku": "huawei-matepad-se-11-wifi-4gb-128gb-00919210",
-  "productId": 272,
-  "variantName": "128 GB - Xám",
-  "price": 4490000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-8.7-wifi-6gb-128gb-00910634",
-  "productId": 273,
-  "variantName": "128 GB - Xanh lá",
-  "price": 4690000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-8.7-wifi-6gb-128gb-00910635",
-  "productId": 273,
-  "variantName": "128 GB - Xanh dương",
-  "price": 4690000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-8.7-wifi-6gb-128gb-00910633",
-  "productId": 273,
-  "variantName": "128 GB - Xám",
-  "price": 4690000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-plus-5g-12gb-256gb-00911850",
-  "productId": 275,
-  "variantName": "256 GB - Bạc",
-  "price": 28470000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-plus-wifi-12gb-256gb-00911858",
-  "productId": 277,
-  "variantName": "256 GB - Bạc",
-  "price": 25520000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-plus-wifi-12gb-256gb-00911857",
-  "productId": 277,
-  "variantName": "256 GB - Xám",
-  "price": 25520000.00
-}, {
-  "sku": "ipad-a16-5g-256gb-00916988",
-  "productId": 278,
-  "variantName": "256 GB - Xanh dương",
-  "price": 16190000.00
-}, {
-  "sku": "ipad-a16-5g-128gb-00916984",
-  "productId": 278,
-  "variantName": "128 GB - Xanh dương",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-a16-5g-256gb-00916987",
-  "productId": 278,
-  "variantName": "256 GB - Bạc",
-  "price": 16190000.00
-}, {
-  "sku": "ipad-a16-5g-256gb-00916990",
-  "productId": 278,
-  "variantName": "256 GB - Hồng",
-  "price": 16190000.00
-}, {
-  "sku": "ipad-a16-5g-128gb-00916985",
-  "productId": 278,
-  "variantName": "128 GB - Vàng",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-a16-5g-128gb-00916986",
-  "productId": 278,
-  "variantName": "128 GB - Hồng",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-a16-5g-128gb-00916983",
-  "productId": 278,
-  "variantName": "128 GB - Bạc",
-  "price": 13790000.00
-}, {
-  "sku": "ipad-a16-5g-512gb-00916992",
-  "productId": 278,
-  "variantName": "512 GB - Xanh dương",
-  "price": 21490000.00
-}, {
-  "sku": "samsung-galaxy-tab-s9-wifi-12gb-256gb-00890470",
-  "productId": 279,
-  "variantName": "256 GB - Xám",
-  "price": 21600000.00
-}, {
-  "sku": "samsung-galaxy-tab-s9-wifi-12gb-256gb-00890473",
-  "productId": 279,
-  "variantName": "256 GB - Kem",
-  "price": 21600000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916918",
-  "productId": 280,
-  "variantName": "128 GB - Xanh dương",
-  "price": 20590000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916917",
-  "productId": 280,
-  "variantName": "128 GB - Xám không gian",
-  "price": 20590000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916919",
-  "productId": 280,
-  "variantName": "128 GB - Ánh Sao",
-  "price": 20590000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916920",
-  "productId": 280,
-  "variantName": "128 GB - Tím",
-  "price": 20590000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-256gb-00916922",
-  "productId": 280,
-  "variantName": "256 GB - Xanh dương",
-  "price": 23190000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-512gb-00916928",
-  "productId": 280,
-  "variantName": "512 GB - Tím",
-  "price": 28990000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-512gb-00916926",
-  "productId": 280,
-  "variantName": "512 GB - Xanh dương",
-  "price": 28990000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-256gb-00916923",
-  "productId": 280,
-  "variantName": "256 GB - Ánh Sao",
-  "price": 23190000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-256gb-00916924",
-  "productId": 280,
-  "variantName": "256 GB - Tím",
-  "price": 23190000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916932",
-  "productId": 280,
-  "variantName": "1 TB - Tím",
-  "price": 34490000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916931",
-  "productId": 280,
-  "variantName": "1 TB - Ánh Sao",
-  "price": 34490000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916930",
-  "productId": 280,
-  "variantName": "1 TB - Xanh dương",
-  "price": 34490000.00
-}, {
-  "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916929",
-  "productId": 280,
-  "variantName": "1 TB - Xám không gian",
-  "price": 34490000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-fe-5g-8gb-128gb-00917544",
-  "productId": 281,
-  "variantName": "128 GB - Xanh dương",
-  "price": 14720000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-fe-5g-8gb-128gb-00917543",
-  "productId": 281,
-  "variantName": "128 GB - Xám",
-  "price": 14720000.00
-}, {
-  "sku": "samsung-galaxy-tab-s10-fe-5g-8gb-128gb-00917545",
-  "productId": 281,
-  "variantName": "128 GB - Bạc",
-  "price": 14720000.00
-}, {
-  "sku": "huawei-matepad-11.5-wifi-8gb-256gb-00915934",
-  "productId": 282,
-  "variantName": "256 GB - Xám",
-  "price": 9490000.00
-}, {
-  "sku": "tcl-tab-10l-gen-3-wifi-4gb-64gb-00913096",
-  "productId": 283,
-  "variantName": "64 GB - Đen",
-  "price": 2790000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916787",
-  "productId": 284,
-  "variantName": "128 GB - Xám không gian",
-  "price": 22090000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916791",
-  "productId": 284,
-  "variantName": "256 GB - Xám không gian",
-  "price": 24590000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916792",
-  "productId": 284,
-  "variantName": "256 GB - Xanh dương",
-  "price": 24590000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916788",
-  "productId": 284,
-  "variantName": "128 GB - Xanh dương",
-  "price": 22090000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916789",
-  "productId": 284,
-  "variantName": "128 GB - Ánh Sao",
-  "price": 22090000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916790",
-  "productId": 284,
-  "variantName": "128 GB - Tím",
-  "price": 22090000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916794",
-  "productId": 284,
-  "variantName": "256 GB - Tím",
-  "price": 24590000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916793",
-  "productId": 284,
-  "variantName": "256 GB - Ánh Sao",
-  "price": 24590000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916797",
-  "productId": 284,
-  "variantName": "512 GB - Ánh Sao",
-  "price": 30490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916795",
-  "productId": 284,
-  "variantName": "512 GB - Xám không gian",
-  "price": 30490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916796",
-  "productId": 284,
-  "variantName": "512 GB - Xanh dương",
-  "price": 30490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916798",
-  "productId": 284,
-  "variantName": "512 GB - Tím",
-  "price": 30490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-1tb-00916802",
-  "productId": 284,
-  "variantName": "1 TB - Tím",
-  "price": 35990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-1tb-00916800",
-  "productId": 284,
-  "variantName": "1 TB - Xanh dương",
-  "price": 35990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-1tb-00916801",
-  "productId": 284,
-  "variantName": "1 TB - Ánh Sao",
-  "price": 35990000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912586",
-  "productId": 285,
-  "variantName": "128 GB - Xám không gian",
-  "price": 17690000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912589",
-  "productId": 285,
-  "variantName": "128 GB - Ánh Sao",
-  "price": 17690000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-+-cellular-256gb-00912591",
-  "productId": 285,
-  "variantName": "256 GB - Xanh dương",
-  "price": 20090000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912588",
-  "productId": 285,
-  "variantName": "128 GB - Tím",
-  "price": 17690000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912587",
-  "productId": 285,
-  "variantName": "128 GB - Xanh dương",
-  "price": 17690000.00
-}, {
-  "sku": "ipad-mini-7-2024-wifi-+-cellular-256gb-00912592",
-  "productId": 285,
-  "variantName": "256 GB - Tím",
-  "price": 20090000.00
-}, {
-  "sku": "lenovo-tab-m9-wifi-4gb-128gb-00912162",
-  "productId": 286,
-  "variantName": "128 GB - Xám",
-  "price": 4190000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-256gb-00916727",
-  "productId": 287,
-  "variantName": "256 GB - Xám không gian",
-  "price": 28490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916723",
-  "productId": 287,
-  "variantName": "128 GB - Xám không gian",
-  "price": 25990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916724",
-  "productId": 287,
-  "variantName": "128 GB - Xanh dương",
-  "price": 25990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-256gb-00916729",
-  "productId": 287,
-  "variantName": "256 GB - Ánh Sao",
-  "price": 28490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916725",
-  "productId": 287,
-  "variantName": "128 GB - Ánh Sao",
-  "price": 25990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916726",
-  "productId": 287,
-  "variantName": "128 GB - Tím",
-  "price": 25990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-256gb-00916728",
-  "productId": 287,
-  "variantName": "256 GB - Xanh dương",
-  "price": 28490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-512gb-00916732",
-  "productId": 287,
-  "variantName": "512 GB - Xanh dương",
-  "price": 34490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-1tb-00916738",
-  "productId": 287,
-  "variantName": "1 TB - Tím",
-  "price": 39990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-1tb-00916736",
-  "productId": 287,
-  "variantName": "1 TB - Xanh dương",
-  "price": 39990000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-512gb-00916734",
-  "productId": 287,
-  "variantName": "512 GB - Tím",
-  "price": 34490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-512gb-00916731",
-  "productId": 287,
-  "variantName": "512 GB - Xám không gian",
-  "price": 34490000.00
-}, {
-  "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-1tb-00916737",
-  "productId": 287,
-  "variantName": "1 TB - Ánh Sao",
-  "price": 39990000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-wifi-6gb-128gb-00904711",
-  "productId": 288,
-  "variantName": "128 GB - Xanh lá",
-  "price": 5400000.00
-}, {
-  "sku": "xiaomi-redmi-pad-se-wifi-6gb-128gb-00904710",
-  "productId": 288,
-  "variantName": "128 GB - Xám",
-  "price": 5400000.00
-}, {
-  "sku": "sadsafsaxz",
-  "productId": 291,
-  "variantName": "256gb - Đen",
-  "price": 41000000.00
-}, {
-  "sku": "ds1tb",
-  "productId": 291,
-  "variantName": "1tb - Đỏ",
-  "price": 46000000.00
-}]
+[
+  {
+    "sku": "samsung-galaxy-z-fold7-5g-12gb-256gb-00919910",
+    "productId": 1,
+    "variantName": "256 GB - Xám Bạc",
+    "price": 46990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-fold7-5g-12gb-256gb-00919908",
+    "productId": 1,
+    "variantName": "256 GB - Xanh Navy",
+    "price": 46990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-fold7-5g-12gb-256gb-00919909",
+    "productId": 1,
+    "variantName": "256 GB - Đen Tuyền",
+    "price": 46990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-fold7-5g-12gb-512gb-00919913",
+    "productId": 1,
+    "variantName": "512 GB - Xám Bạc",
+    "price": 50990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-fold7-5g-12gb-512gb-00919911",
+    "productId": 1,
+    "variantName": "512 GB - Xanh Navy",
+    "price": 50990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-fold7-5g-12gb-512gb-00919912",
+    "productId": 1,
+    "variantName": "512 GB - Đen Tuyền",
+    "price": 50990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-flip7-5g-12gb-256gb-00919890",
+    "productId": 2,
+    "variantName": "256 GB - Đỏ San Hô",
+    "price": 28990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-flip7-5g-12gb-512gb-00919892",
+    "productId": 2,
+    "variantName": "512 GB - Đen Tuyền",
+    "price": 32990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-flip7-5g-12gb-256gb-00919889",
+    "productId": 2,
+    "variantName": "256 GB - Đen Tuyền",
+    "price": 28990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-flip7-5g-12gb-512gb-00919891",
+    "productId": 2,
+    "variantName": "512 GB - Xanh Navy",
+    "price": 32990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-flip7-5g-12gb-256gb-00919888",
+    "productId": 2,
+    "variantName": "256 GB - Xanh Navy",
+    "price": 28990000.0
+  },
+  {
+    "sku": "samsung-galaxy-z-flip7-5g-12gb-512gb-00919893",
+    "productId": 2,
+    "variantName": "512 GB - Đỏ San Hô",
+    "price": 32990000.0
+  },
+  {
+    "sku": "iphone-16-pro-max-256gb-00911046",
+    "productId": 3,
+    "variantName": "256 GB - Titan Đen",
+    "price": 34290000.0
+  },
+  {
+    "sku": "iphone-16-pro-max-256gb-00911048",
+    "productId": 3,
+    "variantName": "256 GB - Titan Sa Mạc",
+    "price": 34290000.0
+  },
+  {
+    "sku": "iphone-16-pro-max-1tb-00911056",
+    "productId": 3,
+    "variantName": "1 TB - Titan Sa Mạc",
+    "price": 46090000.0
+  },
+  {
+    "sku": "iphone-16-pro-max-256gb-00911047",
+    "productId": 3,
+    "variantName": "256 GB - Titan Tự nhiên",
+    "price": 34290000.0
+  },
+  {
+    "sku": "iphone-16-pro-max-256gb-00911049",
+    "productId": 3,
+    "variantName": "256 GB - Titan Trắng",
+    "price": 34290000.0
+  },
+  {
+    "sku": "iphone-16-pro-max-512gb-00911052",
+    "productId": 3,
+    "variantName": "512 GB - Titan Sa Mạc",
+    "price": 40190000.0
+  },
+  {
+    "sku": "iphone-16-pro-max-1tb-00911054",
+    "productId": 3,
+    "variantName": "1 TB - Titan Đen",
+    "price": 46090000.0
+  },
+  {
+    "sku": "iphone-17-pro-256gb-00921740",
+    "productId": 4,
+    "variantName": "256 GB - Cam Vũ Trụ",
+    "price": 34990000.0
+  },
+  {
+    "sku": "iphone-17-pro-256gb-00921741",
+    "productId": 4,
+    "variantName": "256 GB - Xanh Đậm",
+    "price": 34990000.0
+  },
+  {
+    "sku": "iphone-17-pro-512gb-00921744",
+    "productId": 4,
+    "variantName": "512 GB - Cam Vũ Trụ",
+    "price": 41490000.0
+  },
+  {
+    "sku": "iphone-17-pro-512gb-00921745",
+    "productId": 4,
+    "variantName": "512 GB - Xanh Đậm",
+    "price": 41490000.0
+  },
+  {
+    "sku": "iphone-17-pro-1tb-00921749",
+    "productId": 4,
+    "variantName": "1 TB - Xanh Đậm",
+    "price": 47990000.0
+  },
+  {
+    "sku": "iphone-17-pro-1tb-00921748",
+    "productId": 4,
+    "variantName": "1 TB - Cam Vũ Trụ",
+    "price": 47990000.0
+  },
+  {
+    "sku": "xiaomi-poco-x7-5g-12gb-512gb-00918994",
+    "productId": 5,
+    "variantName": "512 GB - Đen",
+    "price": 9350000.0
+  },
+  {
+    "sku": "xiaomi-poco-x7-5g-12gb-512gb-00918995",
+    "productId": 5,
+    "variantName": "512 GB - Bạc",
+    "price": 9350000.0
+  },
+  {
+    "sku": "xiaomi-poco-x7-5g-12gb-512gb-00918996",
+    "productId": 5,
+    "variantName": "512 GB - Xanh lá",
+    "price": 9350000.0
+  },
+  {
+    "sku": "tecno-pova-7-8gb-128gb-00919822",
+    "productId": 6,
+    "variantName": "128 GB - Đen",
+    "price": 4590000.0
+  },
+  {
+    "sku": "tecno-pova-7-8gb-256gb-00919827",
+    "productId": 6,
+    "variantName": "256 GB - Nâu",
+    "price": 5290000.0
+  },
+  {
+    "sku": "tecno-pova-7-8gb-128gb-00919824",
+    "productId": 6,
+    "variantName": "128 GB - Nâu",
+    "price": 4590000.0
+  },
+  {
+    "sku": "tecno-pova-7-8gb-256gb-00919826",
+    "productId": 6,
+    "variantName": "256 GB - Bạc",
+    "price": 5290000.0
+  },
+  {
+    "sku": "tecno-pova-7-8gb-128gb-00919823",
+    "productId": 6,
+    "variantName": "128 GB - Bạc",
+    "price": 4590000.0
+  },
+  {
+    "sku": "tecno-pova-7-8gb-256gb-00919825",
+    "productId": 6,
+    "variantName": "256 GB - Đen",
+    "price": 5290000.0
+  },
+  {
+    "sku": "iphone-16-plus-128gb-00911146",
+    "productId": 7,
+    "variantName": "128 GB - Trắng",
+    "price": 25490000.0
+  },
+  {
+    "sku": "iphone-16-plus-128gb-00911149",
+    "productId": 7,
+    "variantName": "128 GB - Xanh Mòng Két",
+    "price": 25490000.0
+  },
+  {
+    "sku": "iphone-16-plus-256gb-00911152",
+    "productId": 7,
+    "variantName": "256 GB - Hồng",
+    "price": 28390000.0
+  },
+  {
+    "sku": "iphone-16-plus-128gb-00911150",
+    "productId": 7,
+    "variantName": "128 GB - Xanh Lưu Ly",
+    "price": 25490000.0
+  },
+  {
+    "sku": "iphone-16-plus-128gb-00911147",
+    "productId": 7,
+    "variantName": "128 GB - Hồng",
+    "price": 25490000.0
+  },
+  {
+    "sku": "iphone-16-plus-256gb-00911151",
+    "productId": 7,
+    "variantName": "256 GB - Trắng",
+    "price": 28390000.0
+  },
+  {
+    "sku": "iphone-16-plus-256gb-00911153",
+    "productId": 7,
+    "variantName": "256 GB - Đen",
+    "price": 28390000.0
+  },
+  {
+    "sku": "iphone-16-plus-256gb-00911154",
+    "productId": 7,
+    "variantName": "256 GB - Xanh Mòng Két",
+    "price": 28390000.0
+  },
+  {
+    "sku": "iphone-16-plus-128gb-00911148",
+    "productId": 7,
+    "variantName": "128 GB - Đen",
+    "price": 25490000.0
+  },
+  {
+    "sku": "iphone-16-plus-256gb-00911155",
+    "productId": 7,
+    "variantName": "256 GB - Xanh Lưu Ly",
+    "price": 28390000.0
+  },
+  {
+    "sku": "honor-400-pro-5g-12gb-512gb-00919333",
+    "productId": 8,
+    "variantName": "512 GB - Đen",
+    "price": 18650000.0
+  },
+  {
+    "sku": "honor-400-pro-5g-12gb-512gb-00919334",
+    "productId": 8,
+    "variantName": "512 GB - Xám",
+    "price": 18650000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-fe-5g-128gb-00911815",
+    "productId": 9,
+    "variantName": "128 GB - Xanh biển",
+    "price": 16690000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-fe-5g-128gb-00911818",
+    "productId": 9,
+    "variantName": "128 GB - Đen",
+    "price": 16690000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-fe-5g-128gb-00911816",
+    "productId": 9,
+    "variantName": "128 GB - Xanh lá",
+    "price": 16690000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-fe-5g-128gb-00911817",
+    "productId": 9,
+    "variantName": "128 GB - Xám",
+    "price": 16690000.0
+  },
+  {
+    "sku": "oppo-reno14-f-5g-8gb-256gb-00919216",
+    "productId": 10,
+    "variantName": "256 GB - Xanh lá",
+    "price": 10300000.0
+  },
+  {
+    "sku": "oppo-reno14-f-5g-8gb-256gb-00919217",
+    "productId": 10,
+    "variantName": "256 GB - Xanh dương",
+    "price": 10300000.0
+  },
+  {
+    "sku": "iphone-16-128gb-00911194",
+    "productId": 11,
+    "variantName": "128 GB - Xanh Mòng Két",
+    "price": 22490000.0
+  },
+  {
+    "sku": "iphone-16-128gb-00911191",
+    "productId": 11,
+    "variantName": "128 GB - Hồng",
+    "price": 22490000.0
+  },
+  {
+    "sku": "iphone-16-128gb-00911193",
+    "productId": 11,
+    "variantName": "128 GB - Đen",
+    "price": 22490000.0
+  },
+  {
+    "sku": "iphone-16-128gb-00911195",
+    "productId": 11,
+    "variantName": "128 GB - Xanh Lưu Ly",
+    "price": 22490000.0
+  },
+  {
+    "sku": "iphone-16-128gb-00911192",
+    "productId": 11,
+    "variantName": "128 GB - Trắng",
+    "price": 22490000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906074",
+    "productId": 12,
+    "variantName": "256 GB - Đen Titan",
+    "price": 29450000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906075",
+    "productId": 12,
+    "variantName": "256 GB - Xám Titan",
+    "price": 29450000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906081",
+    "productId": 12,
+    "variantName": "512 GB - Vàng Titan",
+    "price": 36810000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906080",
+    "productId": 12,
+    "variantName": "512 GB - Tím Titan",
+    "price": 36810000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906078",
+    "productId": 12,
+    "variantName": "512 GB - Đen Titan",
+    "price": 36810000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-512gb-00906079",
+    "productId": 12,
+    "variantName": "512 GB - Xám Titan",
+    "price": 36810000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906077",
+    "productId": 12,
+    "variantName": "256 GB - Vàng Titan",
+    "price": 29450000.0
+  },
+  {
+    "sku": "samsung-galaxy-s24-ultra-5g-256gb-00906076",
+    "productId": 12,
+    "variantName": "256 GB - Tím Titan",
+    "price": 29450000.0
+  },
+  {
+    "sku": "oppo-a3-6gb-128gb-00910606",
+    "productId": 13,
+    "variantName": "128 GB - Tím",
+    "price": 4900000.0
+  },
+  {
+    "sku": "oppo-a3-6gb-128gb-00910605",
+    "productId": 13,
+    "variantName": "128 GB - Đen",
+    "price": 4900000.0
+  },
+  {
+    "sku": "xiaomi-redmi-13x-8gb-128gb-00920391",
+    "productId": 14,
+    "variantName": "128 GB - Đen",
+    "price": 4190000.0
+  },
+  {
+    "sku": "xiaomi-redmi-13x-8gb-128gb-00920393",
+    "productId": 14,
+    "variantName": "128 GB - Vàng",
+    "price": 4190000.0
+  },
+  {
+    "sku": "xiaomi-redmi-13x-8gb-128gb-00920392",
+    "productId": 14,
+    "variantName": "128 GB - Xanh dương",
+    "price": 4190000.0
+  },
+  {
+    "sku": "samsung-galaxy-a06-5g-4gb-128gb-00916567",
+    "productId": 15,
+    "variantName": "128 GB - Xanh Nhạt",
+    "price": 3920000.0
+  },
+  {
+    "sku": "samsung-galaxy-a06-5g-4gb-128gb-00916569",
+    "productId": 15,
+    "variantName": "128 GB - Đen",
+    "price": 3920000.0
+  },
+  {
+    "sku": "samsung-galaxy-a06-5g-4gb-128gb-00916568",
+    "productId": 15,
+    "variantName": "128 GB - Xám Nhạt",
+    "price": 3920000.0
+  },
+  {
+    "sku": "iphone-air-256gb-00921699",
+    "productId": 16,
+    "variantName": "256 GB - Xanh Da Trời",
+    "price": 31990000.0
+  },
+  {
+    "sku": "iphone-air-256gb-00921697",
+    "productId": 16,
+    "variantName": "256 GB - Đen Không Gian",
+    "price": 31990000.0
+  },
+  {
+    "sku": "iphone-air-256gb-00921698",
+    "productId": 16,
+    "variantName": "256 GB - Vàng Nhạt",
+    "price": 31990000.0
+  },
+  {
+    "sku": "iphone-air-256gb-00921696",
+    "productId": 16,
+    "variantName": "256 GB - Trắng Mây",
+    "price": 31990000.0
+  },
+  {
+    "sku": "iphone-air-1tb-00921694",
+    "productId": 16,
+    "variantName": "1 TB - Xanh Da Trời",
+    "price": 44990000.0
+  },
+  {
+    "sku": "iphone-air-1tb-00921691",
+    "productId": 16,
+    "variantName": "1 TB - Trắng Mây",
+    "price": 44990000.0
+  },
+  {
+    "sku": "iphone-air-1tb-00921693",
+    "productId": 16,
+    "variantName": "1 TB - Vàng Nhạt",
+    "price": 44990000.0
+  },
+  {
+    "sku": "iphone-air-1tb-00921692",
+    "productId": 16,
+    "variantName": "1 TB - Đen Không Gian",
+    "price": 44990000.0
+  },
+  {
+    "sku": "iphone-air-512gb-00921702",
+    "productId": 16,
+    "variantName": "512 GB - Đen Không Gian",
+    "price": 38490000.0
+  },
+  {
+    "sku": "iphone-air-512gb-00921704",
+    "productId": 16,
+    "variantName": "512 GB - Xanh Da Trời",
+    "price": 38490000.0
+  },
+  {
+    "sku": "iphone-16-pro-128gb-00911085",
+    "productId": 17,
+    "variantName": "128 GB - Titan Trắng",
+    "price": 28390000.0
+  },
+  {
+    "sku": "iphone-16-pro-128gb-00911084",
+    "productId": 17,
+    "variantName": "128 GB - Titan Sa Mạc",
+    "price": 28390000.0
+  },
+  {
+    "sku": "samsung-galaxy-a07-4gb-128gb-00920690",
+    "productId": 19,
+    "variantName": "128 GB - Đen",
+    "price": 3390000.0
+  },
+  {
+    "sku": "samsung-galaxy-a07-4gb-128gb-00920688",
+    "productId": 19,
+    "variantName": "128 GB - Tím",
+    "price": 3390000.0
+  },
+  {
+    "sku": "samsung-galaxy-a07-4gb-128gb-00920689",
+    "productId": 19,
+    "variantName": "128 GB - Xanh",
+    "price": 3390000.0
+  },
+  {
+    "sku": "samsung-galaxy-a17-8gb-128gb-00920686",
+    "productId": 20,
+    "variantName": "128 GB - Xám",
+    "price": 5190000.0
+  },
+  {
+    "sku": "samsung-galaxy-a17-8gb-128gb-00920685",
+    "productId": 20,
+    "variantName": "128 GB - Xanh Nhạt",
+    "price": 5190000.0
+  },
+  {
+    "sku": "samsung-galaxy-a17-8gb-128gb-00920687",
+    "productId": 20,
+    "variantName": "128 GB - Đen",
+    "price": 5190000.0
+  },
+  {
+    "sku": "honor-x6c-6gb-128gb-00920191",
+    "productId": 21,
+    "variantName": "128 GB - Đen",
+    "price": 4290000.0
+  },
+  {
+    "sku": "honor-x6c-6gb-128gb-00920190",
+    "productId": 21,
+    "variantName": "128 GB - Xanh",
+    "price": 4290000.0
+  },
+  {
+    "sku": "nubia-a76-4gb-128gb-(nfc)-00919674",
+    "productId": 22,
+    "variantName": "128 GB - Đen",
+    "price": 2490000.0
+  },
+  {
+    "sku": "nubia-a76-4gb-128gb-(nfc)-00919675",
+    "productId": 22,
+    "variantName": "128 GB - Xám",
+    "price": 2490000.0
+  },
+  {
+    "sku": "nubia-a76-4gb-128gb-(nfc)-00919676",
+    "productId": 22,
+    "variantName": "128 GB - Vàng",
+    "price": 2490000.0
+  },
+  {
+    "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00920479",
+    "productId": 23,
+    "variantName": "256 GB - Đen",
+    "price": 6370000.0
+  },
+  {
+    "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00917822",
+    "productId": 23,
+    "variantName": "256 GB - Tím",
+    "price": 6370000.0
+  },
+  {
+    "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00917821",
+    "productId": 23,
+    "variantName": "256 GB - Bạc",
+    "price": 6370000.0
+  },
+  {
+    "sku": "xiaomi-poco-m7-pro-5g-8gb-256gb-00917820",
+    "productId": 23,
+    "variantName": "256 GB - Xanh lá",
+    "price": 6370000.0
+  },
+  {
+    "sku": "nubia-v70-design-8gb-256gb-00916391",
+    "productId": 24,
+    "variantName": "256 GB - Xám",
+    "price": 2990000.0
+  },
+  {
+    "sku": "nubia-v70-design-8gb-256gb-00916394",
+    "productId": 24,
+    "variantName": "256 GB - Xanh lá",
+    "price": 2990000.0
+  },
+  {
+    "sku": "nubia-v70-design-8gb-256gb-00916393",
+    "productId": 24,
+    "variantName": "256 GB - Cam",
+    "price": 2990000.0
+  },
+  {
+    "sku": "nubia-v70-design-8gb-128gb-00917129",
+    "productId": 24,
+    "variantName": "128 GB - Xanh lá",
+    "price": 2790000.0
+  },
+  {
+    "sku": "nubia-v70-design-8gb-128gb-00917128",
+    "productId": 24,
+    "variantName": "128 GB - Xám",
+    "price": 2790000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-6gb-128gb-00913785",
+    "productId": 25,
+    "variantName": "128 GB - Tím",
+    "price": 4900000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-6gb-128gb-00913784",
+    "productId": 25,
+    "variantName": "128 GB - Xanh lá",
+    "price": 4900000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-6gb-128gb-00913783",
+    "productId": 25,
+    "variantName": "128 GB - Đen",
+    "price": 4900000.0
+  },
+  {
+    "sku": "samsung-galaxy-a16-4gb-128gb-00913501",
+    "productId": 26,
+    "variantName": "128 GB - Xám",
+    "price": 5000000.0
+  },
+  {
+    "sku": "samsung-galaxy-a16-4gb-128gb-00913500",
+    "productId": 26,
+    "variantName": "128 GB - Xanh lá",
+    "price": 5000000.0
+  },
+  {
+    "sku": "samsung-galaxy-a16-4gb-128gb-00913502",
+    "productId": 26,
+    "variantName": "128 GB - Đen",
+    "price": 5000000.0
+  },
+  {
+    "sku": "iphone-13-128gb-00773150",
+    "productId": 27,
+    "variantName": "128 GB - Trắng",
+    "price": 14690000.0
+  },
+  {
+    "sku": "iphone-13-128gb-00773147",
+    "productId": 27,
+    "variantName": "128 GB - Đen",
+    "price": 14690000.0
+  },
+  {
+    "sku": "samsung-galaxy-a56-5g-8gb-128gb-00916571",
+    "productId": 28,
+    "variantName": "128 GB - Đen",
+    "price": 9810000.0
+  },
+  {
+    "sku": "samsung-galaxy-a56-5g-8gb-128gb-00918989",
+    "productId": 28,
+    "variantName": "128 GB - Hồng",
+    "price": 9810000.0
+  },
+  {
+    "sku": "samsung-galaxy-a56-5g-8gb-128gb-00916570",
+    "productId": 28,
+    "variantName": "128 GB - Xanh",
+    "price": 9810000.0
+  },
+  {
+    "sku": "samsung-galaxy-a56-5g-8gb-128gb-00916572",
+    "productId": 28,
+    "variantName": "128 GB - Xám",
+    "price": 9810000.0
+  },
+  {
+    "sku": "masstel-izi-15-4g-00873189",
+    "productId": 29,
+    "variantName": "128 MB - Đen",
+    "price": 470000.0
+  },
+  {
+    "sku": "masstel-izi-15-4g-00873191",
+    "productId": 29,
+    "variantName": "128 MB - Xanh",
+    "price": 470000.0
+  },
+  {
+    "sku": "iphone-14-128gb-00832859",
+    "productId": 30,
+    "variantName": "128 GB - Đen",
+    "price": 17590000.0
+  },
+  {
+    "sku": "iphone-14-128gb-00832860",
+    "productId": 30,
+    "variantName": "128 GB - Trắng",
+    "price": 17590000.0
+  },
+  {
+    "sku": "iphone-14-128gb-00832862",
+    "productId": 30,
+    "variantName": "128 GB - Xanh dương",
+    "price": 17590000.0
+  },
+  {
+    "sku": "xiaomi-15t-5g-12gb-512gb-00922263",
+    "productId": 31,
+    "variantName": "512 GB - Đen",
+    "price": 14990000.0
+  },
+  {
+    "sku": "xiaomi-15t-5g-12gb-512gb-00922262",
+    "productId": 31,
+    "variantName": "512 GB - Vàng",
+    "price": 14990000.0
+  },
+  {
+    "sku": "iphone-15-128gb-00904213",
+    "productId": 32,
+    "variantName": "128 GB - Xanh dương",
+    "price": 19590000.0
+  },
+  {
+    "sku": "iphone-15-256gb-00904218",
+    "productId": 32,
+    "variantName": "256 GB - Xanh dương",
+    "price": 22490000.0
+  },
+  {
+    "sku": "iphone-15-256gb-00904219",
+    "productId": 32,
+    "variantName": "256 GB - Hồng",
+    "price": 22490000.0
+  },
+  {
+    "sku": "iphone-15-256gb-00904221",
+    "productId": 32,
+    "variantName": "256 GB - Đen",
+    "price": 22490000.0
+  },
+  {
+    "sku": "iphone-15-128gb-00904214",
+    "productId": 32,
+    "variantName": "128 GB - Hồng",
+    "price": 19590000.0
+  },
+  {
+    "sku": "iphone-15-128gb-00904216",
+    "productId": 32,
+    "variantName": "128 GB - Đen",
+    "price": 19590000.0
+  },
+  {
+    "sku": "iphone-15-128gb-00904215",
+    "productId": 32,
+    "variantName": "128 GB - Vàng",
+    "price": 19590000.0
+  },
+  {
+    "sku": "iphone-15-128gb-00904217",
+    "productId": 32,
+    "variantName": "128 GB - Xanh lá",
+    "price": 19590000.0
+  },
+  {
+    "sku": "iphone-15-256gb-00904222",
+    "productId": 32,
+    "variantName": "256 GB - Xanh lá",
+    "price": 22490000.0
+  },
+  {
+    "sku": "honor-x5b-4gb-64gb-00913872",
+    "productId": 33,
+    "variantName": "64 GB - Xanh",
+    "price": 2460000.0
+  },
+  {
+    "sku": "honor-x5b-4gb-64gb-00913873",
+    "productId": 33,
+    "variantName": "64 GB - Đen",
+    "price": 2460000.0
+  },
+  {
+    "sku": "oppo-a5i-4gb-128gb-00920164",
+    "productId": 34,
+    "variantName": "128 GB - Đỏ",
+    "price": 3690000.0
+  },
+  {
+    "sku": "oppo-a5i-4gb-64gb-00920302",
+    "productId": 34,
+    "variantName": "64 GB - Đỏ",
+    "price": 3290000.0
+  },
+  {
+    "sku": "oppo-a5i-4gb-64gb-00920301",
+    "productId": 34,
+    "variantName": "64 GB - Tím",
+    "price": 3290000.0
+  },
+  {
+    "sku": "oppo-a5i-4gb-128gb-00920163",
+    "productId": 34,
+    "variantName": "128 GB - Tím",
+    "price": 3690000.0
+  },
+  {
+    "sku": "tcl-60r-5g-4gb-128gb-00918546",
+    "productId": 35,
+    "variantName": "128 GB - Xám",
+    "price": 3990000.0
+  },
+  {
+    "sku": "tcl-60r-5g-4gb-128gb-00918547",
+    "productId": 35,
+    "variantName": "128 GB - Trắng",
+    "price": 3990000.0
+  },
+  {
+    "sku": "masstel-alfa-5-00921227",
+    "productId": 36,
+    "variantName": "24 MB - Xanh dương",
+    "price": 1490000.0
+  },
+  {
+    "sku": "masstel-alfa-5-00921228",
+    "productId": 36,
+    "variantName": "24 MB - Vàng Gold",
+    "price": 1490000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921054",
+    "productId": 37,
+    "variantName": "128 GB - Đen",
+    "price": 16690000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921057",
+    "productId": 37,
+    "variantName": "128 GB - Xanh Icy",
+    "price": 16690000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921056",
+    "productId": 37,
+    "variantName": "128 GB - Xanh Navy",
+    "price": 16690000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-fe-5g-8gb-512gb-00921500",
+    "productId": 37,
+    "variantName": "512 GB - Xanh Navy",
+    "price": 21990000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-fe-5g-8gb-128gb-00921055",
+    "productId": 37,
+    "variantName": "128 GB - Trắng",
+    "price": 16690000.0
+  },
+  {
+    "sku": "masstel-izi-16-4g-00911810",
+    "productId": 38,
+    "variantName": "128 MB - Xanh",
+    "price": 450000.0
+  },
+  {
+    "sku": "masstel-izi-16-4g-00911809",
+    "productId": 38,
+    "variantName": "128 MB - Đen",
+    "price": 450000.0
+  },
+  {
+    "sku": "tecno-spark-30-8gb-128gb-00920804",
+    "productId": 39,
+    "variantName": "128 GB - Vàng",
+    "price": 3820000.0
+  },
+  {
+    "sku": "tecno-spark-30-8gb-128gb-00920803",
+    "productId": 39,
+    "variantName": "128 GB - Đen",
+    "price": 3820000.0
+  },
+  {
+    "sku": "tecno-spark-30-8gb-128gb-00920802",
+    "productId": 39,
+    "variantName": "128 GB - Trắng",
+    "price": 3820000.0
+  },
+  {
+    "sku": "honor-x5b-plus-4gb-128gb-00918463",
+    "productId": 40,
+    "variantName": "128 GB - Đen",
+    "price": 2940000.0
+  },
+  {
+    "sku": "samsung-galaxy-a36-5g-8gb-128gb-00916573",
+    "productId": 41,
+    "variantName": "128 GB - Xanh",
+    "price": 8140000.0
+  },
+  {
+    "sku": "samsung-galaxy-a36-5g-8gb-128gb-00916575",
+    "productId": 41,
+    "variantName": "128 GB - Đen",
+    "price": 8140000.0
+  },
+  {
+    "sku": "samsung-galaxy-a36-5g-8gb-128gb-00916574",
+    "productId": 41,
+    "variantName": "128 GB - Tím",
+    "price": 8140000.0
+  },
+  {
+    "sku": "honor-x9c-5g-12gb-256gb-00913877",
+    "productId": 42,
+    "variantName": "256 GB - Tím",
+    "price": 9320000.0
+  },
+  {
+    "sku": "honor-x9c-5g-12gb-256gb-00913876",
+    "productId": 42,
+    "variantName": "256 GB - Xanh",
+    "price": 9320000.0
+  },
+  {
+    "sku": "honor-x9c-5g-12gb-256gb-00913878",
+    "productId": 42,
+    "variantName": "256 GB - Đen",
+    "price": 9320000.0
+  },
+  {
+    "sku": "nokia-105-ds-pro-4g-00887716",
+    "productId": 43,
+    "variantName": "128 MB - Đen",
+    "price": 690000.0
+  },
+  {
+    "sku": "nokia-105-ds-pro-4g-00887718",
+    "productId": 43,
+    "variantName": "128 MB - Xanh",
+    "price": 690000.0
+  },
+  {
+    "sku": "oppo-a6-pro-8gb-256gb-00922203",
+    "productId": 44,
+    "variantName": "256 GB - Xám Titan",
+    "price": 8290000.0
+  },
+  {
+    "sku": "oppo-a6-pro-8gb-256gb-00922205",
+    "productId": 44,
+    "variantName": "256 GB - Hồng",
+    "price": 8290000.0
+  },
+  {
+    "sku": "oppo-a6-pro-8gb-256gb-00922204",
+    "productId": 44,
+    "variantName": "256 GB - Xanh dương",
+    "price": 8290000.0
+  },
+  {
+    "sku": "samsung-galaxy-m55-5g-256gb-00909355",
+    "productId": 45,
+    "variantName": "256 GB - Đen",
+    "price": 10010000.0
+  },
+  {
+    "sku": "samsung-galaxy-m55-5g-256gb-00909354",
+    "productId": 45,
+    "variantName": "256 GB - Xanh lá",
+    "price": 10010000.0
+  },
+  {
+    "sku": "oppo-a5i-6gb-128gb-00920641",
+    "productId": 46,
+    "variantName": "128 GB - Đỏ",
+    "price": 4490000.0
+  },
+  {
+    "sku": "oppo-a5i-6gb-128gb-00920640",
+    "productId": 46,
+    "variantName": "128 GB - Tím",
+    "price": 4490000.0
+  },
+  {
+    "sku": "nubia-air-5g-8gb-256gb-00922513",
+    "productId": 47,
+    "variantName": "256 GB - Xám",
+    "price": 5990000.0
+  },
+  {
+    "sku": "nubia-air-5g-8gb-256gb-00922514",
+    "productId": 47,
+    "variantName": "256 GB - Vàng",
+    "price": 5990000.0
+  },
+  {
+    "sku": "honor-x7c-8gb-256gb-00912625",
+    "productId": 48,
+    "variantName": "256 GB - Trắng",
+    "price": 5400000.0
+  },
+  {
+    "sku": "honor-x7c-8gb-256gb-00912627",
+    "productId": 48,
+    "variantName": "256 GB - Xanh",
+    "price": 5400000.0
+  },
+  {
+    "sku": "honor-x7c-8gb-256gb-00912626",
+    "productId": 48,
+    "variantName": "256 GB - Đen",
+    "price": 5400000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914098",
+    "productId": 49,
+    "variantName": "256 GB - Xanh Dương Nhạt",
+    "price": 22580000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914100",
+    "productId": 49,
+    "variantName": "256 GB - Xám Bạc",
+    "price": 22580000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914099",
+    "productId": 49,
+    "variantName": "256 GB - Xanh lá",
+    "price": 22580000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-5g-12gb-256gb-00914097",
+    "productId": 49,
+    "variantName": "256 GB - Xanh Navy",
+    "price": 22580000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-5g-12gb-512gb-00914101",
+    "productId": 49,
+    "variantName": "512 GB - Xanh Navy",
+    "price": 26010000.0
+  },
+  {
+    "sku": "samsung-galaxy-s25-5g-12gb-512gb-00914103",
+    "productId": 49,
+    "variantName": "512 GB - Xanh lá",
+    "price": 26010000.0
+  },
+  {
+    "sku": "redmagic-10s-pro-5g-16gb-512gb-00919471",
+    "productId": 50,
+    "variantName": "512 GB - Bạc",
+    "price": 24990000.0
+  },
+  {
+    "sku": "redmagic-10s-pro-5g-16gb-512gb-00919470",
+    "productId": 50,
+    "variantName": "512 GB - Xám",
+    "price": 24990000.0
+  },
+  {
+    "sku": "inoi-240-modern-4g-00910959",
+    "productId": 51,
+    "variantName": "128 MB - Xanh",
+    "price": 390000.0
+  },
+  {
+    "sku": "inoi-240-modern-4g-00910960",
+    "productId": 51,
+    "variantName": "128 MB - Đen",
+    "price": 390000.0
+  },
+  {
+    "sku": "nokia-3210-4g-00908739",
+    "productId": 52,
+    "variantName": "128 MB - Vàng",
+    "price": 1590000.0
+  },
+  {
+    "sku": "nokia-3210-4g-00908738",
+    "productId": 52,
+    "variantName": "128 MB - Đen",
+    "price": 1590000.0
+  },
+  {
+    "sku": "nokia-3210-4g-00908740",
+    "productId": 52,
+    "variantName": "128 MB - Xanh",
+    "price": 1590000.0
+  },
+  {
+    "sku": "oppo-reno13-f-8gb-256gb-00913796",
+    "productId": 53,
+    "variantName": "256 GB - Tím",
+    "price": 8830000.0
+  },
+  {
+    "sku": "oppo-reno13-f-8gb-256gb-00913797",
+    "productId": 53,
+    "variantName": "256 GB - Xám",
+    "price": 8830000.0
+  },
+  {
+    "sku": "oppo-a58-8gb-128gb-00909735",
+    "productId": 54,
+    "variantName": "128 GB - Đen",
+    "price": 5490000.0
+  },
+  {
+    "sku": "oppo-a58-8gb-128gb-00909734",
+    "productId": 54,
+    "variantName": "128 GB - Xanh",
+    "price": 5490000.0
+  },
+  {
+    "sku": "benco-v91c-4gb-128gb-00911629",
+    "productId": 55,
+    "variantName": "128 GB - Xám",
+    "price": 2690000.0
+  },
+  {
+    "sku": "benco-v91c-4gb-128gb-00911628",
+    "productId": 55,
+    "variantName": "128 GB - Trắng Cầu Vồng",
+    "price": 2690000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-5g-8gb-256gb-00917297",
+    "productId": 56,
+    "variantName": "256 GB - Xanh lá",
+    "price": 7160000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-5g-8gb-256gb-00917298",
+    "productId": 56,
+    "variantName": "256 GB - Tím",
+    "price": 7160000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-5g-8gb-256gb-00917296",
+    "productId": 56,
+    "variantName": "256 GB - Đen",
+    "price": 7160000.0
+  },
+  {
+    "sku": "nubia-a56-4gb-128gb-00919392",
+    "productId": 57,
+    "variantName": "128 GB - Đen",
+    "price": 2290000.0
+  },
+  {
+    "sku": "nubia-a56-4gb-128gb-00919393",
+    "productId": 57,
+    "variantName": "128 GB - Vàng",
+    "price": 2290000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-pro-plus-5g-8gb-256gb-00913776",
+    "productId": 58,
+    "variantName": "256 GB - Đen",
+    "price": 10800000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-pro-plus-5g-8gb-256gb-00913777",
+    "productId": 58,
+    "variantName": "256 GB - Tím",
+    "price": 10800000.0
+  },
+  {
+    "sku": "xiaomi-redmi-note-14-pro-plus-5g-8gb-256gb-00913778",
+    "productId": 58,
+    "variantName": "256 GB - Xanh dương",
+    "price": 10800000.0
+  },
+  {
+    "sku": "mobell-m139-4g-00910966",
+    "productId": 59,
+    "variantName": "128 MB - Xanh dương",
+    "price": 390000.0
+  },
+  {
+    "sku": "mobell-m139-4g-00910967",
+    "productId": 59,
+    "variantName": "128 MB - Đỏ",
+    "price": 390000.0
+  },
+  {
+    "sku": "mobell-m139-4g-00910968",
+    "productId": 59,
+    "variantName": "128 MB - Đen",
+    "price": 390000.0
+  },
+  {
+    "sku": "tecno-spark-40-6gb-128gb-00921116",
+    "productId": 60,
+    "variantName": "128 GB - Đen",
+    "price": 3490000.0
+  },
+  {
+    "sku": "tecno-spark-40-6gb-128gb-00921118",
+    "productId": 60,
+    "variantName": "128 GB - Xám",
+    "price": 3490000.0
+  },
+  {
+    "sku": "tecno-spark-40-6gb-128gb-00921119",
+    "productId": 60,
+    "variantName": "128 GB - Tím",
+    "price": 3490000.0
+  },
+  {
+    "sku": "tecno-spark-40-6gb-128gb-00921117",
+    "productId": 60,
+    "variantName": "128 GB - Trắng",
+    "price": 3490000.0
+  },
+  {
+    "sku": "xiaomi-redmi-15c-4gb-128gb-(nfc)-00922779",
+    "productId": 70,
+    "variantName": "128 GB - Đen",
+    "price": 3690000.0
+  },
+  {
+    "sku": "xiaomi-redmi-15c-4gb-128gb-(nfc)-00922780",
+    "productId": 70,
+    "variantName": "128 GB - Xanh lam",
+    "price": 3690000.0
+  },
+  {
+    "sku": "xiaomi-redmi-15c-4gb-128gb-(nfc)-00922781",
+    "productId": 70,
+    "variantName": "128 GB - Cam",
+    "price": 3690000.0
+  },
+  {
+    "sku": "masstel-fami-60s-4g-00906759",
+    "productId": 71,
+    "variantName": "128 MB - Xanh",
+    "price": 720000.0
+  },
+  {
+    "sku": "masstel-fami-60s-4g-00906758",
+    "productId": 71,
+    "variantName": "128 MB - Đen",
+    "price": 720000.0
+  },
+  {
+    "sku": "oppo-a5i-pro-8gb-128gb-00920167",
+    "productId": 72,
+    "variantName": "128 GB - Trắng",
+    "price": 5490000.0
+  },
+  {
+    "sku": "oppo-a5i-pro-8gb-128gb-00920168",
+    "productId": 72,
+    "variantName": "128 GB - Tím",
+    "price": 5490000.0
+  },
+  {
+    "sku": "oppo-reno14-5g-12gb-256gb-00919212",
+    "productId": 73,
+    "variantName": "256 GB - Trắng",
+    "price": 15700000.0
+  },
+  {
+    "sku": "oppo-reno14-5g-12gb-256gb-00919213",
+    "productId": 73,
+    "variantName": "256 GB - Xanh",
+    "price": 15700000.0
+  },
+  {
+    "sku": "xiaomi-poco-m6-pro-8gb-256gb-00906273",
+    "productId": 74,
+    "variantName": "256 GB - Đen",
+    "price": 6370000.0
+  },
+  {
+    "sku": "xiaomi-poco-m6-pro-8gb-256gb-00906275",
+    "productId": 74,
+    "variantName": "256 GB - Tím",
+    "price": 6370000.0
+  },
+  {
+    "sku": "xiaomi-poco-m6-pro-8gb-256gb-00906274",
+    "productId": 74,
+    "variantName": "256 GB - Xanh dương",
+    "price": 6370000.0
+  },
+  {
+    "sku": "samsung-galaxy-a17-5g-8gb-128gb-00920682",
+    "productId": 75,
+    "variantName": "128 GB - Xanh",
+    "price": 6190000.0
+  },
+  {
+    "sku": "samsung-galaxy-a17-5g-8gb-128gb-00920680",
+    "productId": 75,
+    "variantName": "128 GB - Xám",
+    "price": 6190000.0
+  },
+  {
+    "sku": "samsung-galaxy-a17-5g-8gb-128gb-00920681",
+    "productId": 75,
+    "variantName": "128 GB - Đen",
+    "price": 6190000.0
+  },
+  {
+    "sku": "xiaomi-15-5g-12gb-256gb-00916350",
+    "productId": 76,
+    "variantName": "256 GB - Đen",
+    "price": 24540000.0
+  },
+  {
+    "sku": "xiaomi-15-5g-12gb-256gb-00916352",
+    "productId": 76,
+    "variantName": "256 GB - Xanh",
+    "price": 24540000.0
+  },
+  {
+    "sku": "viettel-sumo-t2-4g-00911867",
+    "productId": 77,
+    "variantName": "128 MB - Đen",
+    "price": 550000.0
+  },
+  {
+    "sku": "viettel-sumo-t2-4g-00911868",
+    "productId": 77,
+    "variantName": "128 MB - Xanh",
+    "price": 550000.0
+  },
+  {
+    "sku": "xiaomi-redmi-14c-4gb-128gb-00910947",
+    "productId": 78,
+    "variantName": "128 GB - Đen",
+    "price": 3230000.0
+  },
+  {
+    "sku": "xiaomi-redmi-14c-4gb-128gb-00910948",
+    "productId": 78,
+    "variantName": "128 GB - Xanh dương",
+    "price": 3230000.0
+  },
+  {
+    "sku": "xiaomi-poco-c71-4gb-128gb-00918991",
+    "productId": 79,
+    "variantName": "128 GB - Đen",
+    "price": 3150000.0
+  },
+  {
+    "sku": "xiaomi-poco-c71-4gb-128gb-00918993",
+    "productId": 79,
+    "variantName": "128 GB - Vàng",
+    "price": 3150000.0
+  },
+  {
+    "sku": "xiaomi-poco-c71-4gb-128gb-00918992",
+    "productId": 79,
+    "variantName": "128 GB - Xanh dương",
+    "price": 3150000.0
+  },
+  {
+    "sku": "xiaomi-15t-pro-5g-12gb-512gb-00922256",
+    "productId": 80,
+    "variantName": "512 GB - Xám",
+    "price": 19490000.0
+  },
+  {
+    "sku": "xiaomi-15t-pro-5g-12gb-512gb-00922257",
+    "productId": 80,
+    "variantName": "512 GB - Vàng",
+    "price": 19490000.0
+  },
+  {
+    "sku": "mieng-dan-film-trong-mat-sau-may-tinh-cat-thu-cong-yvs-00549687",
+    "productId": 81,
+    "variantName": "Trong suốt",
+    "price": 120000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-pro-max-5d-yvs-00920866",
+    "productId": 82,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-pro-5d-yvs-00920867",
+    "productId": 83,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-5d-yvs-00920869",
+    "productId": 84,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-17-pro-max-mipow-00920920",
+    "productId": 85,
+    "variantName": "Miếng dán màn hình kính cường lực chống nhìn trộm iPhone 17 Pro Max Mipow",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-17-pro-mipow-00920921",
+    "productId": 86,
+    "variantName": "Miếng dán màn hình kính cường lực chống nhìn trộm iPhone 17 Pro Mipow",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-17-mipow-00921067",
+    "productId": 87,
+    "variantName": "Miếng dán màn hình kính cường lực chống ánh sáng xanh iPhone 17 Mipow",
+    "price": 449000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-17-pro17-pro-max-esr-00920924",
+    "productId": 88,
+    "variantName": "Miếng dán kính cường lực camera iPhone 17 Pro/17 Pro Max ESR",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-17-pro-max-zagg-00920986",
+    "productId": 89,
+    "variantName": "Miếng dán màn hình kính cường lực iPhone 17 Pro Max ZAGG",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a56-samsung-s25-fe-yvs-00916470",
+    "productId": 90,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-honor-magic-v5-urr-00922304",
+    "productId": 91,
+    "variantName": "Miếng dán màn hình kính cường lực Honor Magic V5 URR",
+    "price": 299000.0
+  },
+  {
+    "sku": "kinh-cuong-luc-samsung-m55-5g-yvs-00909167",
+    "productId": 92,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-z-fold7-yvs-00919545",
+    "productId": 93,
+    "variantName": "Trong suốt",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a06-yvs-00911593",
+    "productId": 94,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-s25-ultra-5d-yvs-00913741",
+    "productId": 95,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-air-2.5d-yvs-00920917",
+    "productId": 96,
+    "variantName": "Miếng dán màn hình kính cường lực iPhone Air 2.5D YVS",
+    "price": 199000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-air-5d-yvs-00920868",
+    "productId": 97,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-honor-400-yvs-00919533",
+    "productId": 98,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-xiaomi-poco-m7-pro-yvs-00917984",
+    "productId": 99,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-honor-x8c-yvs-00917588",
+    "productId": 100,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a36-yvs-00916469",
+    "productId": 101,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-a26-yvs-00916468",
+    "productId": 102,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-ppf-honor-x9c-yvs-00913908",
+    "productId": 103,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-oppo-reno-13f-yvs-00913744",
+    "productId": 104,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-max-vien-trong-suot-yvs-5d-00912754",
+    "productId": 105,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-vien-trong-suot-yvs-5d-00912755",
+    "productId": 106,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-16-plus-mipow-00910722",
+    "productId": 107,
+    "variantName": "Trong suốt",
+    "price": 499000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-5d-yvs-00910728",
+    "productId": 108,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1616-plus-yvs-00910737",
+    "productId": 109,
+    "variantName": "Đen",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-khuon-mtxt-15.6\"-yvs-00910218",
+    "productId": 110,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-z-flip-6-yvs-00909887",
+    "productId": 111,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-a15-a25-yvs-00905421",
+    "productId": 112,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-xiaomi-redmi-note-13-yvs-00905606",
+    "productId": 113,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-a05s-redmi-13c-yvs-00900927",
+    "productId": 114,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899896",
+    "productId": 115,
+    "variantName": "Xám",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899897",
+    "productId": 115,
+    "variantName": "Bạc",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899899",
+    "productId": 115,
+    "variantName": "Vàng",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-mipow-00899900",
+    "productId": 115,
+    "variantName": "Xanh dương",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-iphone-15-pro-max-6d-yvs-00890659",
+    "productId": 116,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-oppo-a58oppo-a3-yvs-00892038",
+    "productId": 117,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-ppf-oppo-reno10-honor-x9b-yvs-00886638",
+    "productId": 118,
+    "variantName": "Trong suốt",
+    "price": 39000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-van-tay-iphone-14iphone-16e-10d-yvs-00870386",
+    "productId": 119,
+    "variantName": "Trong suốt",
+    "price": 390000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-14-iphone-16e-10d-yvs-00870388",
+    "productId": 120,
+    "variantName": "Trong suốt",
+    "price": 430000.0
+  },
+  {
+    "sku": "mieng-dan-film-trong-mat-sau-ipad-air-cat-thu-cong-yvs-00541926",
+    "productId": 121,
+    "variantName": "Trong suốt",
+    "price": 100000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-iphone-12-mini-yvs-tran-vien-00718018",
+    "productId": 122,
+    "variantName": "Trong suốt",
+    "price": 190000.0
+  },
+  {
+    "sku": "mieng-dan-film-trong-mat-sau-8.5-cat-thu-cong-yvs-00537635",
+    "productId": 123,
+    "variantName": "Trong suốt",
+    "price": 50000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-iphone-13-6d-yvs-tran-vien-00772453",
+    "productId": 124,
+    "variantName": "Trong suốt",
+    "price": 290000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-iphone-13-pro-max-belkin-00772451",
+    "productId": 125,
+    "variantName": "Trong suốt",
+    "price": 199000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-xiaomi-redmi-note-11soppo-a74-a95-yvs-00747638",
+    "productId": 126,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-samsung-galaxy-a34-yvs-00861527",
+    "productId": 127,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-14-proiphone-15-2.5d-yvs-00831898",
+    "productId": 128,
+    "variantName": "Trong suốt",
+    "price": 190000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-samsung-galaxy-a54-yvs-00861528",
+    "productId": 129,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899906",
+    "productId": 130,
+    "variantName": "Đen",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899907",
+    "productId": 130,
+    "variantName": "Bạc",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899908",
+    "productId": 130,
+    "variantName": "Xám",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-uniq-00899913",
+    "productId": 130,
+    "variantName": "Xanh",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-samsung-a52a53-yvs-00740073",
+    "productId": 131,
+    "variantName": "Trắng",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-air-yvs-00920913",
+    "productId": 132,
+    "variantName": "Trong suốt",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-ipad-air-m2-11\"-yvs-00908671",
+    "productId": 133,
+    "variantName": "Trong suốt",
+    "price": 390000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-oppo-a16k-a15-a57-yvs-00791130",
+    "productId": 134,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-14-proiphone-15-belkin-00832729",
+    "productId": 135,
+    "variantName": "Trong suốt",
+    "price": 400000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-iphone-17-yvs-00920914",
+    "productId": 136,
+    "variantName": "Trong suốt",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-chong-anh-sang-xanh-iphone-15-pro-10d-yvs-00890663",
+    "productId": 137,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-van-tay-iphone-14-proiphone-15-jcpal-00832706",
+    "productId": 138,
+    "variantName": "Trong suốt",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-14-iphone-16e-2.5d-yvs-00831911",
+    "productId": 139,
+    "variantName": "Trong suốt",
+    "price": 190000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899911",
+    "productId": 140,
+    "variantName": "Xám",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899912",
+    "productId": 140,
+    "variantName": "Xanh",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899914",
+    "productId": 140,
+    "variantName": "Bạc",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro-max-uniq-00899910",
+    "productId": 140,
+    "variantName": "Đen",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-max-esr-00910714",
+    "productId": 141,
+    "variantName": "Trong suốt",
+    "price": 199000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-oppo-a55-a96-yvs-00791125",
+    "productId": 142,
+    "variantName": "Trong suốt",
+    "price": 150000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-nhin-trom-samsung-galaxy-s25-ultra-mipow-00913740",
+    "productId": 143,
+    "variantName": "Trong suốt",
+    "price": 499000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-ipad-air-m2-13\"-yvs-00908670",
+    "productId": 144,
+    "variantName": "Trong suốt",
+    "price": 390000.0
+  },
+  {
+    "sku": "mieng-dan-cuong-luc-samsung-s23-plus-6d-yvs-00857982",
+    "productId": 145,
+    "variantName": "Trong suốt",
+    "price": 290000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-samsung-galaxy-tab-a9-00908544",
+    "productId": 146,
+    "variantName": "Trong suốt",
+    "price": 190000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-air-uniq-00920919",
+    "productId": 147,
+    "variantName": "Miếng dán kính cường lực camera iPhone Air UNIQ",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-chong-van-tay-iphone-15-pro-max-10d-yvs-00890677",
+    "productId": 148,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-chong-van-tay-iphone-15-pro-10d-yvs-00890676",
+    "productId": 149,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-1717-pro-zagg-00920988",
+    "productId": 150,
+    "variantName": "Miếng dán màn hình kính cường lực iPhone 17/17 Pro ZAGG",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-5-in-1-macbook-air-13\"-jcpal-00818404",
+    "productId": 151,
+    "variantName": "Bạc",
+    "price": 750000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-5-in-1-macbook-air-13\"-jcpal-00818435",
+    "productId": 151,
+    "variantName": "Vàng hồng",
+    "price": 750000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-5-in-1-macbook-air-13\"-jcpal-00818432",
+    "productId": 151,
+    "variantName": "Xám",
+    "price": 750000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-chong-nhin-trom-iphone-15-pro-10d-yvs-00890671",
+    "productId": 152,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-16-pro16-pro-max-uniq-00910707",
+    "productId": 153,
+    "variantName": "Vàng",
+    "price": 399000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-iphone-16-pro-max-5d-yvs-00910727",
+    "productId": 154,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-ipad-mini-6-8.3\"-2021-jcpal-00819143",
+    "productId": 155,
+    "variantName": "Trong suốt",
+    "price": 370000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-yvs-00899895",
+    "productId": 156,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-yvs-00899893",
+    "productId": 156,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-15-pro15-pro-max-yvs-00899894",
+    "productId": 156,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-3m-diamond-guard-6-in-1-macbook-pro-13\"-2020-m1-m2-innostyle-00879650",
+    "productId": 157,
+    "variantName": "Bạc",
+    "price": 860000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-3m-diamond-guard-6-in-1-macbook-pro-13\"-2020-m1-m2-innostyle-00879649",
+    "productId": 157,
+    "variantName": "Xám",
+    "price": 860000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1515-plus-yvs-00899890",
+    "productId": 158,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1515-plus-yvs-00899892",
+    "productId": 158,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-kinh-cuong-luc-camera-iphone-1515-plus-yvs-00899891",
+    "productId": 158,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-17-pro-mipow-00921065",
+    "productId": 159,
+    "variantName": "Miếng dán màn hình kính cường lực chống ánh sáng xanh iPhone 17 Pro Mipow",
+    "price": 449000.0
+  },
+  {
+    "sku": "mieng-dan-man-hinh-kinh-cuong-luc-chong-anh-sang-xanh-iphone-air-mipow-00921066",
+    "productId": 160,
+    "variantName": "Miếng dán màn hình kính cường lực chống ánh sáng xanh iPhone Air Mipow",
+    "price": 449000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-17-pro-nhua-tpu-chong-soc-creative-case-00920909",
+    "productId": 161,
+    "variantName": "Trong suốt",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-17-nhua-tpu-chong-soc-esr-00920899",
+    "productId": 162,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-17-pro-max-nhua-tpu-chong-soc-innostyle-00920888",
+    "productId": 163,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-16-pro-nhua-cung-chong-soc-esr-00910807",
+    "productId": 164,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-16-pro-max-nhua-cung-chong-soc-esr-trong-suot-00910805",
+    "productId": 165,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-xiaomi-redmi-note-13-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00906136",
+    "productId": 166,
+    "variantName": "Xanh",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-xiaomi-redmi-note-13-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00906135",
+    "productId": 166,
+    "variantName": "Đen",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-apple-clear-case-with-magsafe-00904552",
+    "productId": 167,
+    "variantName": "Trong suốt",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904555",
+    "productId": 167,
+    "variantName": "Xanh lá",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904558",
+    "productId": 167,
+    "variantName": "Cam nhạt",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904553",
+    "productId": 167,
+    "variantName": "Đen",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904556",
+    "productId": 167,
+    "variantName": "Hồng đào",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904560",
+    "productId": 167,
+    "variantName": "Xanh biển",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-apple-silicone-case-with-magsafe-00904559",
+    "productId": 167,
+    "variantName": "Xanh Đen",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-apple-clear-case-with-magsafe-00904543",
+    "productId": 168,
+    "variantName": "Trong suốt",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904551",
+    "productId": 168,
+    "variantName": "Xanh biển",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904546",
+    "productId": 168,
+    "variantName": "Xanh lá",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904549",
+    "productId": 168,
+    "variantName": "Cam nhạt",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904548",
+    "productId": 168,
+    "variantName": "Hồng nhạt",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904544",
+    "productId": 168,
+    "variantName": "Đen",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-apple-silicone-case-with-magsafe-00904547",
+    "productId": 168,
+    "variantName": "Hồng đào",
+    "price": 1298000.0
+  },
+  {
+    "sku": "op-lung-samsung-a05s-nhua-cung-vien-deo-pc+tpu-meetu-00901783",
+    "productId": 169,
+    "variantName": "Xanh rêu",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-samsung-a05s-nhua-cung-vien-deo-pc+tpu-meetu-00901784",
+    "productId": 170,
+    "variantName": "Đen",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-promax-meetu-nhua-cung-00896409",
+    "productId": 171,
+    "variantName": "Tím",
+    "price": 99000.0
+  },
+  {
+    "sku": "op-lung-bao-ve-iphone-15-promax-meetu-nhua-tpu-chong-soc-hoa-tiet-00895592",
+    "productId": 172,
+    "variantName": "Xanh dương",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-promax-uniq-coehl-linear-nhua-tpu-chong-soc-chong-o-vang-00895671",
+    "productId": 173,
+    "variantName": "Mixed",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-bao-ve-iphone-15-promax-devia-keep-smile-nhua-cung-hoa-van-nhieu-mau-00896740",
+    "productId": 174,
+    "variantName": "Đa sắc",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-pro-devia-nhua-cung-co-dje-dung-00896733",
+    "productId": 175,
+    "variantName": "Đen",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-pro-devia-nhua-cung-co-dje-dung-00896734",
+    "productId": 175,
+    "variantName": "Trắng",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-bao-ve-yvs-iphone-15-promax-nhua-tpu-+-pc-chong-soc-chong-o-vang-chong-van-tay-00895201",
+    "productId": 176,
+    "variantName": "Đen",
+    "price": 99000.0
+  },
+  {
+    "sku": "vi-da-esr-magnetic-kiem-gia-djo-halolock-00886637",
+    "productId": 177,
+    "variantName": "Đen",
+    "price": 599000.0
+  },
+  {
+    "sku": "vi-da-esr-magnetic-kiem-gia-djo-halolock-00886636",
+    "productId": 177,
+    "variantName": "Nâu",
+    "price": 599000.0
+  },
+  {
+    "sku": "vi-da-magsafe-jcpal-iphone-00882715",
+    "productId": 178,
+    "variantName": "Xanh",
+    "price": 599000.0
+  },
+  {
+    "sku": "vi-da-magsafe-jcpal-iphone-00882718",
+    "productId": 178,
+    "variantName": "Đen",
+    "price": 599000.0
+  },
+  {
+    "sku": "vi-da-magsafe-jcpal-iphone-00882717",
+    "productId": 178,
+    "variantName": "Nâu",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-chong-soc-xiaomi-redmi-note-12-my-choice-silicone-00873700",
+    "productId": 179,
+    "variantName": "Đỏ",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-dja-nang-iphone-13-pro-max-meetu-silicone-trong-suot-00772446",
+    "productId": 180,
+    "variantName": "Trong suốt",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-dja-nang-iphone-13-pro-meetu-silicone-trong-suot-00772465",
+    "productId": 181,
+    "variantName": "Trong suốt",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-magsafe-chong-soc-iphone-14-plus-mipow-00831846",
+    "productId": 182,
+    "variantName": "Trong suốt",
+    "price": 400000.0
+  },
+  {
+    "sku": "op-lung-dja-nang-iphone-14-plus-meetu-silicone-00831571",
+    "productId": 183,
+    "variantName": "Trong suốt",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-iphone-14-plus-tpu-chong-soc-mipow-00833587",
+    "productId": 184,
+    "variantName": "Trong suốt",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-chong-soc-samsung-galaxy-a14-yvs-00862380",
+    "productId": 185,
+    "variantName": "Trong suốt",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-chong-soc-samsung-galaxy-a14-yvs-00862381",
+    "productId": 185,
+    "variantName": "Đen",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-magsafe-samsung-galaxy-s25-ultra-nhua-cung-chong-soc-esr-00913684",
+    "productId": 186,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-iphone-air-apple-clear-case-with-magsafe-00920853",
+    "productId": 187,
+    "variantName": "Trong suốt",
+    "price": 1429000.0
+  },
+  {
+    "sku": "op-lung-iphone-air-apple-case-with-magsafe-00922079",
+    "productId": 187,
+    "variantName": "Sương Chiều",
+    "price": 1429000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-16e-nhua-cung-chong-soc-esr-00916491",
+    "productId": 188,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "hop-djung-tai-nghe-airpods-4-coteci-chat-lieu-nhua-00912638",
+    "productId": 189,
+    "variantName": "Xám",
+    "price": 299000.0
+  },
+  {
+    "sku": "op-lung-iphone-13-pro-max-meetu-dje-dung-dja-nang-00785619",
+    "productId": 190,
+    "variantName": "Xanh Đen",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-iphone-13-pro-max-meetu-dje-dung-dja-nang-00785618",
+    "productId": 190,
+    "variantName": "Đen",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-iphone-13-pro-max-meetu-dje-dung-dja-nang-00785620",
+    "productId": 190,
+    "variantName": "Xanh Đậm",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-dja-nang-iphone-15-pro-meetu-silicone-00892846",
+    "productId": 191,
+    "variantName": "Trong suốt",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-17-nhua-tpu-chong-soc-creative-case-00920989",
+    "productId": 192,
+    "variantName": "Trong suốt",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-co-gia-djo-devia-00920906",
+    "productId": 193,
+    "variantName": "Đen",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-creative-case-00920910",
+    "productId": 194,
+    "variantName": "Trong suốt",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-16-pro-max-nhua-nham-slimcase-mipow-00910829",
+    "productId": 195,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-meetu-kim-cuong-00892862",
+    "productId": 196,
+    "variantName": "Xanh",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-innostyle-00920890",
+    "productId": 197,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-samsung-fold-4-seine-scene-00825820",
+    "productId": 198,
+    "variantName": "Trong suốt",
+    "price": 299000.0
+  },
+  {
+    "sku": "bao-da-samsung-galaxy-a54-araree-mustang-diary-00866939",
+    "productId": 199,
+    "variantName": "Xám",
+    "price": 199000.0
+  },
+  {
+    "sku": "bao-da-samsung-galaxy-a54-araree-mustang-diary-00866937",
+    "productId": 199,
+    "variantName": "Đen",
+    "price": 199000.0
+  },
+  {
+    "sku": "bao-da-samsung-galaxy-a54-araree-mustang-diary-00866940",
+    "productId": 199,
+    "variantName": "Xanh",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-chong-soc-iphone-14-pro-max-spigen-liquid-air-matte-00831850",
+    "productId": 200,
+    "variantName": "Xanh dương",
+    "price": 400000.0
+  },
+  {
+    "sku": "op-lung-chong-soc-iphone-14-pro-max-spigen-liquid-air-matte-00831849",
+    "productId": 200,
+    "variantName": "Đen",
+    "price": 400000.0
+  },
+  {
+    "sku": "op-lung-trong-samsung-galaxy-s24-ultra-00906202",
+    "productId": 201,
+    "variantName": "Trong suốt",
+    "price": 480000.0
+  },
+  {
+    "sku": "op-lung-magsafe-yvs-iphone-15-promax-nhua-tpu-+-pc-chong-soc-chong-o-vang-pha-mau-00895198",
+    "productId": 202,
+    "variantName": "Mixed",
+    "price": 99000.0
+  },
+  {
+    "sku": "bao-da-magnetic-kem-ban-phim-ipad-air-11-(20242025)-air-5-air-4-pro-11-(202120202018)-esr-00885270",
+    "productId": 203,
+    "variantName": "Đen",
+    "price": 3090000.0
+  },
+  {
+    "sku": "op-lung-samsung-galaxy-a25-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00905469",
+    "productId": 204,
+    "variantName": "Đen",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-samsung-galaxy-a25-meetu-dja-nang-gia-da-co-dje-dung-co-khe-the-00905470",
+    "productId": 204,
+    "variantName": "Nâu",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-dje-dung-iphone-14-pro-max-spigen-ultra-hybrid-s-00831851",
+    "productId": 205,
+    "variantName": "Trong suốt",
+    "price": 400000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-promax-devia-nhua-cung-co-dje-dung-00896736",
+    "productId": 206,
+    "variantName": "Trắng",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-promax-devia-nhua-cung-co-dje-dung-00896735",
+    "productId": 206,
+    "variantName": "Đen",
+    "price": 399000.0
+  },
+  {
+    "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917285",
+    "productId": 208,
+    "variantName": "Xanh Da Trời",
+    "price": 2253000.0
+  },
+  {
+    "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917282",
+    "productId": 208,
+    "variantName": "Trắng",
+    "price": 2253000.0
+  },
+  {
+    "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917283",
+    "productId": 208,
+    "variantName": "Vàng Chanh",
+    "price": 2253000.0
+  },
+  {
+    "sku": "bao-da-ipad-gen-11-2025-apple-smart-folio-00917284",
+    "productId": 208,
+    "variantName": "Đỏ",
+    "price": 2253000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-13-pro-max-mipow-00772462",
+    "productId": 209,
+    "variantName": "Trong suốt",
+    "price": 540000.0
+  },
+  {
+    "sku": "op-lung-dja-nang-iphone-15-pro-max-meetu-silicone-00892847",
+    "productId": 210,
+    "variantName": "Trong suốt",
+    "price": 49000.0
+  },
+  {
+    "sku": "bao-da-ipad-pro-13-inch-2024-apple-smart-folio-00908431",
+    "productId": 211,
+    "variantName": "Đen",
+    "price": 2841000.0
+  },
+  {
+    "sku": "bao-da-ipad-pro-13-inch-2024-apple-smart-folio-00908432",
+    "productId": 211,
+    "variantName": "Xanh Denim",
+    "price": 2841000.0
+  },
+  {
+    "sku": "bao-da-ipad-pro-13-inch-2024-apple-smart-folio-00908430",
+    "productId": 211,
+    "variantName": "Trắng",
+    "price": 2841000.0
+  },
+  {
+    "sku": "op-lung-magsafe-chong-soc-iphone-14-pro-max-yvs-00831825",
+    "productId": 212,
+    "variantName": "Đen",
+    "price": 99000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-16-pro-nhua-tpu-chong-soc-co-gia-djo-camera-esr-00910806",
+    "productId": 213,
+    "variantName": "Trong suốt",
+    "price": 799000.0
+  },
+  {
+    "sku": "op-lung-samsung-galaxy-a05s-silicone-trong-suot-00904955",
+    "productId": 214,
+    "variantName": "Trong suốt",
+    "price": 186000.0
+  },
+  {
+    "sku": "op-lung-bao-ve-iphone-16-plus-silicon-chong-soc-chong-tray-xuoc-meetu-00910815",
+    "productId": 215,
+    "variantName": "Trong suốt",
+    "price": 149000.0
+  },
+  {
+    "sku": "bao-da-rebound-magnetic-ipad-air-11-(20242025)-air-5-air-4-ipad-pro-11-(2018)-esr-00908661",
+    "productId": 216,
+    "variantName": "Đen",
+    "price": 790000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-16-silicon-nature-series-devia-djen-00910803",
+    "productId": 217,
+    "variantName": "Đen",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-promax-meetu-silicone-00892863",
+    "productId": 218,
+    "variantName": "Trong suốt",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-magsafe-dje-dung-iphone-14-pro-max-meetu-gia-da-00831599",
+    "productId": 219,
+    "variantName": "Đen",
+    "price": 99000.0
+  },
+  {
+    "sku": "op-lung-bao-ve-iphone-16-pro-max-silicon-urr-co-tu-tinh-djoi-hinh-chong-soc-chong-tray-xuoc-00910785",
+    "productId": 220,
+    "variantName": "Đen",
+    "price": 1399000.0
+  },
+  {
+    "sku": "hop-djung-tai-nghe-airpods-pro-likgus-chat-lieu-nhua-nham-00907428",
+    "productId": 221,
+    "variantName": "Xám",
+    "price": 299000.0
+  },
+  {
+    "sku": "hop-djung-tai-nghe-airpods-pro-likgus-chat-lieu-nhua-nham-00907429",
+    "productId": 221,
+    "variantName": "Đen",
+    "price": 299000.0
+  },
+  {
+    "sku": "op-lung-magsafe-samsung-galaxy-s24-ultra-xandm-nhua-silicon-co-dje-dung-00905741",
+    "productId": 222,
+    "variantName": "Đen",
+    "price": 399000.0
+  },
+  {
+    "sku": "op-lung-iphone-13-switcheasy-artist-mondrian-tpu-00810745",
+    "productId": 223,
+    "variantName": "Đa sắc",
+    "price": 600000.0
+  },
+  {
+    "sku": "op-lung-samsung-galaxy-s22-plus-clear-cover-00797056",
+    "productId": 225,
+    "variantName": "Trong suốt",
+    "price": 578000.0
+  },
+  {
+    "sku": "op-lung-chong-soc-iphone-14-yvs-silicone-00831819",
+    "productId": 226,
+    "variantName": "Trong suốt",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-iphone-13-pro-max-switcheasy-artist-mondrian-tpu-00810626",
+    "productId": 228,
+    "variantName": "Đa sắc",
+    "price": 600000.0
+  },
+  {
+    "sku": "op-lung-pha-mau-iphone-15-promax-meetu-00892864",
+    "productId": 229,
+    "variantName": "Xám",
+    "price": 49000.0
+  },
+  {
+    "sku": "op-lung-trong-samsung-galaxy-a25-00906481",
+    "productId": 230,
+    "variantName": "Trong suốt",
+    "price": 382000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-air-nhua-tpu-chong-soc-esr-00920898",
+    "productId": 231,
+    "variantName": "Trong suốt",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-iphone-17-pro-max-apple-clear-case-with-magsafe-00920851",
+    "productId": 232,
+    "variantName": "Trong suốt",
+    "price": 1429000.0
+  },
+  {
+    "sku": "op-lung-samsung-galaxy-a06-4g-silicon-fashion-00911591",
+    "productId": 233,
+    "variantName": "Trong suốt",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-16-pro-max-lung-kinh-vien-deo-fashion-00910812",
+    "productId": 234,
+    "variantName": "Vàng hồng",
+    "price": 599000.0
+  },
+  {
+    "sku": "op-lung-nhua-silicon-class-samsung-m55-trong-suot-00909164",
+    "productId": 235,
+    "variantName": "Trong suốt",
+    "price": 99000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-promax-mipow-nhua-chong-soc-chong-o-vang-co-dje-dung-00895593",
+    "productId": 236,
+    "variantName": "Trong suốt",
+    "price": 400000.0
+  },
+  {
+    "sku": "op-lung-magsafe-iphone-15-pro-mipow-nhua-chong-soc-chong-o-vang-co-dje-dung-00895252",
+    "productId": 237,
+    "variantName": "Trong suốt",
+    "price": 400000.0
+  },
+  {
+    "sku": "op-lung-bao-ve-iphone-15-promax-meetu-gia-da-co-khe-djung-the-00895427",
+    "productId": 238,
+    "variantName": "Đen",
+    "price": 199000.0
+  },
+  {
+    "sku": "op-lung-magsafe-yvs-iphone-15-promax-nhua-tpu-+-pc-chong-soc-chong-o-vang-00895199",
+    "productId": 239,
+    "variantName": "Đen",
+    "price": 99000.0
+  },
+  {
+    "sku": "op-lung-iphone-15-pro-max-meetu-00892873",
+    "productId": 240,
+    "variantName": "Xám",
+    "price": 49000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-8.7-wifi-4gb-128gb-00910636",
+    "productId": 241,
+    "variantName": "128 GB - Xám",
+    "price": 3920000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-8.7-wifi-4gb-128gb-00910637",
+    "productId": 241,
+    "variantName": "128 GB - Xanh lá",
+    "price": 3920000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-8.7-wifi-4gb-128gb-00910638",
+    "productId": 241,
+    "variantName": "128 GB - Xanh dương",
+    "price": 3920000.0
+  },
+  {
+    "sku": "honor-pad-x7-wifi-4gb-128gb-00921517",
+    "productId": 242,
+    "variantName": "128 GB - Xám",
+    "price": 3790000.0
+  },
+  {
+    "sku": "honor-pad-x7-wifi-4gb-64gb-00921516",
+    "productId": 242,
+    "variantName": "64 GB - Xám",
+    "price": 3290000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a9-wifi-8gb-128gb-00905135",
+    "productId": 243,
+    "variantName": "128 GB - Xám",
+    "price": 4900000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a9-wifi-8gb-128gb-00905134",
+    "productId": 243,
+    "variantName": "128 GB - Xanh Đậm",
+    "price": 4900000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a9-wifi-8gb-128gb-00905136",
+    "productId": 243,
+    "variantName": "128 GB - Bạc",
+    "price": 4900000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-128gb-00917019",
+    "productId": 244,
+    "variantName": "128 GB - Bạc",
+    "price": 9790000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-128gb-00917020",
+    "productId": 244,
+    "variantName": "128 GB - Xanh dương",
+    "price": 9790000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-128gb-00917022",
+    "productId": 244,
+    "variantName": "128 GB - Hồng",
+    "price": 9790000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-256gb-00917024",
+    "productId": 244,
+    "variantName": "256 GB - Xanh dương",
+    "price": 12290000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-256gb-00917023",
+    "productId": 244,
+    "variantName": "256 GB - Bạc",
+    "price": 12290000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-128gb-00917021",
+    "productId": 244,
+    "variantName": "128 GB - Vàng",
+    "price": 9790000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-256gb-00917026",
+    "productId": 244,
+    "variantName": "256 GB - Hồng",
+    "price": 12290000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-256gb-00917025",
+    "productId": 244,
+    "variantName": "256 GB - Vàng",
+    "price": 12290000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-512gb-00917029",
+    "productId": 244,
+    "variantName": "512 GB - Vàng",
+    "price": 17690000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-512gb-00917028",
+    "productId": 244,
+    "variantName": "512 GB - Xanh dương",
+    "price": 17690000.0
+  },
+  {
+    "sku": "ipad-a16-wifi-512gb-00917030",
+    "productId": 244,
+    "variantName": "512 GB - Hồng",
+    "price": 17690000.0
+  },
+  {
+    "sku": "honor-pad-x9a-wifi-6gb-128gb-00919536",
+    "productId": 245,
+    "variantName": "128 GB - Xám",
+    "price": 5890000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-lite-wifi-6gb-128gb-00921096",
+    "productId": 246,
+    "variantName": "128 GB - Xám",
+    "price": 8990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-lite-wifi-6gb-128gb-00921097",
+    "productId": 246,
+    "variantName": "128 GB - Bạc",
+    "price": 8990000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916856",
+    "productId": 247,
+    "variantName": "128 GB - Tím",
+    "price": 16690000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916858",
+    "productId": 247,
+    "variantName": "256 GB - Xanh dương",
+    "price": 19190000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916854",
+    "productId": 247,
+    "variantName": "128 GB - Xanh dương",
+    "price": 16690000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916860",
+    "productId": 247,
+    "variantName": "256 GB - Tím",
+    "price": 19190000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916853",
+    "productId": 247,
+    "variantName": "128 GB - Xám không gian",
+    "price": 16690000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-128gb-00916855",
+    "productId": 247,
+    "variantName": "128 GB - Ánh Sao",
+    "price": 16690000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916859",
+    "productId": 247,
+    "variantName": "256 GB - Ánh Sao",
+    "price": 19190000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-256gb-00916857",
+    "productId": 247,
+    "variantName": "256 GB - Xám không gian",
+    "price": 19190000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-512gb-00916862",
+    "productId": 247,
+    "variantName": "512 GB - Xanh dương",
+    "price": 24590000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916868",
+    "productId": 247,
+    "variantName": "1 TB - Tím",
+    "price": 30490000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916867",
+    "productId": 247,
+    "variantName": "1 TB - Ánh Sao",
+    "price": 30490000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916865",
+    "productId": 247,
+    "variantName": "1 TB - Xám không gian",
+    "price": 30490000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-1tb-00916866",
+    "productId": 247,
+    "variantName": "1 TB - Xanh dương",
+    "price": 30490000.0
+  },
+  {
+    "sku": "lenovo-idea-tab-pro-wifi-8gb-256gb-00919679",
+    "productId": 248,
+    "variantName": "256 GB - Xám",
+    "price": 11790000.0
+  },
+  {
+    "sku": "lenovo-idea-tab-wifi-4gb-128gb-00920436",
+    "productId": 249,
+    "variantName": "128 GB - Xanh dương",
+    "price": 5790000.0
+  },
+  {
+    "sku": "lenovo-idea-tab-wifi-4gb-128gb-00920437",
+    "productId": 249,
+    "variantName": "128 GB - Xám",
+    "price": 5790000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a11-wifi-4gb-64gb-00921105",
+    "productId": 250,
+    "variantName": "64 GB - Bạc",
+    "price": 3990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a11-wifi-4gb-64gb-00921104",
+    "productId": 250,
+    "variantName": "64 GB - Xám",
+    "price": 3990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-wifi-12gb-128gb-00921092",
+    "productId": 251,
+    "variantName": "128 GB - Xám",
+    "price": 20990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-wifi-12gb-128gb-00921093",
+    "productId": 251,
+    "variantName": "128 GB - Bạc",
+    "price": 20990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-wifi-12gb-256gb-00921106",
+    "productId": 251,
+    "variantName": "256 GB - Xám",
+    "price": 22990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-wifi-12gb-256gb-00921107",
+    "productId": 251,
+    "variantName": "256 GB - Bạc",
+    "price": 22990000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-2-wifi-6gb-128gb-00919451",
+    "productId": 252,
+    "variantName": "128 GB - Xám",
+    "price": 5690000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-2-wifi-6gb-128gb-00919450",
+    "productId": 252,
+    "variantName": "128 GB - Xanh",
+    "price": 5690000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-2-wifi-6gb-128gb-00919449",
+    "productId": 252,
+    "variantName": "128 GB - Tím",
+    "price": 5690000.0
+  },
+  {
+    "sku": "huawei-matepad-11.5-wifi-6gb-128gb-00920398",
+    "productId": 253,
+    "variantName": "128 GB - Xám",
+    "price": 6568000.0
+  },
+  {
+    "sku": "huawei-matepad-pro-12.2-wifi-12gb-512gb-00921287",
+    "productId": 254,
+    "variantName": "512 GB - Xanh lá",
+    "price": 23990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-fe-wifi-8gb-128gb-00917547",
+    "productId": 255,
+    "variantName": "128 GB - Xám",
+    "price": 11780000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-fe-wifi-8gb-128gb-00917548",
+    "productId": 255,
+    "variantName": "128 GB - Xanh dương",
+    "price": 11780000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-fe-wifi-8gb-128gb-00917549",
+    "productId": 255,
+    "variantName": "128 GB - Bạc",
+    "price": 11780000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-5g-12gb-128gb-00921082",
+    "productId": 256,
+    "variantName": "128 GB - Xám",
+    "price": 23990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-5g-12gb-128gb-00921083",
+    "productId": 256,
+    "variantName": "128 GB - Bạc",
+    "price": 23990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-5g-12gb-256gb-00921084",
+    "productId": 256,
+    "variantName": "256 GB - Xám",
+    "price": 25990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s11-5g-12gb-256gb-00921085",
+    "productId": 256,
+    "variantName": "256 GB - Bạc",
+    "price": 25990000.0
+  },
+  {
+    "sku": "ipad-pro-11-inch-m4-2024-wifi-256gb-00908334",
+    "productId": 257,
+    "variantName": "256 GB - Ðen",
+    "price": 28490000.0
+  },
+  {
+    "sku": "ipad-pro-11-inch-m4-2024-wifi-256gb-00908335",
+    "productId": 257,
+    "variantName": "256 GB - Bạc",
+    "price": 28490000.0
+  },
+  {
+    "sku": "ipad-pro-11-inch-m4-2024-wifi-2tb-00908341",
+    "productId": 257,
+    "variantName": "2 TB - Bạc",
+    "price": 57490000.0
+  },
+  {
+    "sku": "ipad-pro-11-inch-m4-2024-wifi-1tb-00908339",
+    "productId": 257,
+    "variantName": "1 TB - Bạc",
+    "price": 45990000.0
+  },
+  {
+    "sku": "ipad-pro-11-inch-m4-2024-wifi-1tb-00908338",
+    "productId": 257,
+    "variantName": "1 TB - Ðen",
+    "price": 45990000.0
+  },
+  {
+    "sku": "ipad-pro-11-inch-m4-2024-wifi-512gb-00908336",
+    "productId": 257,
+    "variantName": "512 GB - Ðen",
+    "price": 33890000.0
+  },
+  {
+    "sku": "ipad-pro-11-inch-m4-2024-wifi-2tb-00908340",
+    "productId": 257,
+    "variantName": "2 TB - Ðen",
+    "price": 57490000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a9-wifi-4gb-64gb-00905140",
+    "productId": 258,
+    "variantName": "64 GB - Xám",
+    "price": 3920000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a9-wifi-4gb-64gb-00905142",
+    "productId": 258,
+    "variantName": "64 GB - Bạc",
+    "price": 3920000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a9-wifi-4gb-64gb-00905141",
+    "productId": 258,
+    "variantName": "64 GB - Xanh Đậm",
+    "price": 3920000.0
+  },
+  {
+    "sku": "masstel-tab-10-edu-4g-3gb-32gb-00912385",
+    "productId": 259,
+    "variantName": "32 GB - Đen",
+    "price": 2490000.0
+  },
+  {
+    "sku": "masstel-tab-10-edu-4g-3gb-32gb-00912384",
+    "productId": 259,
+    "variantName": "32 GB - Xanh",
+    "price": 2490000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-wifi-4gb-128gb-00915828",
+    "productId": 260,
+    "variantName": "128 GB - Xám",
+    "price": 4150000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-wifi-4gb-128gb-00915829",
+    "productId": 260,
+    "variantName": "128 GB - Xanh dương",
+    "price": 4150000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-wifi-4gb-64gb-00915826",
+    "productId": 260,
+    "variantName": "64 GB - Xám",
+    "price": 3450000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-wifi-4gb-64gb-00915827",
+    "productId": 260,
+    "variantName": "64 GB - Xanh dương",
+    "price": 3450000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-4g-4gb-128gb-00915820",
+    "productId": 261,
+    "variantName": "128 GB - Xám",
+    "price": 4950000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-4g-4gb-64gb-00915818",
+    "productId": 261,
+    "variantName": "64 GB - Xám",
+    "price": 4150000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-4g-4gb-128gb-00915821",
+    "productId": 261,
+    "variantName": "128 GB - Xanh dương",
+    "price": 4950000.0
+  },
+  {
+    "sku": "lenovo-tab-10.1-4g-4gb-64gb-00915819",
+    "productId": 261,
+    "variantName": "64 GB - Xanh dương",
+    "price": 4150000.0
+  },
+  {
+    "sku": "may-tinh-bang-tre-em-joystar-j10-4g-4gb-64gb-00912386",
+    "productId": 262,
+    "variantName": "64 GB - Xanh",
+    "price": 3690000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-128gb-00912550",
+    "productId": 263,
+    "variantName": "128 GB - Xám không gian",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-128gb-00912551",
+    "productId": 263,
+    "variantName": "128 GB - Xanh dương",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-128gb-00912553",
+    "productId": 263,
+    "variantName": "128 GB - Ánh Sao",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-128gb-00912552",
+    "productId": 263,
+    "variantName": "128 GB - Tím",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-512gb-00912558",
+    "productId": 263,
+    "variantName": "512 GB - Xám không gian",
+    "price": 21590000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-256gb-00912554",
+    "productId": 263,
+    "variantName": "256 GB - Xám không gian",
+    "price": 16190000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-256gb-00912556",
+    "productId": 263,
+    "variantName": "256 GB - Tím",
+    "price": 16190000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-256gb-00912555",
+    "productId": 263,
+    "variantName": "256 GB - Xanh dương",
+    "price": 16190000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-512gb-00912560",
+    "productId": 263,
+    "variantName": "512 GB - Tím",
+    "price": 21590000.0
+  },
+  {
+    "sku": "masstel-tab-11-pro-4g-4gb-128gb-00910944",
+    "productId": 264,
+    "variantName": "128 GB - Xám",
+    "price": 4490000.0
+  },
+  {
+    "sku": "tcl-tab-10l-gen-3-4g-4gb-64gb-00912648",
+    "productId": 265,
+    "variantName": "64 GB - Đen",
+    "price": 3290000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a9-plus-wifi-4gb-64gb-00905139",
+    "productId": 266,
+    "variantName": "64 GB - Bạc",
+    "price": 5890000.0
+  },
+  {
+    "sku": "may-tinh-bang-tre-em-joystar-j6-wifi-4gb-64gb-00918808",
+    "productId": 267,
+    "variantName": "64 GB - Xanh",
+    "price": 2990000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s6-lite-2024-4g-4gb-64gb-00907671",
+    "productId": 268,
+    "variantName": "64 GB - Xám",
+    "price": 7360000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s6-lite-2024-4g-4gb-64gb-00907670",
+    "productId": 268,
+    "variantName": "64 GB - Xanh lá",
+    "price": 7360000.0
+  },
+  {
+    "sku": "lenovo-tab-one-4g-4gb-128gb-00918459",
+    "productId": 269,
+    "variantName": "128 GB - Xám",
+    "price": 4150000.0
+  },
+  {
+    "sku": "lenovo-tab-one-4g-4gb-64gb-00918458",
+    "productId": 269,
+    "variantName": "64 GB - Xám",
+    "price": 3350000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a11-4g-4gb-64gb-00921100",
+    "productId": 270,
+    "variantName": "64 GB - Xám",
+    "price": 5490000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-a11-4g-4gb-64gb-00921101",
+    "productId": 270,
+    "variantName": "64 GB - Bạc",
+    "price": 5490000.0
+  },
+  {
+    "sku": "huawei-matepad-se-11-wifi-6gb-128gb-00911242",
+    "productId": 271,
+    "variantName": "128 GB - Xám",
+    "price": 5490000.0
+  },
+  {
+    "sku": "huawei-matepad-se-11-wifi-4gb-128gb-00919210",
+    "productId": 272,
+    "variantName": "128 GB - Xám",
+    "price": 4490000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-8.7-wifi-6gb-128gb-00910634",
+    "productId": 273,
+    "variantName": "128 GB - Xanh lá",
+    "price": 4690000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-8.7-wifi-6gb-128gb-00910635",
+    "productId": 273,
+    "variantName": "128 GB - Xanh dương",
+    "price": 4690000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-8.7-wifi-6gb-128gb-00910633",
+    "productId": 273,
+    "variantName": "128 GB - Xám",
+    "price": 4690000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-plus-5g-12gb-256gb-00911850",
+    "productId": 275,
+    "variantName": "256 GB - Bạc",
+    "price": 28470000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-plus-wifi-12gb-256gb-00911858",
+    "productId": 277,
+    "variantName": "256 GB - Bạc",
+    "price": 25520000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-plus-wifi-12gb-256gb-00911857",
+    "productId": 277,
+    "variantName": "256 GB - Xám",
+    "price": 25520000.0
+  },
+  {
+    "sku": "ipad-a16-5g-256gb-00916988",
+    "productId": 278,
+    "variantName": "256 GB - Xanh dương",
+    "price": 16190000.0
+  },
+  {
+    "sku": "ipad-a16-5g-128gb-00916984",
+    "productId": 278,
+    "variantName": "128 GB - Xanh dương",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-a16-5g-256gb-00916987",
+    "productId": 278,
+    "variantName": "256 GB - Bạc",
+    "price": 16190000.0
+  },
+  {
+    "sku": "ipad-a16-5g-256gb-00916990",
+    "productId": 278,
+    "variantName": "256 GB - Hồng",
+    "price": 16190000.0
+  },
+  {
+    "sku": "ipad-a16-5g-128gb-00916985",
+    "productId": 278,
+    "variantName": "128 GB - Vàng",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-a16-5g-128gb-00916986",
+    "productId": 278,
+    "variantName": "128 GB - Hồng",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-a16-5g-128gb-00916983",
+    "productId": 278,
+    "variantName": "128 GB - Bạc",
+    "price": 13790000.0
+  },
+  {
+    "sku": "ipad-a16-5g-512gb-00916992",
+    "productId": 278,
+    "variantName": "512 GB - Xanh dương",
+    "price": 21490000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s9-wifi-12gb-256gb-00890470",
+    "productId": 279,
+    "variantName": "256 GB - Xám",
+    "price": 21600000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s9-wifi-12gb-256gb-00890473",
+    "productId": 279,
+    "variantName": "256 GB - Kem",
+    "price": 21600000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916918",
+    "productId": 280,
+    "variantName": "128 GB - Xanh dương",
+    "price": 20590000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916917",
+    "productId": 280,
+    "variantName": "128 GB - Xám không gian",
+    "price": 20590000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916919",
+    "productId": 280,
+    "variantName": "128 GB - Ánh Sao",
+    "price": 20590000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-128gb-00916920",
+    "productId": 280,
+    "variantName": "128 GB - Tím",
+    "price": 20590000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-256gb-00916922",
+    "productId": 280,
+    "variantName": "256 GB - Xanh dương",
+    "price": 23190000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-512gb-00916928",
+    "productId": 280,
+    "variantName": "512 GB - Tím",
+    "price": 28990000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-512gb-00916926",
+    "productId": 280,
+    "variantName": "512 GB - Xanh dương",
+    "price": 28990000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-256gb-00916923",
+    "productId": 280,
+    "variantName": "256 GB - Ánh Sao",
+    "price": 23190000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-256gb-00916924",
+    "productId": 280,
+    "variantName": "256 GB - Tím",
+    "price": 23190000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916932",
+    "productId": 280,
+    "variantName": "1 TB - Tím",
+    "price": 34490000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916931",
+    "productId": 280,
+    "variantName": "1 TB - Ánh Sao",
+    "price": 34490000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916930",
+    "productId": 280,
+    "variantName": "1 TB - Xanh dương",
+    "price": 34490000.0
+  },
+  {
+    "sku": "ipad-air-11-inch-m3-2025-wifi-+-cellular-1tb-00916929",
+    "productId": 280,
+    "variantName": "1 TB - Xám không gian",
+    "price": 34490000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-fe-5g-8gb-128gb-00917544",
+    "productId": 281,
+    "variantName": "128 GB - Xanh dương",
+    "price": 14720000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-fe-5g-8gb-128gb-00917543",
+    "productId": 281,
+    "variantName": "128 GB - Xám",
+    "price": 14720000.0
+  },
+  {
+    "sku": "samsung-galaxy-tab-s10-fe-5g-8gb-128gb-00917545",
+    "productId": 281,
+    "variantName": "128 GB - Bạc",
+    "price": 14720000.0
+  },
+  {
+    "sku": "huawei-matepad-11.5-wifi-8gb-256gb-00915934",
+    "productId": 282,
+    "variantName": "256 GB - Xám",
+    "price": 9490000.0
+  },
+  {
+    "sku": "tcl-tab-10l-gen-3-wifi-4gb-64gb-00913096",
+    "productId": 283,
+    "variantName": "64 GB - Đen",
+    "price": 2790000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916787",
+    "productId": 284,
+    "variantName": "128 GB - Xám không gian",
+    "price": 22090000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916791",
+    "productId": 284,
+    "variantName": "256 GB - Xám không gian",
+    "price": 24590000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916792",
+    "productId": 284,
+    "variantName": "256 GB - Xanh dương",
+    "price": 24590000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916788",
+    "productId": 284,
+    "variantName": "128 GB - Xanh dương",
+    "price": 22090000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916789",
+    "productId": 284,
+    "variantName": "128 GB - Ánh Sao",
+    "price": 22090000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-128gb-00916790",
+    "productId": 284,
+    "variantName": "128 GB - Tím",
+    "price": 22090000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916794",
+    "productId": 284,
+    "variantName": "256 GB - Tím",
+    "price": 24590000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-256gb-00916793",
+    "productId": 284,
+    "variantName": "256 GB - Ánh Sao",
+    "price": 24590000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916797",
+    "productId": 284,
+    "variantName": "512 GB - Ánh Sao",
+    "price": 30490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916795",
+    "productId": 284,
+    "variantName": "512 GB - Xám không gian",
+    "price": 30490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916796",
+    "productId": 284,
+    "variantName": "512 GB - Xanh dương",
+    "price": 30490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-512gb-00916798",
+    "productId": 284,
+    "variantName": "512 GB - Tím",
+    "price": 30490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-1tb-00916802",
+    "productId": 284,
+    "variantName": "1 TB - Tím",
+    "price": 35990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-1tb-00916800",
+    "productId": 284,
+    "variantName": "1 TB - Xanh dương",
+    "price": 35990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-1tb-00916801",
+    "productId": 284,
+    "variantName": "1 TB - Ánh Sao",
+    "price": 35990000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912586",
+    "productId": 285,
+    "variantName": "128 GB - Xám không gian",
+    "price": 17690000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912589",
+    "productId": 285,
+    "variantName": "128 GB - Ánh Sao",
+    "price": 17690000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-+-cellular-256gb-00912591",
+    "productId": 285,
+    "variantName": "256 GB - Xanh dương",
+    "price": 20090000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912588",
+    "productId": 285,
+    "variantName": "128 GB - Tím",
+    "price": 17690000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-+-cellular-128gb-00912587",
+    "productId": 285,
+    "variantName": "128 GB - Xanh dương",
+    "price": 17690000.0
+  },
+  {
+    "sku": "ipad-mini-7-2024-wifi-+-cellular-256gb-00912592",
+    "productId": 285,
+    "variantName": "256 GB - Tím",
+    "price": 20090000.0
+  },
+  {
+    "sku": "lenovo-tab-m9-wifi-4gb-128gb-00912162",
+    "productId": 286,
+    "variantName": "128 GB - Xám",
+    "price": 4190000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-256gb-00916727",
+    "productId": 287,
+    "variantName": "256 GB - Xám không gian",
+    "price": 28490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916723",
+    "productId": 287,
+    "variantName": "128 GB - Xám không gian",
+    "price": 25990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916724",
+    "productId": 287,
+    "variantName": "128 GB - Xanh dương",
+    "price": 25990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-256gb-00916729",
+    "productId": 287,
+    "variantName": "256 GB - Ánh Sao",
+    "price": 28490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916725",
+    "productId": 287,
+    "variantName": "128 GB - Ánh Sao",
+    "price": 25990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-128gb-00916726",
+    "productId": 287,
+    "variantName": "128 GB - Tím",
+    "price": 25990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-256gb-00916728",
+    "productId": 287,
+    "variantName": "256 GB - Xanh dương",
+    "price": 28490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-512gb-00916732",
+    "productId": 287,
+    "variantName": "512 GB - Xanh dương",
+    "price": 34490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-1tb-00916738",
+    "productId": 287,
+    "variantName": "1 TB - Tím",
+    "price": 39990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-1tb-00916736",
+    "productId": 287,
+    "variantName": "1 TB - Xanh dương",
+    "price": 39990000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-512gb-00916734",
+    "productId": 287,
+    "variantName": "512 GB - Tím",
+    "price": 34490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-512gb-00916731",
+    "productId": 287,
+    "variantName": "512 GB - Xám không gian",
+    "price": 34490000.0
+  },
+  {
+    "sku": "ipad-air-13-inch-m3-2025-wifi-+-cellular-1tb-00916737",
+    "productId": 287,
+    "variantName": "1 TB - Ánh Sao",
+    "price": 39990000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-wifi-6gb-128gb-00904711",
+    "productId": 288,
+    "variantName": "128 GB - Xanh lá",
+    "price": 5400000.0
+  },
+  {
+    "sku": "xiaomi-redmi-pad-se-wifi-6gb-128gb-00904710",
+    "productId": 288,
+    "variantName": "128 GB - Xám",
+    "price": 5400000.0
+  },
+  {
+    "sku": "sadsafsaxz",
+    "productId": 291,
+    "variantName": "256gb - Đen",
+    "price": 41000000.0
+  },
+  {
+    "sku": "ds1tb",
+    "productId": 291,
+    "variantName": "1tb - Đỏ",
+    "price": 46000000.0
+  }
+]

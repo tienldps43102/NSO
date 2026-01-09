@@ -300,7 +300,7 @@ export default function AdminOrdersPage() {
               case "SHIPPING":
                 return [{ value: "DELIVERED", label: "Đã giao hàng", icon: Package }];
               case "DELIVERED":
-             
+
               case "COMPLETED":
               case "CANCELED":
               case "CANCELLED":

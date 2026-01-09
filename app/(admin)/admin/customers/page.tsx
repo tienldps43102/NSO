@@ -147,9 +147,7 @@ export default function AdminCustomers() {
   });
 
   // Calculate total pages
-  const totalPages = data && data.length === ITEMS_PER_PAGE 
-    ? currentPage + 1 
-    : currentPage;
+  const totalPages = data && data.length === ITEMS_PER_PAGE ? currentPage + 1 : currentPage;
   const hasNextPage = data && data.length === ITEMS_PER_PAGE;
 
   return (
@@ -257,9 +255,7 @@ export default function AdminCustomers() {
               <ChevronLeft className="h-4 w-4" />
               Trước
             </Button>
-            <div className="text-sm">
-              Trang {currentPage}
-            </div>
+            <div className="text-sm">Trang {currentPage}</div>
             <Button
               variant="outline"
               size="sm"

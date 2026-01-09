@@ -84,7 +84,6 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
             {productDetail.category?.name}
           </Link>
         </span>
-     
       </div>
 
       {/* Price Block */}
@@ -162,8 +161,8 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
         <div className="border border-border rounded-xl overflow-hidden">
           <table className="w-full">
             <tbody>
-              {(showAllAttributes 
-                ? productDetail.attributes 
+              {(showAllAttributes
+                ? productDetail.attributes
                 : productDetail.attributes.slice(0, 6)
               ).map((detail, index) => (
                 <tr
@@ -188,7 +187,9 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
             className="w-full"
             onClick={() => setShowAllAttributes(!showAllAttributes)}
           >
-            {showAllAttributes ? "Thu gọn" : `Xem thêm (${productDetail.attributes.length - 6} thông tin)`}
+            {showAllAttributes
+              ? "Thu gọn"
+              : `Xem thêm (${productDetail.attributes.length - 6} thông tin)`}
           </Button>
         )}
       </div>

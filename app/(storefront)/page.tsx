@@ -10,9 +10,9 @@ const Index = async () => {
   return (
     <>
       <Hero />
-        <FeaturedSection />
-        <HorizontalProductRow />
-        <RankedBestSellers />
+      <FeaturedSection />
+      <HorizontalProductRow />
+      <RankedBestSellers />
     </>
   );
 };

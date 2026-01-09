@@ -49,7 +49,9 @@ export function ProductCard({ product, className, style }: ProductCardProps) {
         {/* Price & Action */}
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="font-bold text-primary">{formatPrice(Number(product.displayPrice))}</span>
+            <span className="font-bold text-primary">
+              {formatPrice(Number(product.displayPrice))}
+            </span>
           </div>
 
           <Button

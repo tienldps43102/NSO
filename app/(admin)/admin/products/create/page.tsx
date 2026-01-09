@@ -159,7 +159,6 @@ const AdminProductCreate = () => {
     );
   };
 
-
   const searchCategory = async (q: string, limit: number = 10): Promise<MultiSelectOption[]> => {
     const res = await client.categoryRoutes.getAllCategories({
       q,
@@ -233,7 +232,6 @@ const AdminProductCreate = () => {
                   </FormItem>
                 )}
               />
-             
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -275,7 +273,6 @@ const AdminProductCreate = () => {
               />
             </div>
 
-        
             <div className="grid gap-4 md:grid-cols-2">
               <FormField
                 control={form.control}

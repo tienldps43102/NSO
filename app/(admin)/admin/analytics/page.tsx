@@ -407,49 +407,46 @@ const AdminAnalytics = () => {
               </CardContent>
             </Card>
           </div>
-
         </TabsContent>
 
         {/* Products Tab */}
         <TabsContent value="products" className="space-y-6">
           <Card className="bg-card/60 backdrop-blur-md border-border/40">
-              <CardHeader>
-                <CardTitle>Top sản phẩm bán chạy</CardTitle>
-                <CardDescription>8 sản phẩm có doanh số cao nhất</CardDescription>
-              </CardHeader>
-              <CardContent>
-                {isLoadingTopProducts ? (
-                  <div className="flex items-center justify-center h-24 text-muted-foreground">
-                    Đang tải dữ liệu...
-                  </div>
-                ) : topProducts && topProducts.length > 0 ? (
-                  <div className="space-y-4">
-                    {topProducts.map((product, index) => (
-                      <div key={product.product.id} className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary font-bold">
-                          {index + 1}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-medium truncate">{product.product.title}</p>
-                          <p className="text-sm text-muted-foreground">
-                            Đã bán: {product.sold.toLocaleString("vi-VN")}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-medium">
-                            {formatFullPrice(Number(product.revenue))}
-                          </p>
-                        </div>
+            <CardHeader>
+              <CardTitle>Top sản phẩm bán chạy</CardTitle>
+              <CardDescription>8 sản phẩm có doanh số cao nhất</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {isLoadingTopProducts ? (
+                <div className="flex items-center justify-center h-24 text-muted-foreground">
+                  Đang tải dữ liệu...
+                </div>
+              ) : topProducts && topProducts.length > 0 ? (
+                <div className="space-y-4">
+                  {topProducts.map((product, index) => (
+                    <div key={product.product.id} className="flex items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary font-bold">
+                        {index + 1}
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center h-24 text-muted-foreground">
-                    Chưa có dữ liệu
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium truncate">{product.product.title}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Đã bán: {product.sold.toLocaleString("vi-VN")}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium">{formatFullPrice(Number(product.revenue))}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center justify-center h-24 text-muted-foreground">
+                  Chưa có dữ liệu
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
           {/* Sales by Category Bar Chart */}
           <Card className="bg-card/60 backdrop-blur-md border-border/40">

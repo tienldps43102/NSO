@@ -1,7 +1,5 @@
 import { prisma } from "@/lib/db";
-const imageData =JSON.parse(
-    await Bun.file("data/image.json").text(),
-) as ImageJson[];
+const imageData = JSON.parse(await Bun.file("data/image.json").text()) as ImageJson[];
 // {
 //     "productId": 1,
 //     "variantSku": "samsung-galaxy-z-fold7-5g-12gb-256gb-00919908",
@@ -11,18 +9,18 @@ type ImageJson = {
   productId: number;
   variantSku: string;
   imageUrl: string;
-}
+};
 for (let i = 0; i < imageData.length; i++) {
   const image = imageData[i] as ImageJson;
-  // find sku id 
+  // find sku id
   const variant = await prisma.productVariant.findFirst({
     where: { sku: image.variantSku },
   });
-  if(!variant) continue;
+  if (!variant) continue;
   await prisma.productImage.create({
     data: {
       url: image.imageUrl,
-      productId: image.productId+"",
+      productId: image.productId + "",
       variantId: variant.id,
     },
   });

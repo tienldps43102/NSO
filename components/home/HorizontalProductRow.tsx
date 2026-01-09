@@ -1,4 +1,4 @@
-import { ArrowRight,  ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { ProductCard } from "./ProductCard";
 
 export async function HorizontalProductRow() {
@@ -12,21 +12,17 @@ export async function HorizontalProductRow() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold">
-              Hàng Mới Về 
-            </h2>
-            <p className="text-muted-foreground mt-1">
-              Cập nhật những sản phẩm mới nhất
-            </p>
+            <h2 className="text-2xl md:text-3xl font-bold">Hàng Mới Về</h2>
+            <p className="text-muted-foreground mt-1">Cập nhật những sản phẩm mới nhất</p>
           </div>
           <div className="hidden sm:flex items-center gap-2">
             <a
-            href="#"
-            className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-          >
-            Xem tất cả
-            <ArrowRight className="h-4 w-4" />
-          </a>
+              href="#"
+              className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            >
+              Xem tất cả
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
 

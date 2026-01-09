@@ -78,15 +78,11 @@ const listProducts = os
       ...(input.categoryIds && input.categoryIds.length > 0
         ? { categoryId: { in: input.categoryIds } }
         : {}),
-      ...(input.brandIds && input.brandIds.length > 0
-        ? { brandId: { in: input.brandIds } }
-        : {}),
+      ...(input.brandIds && input.brandIds.length > 0 ? { brandId: { in: input.brandIds } } : {}),
       ...(input.isFeatured !== undefined ? { isFeature: input.isFeatured } : {}),
       ...(input.q
         ? {
-            OR: [
-              { title: { contains: input.q, mode: "insensitive" as const } },
-            ],
+            OR: [{ title: { contains: input.q, mode: "insensitive" as const } }],
           }
         : {}),
       // variants: {
@@ -177,10 +173,7 @@ const getRelatedProducts = os
       where: {
         isActive: true,
         id: { not: base.id },
-        OR: [
-          { categoryId: base.categoryId },
-          ...(base.brandId ? [{ brandId: base.brandId }] : []),
-        ],
+        OR: [{ categoryId: base.categoryId }, ...(base.brandId ? [{ brandId: base.brandId }] : [])],
       },
       orderBy: { createdAt: "desc" },
       take: input.limit,
@@ -188,7 +181,6 @@ const getRelatedProducts = os
     });
     return items;
   });
-
 
 const getVariantById = os
   .route({
@@ -259,7 +251,11 @@ const getFeaturedProducts = os
   })
   .input(z.object({ limit: z.coerce.number().min(1).max(20).default(10) }))
   .handler(async ({ input }) => {
-    const products = await prisma.product.findMany({ where: { isFeature: true }, take: input.limit, include: { category: true, brand: true } });
+    const products = await prisma.product.findMany({
+      where: { isFeature: true },
+      take: input.limit,
+      include: { category: true, brand: true },
+    });
     return products;
   });
 export const productRoutes = os.router({

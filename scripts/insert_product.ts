@@ -33,10 +33,8 @@ type ProductJson = {
   discount: number | null;
   brand_name: string;
   category_name: string;
-}
-const productData =JSON.parse(
-    await Bun.file("data/product.json").text(),
-)
+};
+const productData = JSON.parse(await Bun.file("data/product.json").text());
 
 async function createBrandIfNotExists(brandName: string) {
   let brand = await prisma.brand.findFirst({
@@ -62,8 +60,8 @@ async function createCategoryIfNotExists(categoryName: string) {
   return category;
 }
 for (let i = 0; i < productData.length; i++) {
-  const product = productData[i] as ProductJson ;
-  if(!product.brand_name || !product.category_name) continue;   
+  const product = productData[i] as ProductJson;
+  if (!product.brand_name || !product.category_name) continue;
   const brand = await createBrandIfNotExists(product.brand_name);
   const category = await createCategoryIfNotExists(product.category_name);
   await prisma.product.create({
@@ -75,8 +73,8 @@ for (let i = 0; i < productData.length; i++) {
       createdAt: new Date(product.created_at),
       description: product.description,
       thumbnailUrl: product.thumbnail,
-      isActive:true,
-      id: product.id+"",
+      isActive: true,
+      id: product.id + "",
     },
   });
 }

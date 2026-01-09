@@ -9,7 +9,7 @@ export function PromoBanner() {
           {/* Background decorations */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-2xl" />
-          
+
           <div className="relative grid md:grid-cols-2 gap-8 items-center p-8 md:p-12 lg:p-16">
             {/* Content */}
             <div className="space-y-5 text-center md:text-left">
@@ -20,7 +20,8 @@ export function PromoBanner() {
                 Combo sạc nhanh, yên tâm mỗi ngày
               </h3>
               <p className="text-background/70 max-w-md mx-auto md:mx-0">
-                Bộ sưu tập phụ kiện Apple, Samsung, Anker chính hãng với giá ưu đãi đặc biệt. Bảo hành 12 tháng.
+                Bộ sưu tập phụ kiện Apple, Samsung, Anker chính hãng với giá ưu đãi đặc biệt. Bảo
+                hành 12 tháng.
               </p>
               <Button
                 size="lg"
