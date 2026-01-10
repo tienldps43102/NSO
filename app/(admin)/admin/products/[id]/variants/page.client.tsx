@@ -122,6 +122,7 @@ export default function AdminVariantsClientPage({
     orpcQuery.productAdminRoutes.addStock.mutationOptions({
       onSuccess: () => {
         toast.success("Thêm tồn kho thành công");
+        router.refresh();
       },
       onError: (error: Error) => {
         toast.error(error.message);
@@ -153,7 +154,7 @@ export default function AdminVariantsClientPage({
     addStockMutation.mutate({
       id: productId,
       variantId: selectedVariant.id!,
-      stockQuantity: data.stockQuantity,
+      stockQuantity: data.stockQuantity + selectedVariant.stockQuantity,
     });
     setIsStockOpen(false);
     stockForm.reset();

@@ -12,6 +12,7 @@ import {
   CreditCard,
   FileText,
   Tag,
+  Ban,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,9 +26,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Separator } from "@/components/ui/separator";
 import { formatPrice } from "@/lib/utils";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { client } from "@/lib/orpc.client";
 const getStatusConfig = (status: string) => {
   switch (status) {
     case "DELIVERED":
@@ -52,12 +67,14 @@ const getStatusConfig = (status: string) => {
         className: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
       };
     case "CANCELLED":
+    case "CANCELED":
       return {
         label: "Đã hủy",
         icon: XCircle,
         variant: "destructive" as const,
         className: "bg-red-500/10 text-red-600 border-red-500/20",
       };
+    
     default:
       return {
         label: "Không xác định",
@@ -75,8 +92,28 @@ type Order = Outputs["orderRoutes"]["getMyOrders"][number];
 
 export const OrderCard = ({ order }: { order: Order }) => {
   const [open, setOpen] = useState(false);
+  const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
+  const [isCanceling, setIsCanceling] = useState(false);
+  const router = useRouter();
   const statusConfig = getStatusConfig(order.status);
   const StatusIcon = statusConfig.icon;
+
+  const handleCancelOrder = async () => {
+    setIsCanceling(true);
+    try {
+      await client!.orderRoutes.cancelOrder({ orderId: order.id });
+      toast.success("Hủy đơn hàng thành công!");
+      setCancelDialogOpen(false);
+      router.refresh();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Có lỗi xảy ra khi hủy đơn hàng";
+      toast.error(message);
+    } finally {
+      setIsCanceling(false);
+    }
+  };
+
+  const canCancelOrder = order.status === "PENDING";
 
   return (
     <>
@@ -145,21 +182,58 @@ export const OrderCard = ({ order }: { order: Order }) => {
                 Tổng: <span className="text-primary">{formatPrice(Number(order.totalAmount))}</span>
               </p>
             </div>
-            <Dialog open={open} onOpenChange={setOpen}>
-              <DialogTrigger asChild>
-                <Button
-                  className="gap-2 rounded-full shadow-soft hover:shadow-hover transition-all px-6 py-5"
-                  size="sm"
-                >
-                  <Eye className="w-4 h-4" />
-                  Chi tiết
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-hover">
-                <OrderDetailModal order={order} />
-              </DialogContent>
-            </Dialog>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger asChild>
+                  <Button
+                    className="gap-2 rounded-full shadow-soft hover:shadow-hover transition-all px-6 py-5"
+                    size="sm"
+                  >
+                    <Eye className="w-4 h-4" />
+                    Chi tiết
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-hover">
+                  <OrderDetailModal order={order} />
+                </DialogContent>
+              </Dialog>
+              
+              {canCancelOrder && (
+                <AlertDialog open={cancelDialogOpen} onOpenChange={setCancelDialogOpen}>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant="destructive"
+                      className="gap-2 rounded-full shadow-soft hover:shadow-hover transition-all px-6 py-5"
+                      size="sm"
+                      disabled={isCanceling}
+                    >
+                      <Ban className="w-4 h-4" />
+                      {isCanceling ? "Đang hủy..." : "Hủy đơn"}
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="rounded-3xl">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Xác nhận hủy đơn hàng</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Bạn có chắc chắn muốn hủy đơn hàng <strong>{order.orderCode}</strong> không?
+                        Hành động này không thể hoàn tác.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel className="rounded-full">Không</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={handleCancelOrder}
+                        disabled={isCanceling}
+                        className="rounded-full bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                      >
+                        {isCanceling ? "Đang hủy..." : "Xác nhận hủy"}
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>

@@ -23,7 +23,8 @@ import { useRouter } from "next/navigation";
 
 export function ProductInfo({ productDetail, className }: ProductInfoProps) {
   const [selectedVariant, setSelectedVariant] = useState(productDetail.variants[0]);
-  const [quantity, setQuantity] = useState(1);
+  const remainingStock = selectedVariant?.stockQuantity || 0;
+  const [quantity, setQuantity] = useState(Math.min(remainingStock, 1));
   const [showAllAttributes, setShowAllAttributes] = useState(false);
   const isOneVariant = productDetail.variants.length === 1;
 
@@ -135,6 +136,19 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
         </div>
       )}
 
+      {/* Stock Information */}
+      <div className="flex items-center gap-2 text-sm">
+        <span className="text-muted-foreground">Còn lại:</span>
+        <span className={cn(
+          "font-semibold",
+          remainingStock === 0 ? "text-destructive" :
+          remainingStock < 10 ? "text-orange-500" :
+          "text-green-600"
+        )}>
+          {remainingStock} sản phẩm
+        </span>
+      </div>
+
       {/* Purchase Actions */}
       <div className="flex flex-col sm:flex-row gap-3 pt-2">
         {/* Quantity Selector */}
@@ -144,7 +158,7 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
             size="icon"
             className="h-10 w-10 rounded-r-none"
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            disabled={quantity <= 1}
+            disabled={quantity <= 1 || remainingStock === 0}
           >
             <Minus className="w-4 h-4" />
           </Button>
@@ -153,22 +167,34 @@ export function ProductInfo({ productDetail, className }: ProductInfoProps) {
             variant="ghost"
             size="icon"
             className="h-10 w-10 rounded-l-none"
-            onClick={() => setQuantity(quantity + 1)}
+            onClick={() => setQuantity(Math.min(remainingStock, quantity + 1))}
+            disabled={quantity >= remainingStock}
           >
             <Plus className="w-4 h-4" />
           </Button>
         </div>
 
         {/* Add to Cart */}
-        <Button variant="outline" className="flex-1 gap-2" size={"lg"} onClick={handleAddToCart}>
+        <Button 
+          variant="outline" 
+          className="flex-1 gap-2" 
+          size={"lg"} 
+          onClick={handleAddToCart}
+          disabled={remainingStock === 0}
+        >
           <ShoppingCart className="w-4 h-4" />
-          Thêm vào giỏ
+          {remainingStock === 0 ? "Hết hàng" : "Thêm vào giỏ"}
         </Button>
 
         {/* Buy Now */}
-        <Button className="flex-1 gap-2" size={"lg"} onClick={handleBuyNow}>
+        <Button 
+          className="flex-1 gap-2" 
+          size={"lg"} 
+          onClick={handleBuyNow}
+          disabled={remainingStock === 0}
+        >
           <Zap className="w-4 h-4" />
-          Mua ngay
+          {remainingStock === 0 ? "Hết hàng" : "Mua ngay"}
         </Button>
       </div>
       <div className="space-y-4">
