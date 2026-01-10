@@ -2,7 +2,6 @@
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Save, RotateCcw } from "lucide-react";
@@ -27,6 +26,7 @@ import {
 } from "@/components/ui/form";
 import { AttributesTab } from "./AttributesTab";
 import { ImagesTab } from "./ImagesTab";
+import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor";
 
 type Product = Outputs["productRoutes"]["getProductById"];
 
@@ -166,8 +166,6 @@ export default function EditProductPage({ productData }: { productData: Product 
 
   const handleSubmit = async (data: CreateFromSchema) => {
     console.log("=== BASIC INFO SAVE ===");
-    console.log(data);
-
     // Calculate which authors to add/remove
     await updateProduct({
       id: productData.id,
@@ -397,11 +395,7 @@ export default function EditProductPage({ productData }: { productData: Product 
                     <FormItem>
                       <FormLabel>Mô tả chi tiết</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Nhập mô tả chi tiết cho sản phẩm"
-                          rows={5}
-                          {...field}
-                        />
+                        <SimpleEditor initialContent={field.value} onChange={field.onChange} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
