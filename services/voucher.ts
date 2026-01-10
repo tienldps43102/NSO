@@ -170,7 +170,7 @@ export const useVoucher = async (orderAmount: number,code?: string | null) => {
   }
   return { success: true, message: "Voucher hợp lệ", voucher };
 };
-export const voucherAdminRoutes = {
+export const voucherRoutes = {
   getVouchers,
   createVoucher,
   updateVoucher,
