@@ -3,6 +3,7 @@ import { FeaturedSection } from "@/components/home/FeaturedSection";
 // import { PromoBanner } from "@/components/home/PromoBanner";
 import { HorizontalProductRow } from "@/components/home/HorizontalProductRow";
 import { RankedBestSellers } from "@/components/home/RankedBestSellers";
+import { RecentArticles } from "@/components/home/RecentArticles";
 
 const Index = async () => {
   const latestProducts = await $client?.productRoutes.getLatestProducts({ limit: 10 });
@@ -13,6 +14,7 @@ const Index = async () => {
       <FeaturedSection />
       <HorizontalProductRow />
       <RankedBestSellers />
+      <RecentArticles />
     </>
   );
 };

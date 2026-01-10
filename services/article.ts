@@ -27,7 +27,7 @@ const getLatestArticles = orpc
     return articles;
   });
 
-const getArticleById = orpcWithAdmin
+const getArticleById = orpc
   .route({
     method: "GET",
     path: "/articles/:id",

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Search, ShoppingCart, Menu, X, LogIn, User, Settings, LogOut, Shield } from "lucide-react";
+import { Search, ShoppingCart, Menu, X, LogIn, MapPin, User, Settings, LogOut, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -123,13 +123,17 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Tài khoản</span>
+                  <DropdownMenuItem asChild>
+                    <Link href="/user/order">
+                      <ShoppingCart className="mr-2 h-4 w-4" />
+                      <span>Lịch sử đơn hàng</span>
+                    </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Cài đặt</span>
+                  <DropdownMenuItem asChild>
+                    <Link href="/user/address">
+                      <MapPin className="mr-2 h-4 w-4" />
+                      <span>Địa chỉ của tôi</span>
+                    </Link>
                   </DropdownMenuItem>
                   {user?.role === "ADMIN" && (
                     <>
