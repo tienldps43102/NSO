@@ -2,7 +2,6 @@
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Save } from "lucide-react";
 import { toast } from "sonner";
@@ -11,11 +10,13 @@ import { AutocompleteSelect } from "@/components/ui/autocomplete";
 import { createFromSchema, type CreateFromSchema } from "../schema";
 import { client, orpcQuery } from "@/lib/orpc.client";
 import { MultiSelectOption } from "@/components/ui/select-pills";
-import { useForm } from "react-hook-form";
+import { useController,
+useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FileDropzone } from "@/components/ui/file/dropzone";
 import { FileList } from "@/components/ui/file/file-list";
 import { useMutation } from "@tanstack/react-query";
+import { SimpleEditor } from '@/components/tiptap-templates/simple/simple-editor'
 import {
   Form,
   FormControl,
@@ -172,7 +173,15 @@ const AdminProductCreate = () => {
       })) || []
     );
   };
-
+  const {
+    field: { onChange, value, ref },
+  } = useController({
+    name: "description",
+    rules: { required: true },
+    control: form.control,
+    defaultValue: "",
+    
+  });
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
@@ -308,7 +317,7 @@ const AdminProductCreate = () => {
                 <FormItem>
                   <FormLabel>Mô tả chi tiết</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Nhập mô tả chi tiết cho sản phẩm" rows={5} {...field} />
+                    <SimpleEditor initialContent={value} onChange={onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
