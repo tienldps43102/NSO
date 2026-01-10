@@ -1,30 +1,25 @@
 "use client";
-import { CreditCard, Truck, ArrowLeft } from "lucide-react";
+import { CreditCard, Truck, ArrowLeft, MapPin, User, Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Switch } from "@/components/ui/switch";
 import z from "zod";
 import { Controller, useFormContext } from "react-hook-form";
 import Link from "next/link";
 import Image from "next/image";
-export const checkoutFormSchema = z.object({
-  fullName: z.string().min(1, {
-    error: "Họ và tên không được để trống",
-  }),
-  phone: z.string().min(1, {
-    error: "Số điện thoại không được để trống",
-  }),
-  province: z.string().min(1, {
-    error: "Tỉnh/Thành phố không được để trống",
-  }),
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { orpcQuery } from "@/lib/orpc.client";
+import { Loader2 } from "lucide-react";
 
-  ward: z.string().min(1, {
-    error: "Phường/Xã không được để trống",
-  }),
-  address: z.string().min(1, {
-    error: "Địa chỉ không được để trống",
-  }),
+export const checkoutFormSchema = z.object({
+  fullName: z.string().optional(),
+  phone: z.string().optional(),
+  province: z.string().optional(),
+  ward: z.string().optional(),
+  address: z.string().optional(),
   orderNote: z
     .string()
     .max(1000, {
@@ -34,64 +29,213 @@ export const checkoutFormSchema = z.object({
   paymentMethod: z.enum(["COD", "VNPAY", "MOMO"], {
     error: "Phương thức thanh toán không hợp lệ",
   }),
+  selectedAddressId: z.string().optional(),
+  useExistingAddress: z.boolean().optional(),
+}).refine((data) => {
+  if (data.useExistingAddress) {
+    return !!data.selectedAddressId;
+  } else {
+    return (
+      !!data.fullName &&
+      !!data.phone &&
+      !!data.province &&
+      !!data.ward &&
+      !!data.address
+    );
+  }
+}, {
+  message: "Vui lòng nhập đầy đủ thông tin giao hàng hoặc chọn địa chỉ có sẵn",
+  path: ["fullName"],
 });
+
 export type CheckoutFormSchema = z.infer<typeof checkoutFormSchema>;
 interface CheckoutFormProps {
   selectedItems: Outputs["cartRoutes"]["getMyCartItemsByIds"];
 }
-export default function CheckoutForm({ selectedItems }: CheckoutFormProps) {
+export default function CheckoutForm({ selectedItems: _selectedItems }: CheckoutFormProps) {
   const form = useFormContext<CheckoutFormSchema>();
+  const [useExistingAddress, setUseExistingAddress] = useState(false);
+
+  // Fetch saved addresses
+  const { data: addresses = [], isLoading: isLoadingAddresses } = useQuery(
+    orpcQuery!.addressRoutes.getMyAddress.queryOptions({}),
+  );
+
+  const handleToggleAddressMode = (checked: boolean) => {
+    setUseExistingAddress(checked);
+    form.setValue("useExistingAddress", checked);
+    
+    if (checked) {
+      // Clear form fields when switching to existing address
+      form.setValue("fullName", "");
+      form.setValue("phone", "");
+      form.setValue("province", "");
+      form.setValue("ward", "");
+      form.setValue("address", "");
+    } else {
+      // Clear selected address when switching to new address
+      form.setValue("selectedAddressId", "");
+    }
+  };
+
+  const handleSelectAddress = (addressId: string) => {
+    form.setValue("selectedAddressId", addressId);
+  };
 
   return (
     <div className="lg:col-span-2 space-y-6">
       {/* Shipping Information */}
       <div className="bg-card border border-border rounded-xl p-6">
-        <div className="flex items-center gap-2 mb-6">
-          <Truck className="h-5 w-5 text-primary" />
-          <h2 className="text-lg font-semibold text-foreground">Thông tin giao hàng</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="fullName">
-              Họ và tên <span className="text-destructive">*</span>
-            </Label>
-            <Input id="fullName" placeholder="Nhập họ và tên" {...form.register("fullName")} />
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <Truck className="h-5 w-5 text-primary" />
+            <h2 className="text-lg font-semibold text-foreground">Thông tin giao hàng</h2>
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="phone">
-              Số điện thoại <span className="text-destructive">*</span>
+          
+          <div className="flex items-center gap-2">
+            <Label htmlFor="use-existing" className="text-sm font-normal cursor-pointer">
+              Sử dụng địa chỉ của tôi
             </Label>
-            <Input id="phone" placeholder="Nhập số điện thoại" {...form.register("phone")} />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="province">
-              Tỉnh/Thành phố <span className="text-destructive">*</span>
-            </Label>
-            <Input id="province" placeholder="Chọn tỉnh/thành phố" {...form.register("province")} />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="ward">
-              Phường/Xã <span className="text-destructive">*</span>
-            </Label>
-            <Input id="ward" placeholder="Chọn phường/xã" {...form.register("ward")} />
-          </div>
-
-          <div className="space-y-2 md:col-span-2">
-            <Label htmlFor="address">
-              Địa chỉ cụ thể <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              id="address"
-              placeholder="Số nhà, tên đường..."
-              className="w-full"
-              {...form.register("address")}
+            <Switch
+              id="use-existing"
+              checked={useExistingAddress}
+              onCheckedChange={handleToggleAddressMode}
             />
           </div>
         </div>
+
+        {useExistingAddress ? (
+          // Show saved addresses
+          <div className="space-y-4">
+            {isLoadingAddresses ? (
+              <div className="flex justify-center items-center py-8">
+                <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+              </div>
+            ) : addresses.length === 0 ? (
+              <div className="text-center py-8">
+                <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                <p className="text-muted-foreground mb-4">Bạn chưa có địa chỉ nào được lưu</p>
+                <p className="text-sm text-muted-foreground">
+                  Tắt &quot;Sử dụng địa chỉ của tôi&quot; để nhập địa chỉ mới
+                </p>
+              </div>
+            ) : (
+              <Controller
+                control={form.control}
+                name="selectedAddressId"
+                render={({ field }) => (
+                  <RadioGroup
+                    value={field.value}
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                      handleSelectAddress(value);
+                    }}
+                    className="space-y-3"
+                  >
+                    {addresses.map((address) => (
+                      <label
+                        key={address.id}
+                        htmlFor={`address-${address.id}`}
+                        className={`flex gap-4 p-4 border rounded-lg cursor-pointer transition-all ${
+                          field.value === address.id
+                            ? "border-primary bg-primary/5"
+                            : "border-border hover:border-muted-foreground/50"
+                        }`}
+                      >
+                        <RadioGroupItem value={address.id} id={`address-${address.id}`} />
+                        <div className="flex-1 space-y-2">
+                          <div className="flex items-center gap-2 text-foreground">
+                            <User className="h-4 w-4 text-muted-foreground" />
+                            <span className="font-medium">{address.fullName}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                            <Phone className="h-4 w-4" />
+                            <span>{address.phone}</span>
+                          </div>
+                          <div className="flex gap-2 text-sm text-muted-foreground">
+                            <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
+                            <span>
+                              {address.detail}, {address.ward}, {address.province}
+                            </span>
+                          </div>
+                        </div>
+                      </label>
+                    ))}
+                  </RadioGroup>
+                )}
+              />
+            )}
+            
+            <div className="pt-2">
+              <Link 
+                href="/user/address" 
+                target="_blank"
+                className="text-sm text-primary hover:underline inline-flex items-center gap-1"
+              >
+                Quản lý địa chỉ của tôi
+                <ArrowLeft className="h-3 w-3 rotate-180" />
+              </Link>
+            </div>
+          </div>
+        ) : (
+          // Show address input form
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="fullName">
+                Họ và tên <span className="text-destructive">*</span>
+              </Label>
+              <Input id="fullName" placeholder="Nhập họ và tên" {...form.register("fullName")} />
+              {form.formState.errors.fullName && (
+                <p className="text-sm text-destructive">{form.formState.errors.fullName.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="phone">
+                Số điện thoại <span className="text-destructive">*</span>
+              </Label>
+              <Input id="phone" placeholder="Nhập số điện thoại" {...form.register("phone")} />
+              {form.formState.errors.phone && (
+                <p className="text-sm text-destructive">{form.formState.errors.phone.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="province">
+                Tỉnh/Thành phố <span className="text-destructive">*</span>
+              </Label>
+              <Input id="province" placeholder="TP. Hồ Chí Minh, Hà Nội..." {...form.register("province")} />
+              {form.formState.errors.province && (
+                <p className="text-sm text-destructive">{form.formState.errors.province.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="ward">
+                Phường/Xã <span className="text-destructive">*</span>
+              </Label>
+              <Input id="ward" placeholder="Phường Bến Nghé, Phường 1..." {...form.register("ward")} />
+              {form.formState.errors.ward && (
+                <p className="text-sm text-destructive">{form.formState.errors.ward.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="address">
+                Địa chỉ cụ thể <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="address"
+                placeholder="Số nhà, tên đường..."
+                className="w-full"
+                {...form.register("address")}
+              />
+              {form.formState.errors.address && (
+                <p className="text-sm text-destructive">{form.formState.errors.address.message}</p>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Order Note */}
@@ -114,7 +258,7 @@ export default function CheckoutForm({ selectedItems }: CheckoutFormProps) {
         <Controller
           control={form.control}
           name="paymentMethod"
-          render={({ field, fieldState, formState }) => (
+          render={({ field, formState }) => (
             <RadioGroup
               className="space-y-3"
               value={field.value}

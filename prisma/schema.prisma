@@ -154,6 +154,7 @@ model Address {
   detail    String @db.VarChar(500)
   province  String @db.VarChar(50)
   ward      String @db.VarChar(50)
+  hidden    Boolean @default(true) @map("hidden") 
 
   orders Order[]
   @@index([userId], map: "idx_addresses_user")

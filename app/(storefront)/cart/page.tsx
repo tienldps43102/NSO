@@ -12,18 +12,6 @@ import { toPlain } from "@/lib/toPlain";
 import { ShoppingBag } from "lucide-react";
 import Cart from "./cart";
 
-interface CartItem {
-  id: string;
-  title: string;
-  author: string;
-  cover: string;
-  price: number;
-  originalPrice?: number;
-  quantity: number;
-  badges?: string[];
-  inStock: boolean;
-  lowStock?: boolean;
-}
 
 export default async function CartPage() {
   const cartItems = toPlain(await $client!.cartRoutes.getMyCartItems());

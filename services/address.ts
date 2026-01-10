@@ -10,7 +10,7 @@ const getMyAddress = orpcWithAuth
   .handler(async ({ context }) => {
     const userId = context.session.user.id;
     const addresses = await prisma.address.findMany({
-      where: { userId },
+      where: { userId, hidden: false },
     });
 
     return addresses;
@@ -28,6 +28,7 @@ export const addAddress = orpcWithAuth
       detail: z.string().min(1).max(500),
       province: z.string().min(1).max(50),
       ward: z.string().min(1).max(50),
+      hidden: z.boolean().optional(),
     }),
   )
   .handler(async ({ input, context }) => {
@@ -83,9 +84,30 @@ export const editAddress = orpcWithAuth
 
     return updatedAddress;
   });
+export const deleteAddress = orpcWithAuth
+  .route({
+    method: "DELETE",
+    path: "/address/:id",
+  })
+  .input(z.object({ id: z.string().min(1).max(36) }))
+  .handler(async ({ input, context }) => {
+    const userId = context.session.user.id;
+    const address = await prisma.address.findUnique({
+      where: { id: input.id },
+    });
+    if (!address || address.userId !== userId) {
+      throw new Error("Address not found or unauthorized");
+    }
+    const deletedAddress = await prisma.address.update({
+      where: { id: input.id },
+      data: { hidden: true },
+    });
+    return deletedAddress;
+  });
 
 export const addressRoutes = {
   getMyAddress,
   addAddress,
   editAddress,
+  deleteAddress,
 };

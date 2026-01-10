@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Dialog,
@@ -25,13 +24,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -39,108 +31,150 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Plus, MapPin, Pencil, Trash2, Phone, User } from "lucide-react";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Plus, MapPin, Pencil, Trash2, Phone, User, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { orpcQuery } from "@/lib/orpc.client";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
-interface Address {
-  id: string;
-  fullName: string;
-  phone: string;
-  province: string;
-  ward: string;
-  streetAddress: string;
-}
+// Zod schema for address form validation
+const addressFormSchema = z.object({
+  fullName: z.string().min(1, "Họ và tên không được để trống").max(200, "Họ và tên quá dài"),
+  phone: z.string().min(1, "Số điện thoại không được để trống").max(20, "Số điện thoại không hợp lệ"),
+  province: z.string().min(1, "Vui lòng chọn tỉnh/thành phố"),
+  ward: z.string().min(1, "Vui lòng chọn phường/xã"),
+  detail: z.string().min(1, "Địa chỉ cụ thể không được để trống").max(500, "Địa chỉ quá dài"),
+});
 
-const mockAddresses: Address[] = [
-  {
-    id: "1",
-    fullName: "Nguyễn Văn A",
-    phone: "0901234567",
-    province: "TP. Hồ Chí Minh",
-    ward: "Phường Bến Nghé",
-    streetAddress: "123 Đường Lê Lợi",
-  },
-  {
-    id: "2",
-    fullName: "Nguyễn Văn A",
-    phone: "0901234567",
-    province: "TP. Hồ Chí Minh",
-    ward: "Phường 7",
-    streetAddress: "456 Đường Võ Văn Tần, Tòa nhà ABC, Tầng 5",
-  },
-];
-
-const emptyAddress: Omit<Address, "id"> = {
-  fullName: "",
-  phone: "",
-  province: "",
-  ward: "",
-  streetAddress: "",
-};
+type AddressFormData = z.infer<typeof addressFormSchema>;
 
 export default function UserAddress() {
-  const [addresses, setAddresses] = useState<Address[]>(mockAddresses);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingAddress, setEditingAddress] = useState<Address | null>(null);
-  const [formData, setFormData] = useState<Omit<Address, "id">>(emptyAddress);
+  const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
+
+  // Form setup with zod validation
+  const form = useForm<AddressFormData>({
+    resolver: zodResolver(addressFormSchema),
+    defaultValues: {
+      fullName: "",
+      phone: "",
+      province: "",
+      ward: "",
+      detail: "",
+    },
+  });
+
+  // Fetch addresses using orpc query
+  const { data: addresses = [], isLoading, refetch } = useQuery(
+    orpcQuery!.addressRoutes.getMyAddress.queryOptions({}),
+  );
+
+  // Create address mutation
+  const createAddressMutation = useMutation(
+    orpcQuery!.addressRoutes.addAddress.mutationOptions({
+      onSuccess: () => {
+        toast.success("Thêm địa chỉ thành công");
+        refetch();
+        setIsDialogOpen(false);
+        form.reset();
+      },
+      onError: (error) => {
+        toast.error("Lỗi khi thêm địa chỉ", {
+          description: error.message,
+        });
+      },
+    }),
+  );
+
+  // Edit address mutation
+  const editAddressMutation = useMutation(
+    orpcQuery!.addressRoutes.editAddress.mutationOptions({
+      onSuccess: () => {
+        toast.success("Cập nhật địa chỉ thành công");
+        refetch();
+        setIsDialogOpen(false);
+        form.reset();
+        setEditingAddressId(null);
+      },
+      onError: (error) => {
+        toast.error("Lỗi khi cập nhật địa chỉ", {
+          description: error.message,
+        });
+      },
+    }),
+  );
+
+  // Delete address mutation (soft delete - set hidden to true)
+  const deleteAddressMutation = useMutation(
+    orpcQuery!.addressRoutes.deleteAddress.mutationOptions({
+      onSuccess: () => {
+        toast.success("Xóa địa chỉ thành công");
+        refetch();
+      },
+      onError: (error) => {
+        toast.error("Lỗi khi xóa địa chỉ", {
+          description: error.message,
+        });
+      },
+    }),
+  );
 
   const handleOpenCreate = () => {
-    setEditingAddress(null);
-    setFormData(emptyAddress);
-    setIsDialogOpen(true);
-  };
-
-  const handleOpenEdit = (address: Address) => {
-    setEditingAddress(address);
-    setFormData({
-      fullName: address.fullName,
-      phone: address.phone,
-      province: address.province,
-      ward: address.ward,
-      streetAddress: address.streetAddress,
+    setEditingAddressId(null);
+    form.reset({
+      fullName: "",
+      phone: "",
+      province: "",
+      ward: "",
+      detail: "",
     });
     setIsDialogOpen(true);
   };
 
-  const handleSave = () => {
-    if (editingAddress) {
+  const handleOpenEdit = (address: (typeof addresses)[0]) => {
+    setEditingAddressId(address.id);
+    form.reset({
+      fullName: address.fullName,
+      phone: address.phone,
+      province: address.province,
+      ward: address.ward,
+      detail: address.detail,
+    });
+    setIsDialogOpen(true);
+  };
+
+  const onSubmit = (data: AddressFormData) => {
+    if (editingAddressId) {
       // Update existing address
-      setAddresses((prev) =>
-        prev.map((addr) => {
-          if (addr.id === editingAddress.id) {
-            return { ...formData, id: addr.id };
-          }
-          // If the new address is set as default, remove default from others
-          return addr;
-        }),
-      );
+      editAddressMutation.mutate({
+        id: editingAddressId,
+        ...data,
+      });
     } else {
       // Create new address
-      const newAddress: Address = {
-        ...formData,
-        id: Date.now().toString(),
-      };
-      setAddresses((prev) => {
-        return [...prev, newAddress];
+      createAddressMutation.mutate({
+        ...data,
+        hidden: false,
       });
     }
-    setIsDialogOpen(false);
-    setFormData(emptyAddress);
-    setEditingAddress(null);
   };
 
   const handleDelete = (id: string) => {
-    setAddresses((prev) => prev.filter((addr) => addr.id !== id));
+    deleteAddressMutation.mutate({ id });
   };
 
-  const handleSetDefault = (id: string) => {
-    setAddresses((prev) =>
-      prev.map((addr) => ({
-        ...addr,
-        isDefault: addr.id === id,
-      })),
-    );
-  };
+  const isPending = createAddressMutation.isPending || editAddressMutation.isPending;
 
   return (
     <div className="flex-1 container mx-auto px-4 py-6">
@@ -175,93 +209,117 @@ export default function UserAddress() {
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>{editingAddress ? "Cập nhật địa chỉ" : "Thêm địa chỉ mới"}</DialogTitle>
+              <DialogTitle>
+                {editingAddressId ? "Cập nhật địa chỉ" : "Thêm địa chỉ mới"}
+              </DialogTitle>
               <DialogDescription>
-                {editingAddress
+                {editingAddressId
                   ? "Chỉnh sửa thông tin địa chỉ giao hàng"
                   : "Thêm địa chỉ giao hàng mới vào sổ địa chỉ của bạn"}
               </DialogDescription>
             </DialogHeader>
 
-            <div className="grid gap-4 py-4">
-              <div className="grid gap-2">
-                <Label htmlFor="fullName">Họ và tên người nhận</Label>
-                <Input
-                  id="fullName"
-                  placeholder="Nguyễn Văn A"
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 py-4">
+                <FormField
+                  control={form.control}
+                  name="fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Họ và tên người nhận</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Nguyễn Văn A" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <div className="grid gap-2">
-                <Label htmlFor="phone">Số điện thoại</Label>
-                <Input
-                  id="phone"
-                  placeholder="0901234567"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Số điện thoại</FormLabel>
+                      <FormControl>
+                        <Input placeholder="0901234567" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <div className="grid gap-2">
-                <Label htmlFor="province">Tỉnh/Thành phố</Label>
-                <Select
-                  value={formData.province}
-                  onValueChange={(value) => setFormData({ ...formData, province: value })}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Chọn tỉnh/thành phố" className="w-full" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</SelectItem>
-                    <SelectItem value="Hà Nội">Hà Nội</SelectItem>
-                    <SelectItem value="Đà Nẵng">Đà Nẵng</SelectItem>
-                    <SelectItem value="Cần Thơ">Cần Thơ</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="grid gap-2">
-                <Label htmlFor="ward">Phường/Xã</Label>
-                <Select
-                  value={formData.ward}
-                  onValueChange={(value) => setFormData({ ...formData, ward: value })}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Chọn phường/xã" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Phường Bến Nghé">Phường Bến Nghé</SelectItem>
-                    <SelectItem value="Phường Bến Thành">Phường Bến Thành</SelectItem>
-                    <SelectItem value="Phường 7">Phường 7</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="grid gap-2">
-                <Label htmlFor="streetAddress">Địa chỉ cụ thể</Label>
-                <Input
-                  id="streetAddress"
-                  placeholder="Số nhà, tên đường, tòa nhà..."
-                  value={formData.streetAddress}
-                  onChange={(e) => setFormData({ ...formData, streetAddress: e.target.value })}
+                <FormField
+                  control={form.control}
+                  name="province"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Tỉnh/Thành phố</FormLabel>
+                      <FormControl>
+                        <Input placeholder="TP. Hồ Chí Minh, Hà Nội, Đà Nẵng..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-            </div>
 
-            <DialogFooter>
-              <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                Hủy
-              </Button>
-              <Button onClick={handleSave}>{editingAddress ? "Cập nhật" : "Thêm địa chỉ"}</Button>
-            </DialogFooter>
+                <FormField
+                  control={form.control}
+                  name="ward"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phường/Xã</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Phường Bến Nghé, Phường 1..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="detail"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Địa chỉ cụ thể</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Số nhà, tên đường, tòa nhà..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <DialogFooter>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setIsDialogOpen(false);
+                      form.reset();
+                      setEditingAddressId(null);
+                    }}
+                  >
+                    Hủy
+                  </Button>
+                  <Button type="submit" disabled={isPending}>
+                    {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {editingAddressId ? "Cập nhật" : "Thêm địa chỉ"}
+                  </Button>
+                </DialogFooter>
+              </form>
+            </Form>
           </DialogContent>
         </Dialog>
       </div>
 
       {/* Address List */}
-      {addresses.length === 0 ? (
+      {isLoading ? (
+        <div className="flex justify-center items-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        </div>
+      ) : addresses.length === 0 ? (
         <Card className="border-dashed">
           <CardContent className="flex flex-col items-center justify-center py-12">
             <MapPin className="h-12 w-12 text-muted-foreground mb-4" />
@@ -278,7 +336,7 @@ export default function UserAddress() {
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {addresses.map((address) => (
-            <Card key={address.id} className={`relative transition-all`}>
+            <Card key={address.id} className="relative transition-all">
               <CardContent className="p-5 relative">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3 absolute top-2 right-2">
@@ -298,6 +356,7 @@ export default function UserAddress() {
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8 text-destructive hover:text-destructive"
+                          disabled={deleteAddressMutation.isPending}
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
@@ -340,7 +399,7 @@ export default function UserAddress() {
                 <div className="flex gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
                   <span>
-                    {address.streetAddress}, {address.ward}, {address.province}
+                    {address.detail}, {address.ward}, {address.province}
                   </span>
                 </div>
               </CardContent>
