@@ -11,6 +11,7 @@ import {
   Eye,
   CreditCard,
   FileText,
+  Tag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -275,6 +276,25 @@ const OrderDetailModal = ({ order }: { order: Order }) => {
           </div>
         </div>
 
+        {/* Voucher Info */}
+        {order.voucher && (
+          <div className="glass p-5 rounded-2xl space-y-3 shadow-soft bg-green-50/50 dark:bg-green-950/20 border-2 border-green-500/20">
+            <h3 className="font-bold text-lg flex items-center gap-2 text-green-600">
+              <Tag className="w-5 h-5" />
+              Mã giảm giá đã áp dụng
+            </h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Mã voucher:</span>
+                <span className="font-bold text-green-600 text-base">{order.voucher.code}</span>
+              </div>
+              {order.voucher.description && (
+                <p className="text-xs text-muted-foreground italic">{order.voucher.description}</p>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Order Summary */}
         <div className="glass p-5 rounded-2xl space-y-3 shadow-soft border-2 border-primary/20">
           <h3 className="font-bold text-lg">Tổng kết đơn hàng</h3>
@@ -283,10 +303,15 @@ const OrderDetailModal = ({ order }: { order: Order }) => {
               <span className="text-muted-foreground">Tạm tính:</span>
               <span className="font-semibold">{formatPrice(Number(order.subtotalAmount))}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Phí vận chuyển:</span>
-              <span className="font-semibold">{formatPrice(Number(order.shippingFee || 0))}</span>
-            </div>
+            {order.discountTotal > 0 && (
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-1.5 text-green-600">
+                  <Tag className="h-4 w-4" />
+                  <span className="font-medium">Giảm giá:</span>
+                </div>
+                <span className="font-semibold text-green-600">-{formatPrice(Number(order.discountTotal))}</span>
+              </div>
+            )}
             <Separator className="my-2" />
             <div className="flex justify-between text-lg">
               <span className="font-bold">Tổng cộng:</span>

@@ -41,16 +41,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
       <div className="container mx-auto">
         {/* Main Header */}
         <div className="flex items-center justify-between h-16 px-4 lg:px-0">
-          {/* Logo */}
-          {/* <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Logo" width={40} height={40} />
-            <div className="flex flex-col">
-              <span className="font-bold text-lg text-primary leading-tight">NSO</span>
-              <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">
-                Nhà Sách Online
-              </span>
-            </div>
-          </Link> */}
+        
           <Link className="cursor-pointer flex items-center gap-2" href="/">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-lg">
               F5

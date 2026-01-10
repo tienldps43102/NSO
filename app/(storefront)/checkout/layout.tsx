@@ -23,6 +23,7 @@ export default function CheckoutLayout({ children }: { children: React.ReactNode
       paymentMethod: "COD",
       selectedAddressId: "",
       useExistingAddress: false,
+      voucherCode: "",
     },
   });
   const createAddressMutation = useMutation(
@@ -83,6 +84,7 @@ export default function CheckoutLayout({ children }: { children: React.ReactNode
       paymentMethod: data.paymentMethod,
       note: data.orderNote,
       variantIds: value,
+      voucherCode: data.voucherCode || undefined,
     });
     setSelection([]);
   };

@@ -1,6 +1,5 @@
 "use client";
-import { Book,
-Building2, FolderTree, Percent, User } from "lucide-react";
+import { Book, Building2, FolderTree, Percent, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -118,13 +117,13 @@ export const AdminSidebar = ({ collapsed, onToggle }: AdminSidebarProps) => {
       {/* Logo */}
       <div className="flex h-16 items-center justify-between border-b border-border/40 px-4">
         {!collapsed && (
-          <Link href="/admin" className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Logo" width={40} height={40} />
-            <div className="flex flex-col">
-              <span className="font-bold text-lg text-primary leading-tight">NSO</span>
-              <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">
-                Nhà Sách Online
-              </span>
+          <Link className="cursor-pointer flex items-center gap-2" href="/">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-lg">
+              F5
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="font-bold text-lg leading-tight">F5Tech</h1>
+              <p className="text-xs text-muted-foreground leading-tight">Công nghệ chính hãng</p>
             </div>
           </Link>
         )}

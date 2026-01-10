@@ -51,6 +51,7 @@ import { useReactTable, getCoreRowModel, flexRender, type ColumnDef } from "@tan
 import { toast } from "sonner";
 import dayjs from "dayjs";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 type Order = {
   id: string;
@@ -111,9 +112,11 @@ const paymentMethodLabels: Record<string, string> = {
 };
 
 export default function AdminOrdersPage() {
+  const searchParams = useSearchParams();
+  const q = searchParams.get("q");
   const [page, setPage] = useState(1);
   const [limit] = useState(20);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(q || "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<
     "PENDING" | "CONFIRMED" | "SHIPPING" | "DELIVERED" | "CANCELED" | "all"

@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db";
-import { orpcWithAdmin,orpcWithAuth } from "@/lib/orpc/base";
+import { orpcWithAdmin, orpcWithAuth } from "@/lib/orpc/base";
 import z from "zod";
 import { computeSkipTake, paginationInput } from "./shared";
 import { Prisma } from "@/lib/generated/prisma/client";
@@ -118,9 +118,12 @@ const toggleVoucher = orpcWithAdmin
   })
   .input(z.object({ id: z.string() }))
   .handler(async ({ input }) => {
-    const voucher =  await prisma.voucher.findUnique({ where: { id: input.id } });
+    const voucher = await prisma.voucher.findUnique({ where: { id: input.id } });
     if (!voucher) throw new Error("Voucher not found");
-    const newVoucher = await prisma.voucher.update({ where: { id: input.id }, data: { isActive: !voucher.isActive } });
+    const newVoucher = await prisma.voucher.update({
+      where: { id: input.id },
+      data: { isActive: !voucher.isActive },
+    });
     return newVoucher;
   });
 const checkCodeUniqueness = orpcWithAdmin
@@ -134,7 +137,7 @@ const checkCodeUniqueness = orpcWithAdmin
     return !voucher;
   });
 
-  const checkUseVoucher = orpcWithAuth
+const checkUseVoucher = orpcWithAuth
   .route({
     method: "POST",
     path: "/vouchers/check-use-voucher",
@@ -144,22 +147,31 @@ const checkCodeUniqueness = orpcWithAdmin
     const voucher = await prisma.voucher.findUnique({ where: { code: input.code } });
     if (!voucher) return { success: false, message: "Không tìm thấy voucher" };
     if (!voucher.isActive) return { success: false, message: "Voucher không hoạt động" };
-    if (voucher.validFrom && voucher.validFrom > nowVN().toDate()) return { success: false, message: "Voucher chưa bắt đầu" };
-    if (voucher.validTo && voucher.validTo < nowVN().toDate()) return { success: false, message: "Voucher đã hết hạn" };
-    if (voucher.maxUsage && voucher.usageCount >= voucher.maxUsage) return { success: false, message: "Voucher đã hết số lần sử dụng" };
+    if (voucher.validFrom && voucher.validFrom > nowVN().toDate())
+      return { success: false, message: "Voucher chưa bắt đầu" };
+    if (voucher.validTo && voucher.validTo < nowVN().toDate())
+      return { success: false, message: "Voucher đã hết hạn" };
+    if (voucher.maxUsage && voucher.usageCount >= voucher.maxUsage)
+      return { success: false, message: "Voucher đã hết số lần sử dụng" };
 
     return { success: true, message: "Voucher hợp lệ", voucher };
   });
 
-export const useVoucher = async (orderAmount: number,code?: string | null) => {
+export const useVoucher = async (orderAmount: number, code?: string | null) => {
   if (!code) return { success: true, message: "Voucher hợp lệ", voucher: null, reducedAmount: 0 };
   const voucher = await prisma.voucher.findUnique({ where: { code } });
   if (!voucher) return { success: false, message: "Không tìm thấy voucher" };
   if (!voucher.isActive) return { success: false, message: "Voucher không hoạt động" };
-  if (voucher.validFrom && voucher.validFrom > nowVN().toDate()) return { success: false, message: "Voucher chưa bắt đầu" };
-  if (voucher.validTo && voucher.validTo < nowVN().toDate()) return { success: false, message: "Voucher đã hết hạn" };
-  if (voucher.maxUsage && voucher.usageCount >= voucher.maxUsage) return { success: false, message: "Voucher đã hết số lần sử dụng" };
-  await prisma.voucher.update({ where: { id: voucher.id }, data: { usageCount: voucher.usageCount + 1 } });
+  if (voucher.validFrom && voucher.validFrom > nowVN().toDate())
+    return { success: false, message: "Voucher chưa bắt đầu" };
+  if (voucher.validTo && voucher.validTo < nowVN().toDate())
+    return { success: false, message: "Voucher đã hết hạn" };
+  if (voucher.maxUsage && voucher.usageCount >= voucher.maxUsage)
+    return { success: false, message: "Voucher đã hết số lần sử dụng" };
+  await prisma.voucher.update({
+    where: { id: voucher.id },
+    data: { usageCount: voucher.usageCount + 1 },
+  });
   if (voucher.type === "PERCENTAGE") {
     const reducedAmount = Math.floor(orderAmount * (voucher.discount / 100));
     return { success: true, message: "Voucher hợp lệ", voucher, reducedAmount: reducedAmount };

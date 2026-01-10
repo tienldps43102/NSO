@@ -14,7 +14,7 @@ const handler = new OpenAPIHandler(router, {
       specPath: "/openapi.json", // mặc định là '/spec.json'
       schemaConverters: [new ZodToJsonSchemaConverter()],
       specGenerateOptions: {
-        info: { title: "Nhà sách api", version: "1.0.0" },
+        info: { title: "F5Tech api", version: "1.0.0" },
         servers: [{ url: "http://localhost:3000/api" }], // optional
         components: {
           securitySchemes: {

@@ -1,20 +1,72 @@
 "use client";
-import { Loader2, ShieldCheck } from "lucide-react";
+import { Loader2, ShieldCheck, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { formatPrice } from "@/lib/utils";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { CheckoutFormSchema } from "./form";
+import { useMutation } from "@tanstack/react-query";
+import { orpcQuery } from "@/lib/orpc.client";
+import { useState, useEffect, useMemo } from "react";
 interface OrderInfoProps {
   selectedItems: Outputs["cartRoutes"]["getMyCartItemsByIds"];
 }
 
 export default function OrderInfo({ selectedItems }: OrderInfoProps) {
   const form = useFormContext<CheckoutFormSchema>();
+  const voucherCode = useWatch({ control: form.control, name: "voucherCode" });
+  const [voucherData, setVoucherData] = useState<{
+    type: "PERCENTAGE" | "FIXED";
+    discount: number;
+  } | null>(null);
+  
   const subtotal = selectedItems.reduce(
     (acc, item) => acc + Number(item.variant.price) * item.quantity,
     0,
   );
+
+  // Mutation to check voucher
+  const checkVoucherMutation = useMutation(
+    orpcQuery!.voucherRoutes.checkUseVoucher.mutationOptions({
+      onSuccess: (data) => {
+        if (data.success && data.voucher) {
+          setVoucherData({
+            type: data.voucher.type,
+            discount: data.voucher.discount,
+          });
+        } else {
+          setVoucherData(null);
+        }
+      },
+      onError: () => {
+        setVoucherData(null);
+      },
+    }),
+  );
+
+  // Calculate discount based on voucher data
+  const voucherDiscount = useMemo(() => {
+    if (!voucherData) return 0;
+    
+    if (voucherData.type === "PERCENTAGE") {
+      return Math.floor(subtotal * (voucherData.discount / 100));
+    } else if (voucherData.type === "FIXED") {
+      return voucherData.discount;
+    }
+    return 0;
+  }, [voucherData, subtotal]);
+
+  // Check voucher when code changes
+  useEffect(() => {
+    if (voucherCode && voucherCode.trim()) {
+      checkVoucherMutation.mutate({ code: voucherCode });
+    } else {
+      setVoucherData(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [voucherCode]);
+
+  const total = subtotal - voucherDiscount;
   return (
     <div className="lg:col-span-1">
       <div className="bg-card border border-border rounded-xl p-6 sticky top-24">
@@ -25,6 +77,7 @@ export default function OrderInfo({ selectedItems }: OrderInfoProps) {
           {selectedItems.map((item) => (
             <div key={item.variantId} className="flex gap-3">
               <div className="relative shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.variant.product.thumbnailUrl!}
                   alt={item.variant.product.title}
@@ -55,13 +108,23 @@ export default function OrderInfo({ selectedItems }: OrderInfoProps) {
             <span className="text-muted-foreground">Tạm tính</span>
             <span className="text-foreground">{formatPrice(subtotal)}</span>
           </div>
+          
+          {voucherCode && voucherDiscount > 0 && (
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-1.5 text-green-600">
+                <Tag className="h-4 w-4" />
+                <span className="font-medium">Giảm giá</span>
+              </div>
+              <span className="font-semibold text-green-600">-{formatPrice(voucherDiscount)}</span>
+            </div>
+          )}
         </div>
 
         <Separator className="my-4" />
 
         <div className="flex justify-between items-center mb-6">
           <span className="text-lg font-semibold text-foreground">Tổng cộng</span>
-          <span className="text-xl font-bold text-primary">{formatPrice(subtotal)}</span>
+          <span className="text-xl font-bold text-primary">{formatPrice(total)}</span>
         </div>
 
         {/* Place Order Button */}

@@ -216,6 +216,7 @@ const getMyOrders = orpcWithAuth
             },
           },
         },
+        voucher: true,
       },
       orderBy: {
         createdAt: "desc",

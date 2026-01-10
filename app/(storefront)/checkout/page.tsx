@@ -53,7 +53,7 @@ export default async function CheckoutPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column - Forms */}
-        <CheckoutForm selectedItems={cartItems!} />
+        <CheckoutForm />
 
         {/* Right Column - Order Summary */}
         <OrderInfo selectedItems={cartItems!} />

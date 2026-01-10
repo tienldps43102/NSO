@@ -1,18 +1,20 @@
 "use client";
-import { CreditCard, Truck, ArrowLeft, MapPin, User, Phone } from "lucide-react";
+import { CreditCard, Truck, ArrowLeft, MapPin, User, Phone, Tag, Check, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
 import z from "zod";
 import { Controller, useFormContext } from "react-hook-form";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { orpcQuery } from "@/lib/orpc.client";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 export const checkoutFormSchema = z.object({
   fullName: z.string().optional(),
@@ -31,6 +33,7 @@ export const checkoutFormSchema = z.object({
   }),
   selectedAddressId: z.string().optional(),
   useExistingAddress: z.boolean().optional(),
+  voucherCode: z.string().optional(),
 }).refine((data) => {
   if (data.useExistingAddress) {
     return !!data.selectedAddressId;
@@ -49,17 +52,56 @@ export const checkoutFormSchema = z.object({
 });
 
 export type CheckoutFormSchema = z.infer<typeof checkoutFormSchema>;
-interface CheckoutFormProps {
-  selectedItems: Outputs["cartRoutes"]["getMyCartItemsByIds"];
-}
-export default function CheckoutForm({ selectedItems: _selectedItems }: CheckoutFormProps) {
+
+export default function CheckoutForm() {
   const form = useFormContext<CheckoutFormSchema>();
   const [useExistingAddress, setUseExistingAddress] = useState(false);
+  const [voucherInput, setVoucherInput] = useState("");
+  const [voucherStatus, setVoucherStatus] = useState<{
+    status: "idle" | "success" | "error";
+    message?: string;
+  }>({ status: "idle" });
 
   // Fetch saved addresses
   const { data: addresses = [], isLoading: isLoadingAddresses } = useQuery(
     orpcQuery!.addressRoutes.getMyAddress.queryOptions({}),
   );
+
+  // Check voucher mutation
+  const checkVoucherMutation = useMutation(
+    orpcQuery!.voucherRoutes.checkUseVoucher.mutationOptions({
+      onSuccess: (data) => {
+        if (data.success) {
+          form.setValue("voucherCode", voucherInput);
+          setVoucherStatus({ status: "success", message: data.message });
+          toast.success("Áp dụng voucher thành công!");
+        } else {
+          form.setValue("voucherCode", "");
+          setVoucherStatus({ status: "error", message: data.message });
+          toast.error(data.message);
+        }
+      },
+      onError: () => {
+        form.setValue("voucherCode", "");
+        setVoucherStatus({ status: "error", message: "Có lỗi xảy ra khi kiểm tra voucher" });
+        toast.error("Có lỗi xảy ra khi kiểm tra voucher");
+      },
+    }),
+  );
+
+  const handleCheckVoucher = () => {
+    if (!voucherInput.trim()) {
+      toast.error("Vui lòng nhập mã voucher");
+      return;
+    }
+    checkVoucherMutation.mutate({ code: voucherInput.trim() });
+  };
+
+  const handleRemoveVoucher = () => {
+    setVoucherInput("");
+    form.setValue("voucherCode", "");
+    setVoucherStatus({ status: "idle" });
+  };
 
   const handleToggleAddressMode = (checked: boolean) => {
     setUseExistingAddress(checked);
@@ -236,6 +278,74 @@ export default function CheckoutForm({ selectedItems: _selectedItems }: Checkout
             </div>
           </div>
         )}
+      </div>
+
+      {/* Voucher Section */}
+      <div className="bg-card border border-border rounded-xl p-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Tag className="h-5 w-5 text-primary" />
+          <h2 className="text-lg font-semibold text-foreground">Mã giảm giá</h2>
+        </div>
+        
+        <div className="space-y-3">
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Input
+                placeholder="Nhập mã giảm giá"
+                value={voucherInput}
+                onChange={(e) => setVoucherInput(e.target.value.toUpperCase())}
+                disabled={voucherStatus.status === "success"}
+                className={`pr-10 ${
+                  voucherStatus.status === "success"
+                    ? "border-green-500 bg-green-50 dark:bg-green-950/20"
+                    : voucherStatus.status === "error"
+                      ? "border-red-500"
+                      : ""
+                }`}
+              />
+              {voucherStatus.status === "success" && (
+                <Check className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-green-600" />
+              )}
+              {voucherStatus.status === "error" && (
+                <X className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-red-600" />
+              )}
+            </div>
+            
+            {voucherStatus.status === "success" ? (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleRemoveVoucher}
+                className="shrink-0"
+              >
+                Hủy
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                onClick={handleCheckVoucher}
+                disabled={checkVoucherMutation.isPending || !voucherInput.trim()}
+                className="shrink-0"
+              >
+                {checkVoucherMutation.isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Áp dụng"
+                )}
+              </Button>
+            )}
+          </div>
+          
+          {voucherStatus.message && (
+            <p
+              className={`text-sm ${
+                voucherStatus.status === "success" ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {voucherStatus.message}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Order Note */}

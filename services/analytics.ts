@@ -14,7 +14,7 @@ const getOverviewStats = orpcWithAuth
     }),
   )
   .handler(async ({ input }) => {
-    const [revenue, productCount] = await Promise.all([
+    const [revenue, productCount, userCount] = await Promise.all([
       prisma.order.aggregate({
         where: { status: "DELIVERED", createdAt: { gte: input.startDate, lte: input.endDate } },
         _sum: { totalAmount: true },
@@ -23,12 +23,16 @@ const getOverviewStats = orpcWithAuth
       prisma.product.count({
         where: { isActive: true },
       }),
+      prisma.user.count({
+        where: { role: "USER" },
+      }),
     ]);
 
     return {
       totalRevenue: revenue._sum.totalAmount ?? BigInt(0),
       totalOrders: revenue._count,
       totalProducts: productCount,
+      totalUsers: userCount,
     };
   });
 
@@ -178,11 +182,97 @@ const getRevenueByCategory = orpcWithAuth
     }));
   });
 
+const getRecentOrders = orpcWithAuth
+  .route({
+    method: "GET",
+    path: "/analytics/recent-orders",
+  })
+  .input(
+    z.object({
+      limit: z.number().optional().default(5),
+    }),
+  )
+  .handler(async ({ input }) => {
+    const orders = await prisma.order.findMany({
+      take: input.limit,
+      orderBy: { createdAt: "desc" },
+      include: {
+        user: true,
+        address: true,
+        orderItems: {
+          include: {
+            variant: true,
+          },
+        },
+      },
+    });
+
+    return orders.map((order) => ({
+      id: order.id,
+      orderCode: order.orderCode,
+      customerName: order.address.fullName,
+      customerEmail: order.user.email,
+      total: order.totalAmount,
+      status: order.status,
+      createdAt: order.createdAt,
+      itemCount: order.orderItems.reduce((sum, item) => sum + item.quantity, 0),
+    }));
+  });
+
+const getDashboardTopProducts = orpcWithAuth
+  .route({
+    method: "GET",
+    path: "/analytics/dashboard-top-products",
+  })
+  .input(
+    z.object({
+      limit: z.number().optional().default(5),
+    }),
+  )
+  .handler(async ({ input }) => {
+    // Get orders from current month
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+    const topSellingProducts = await prisma.orderItem.groupBy({
+      by: ["variantId"],
+      _sum: { quantity: true, lineTotal: true },
+      orderBy: { _sum: { lineTotal: "desc" } },
+      take: input.limit,
+      where: {
+        order: {
+          status: "DELIVERED",
+          createdAt: { gte: startOfMonth },
+        },
+      },
+    });
+
+    const variants = await prisma.productVariant.findMany({
+      where: { id: { in: topSellingProducts.map((p) => p.variantId) } },
+      include: {
+        product: true,
+      },
+    });
+
+    return topSellingProducts.map((item) => {
+      const variant = variants.find((v) => v.id === item.variantId);
+      return {
+        id: item.variantId,
+        name: variant?.product.title ?? "",
+        sold: item._sum.quantity ?? 0,
+        revenue: item._sum.lineTotal ?? BigInt(0),
+        stock: variant?.stockQuantity ?? 0,
+      };
+    });
+  });
+
 const analyticsRoutes = {
   getOverviewStats,
   getMonthlyRevenue,
   getTopSellingProducts,
   getRevenueByCategory,
+  getRecentOrders,
+  getDashboardTopProducts,
 };
 
 export default analyticsRoutes;
